@@ -8,9 +8,9 @@ import { rootReducer } from './reducers';
 const persistConfig = {
     key: 'root',
     whitelist: [
-        // 'users', 
-        // 'admins', 
-        // 'students'
+        'users', 
+        'admins', 
+        'students'
     ],
     storage,
     stateReconciler: autoMergeLevel2

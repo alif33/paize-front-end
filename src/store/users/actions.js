@@ -18,3 +18,8 @@ export const setPaymentInfo = e => (dispatch) => {
         [e.target.name]: e.target.value
     }))
 }
+
+export const logedIn = u => (dispatch) => {
+    console.log(u, "ismail");
+    dispatch(slice.logedIn(u))
+}

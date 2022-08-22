@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/panding" element={<Panding />} />
         <Route path="/join" element={<JoinSchool />} />
         
-        <Route path="/update-Information" element={<UpdateInfo />} />
+        <Route path="/update-information" element={<UpdateInfo />} />
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add-item" element={<AddItem />} />

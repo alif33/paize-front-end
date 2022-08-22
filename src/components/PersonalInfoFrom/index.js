@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 const PersonalInfoForm = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { users } = useSelector(state=>state);
+    const { __u__ } = users;
     const onSubmit = data => console.log(data);
     return (
         <From onSubmit={handleSubmit(onSubmit)}>
@@ -14,7 +17,9 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            {...register("bankName", { required: true })}
+                            placeholder="First Name"
+                            defaultValue={ __u__.info.firstName }
+                            {...register("firstName", { required: true })}
                         />
                         {errors.bankName && <span>bankName is required</span>}
                     </div>
@@ -24,7 +29,12 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            {...register("bankName", { required: true })}
+                            placeholder="Last Name"
+                            defaultValue={ __u__.info.lastName }
+                            {...register("lastName", { 
+                                required: true 
+                                })
+                            }
                         />
                         {errors.bankName && <span>bankName is required</span>}
                     </div>
@@ -36,7 +46,9 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            {...register("bankName", { required: true })}
+                            placeholder="Email"
+                            defaultValue={ __u__.info.email }
+                            {...register("email", { required: true })}
                         />
                         {errors.bankName && <span>bankName is required</span>}
                     </div>
@@ -46,7 +58,9 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            {...register("bankName", { required: true })}
+                            placeholder="Phone Number"
+                            defaultValue={ __u__.info.phoneNumber }
+                            {...register("phoneNumber", { required: true })}
                         />
                         {errors.bankName && <span>bankName is required</span>}
                     </div>
@@ -60,6 +74,7 @@ const PersonalInfoForm = () => {
 };
 
 export default PersonalInfoForm;
+
 const From = styled.form`
     border-top: 1px solid #DADDE1;
     margin-top: 19px;

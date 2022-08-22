@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPaymentInfo } from '../../store/users/actions';
+import { logedIn, setPaymentInfo } from '../../store/users/actions';
 import { isEmptyObj } from '../../__lib__/helpers/Validator';
 import { postData } from '../../__lib__/helpers/HttpService';
 
@@ -17,17 +17,23 @@ const PaymentInfo = () => {
         e.preventDefault();
         if(isEmptyObj(paymentInfo))
         {
-            console.log("Not okay");
+          console.log("Not okay");
         }else{
           postData('/enroll', {...auth, ...schoolInfo, ...paymentInfo})
           .then(res=>{
-            if (res.sucess) {
-              navigate('/registered');
+            console.log(res);
+            if (res.success) {
+              const { token, info } = res;
+              dispatch(logedIn({ token, info }));
+
+              // navigate('/registered');
             }
           })
         }
 
     };
+
+    // console.log(users);
 
     return (
         <Container>
