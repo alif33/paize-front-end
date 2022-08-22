@@ -2,9 +2,18 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../store/users/actions';
 
 const UserDropDown = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLogout = ()=>{
+        dispatch(logOut());
+        navigate("/");
+    }
+
     return (
         <Popup
             trigger={<Button> <img className="user-icon" src="/img/icon/user-image.png" alt="" /> <img className="down-icon" src="/img/icon/drop-down.svg" alt="" /></Button>}
@@ -20,7 +29,7 @@ const UserDropDown = () => {
             {close =>
                 <DropDownMenu onClick={close}>
                     <div onClick={ ()=>navigate("/update-information") } className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Settings</div>
-                    <div className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</div>
+                    <div onClick={ handleLogout } className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</div>
                 </DropDownMenu>
             }
 

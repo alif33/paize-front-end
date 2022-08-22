@@ -20,6 +20,9 @@ export const setPaymentInfo = e => (dispatch) => {
 }
 
 export const logedIn = u => (dispatch) => {
-    console.log(u, "ismail");
     dispatch(slice.logedIn(u))
+}
+
+export const logOut = () => (dispatch) => {
+    dispatch(slice.logOut())
 }
