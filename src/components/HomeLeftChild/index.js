@@ -35,8 +35,6 @@ const HomeLeftChild = () => {
       <div className="regButtons">
 
 
-
-
       </div>
       <BtnDiv>
         <Link to="/enroll"
