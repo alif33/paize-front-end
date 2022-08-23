@@ -13,13 +13,14 @@ import PaymentNowPage from './pages/PaymentNowPage';
 import SchoolDashboard from './pages/SchoolDashboard';
 import SchoolDashboardAmount from './pages/SchoolDashboardAmount';
 import SchoolInformation from './pages/SchoolInformation';
-import SellingItem from './pages/SellingItem';
+import BuyingItem from './pages/BuyingItem';
 import Registered from './pages/Registered';
 import UpdateInfo from './pages/UpdateInfo';
 import JoinSchool from './pages/JoinSchool';
 import JoinSchoolInfo from './pages/JoinSchoolInfo';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLogin from './pages/admin/AdminLogin';
+
 
 const App = () => {
   return (
@@ -45,8 +46,7 @@ const App = () => {
         <Route path="/update-information" element={<UpdateInfo />} />
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/items" element={<AddItem />} />
-        <Route path="/selling-item" element={<SellingItem />} />
+        <Route path="/items" element={<BuyingItem />} />
         <Route path="/add-new-item" element={<AddNewStudent />} />
         <Route path="/school-dashboard" element={<SchoolDashboard />} />
         <Route path="/school-dashboard-amount" element={<SchoolDashboardAmount />} />
