@@ -14,6 +14,7 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
+                        value="Alex"
                             {...register("bankName", { required: true })}
                         />
                         {errors.bankName && <span>bankName is required</span>}
@@ -24,6 +25,7 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
+                        value="Jones"
                             {...register("bankName", { required: true })}
                         />
                         {errors.bankName && <span>bankName is required</span>}
@@ -36,6 +38,7 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
+                        value="AlexJones@gmail.com"
                             {...register("bankName", { required: true })}
                         />
                         {errors.bankName && <span>bankName is required</span>}
@@ -46,6 +49,7 @@ const PersonalInfoForm = () => {
                     />
                     <div className="inputDiv">
                         <input
+                        value="+1234567890"
                             {...register("bankName", { required: true })}
                         />
                         {errors.bankName && <span>bankName is required</span>}

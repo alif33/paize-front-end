@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import styled from 'styled-components';
 
@@ -17,8 +18,8 @@ const UserDropDown = () => {
 
             {close =>
                 <DropDownMenu onClick={close}>
-                    <div className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Settings</div>
-                    <div className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</div>
+                    <Link to='/update-Information' className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Settings</Link>
+                    <Link to='/update-Information' className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</Link>
                 </DropDownMenu>
             }
 
@@ -35,6 +36,7 @@ const Button = styled.button`
     justify-content: space-between;
     align-items: center;
     width: 75px;
+    cursor: pointer;
 .user-icon{
     border-radius: 50%;
     height: 50px;
@@ -65,6 +67,7 @@ cursor: pointer;
 display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 .menu-item:last-child{
     border-bottom: none;

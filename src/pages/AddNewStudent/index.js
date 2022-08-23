@@ -54,6 +54,7 @@ export default AddNewStudent;
 const Container = styled.div`
 width: 92%;
 margin: auto;
+padding-bottom: 40px;
 
 `;
 
@@ -83,7 +84,7 @@ label{
     font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
-font-size: 20px;
+font-size: 18px;
 line-height: 30px;
 letter-spacing: -0.02em;
 color: #0E3746;

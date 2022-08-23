@@ -164,14 +164,15 @@ display:inline-block;
 padding: 10px 19px;
     margin-right: 42px;
 color: #2291F1;
+transition: all .4s ease-in-out;
 
     }
     a h3{
       font-family: 'Poppins';
 font-style: normal;
-font-weight: 500;
-font-size: 23px;
-line-height: 26px;
+font-weight: 400;
+    font-size: 23px;
+    line-height: 23px;
 margin: 0;
     }
     a h4{font-family: 'Poppins';

@@ -111,7 +111,7 @@ font-size: 16px;
 
 const TableImage = styled.div`
 display: flex;
-justify-content:space-between;
+justify-content: center;
 align-items: center;
 
 input{
@@ -130,6 +130,7 @@ font-weight: 500;
 font-size: 18px;
 line-height: 36px;
 color: #0E3746;
+margin-left: 40px;
 }
 
 `;

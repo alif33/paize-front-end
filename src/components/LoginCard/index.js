@@ -14,7 +14,7 @@ const LoginCard = () => {
                     />
                     <div className="inputDiv">
                         <input
-
+                            placeholder="Email"
                             {...register("email", { required: true })}
                         />
                         {errors.email && <span>email is required</span>}
@@ -25,7 +25,7 @@ const LoginCard = () => {
                     />
                     <div className="inputDiv">
                         <input
-
+                            placeholder="Password"
                             {...register("password", { required: true })}
                         />
                         {errors.password && <span>password is required</span>}
@@ -86,7 +86,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0;
+    margin: 30px 0;
   }
   .inputsConatiner span{
     color: red;

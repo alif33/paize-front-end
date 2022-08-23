@@ -40,6 +40,10 @@ background: rgba(34, 145, 241, 0.14);
 border: none;
 padding: 5px 23px;
     margin-top: 13px;
+    cursor: pointer;
+img{
+    width: 9px;
+}
 
 .active img{ 
 

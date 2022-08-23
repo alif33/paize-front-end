@@ -40,7 +40,7 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <>
-<UserDropDown/>
+                            <UserDropDown />
                         </>
                     )}
                 </div>
@@ -55,11 +55,6 @@ export default Navbar;
 const Container = styled.div`
   width: 100%;
   border-bottom: 1px solid #dadde1;
-
-  button:hover {
-    background-color: #0066bf;
-    /* border: 1px solid #0066bf; */
-  }
   .loginAndIconDiv {
     display: flex;
   }
