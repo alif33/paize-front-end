@@ -1,16 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { postData } from '../../../__lib__/helpers/HttpService';
+import { adminLogin } from '../../../store/admins/actions';
 
 
 const AdminLoginCard = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const dispatch = useDispatch();
+    const { admins } = useSelector(state=> state);
 
     const onSubmit = data => {
+        postData("/admin/signin", data)
+            .then(res=>{
+                if(res.success){
+                    const { token, email } = res;
+                    dispatch(adminLogin({ token, email }))
+                    console.log(res);
+                }
+            })
     };
 
+    console.log(admins, "ismail");
     return (
         <Container>
 
