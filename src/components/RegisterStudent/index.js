@@ -139,6 +139,11 @@ const Container = styled.div`
   }
   .inputsConatiner span{
     color: red;
+    position: absolute;
+    bottom: -12px;
+    left: 22px;
+    background: #fff;
+    padding: 0 6px;
   }
   .whiteText {
     color: white;
