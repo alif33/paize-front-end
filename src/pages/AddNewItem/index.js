@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import { useForm } from 'react-hook-form';
+import { toast, Toaster } from 'react-hot-toast';
+import { postData } from '../../__lib__/helpers/HttpService';
+
 
 const AddNewItem = () => {
+    const [ disable, setDisable ] = useState(false);
     const {
         register,
         reset,
@@ -11,11 +15,24 @@ const AddNewItem = () => {
         formState: { errors },
     } = useForm();
     const onSubmit = data => {
+        setDisable(true);
+        postData("/add-item", data)
+            .then(res=>{
+                setDisable(false);
+                if(res.success){
+                    reset();
+                    toast.success(`${res.message}`);
+                }
+            })
 
     };
     return (
         <>
             <Navbar />
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <Container>
                 <Title>
                     Add New Item
@@ -24,27 +41,27 @@ const AddNewItem = () => {
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <InputConatiner>
                         <label htmlFor="">Item  <span>*</span></label>
-                        <div className={errors.item ? "inputDiv active" : "inputDiv "}>
+                        <div className={errors.itemName ? "inputDiv active" : "inputDiv "}>
                             <input
-                                {...register("item", {
+                                {...register("itemName", {
                                     required: true
                                 })}
-                                placeholder="item"
+                                // placeholder="Item Name"
                             />
-                            {errors.item && <span>Item is required</span>}
+                            { errors.itemName && <span>Item Name is required</span> }
                         </div>
 
                     </InputConatiner>
                     <InputConatiner>
                         <label htmlFor="">Student Name  <span>*</span></label>
-                        <div className={errors.studenteName ? "inputDiv active" : "inputDiv "}>
+                        <div className={errors.studentName ? "inputDiv active" : "inputDiv "}>
                             <input
-                                {...register("studenteName", {
+                                {...register("studentName", {
                                     required: true
                                 })}
-                                placeholder="Name of Bank"
+                                // placeholder="Student Name"
                             />
-                            {errors.studenteName && <span>Student Name is required</span>}
+                            { errors.studentName && <span>Student Name is required</span> }
                         </div>
                     </InputConatiner>
                     <InputConatiner>
@@ -54,9 +71,9 @@ const AddNewItem = () => {
                                 {...register("cost", {
                                     required: true
                                 })}
-                                placeholder="Name of Bank"
+                                // placeholder="Cost"
                             />
-                            {errors.cost && <span>cost is required</span>}
+                            { errors.cost && <span>Cost is required</span> }
                         </div>
                     </InputConatiner>
 
@@ -76,7 +93,7 @@ const AddNewItem = () => {
                     </UploadButton>
 
                     <FormSubmit>
-                        <Button>Submit</Button>
+                        <Button disabled={ disable }>Submit</Button>
                     </FormSubmit>
                 </Form>
 
