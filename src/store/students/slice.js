@@ -1,41 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { studentInfo } from '../../__lib__/config';
+import { authorInfo } from '../../__lib__/config';
 
 
 export const studentSlice = createSlice({
     name: "student",
     initialState: {
-        ...studentInfo
+        auth: authorInfo.auth
     },
     reducers: {
 
-        setAuthInfo: (state, action) => {
+        setStudentAuth: (state, action) => {
             return {
                 ...state,
-                auth: {
-                    ...state.auth,
-                    ...action.payload
-                }
-            }
-        },
-
-        setSchoolInfo: (state, action) => {
-            return {
-                ...state,
-                schoolInfo: {
-                    ...state.schoolInfo,
-                    ...action.payload
-                }
-            }
-        },
-
-        setPaymentInfo: (state, action) => {
-            return {
-                ...state,
-                paymentInfo: {
-                    ...state.paymentInfo,
-                    ...action.payload
-                }
+                auth: action.payload
             }
         }
     },
