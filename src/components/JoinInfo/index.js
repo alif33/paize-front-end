@@ -2,12 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const JoinInfo = () => {
-  return (
-    <Container>
-
-      {/* <From onSubmit={handleSubmit}> */}
+  
+    return (
+      <Container>
       <From>
-
         <div className="inputsConatiner">
           <img src='/img/icon/school.svg'
             style={{ width: "30px" }}
