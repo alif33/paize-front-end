@@ -1,16 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { postData } from '../../../__lib__/helpers/HttpService';
+import { adminLogin } from '../../../store/admins/actions';
 
 
 const AdminLoginCard = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const dispatch = useDispatch();
+    const { admins } = useSelector(state=> state);
 
     const onSubmit = data => {
+        postData("/admin/signin", data)
+            .then(res=>{
+                if(res.success){
+                    const { token, email } = res;
+                    dispatch(adminLogin({ token, email }))
+                    console.log(res);
+                }
+            })
     };
 
+    console.log(admins, "ismail");
     return (
         <Container>
 
@@ -38,33 +50,6 @@ const AdminLoginCard = () => {
                     </div>
                 </div>
 
-                <CheckBox>
-
-                    <div className="form-check active">
-
-                        <input className="form-check-input" type="radio" id="flexRadioDefault1"
-                            {...register("aluminiCheck", { required: true })}
-                        />
-                        <label className="form-check-label" htmlFor="flexRadioDefault1">
-                            <img src="/img/icon/alumni.svg" alt="" />
-                            Alumini
-                        </label>
-
-                    </div>
-
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" id="flexRadioDefault2"
-                            {...register("aluminiCheck", { required: true })}
-                        />
-                        <label className="form-check-label" htmlFor="flexRadioDefault2">
-                            <img src="/img/icon/school.png" alt="" />
-                            School
-                        </label>
-                    </div>
-
-                </CheckBox>
-
-                {errors.aluminiCheck && <span style={{ color: "red" }} >aluminiCheck is required</span>}
 
                 <Button type="submit">
                     Next
