@@ -4,22 +4,33 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { isEmptyObj } from '../../__lib__/helpers/Validator';
 import { setAuthInfo } from '../../store/students/actions';
+import { useForm } from 'react-hook-form';
 
 const Register = () => {
+
+    const {
+        register,
+        reset,
+        handleSubmit,
+        formState: { errors },
+      } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { students } = useSelector(state=>state);
     const { auth } = students;
-    const { firstName, lastName, email, password, confirmPassword } = auth;
+    const { firstName, 
+            lastName, 
+            email, 
+            password, 
+            confirmPassword } = auth;
 
-    const handleSubmit = e =>{
-        e.preventDefault();
-        if(isEmptyObj(auth))
-        {
+    const onSubmit = e =>{
+        // if(isEmptyObj(auth))
+        // {
             console.log("Not okay");
-        }else{
-            navigate('/enroll/school-information');
-        }
+        // }else{
+            navigate('/join/school-information');
+        // }
         // dispatch(setAuth(data));
     };
 
@@ -27,18 +38,21 @@ const Register = () => {
 
     return (
         <Container>
-            <From onSubmit={handleSubmit}>
+            <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
                     <div className="inputDiv">
                         <input
-                            name="firstName"
+                            // name="firstName"
+                            {...register("firstName", {
+                                required: "Password requird",
+                            })}
                             placeholder="First Name"
                             onChange={ e=>dispatch(setAuthInfo(e)) } 
                             value={ firstName }
                         />
-                        {/* {errors.firstName && <span>First Name is required</span>} */}
+                        { errors.firstName && <span>First Name is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -46,12 +60,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="lastName"
+                            // name="lastName"
+                            {...register("lastName", {
+                                required: "Password requird",
+                            })}
                             placeholder="Last Name"
                             onChange={ e=>dispatch(setAuthInfo(e)) } 
                             value={ lastName }
                         />
-                        {/* {errors.lastName && <span>Last Name is required</span>} */}
+                        { errors.lastName && <span>Last Name is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -59,12 +76,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="email"
+                            // name="email"
+                            {...register("email", {
+                                required: "Password requird",
+                            })}
                             placeholder="Email"
                             onChange={ e=>dispatch(setAuthInfo(e)) } 
                             value={ email }
                         />
-                        {/* {errors.email && <span>Email is required</span>} */}
+                        { errors.email && <span>Email is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -72,12 +92,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="password"
+                            // name="password"
+                            {...register("password", {
+                                required: "Password requird",
+                            })}
                             placeholder="Password"
                             onChange={ e=>dispatch(setAuthInfo(e)) } 
                             value={ password }
                         />
-                        {/* {errors.password && <span>Password is required</span>} */}
+                        { errors.password && <span>Password is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -85,12 +108,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="confirmPassword" 
+                            {...register("password", {
+                                required: "Password requird",
+                            })}
+                            // name="confirmPassword" 
                             placeholder="Confirm Password "
-                            onChange={ e=>dispatch(setAuthInfo(e)) } 
-                            value={ confirmPassword }
+                            // onChange={ e=>dispatch(setAuthInfo(e)) } 
+                            defaultValue = { confirmPassword }
                         />
-                        {/* {errors.confirmPassword && <span>Confirm Password is required</span>} */}
+                        { errors.confirmPassword && <span>Confirm Password is required</span> }
                     </div>
                 </div>
 
