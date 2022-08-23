@@ -85,10 +85,15 @@ font-weight: 500;
 font-size: 22px;
 line-height: 30px;
 color: #FFFFFF;
-border: none;
+border: 1px solid #2291F1;
+transition: all .4s ease-in-out;
     padding: 5px 25px;
     text-transform: capitalize;
     cursor: pointer;
+    :hover{
+        color: #2291F1;
+        background: #fff;
+    }
 
 `;
 const Nav = styled.nav`
