@@ -70,7 +70,7 @@ font-size: 22px;
 line-height: 42px;
 color: #0E3746;
 text-decoration: none;
-margin-right: 20px;
+margin-right: 55px;
 
   }
 `;
