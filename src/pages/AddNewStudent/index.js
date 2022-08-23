@@ -256,5 +256,6 @@ color: #FFFFFF;
 border: none;
     padding: 2px 27px;
     margin-top: 22px;
+    cursor: pointer;
 `;
 

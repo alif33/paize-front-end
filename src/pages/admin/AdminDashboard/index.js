@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Navbar from '../../components/Navbar';
-import StudentTable from '../../components/StudentTable';
+import AdminStudentTable from '../../../components/admin/AdminStudentTable';
+import AdminNavbar from '../../../components/admin/AdminNavbar'
 
 const AdminDashboard = () => {
     return (
         <div>
-            <Navbar />
+            <AdminNavbar />
             <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>
@@ -15,7 +15,7 @@ const AdminDashboard = () => {
                     <li>Approved(<span>0</span>)</li>
                     <li>Rejected(<span>0</span>)</li>
                 </TableNavList>
-                <StudentTable />
+                <AdminStudentTable />
             </Container>
         </div>
     );

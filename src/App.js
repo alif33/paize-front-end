@@ -18,7 +18,8 @@ import Registered from './pages/Registered';
 import UpdateInfo from './pages/UpdateInfo';
 import JoinSchool from './pages/JoinSchool';
 import JoinSchoolInfo from './pages/JoinSchoolInfo';
-import AdminDashboard from './pages/AdminDashboard';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminLogin from './pages/admin/AdminLogin';
 
 const App = () => {
   return (
@@ -44,9 +45,9 @@ const App = () => {
         <Route path="/update-information" element={<UpdateInfo />} />
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/add-item" element={<AddItem />} />
+        <Route path="/add-items" element={<AddItem />} />
         <Route path="/selling-item" element={<SellingItem />} />
-        <Route path="/add-new-student" element={<AddNewStudent />} />
+        <Route path="/add-new-item" element={<AddNewStudent />} />
         <Route path="/school-dashboard" element={<SchoolDashboard />} />
         <Route path="/school-dashboard-amount" element={<SchoolDashboardAmount />} />
         <Route path="/payment-info-table" element={<PaymentInfoTable />} />
@@ -54,7 +55,9 @@ const App = () => {
 
 
 
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
       </Routes>
     </BrowserRouter>
   );
