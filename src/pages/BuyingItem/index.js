@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import AddItem from '../../components/AddItem';
 import Navbar from '../../components/Navbar';
 import Table from '../../components/Table/Index';
-../../components/AddItem
+
+
 const BuyingItem = () => {
 
     return (

@@ -7,7 +7,7 @@ import { postData } from '../../__lib__/helpers/HttpService';
 
 
 const AddNewItem = () => {
-    const [ disable, setDisable ] = useState(false);
+    const [disable, setDisable] = useState(false);
     const {
         register,
         reset,
@@ -17,9 +17,9 @@ const AddNewItem = () => {
     const onSubmit = data => {
         setDisable(true);
         postData("/add-item", data)
-            .then(res=>{
+            .then(res => {
                 setDisable(false);
-                if(res.success){
+                if (res.success) {
                     reset();
                     toast.success(`${res.message}`);
                 }
@@ -46,9 +46,9 @@ const AddNewItem = () => {
                                 {...register("itemName", {
                                     required: true
                                 })}
-                                // placeholder="Item Name"
+                            // placeholder="Item Name"
                             />
-                            { errors.itemName && <span>Item Name is required</span> }
+                            {errors.itemName && <span>Item Name is required</span>}
                         </div>
 
                     </InputConatiner>
@@ -59,9 +59,9 @@ const AddNewItem = () => {
                                 {...register("studentName", {
                                     required: true
                                 })}
-                                // placeholder="Student Name"
+                            // placeholder="Student Name"
                             />
-                            { errors.studentName && <span>Student Name is required</span> }
+                            {errors.studentName && <span>Student Name is required</span>}
                         </div>
                     </InputConatiner>
                     <InputConatiner>
@@ -71,9 +71,9 @@ const AddNewItem = () => {
                                 {...register("cost", {
                                     required: true
                                 })}
-                                // placeholder="Cost"
+                            // placeholder="Cost"
                             />
-                            { errors.cost && <span>Cost is required</span> }
+                            {errors.cost && <span>Cost is required</span>}
                         </div>
                     </InputConatiner>
 
@@ -93,7 +93,7 @@ const AddNewItem = () => {
                     </UploadButton>
 
                     <FormSubmit>
-                        <Button disabled={ disable }>Submit</Button>
+                        <Button disabled={disable}>Submit</Button>
                     </FormSubmit>
                 </Form>
 
