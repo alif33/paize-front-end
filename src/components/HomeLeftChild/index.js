@@ -163,6 +163,7 @@ padding: 10px 19px;
     margin-right: 42px;
 color: #2291F1;
 transition: all .4s ease-in-out;
+width: 250px;
 
     }
     a h3{
