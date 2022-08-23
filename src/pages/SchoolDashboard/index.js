@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import StudentTable from '../../components/StudentTable';
 
 const SchoolDashboard = () => {
+    const [NavLink, setNavLink] = useState('all');
+
     return (
         <div>
             <Navbar />
             <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>
-                    <li className="active" >All(<span>0</span>)</li>
-                    <li>Pending(<span>0</span>)</li>
-                    <li>Approved(<span>0</span>)</li>
-                    <li>Rejected(<span>0</span>)</li>
+                    <li onClick={() => setNavLink("all")} className={NavLink === "all" ? "active" : "all"} >All(<span>0</span>)</li>
+                    <li onClick={() => setNavLink("pending")} className={NavLink === "pending" ? "active" : "all"}>Pending(<span>0</span>)</li>
+                    <li onClick={() => setNavLink("approved")} className={NavLink === "approved" ? "active" : "all"}>Approved(<span>0</span>)</li>
+                    <li onClick={() => setNavLink("rejected")} className={NavLink === "rejected" ? "active" : "all"}>Rejected(<span>0</span>)</li>
                 </TableNavList>
                 <StudentTable />
             </Container>
@@ -42,6 +44,7 @@ display: inline-block;
 margin-right: 16px;
     padding-right: 16px;
     margin-bottom: 16px;
+    cursor: pointer;
     
 }
 li:last-child{
@@ -55,6 +58,7 @@ const Title = styled.h3`
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 500;
-font-size: 41px;
+font-size: 34px;
 line-height: 62px;
-color: #0E3746;`;
+color: #0E3746;
+`;
