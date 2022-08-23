@@ -8,40 +8,36 @@ import { isEmptyObj } from '../../__lib__/helpers/Validator';
 
 const Register = () => {
 
-    // const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { users } = useSelector(state=>state);
     const { auth } = users;
     const { firstName, lastName, email, password, confirmPassword } = auth;
     const dispatch = useDispatch();
 
-    const handleSubmit = e =>{
-        e.preventDefault();
-        if(isEmptyObj(auth))
-        {
-            console.log("Not okay");
-        }else{
-            navigate('/enroll/school-information');
-        }
-        // dispatch(setAuth(data));
+    const onSubmit = data =>{
+        dispatch(setAuth(data));
+        navigate('/enroll/school-information');
     };
 
     console.log(users);
 
     return (
         <Container>
-            <From onSubmit={handleSubmit}>
+            <From onSubmit={ handleSubmit(onSubmit) }>
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
                     <div className="inputDiv">
                         <input
-                            name="firstName"
+                            {...register("firstName", {
+                                required: true,
+                            })}
                             placeholder="First Name"
-                            onChange={ e=>dispatch(setAuth(e)) } 
-                            value={ firstName }
+                            // onChange={ e=>dispatch(setAuth(e)) } 
+                            defaultValue={ firstName }
                         />
-                        {/* {errors.firstName && <span>First Name is required</span>} */}
+                        { errors.firstName && <span>First Name is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -49,12 +45,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="lastName"
+                            // name="lastName"
+                            {...register("lastName", {
+                                required: true,
+                            })}
                             placeholder="Last Name"
-                            onChange={ e=>dispatch(setAuth(e)) } 
-                            value={ lastName }
+                            // onChange={ e=>dispatch(setAuth(e)) } 
+                            defaultValue={ lastName }
                         />
-                        {/* {errors.lastName && <span>Last Name is required</span>} */}
+                        { errors.lastName && <span>Last Name is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -62,12 +61,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="email"
+                            // name="email"
+                            {...register("email", {
+                                required: true,
+                            })}
                             placeholder="Email"
-                            onChange={ e=>dispatch(setAuth(e)) } 
-                            value={ email }
+                            // onChange={ e=>dispatch(setAuth(e)) } 
+                            defaultValue={ email }
                         />
-                        {/* {errors.email && <span>Email is required</span>} */}
+                        { errors.email && <span>Email is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -75,12 +77,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="password"
+                            // name="password"
+                            {...register("password", {
+                                required: true,
+                            })}
                             placeholder="Password"
-                            onChange={ e=>dispatch(setAuth(e)) } 
-                            value={ password }
+                            // onChange={ e=>dispatch(setAuth(e)) } 
+                            defaultValue={ password }
                         />
-                        {/* {errors.password && <span>Password is required</span>} */}
+                        { errors.password && <span>Password is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -88,12 +93,15 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="confirmPassword" 
+                            // name="confirmPassword" 
+                            {...register("confirmPassword", {
+                                required: true,
+                            })}
                             placeholder="Confirm Password "
-                            onChange={ e=>dispatch(setAuth(e)) } 
-                            value={ confirmPassword }
+                            // onChange={ e=>dispatch(setAuth(e)) } 
+                            defaultValue={ confirmPassword }
                         />
-                        {/* {errors.confirmPassword && <span>Confirm Password is required</span>} */}
+                        { errors.confirmPassword && <span>Confirm Password is required</span> }
                     </div>
                 </div>
 

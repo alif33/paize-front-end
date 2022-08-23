@@ -15,30 +15,21 @@ export const userSlice = createSlice({
         setAuth: (state, action) => {
             return {
                 ...state,
-                auth: {
-                    ...state.auth,
-                    ...action.payload
-                }
+                auth: action.payload
             }
         },
 
         setSchoolInfo: (state, action) => {
             return {
                 ...state,
-                schoolInfo: {
-                    ...state.schoolInfo,
-                    ...action.payload
-                }
+                schoolInfo: action.payload
             }
         },
 
         setPaymentInfo: (state, action) => {
             return {
                 ...state,
-                paymentInfo: {
-                    ...state.paymentInfo,
-                    ...action.payload
-                }
+                paymentInfo: action.payload
             }
         },
 

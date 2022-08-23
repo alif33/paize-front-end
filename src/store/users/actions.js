@@ -1,22 +1,16 @@
 import { userSlice } from "./slice";
 const { actions: slice } = userSlice;
 
-export const setAuth = e => (dispatch) => {
-    dispatch(slice.setAuth({
-        [e.target.name]: e.target.value
-    }))
+export const setAuth = __u__ => (dispatch) => {
+    dispatch(slice.setAuth(__u__));
 }
 
-export const setSchoolInfo = e => (dispatch) => {
-    dispatch(slice.setSchoolInfo({
-        [e.target.name]: e.target.value
-    }))
+export const setSchoolInfo = __s__ => (dispatch) => {
+    dispatch(slice.setSchoolInfo(__s__));
 }
 
-export const setPaymentInfo = e => (dispatch) => {
-    dispatch(slice.setPaymentInfo({
-        [e.target.name]: e.target.value
-    }))
+export const setPaymentInfo = __p__ => (dispatch) => {
+    dispatch(slice.setPaymentInfo(__p__))
 }
 
 export const logedIn = u => (dispatch) => {

@@ -2,54 +2,54 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logedIn, setPaymentInfo } from '../../store/users/actions';
-import { isEmptyObj } from '../../__lib__/helpers/Validator';
+import { logedIn } from '../../store/users/actions';
 import { postData } from '../../__lib__/helpers/HttpService';
+import { useForm } from 'react-hook-form';
 
 const PaymentInfo = () => {
+
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { users } = useSelector(state=>state);
     const { auth, schoolInfo, paymentInfo } = users;
     const {  bankName, routingNumber, accountName, accountNumber } = paymentInfo;
 
-    const handleSubmit = e =>{
-        e.preventDefault();
-        if(isEmptyObj(paymentInfo))
-        {
-          console.log("Not okay");
-        }else{
-          postData('/enroll', {...auth, ...schoolInfo, ...paymentInfo})
-          .then(res=>{
-            console.log(res);
-            if (res.success) {
-              const { token, info } = res;
-              dispatch(logedIn({ token, info }));
+    const onSubmit = data =>{
 
-              // navigate('/registered');
-            }
-          })
+      postData('/enroll', {...auth, ...schoolInfo, ...data})
+      .then(res=>{
+        if (res.success) {
+          const { token, info } = res;
+          dispatch(logedIn({ token, info }));
         }
+      })
 
     };
 
-    // console.log(users);
 
     return (
         <Container>
-            <From onSubmit={handleSubmit}>
+            <From  onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
                     <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
                     />
                     <div className="inputDiv">
                         <input
-                          name="bankName"
+                          // name="bankName"
+                          {...register("bankName", { 
+                            required: true 
+                          })}
                           placeholder="Name of Bank"
-                          value={ bankName }
-                          onChange={ e=>dispatch(setPaymentInfo(e)) } 
-                            // {...register("bankName", { required: true })}
+                          defaultValue={ bankName }
+                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
-                        {/* {errors.bankName && <span>bankName is required</span>} */}
+                        { errors.bankName && <span>bankName is required</span> }
                     </div>
                 </div>
 
@@ -58,13 +58,15 @@ const PaymentInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                          name="routingNumber"
+                          // name="routingNumber"
+                          {...register("routingNumber", { 
+                            required: true 
+                          })}
                           placeholder="Routing Number"
-                          value={ routingNumber }
-                          onChange={ e=>dispatch(setPaymentInfo(e)) } 
-                            // {...register("routingNumber", { required: true })}
+                          defaultValue={ routingNumber }
+                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
-                        {/* {errors.routingNumber && <span>routingNumber is required</span>} */}
+                        {errors.routingNumber && <span>routingNumber is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -72,13 +74,15 @@ const PaymentInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                          name="accountName"
+                          // name="accountName"
+                          {...register("accountName", { 
+                            required: true 
+                          })}
                           placeholder="Name of Account"
-                          value={ accountName }
-                          onChange={ e=>dispatch(setPaymentInfo(e)) } 
-                            // {...register("accountName", { required: true })}
+                          defaultValue={ accountName }
+                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
-                        {/* {errors.accountName && <span>accountName is required</span>} */}
+                        {errors.accountName && <span>accountName is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -86,13 +90,15 @@ const PaymentInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                          name="accountNumber"
+                          // name="accountNumber"
+                          {...register("accountNumber", { 
+                            required: true 
+                          })}
                           placeholder="Account Number"
-                          value={ accountNumber }
-                          onChange={ e=>dispatch(setPaymentInfo(e)) } 
-                            // {...register("accountNumber", { required: true })}
+                          defaultValue={ accountNumber }
+                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
-                        {/* {errors.accountNumber && <span>accountNumber is required</span>} */}
+                        { errors.accountNumber && <span>accountNumber is required</span> }
                     </div>
                 </div>
 

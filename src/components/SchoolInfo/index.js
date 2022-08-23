@@ -3,31 +3,29 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSchoolInfo } from '../../store/users/actions';
-import { isEmptyObj } from '../../__lib__/helpers/Validator';
-
+import { useForm } from 'react-hook-form'; 
 
 const SchoolInfo = () => {
 
+    const {
+        register,
+        reset,
+        handleSubmit,
+        formState: { errors },
+      } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { users } = useSelector(state=>state);
     const { schoolInfo } = users;
     const { schoolName, schoolAddress, principleName, relation, phoneNumber, } = schoolInfo;
-    const handleSubmit = e =>{
-        e.preventDefault();
-        if(isEmptyObj(schoolInfo))
-        {
-            console.log("Not okay");
-        }else{
-            navigate('/enroll/payment-information');
-        }
+    const onSubmit = data =>{
+        dispatch(setSchoolInfo(data));
+        navigate('/enroll/payment-information');
     }
-    console.log(schoolInfo);
+
     return (
         <Container>
-
-            <From onSubmit={handleSubmit}>
-
+            <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
                     <img src='/img/icon/school.svg'  
                         style={{ width: "30px"}} 
@@ -36,13 +34,13 @@ const SchoolInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="schoolName"
+                            {...register("schoolName", { 
+                                required: true 
+                            })}
                             placeholder="School Name"
-                            value={ schoolName }
-                            onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                            // {...register("schoolName", { required: true })}
+                            defaultValue={ schoolName }
                         />
-                        {/* {errors.schoolName && <span>School Name is required</span>} */}
+                        { errors.schoolName && <span>School Name is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -50,13 +48,13 @@ const SchoolInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="schoolAddress"
+                            {...register("schoolAddress", { 
+                                required: true 
+                            })}
                             placeholder="School Adress"
-                            value={ schoolAddress }
-                            onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                            // {...register("schoolAddress", { required: true })}
+                            defaultValue={ schoolAddress }
                         />
-                        {/* {errors.schoolAddress && <span>school address is required</span>} */}
+                        {errors.schoolAddress && <span>school address is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -64,13 +62,13 @@ const SchoolInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="principleName"
+                            {...register("principleName", { 
+                                required: true 
+                            })}
                             placeholder="Name of Principle"
-                            value={ principleName }
-                            onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                            // {...register("principleName", { required: true })}
+                            defaultValue={ principleName }
                         />
-                        {/* {errors.relationship && <span>relationship is required</span>} */}
+                        { errors.principleName && <span>Principle Name is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -78,13 +76,13 @@ const SchoolInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="relation"
+                            {...register("relation", { 
+                                required: true 
+                            })}
                             placeholder="Relation to School"
-                            value={ relation }
-                            onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                            // {...register("schoolName", { required: true })}
+                            defaultValue={ relation }
                         />
-                        {/* {errors.schoolName && <span>School Name is required</span>} */}
+                        { errors.relation && <span>School Name is required</span> }
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -92,13 +90,13 @@ const SchoolInfo = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            name="phoneNumber"
+                            {...register("phoneNumber", { 
+                                required: true 
+                            })}
                             placeholder="Phone Number"
-                            value={ phoneNumber }
-                            onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                            // {...register("phoneNumber", { required: true })}
+                            defaultValue={ phoneNumber }
                         />
-                        {/* {errors.phoneNumber && <span>phoneNumber is required</span>} */}
+                        { errors.phoneNumber && <span>phoneNumber is required</span> }
                     </div>
                 </div>
 
