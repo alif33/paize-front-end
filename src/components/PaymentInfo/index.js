@@ -41,13 +41,11 @@ const PaymentInfo = () => {
                     />
                     <div  className={errors.bankName ? "inputDiv active" : "inputDiv "}>
                         <input
-                          // name="bankName"
                           {...register("bankName", { 
                             required: true 
                           })}
                           placeholder="Name of Bank"
                           defaultValue={ bankName }
-                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
                         { errors.bankName && <span>bankName is required</span> }
                     </div>
@@ -127,12 +125,14 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
+  
   .inputsConatiner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 20px 0;
   }
+
   .inputsConatiner span{
     color: red;
     position: absolute;
