@@ -8,8 +8,8 @@ import { postData } from '../../__lib__/helpers/HttpService';
 const JoinInfo = () => {
 
   const navigate = useNavigate();
-  const { students } = useSelector(state=>state);
-  
+  const { students } = useSelector(state => state);
+
   const {
     register,
     reset,
@@ -17,17 +17,17 @@ const JoinInfo = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = data =>{
+  const onSubmit = data => {
     postData('/join', { ...students.auth, ...data })
-      .then(res=>{
+      .then(res => {
         console.log(res);
       })
     console.log(data);
   }
-    return (
-      <Container>
+  return (
+    <Container>
       <From
-        onSubmit={ handleSubmit(onSubmit) }
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="inputsConatiner">
           <img src='/img/icon/school.svg'
@@ -36,43 +36,44 @@ const JoinInfo = () => {
             alt=""
           />
 
-          <div  className={errors.schoolName ? "inputDiv active" : "inputDiv "}>
-            <select 
-              {...register("schoolName", { 
-                required: true 
+          <div className={errors.schoolName ? "inputDiv active" : "inputDiv "}>
+            <select
+              {...register("schoolName", {
+                required: true
               })}
             >
+              <option>School Name</option>
               <option value="63035d46b6b878593b5e8c94">A</option>
               <option value="63035d46b6b878593b5e8c94">B</option>
               <option value="63035d46b6b878593b5e8c94">C</option>
             </select>
-            { errors.schoolName && <span>School Name is required</span> }
+            {errors.schoolName && <span>School Name is required</span>}
           </div>
         </div>
         <div className="inputsConatiner">
           <img src='/img/icon/graduate.svg' className="ledtIcon" alt=""
           />
-          <div  className={errors.graduationYear ? "inputDiv active" : "inputDiv "}>
+          <div className={errors.graduationYear ? "inputDiv active" : "inputDiv "}>
             <input
-              {...register("graduationYear", { 
-                required: true 
+              {...register("graduationYear", {
+                required: true
               })}
               placeholder="Graduation Year"
             />
-            { errors.graduationYear && <span>Graduation Year is required</span> }
+            {errors.graduationYear && <span>Graduation Year is required</span>}
           </div>
         </div>
         <div className="inputsConatiner">
           <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
           />
-          <div  className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
+          <div className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
             <input
-              {...register("phoneNumber", { 
-                required: true 
+              {...register("phoneNumber", {
+                required: true
               })}
               placeholder="Phone Number"
             />
-            { errors.phoneNumber && <span>Phone Number is required</span> }
+            {errors.phoneNumber && <span>Phone Number is required</span>}
           </div>
         </div>
 
@@ -80,7 +81,7 @@ const JoinInfo = () => {
           Next
         </Button>
         <Button2
-          onClick={ ()=>navigate(-1) }
+          onClick={() => navigate(-1)}
           type="button">
           Back
         </Button2>
@@ -127,7 +128,7 @@ const Container = styled.div`
   }
 
  
-  .inputDiv input{
+  .inputDiv input, .inputDiv select{
     padding-inline: 20px;
     display: flex;
     justify-content: center;
@@ -144,11 +145,11 @@ const Container = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-  .inputDiv.active input{
+  .inputDiv.active input, .inputDiv.active select{
     border: 1px solid red;
     background: #fff;
   }
-  .inputDiv input:focus{
+  .inputDiv input:focus, .inputDiv select:focus{
     outline: none;
   }
   .inputDiv::placeholder {
