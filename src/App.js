@@ -17,6 +17,7 @@ import SellingItem from './pages/SellingItem';
 import Registered from './pages/Registered';
 import UpdateInfo from './pages/UpdateInfo';
 import JoinSchool from './pages/JoinSchool';
+import JoinSchoolInfo from './pages/JoinSchoolInfo';
 
 const App = () => {
   return (
@@ -36,7 +37,7 @@ const App = () => {
         <Route path="/pending" element={<Panding />} />
 
         <Route path="/join" element={<JoinSchool />} />
-        <Route path="/join/school-information" element={<JoinSchool />} />
+        <Route path="/join/school-information" element={<JoinSchoolInfo />} />
         
         <Route path="/update-information" element={<UpdateInfo />} />
         <Route path="/payment-details" element={<PaymentDetails />} />
