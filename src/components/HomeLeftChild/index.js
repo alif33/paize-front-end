@@ -35,18 +35,16 @@ const HomeLeftChild = () => {
       <div className="regButtons">
 
 
-
-
       </div>
       <BtnDiv>
-        <Link to="/enroll/register"
+        <Link to="/enroll"
           className="active"
         >
           <h3>Enroll School</h3>
           <h4>(for school admins)</h4>
         </Link>
 
-        <Link to="/join/register"
+        <Link to="/join"
 
         >
           <h3 >Join your School</h3>

@@ -6,7 +6,9 @@ import { authorInfo } from '../../__lib__/config';
 export const userSlice = createSlice({
     name: "users",
     initialState: {
-        ...authorInfo
+        ...authorInfo,
+        __u__: "",
+        isLogedIn: false
     },
     reducers: {
 
@@ -38,6 +40,22 @@ export const userSlice = createSlice({
                     ...action.payload
                 }
             }
-        }
+        },
+
+        logedIn: (state, action) => {
+            return {
+                ...state,
+                __u__: action.payload,
+                isLogedIn: true
+            }
+        },
+
+        logOut: (state, action) => {
+            return {
+                ...state,
+                __u__: "",
+                isLogedIn: false
+            }
+        },
     }
 })

@@ -1,14 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { postData } from '../../__lib__/helpers/HttpService';
+import { logedIn } from '../../store/users/actions';
+
 
 const LoginCard = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const dispatch = useDispatch();
+
+    const onSubmit = data =>{
+        postData('/signin', data)
+        .then(res=>{
+            if(res.success){
+                const { token, info } = res;
+                dispatch(logedIn({
+                    token,
+                    info
+                }))
+            }
+        })
+    };
+
     return (
         <Container>
-            <From onSubmit={handleSubmit(onSubmit)}>
 
+            <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
                     <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
@@ -17,7 +35,7 @@ const LoginCard = () => {
                             placeholder="Email"
                             {...register("email", { required: true })}
                         />
-                        {errors.email && <span>email is required</span>}
+                        {errors.email && <span>Email is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -28,7 +46,7 @@ const LoginCard = () => {
                             placeholder="Password"
                             {...register("password", { required: true })}
                         />
-                        {errors.password && <span>password is required</span>}
+                        {errors.password && <span>Password is required</span>}
                     </div>
                 </div>
 
@@ -61,7 +79,7 @@ const LoginCard = () => {
                 {errors.aluminiCheck && <span style={{ color: "red" }} >aluminiCheck is required</span>}
 
                 <Button type="submit">
-                    Login
+                    Next
                 </Button>
 
             </From>

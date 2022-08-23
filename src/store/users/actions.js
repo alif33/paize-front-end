@@ -18,3 +18,11 @@ export const setPaymentInfo = e => (dispatch) => {
         [e.target.name]: e.target.value
     }))
 }
+
+export const logedIn = u => (dispatch) => {
+    dispatch(slice.logedIn(u))
+}
+
+export const logOut = () => (dispatch) => {
+    dispatch(slice.logOut())
+}

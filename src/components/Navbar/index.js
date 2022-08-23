@@ -2,8 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import UserDropDown from './UserDropDown';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+    const { users } = useSelector(state => state);
+    // const { __u__ } = users;
+
+    console.log(users);
+
     return (
         <Container>
             <Nav>
@@ -12,7 +18,6 @@ const Navbar = () => {
                         <img src="/img/icon/logo.svg" style={{ width: "100px", height: "60px" }} alt="" />
                     </Link>
                 </NavBrand>
-
                 <SearchDiv>
                     <img
                         src='/img/icon/search-icon.svg' alt=""
@@ -21,30 +26,22 @@ const Navbar = () => {
                         placeholder="Search"
                     />
                 </SearchDiv>
-
-
                 <div className="loginAndIconDiv">
-
                     <Link to="/about" className="heading" >About</Link>
 
-                    {true === "" ? (
+
+                    {users.isLogedIn ? <UserDropDown /> : (
                         <div className="buttonContainer">
-
-
                             <Link to="/login">
                                 <LoginBtn>
                                     Login
                                 </LoginBtn>
                             </Link>
-
                         </div>
-                    ) : (
-                        <>
-                            <UserDropDown />
-                        </>
                     )}
-                </div>
 
+
+                </div>
             </Nav>
         </Container>
     );
