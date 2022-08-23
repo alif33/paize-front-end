@@ -9,7 +9,7 @@ const AdminStudentTable = () => {
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Graduation Year</th>
+                    <th>Payment Details</th>
                     <th>Phone</th>
                     <th>Status</th>
                 </tr>

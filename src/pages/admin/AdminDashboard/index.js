@@ -9,12 +9,14 @@ const AdminDashboard = () => {
             <AdminNavbar />
             <Container>
                 <Title>School DashBoard</Title>
+
                 <TableNavList>
                     <li className="active" >All(<span>0</span>)</li>
                     <li>Pending(<span>0</span>)</li>
                     <li>Approved(<span>0</span>)</li>
                     <li>Rejected(<span>0</span>)</li>
                 </TableNavList>
+
                 <AdminStudentTable />
             </Container>
         </div>
@@ -33,7 +35,7 @@ li{
     font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
-font-size: 20px;
+font-size: 18px;
     line-height: 23px;
 letter-spacing: -0.02em;
 color: rgba(14, 55, 70, 0.4);
