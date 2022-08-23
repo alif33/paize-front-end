@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postData } from '../../../__lib__/helpers/HttpService';
 import { adminLogin } from '../../../store/admins/actions';
 
-
 const AdminLoginCard = () => {
+    const [ disable, setDisable ] = useState(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { admins } = useSelector(state=> state);
 
     const onSubmit = data => {
+        setDisable(true);
         postData("/admin/signin", data)
             .then(res=>{
                 if(res.success){
+                    setDisable(false);
                     const { token, email } = res;
                     dispatch(adminLogin({ token, email }))
-                    console.log(res);
+                    navigate("/admin/dashboard")
                 }
             })
     };
 
-    console.log(admins, "ismail");
     return (
         <Container>
 
@@ -51,7 +54,10 @@ const AdminLoginCard = () => {
                 </div>
 
 
-                <Button type="submit">
+                <Button 
+                    type="submit"
+                    disabled={ disable }
+                >
                     Next
                 </Button>
 

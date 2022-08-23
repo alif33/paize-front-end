@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import DropDown from './DropDown';
 
-
 const AdminStudentTable = () => {
     return (
         <TableContainer>
