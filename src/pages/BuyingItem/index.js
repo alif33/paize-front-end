@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import AddItem from '../../components/AddItem';
 import Navbar from '../../components/Navbar';
 import Table from '../../components/Table/Index';
-import AddItem from '../AddItem';
-
+../../components/AddItem
 const BuyingItem = () => {
 
     return (
@@ -25,7 +25,7 @@ const BuyingItem = () => {
 
                         <Button>
                             <img src="/img/icon/trash-icon.png" alt="" />
-                            <Link to="/">Add New</Link>
+                            <Link to="/add-new-item">Add New</Link>
                         </Button>
 
                     </Title>

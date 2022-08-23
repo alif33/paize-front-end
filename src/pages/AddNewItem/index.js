@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import { useForm } from 'react-hook-form';
 
-const AddNewStudent = () => {
+const AddNewItem = () => {
     const {
         register,
         reset,
@@ -85,7 +85,7 @@ const AddNewStudent = () => {
     );
 };
 
-export default AddNewStudent;
+export default AddNewItem;
 
 
 const Container = styled.div`

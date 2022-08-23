@@ -13,7 +13,7 @@ const AddItem = () => {
                     to add item.
                 </h1>
             </div>
-            <Link to="/selling-item">Add New Item</Link>
+            <Link to="/add-new-item">Add New Item</Link>
         </Container>
     );
 };

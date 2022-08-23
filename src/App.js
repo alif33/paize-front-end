@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddItem from './pages/AddItem';
-import AddNewStudent from './pages/AddNewStudent';
+import AddItem from './components/AddItem';
+import AddNewItem from './pages/AddNewItem';
 import EnrollSchool from './pages/EnrollSchool';
 import HomePage from './pages/Home';
 import Login from './pages/Login';
@@ -47,7 +47,7 @@ const App = () => {
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/items" element={<BuyingItem />} />
-        <Route path="/add-new-item" element={<AddNewStudent />} />
+        <Route path="/add-new-item" element={<AddNewItem />} />
         <Route path="/school-dashboard" element={<SchoolDashboard />} />
         <Route path="/school-dashboard-amount" element={<SchoolDashboardAmount />} />
         <Route path="/payment-info-table" element={<PaymentInfoTable />} />
