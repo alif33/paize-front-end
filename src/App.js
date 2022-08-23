@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/enroll/payment-information" element={<PaymentInformation />} />
         <Route path="/registered" element={<Registered />} /> 
         <Route path="/panding" element={<Panding />} />
-        <Route path="/join/register" element={<JoinSchool />} />
+        {/* <Route path="/join/register" element={<JoinSchool />} /> */}
         
         <Route path="/enroll" element={<EnrollSchool />} />
         <Route path="/enroll/school-information" element={<SchoolInformation />} />
