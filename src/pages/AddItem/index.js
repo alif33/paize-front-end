@@ -1,23 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Navbar from '../../components/Navbar';
+
 
 const AddItem = () => {
     return (
-        <div>
-            <Navbar />
-            <Container>
-                <div>
-                    <img src="/img/icon/box.png" alt="" />
-                    <h1>
-                        You don’t have any item, click add new item button
-                        to add item.
-                    </h1>
-                </div>
-                <Link to="/selling-item">Add New Item</Link>
-            </Container>
-        </div>
+        <Container>
+            <div>
+                <img src="/img/icon/box.png" alt="" />
+                <h1>
+                    You don’t have any item, click add new item button
+                    to add item.
+                </h1>
+            </div>
+            <Link to="/selling-item">Add New Item</Link>
+        </Container>
     );
 };
 

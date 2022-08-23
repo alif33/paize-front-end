@@ -3,28 +3,45 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Table from '../../components/Table/Index';
+import AddItem from '../AddItem';
 
-const SellingItem = () => {
+const BuyingItem = () => {
+
     return (
         <div>
             <Navbar />
-            <Title>
-                <h3>Needs</h3>
-                <Button>
-                    <img src="/img/icon/trash-icon.png" alt="" />
-                    <Link to="/">Add New</Link>
-                </Button>
-            </Title>
-            <Table />
-            <ArrowRight>
-                <Link className="active" to="/"><img src="/img/icon/arrow-right.png" alt="" /></Link>
-                <Link to="/add-new-item"><img src="/img/icon/arrow-right.png" alt="" /></Link>
-            </ArrowRight>
+
+
+            {true ? <>
+                <Title3>
+                    <h3>Needs</h3>
+                </Title3>
+                < AddItem />
+            </>
+
+                : <>
+                    <Title>
+                        <h3>Needs</h3>
+
+                        <Button>
+                            <img src="/img/icon/trash-icon.png" alt="" />
+                            <Link to="/">Add New</Link>
+                        </Button>
+
+                    </Title>
+                    <Table />
+                    <ArrowRight>
+                        <Link className="active" to="/"><img src="/img/icon/arrow-right.png" alt="" /></Link>
+                        <Link to="/add-new-item"><img src="/img/icon/arrow-right.png" alt="" /></Link>
+                    </ArrowRight>
+                </>}
+
+
         </div>
     );
 };
 
-export default SellingItem;
+export default BuyingItem;
 
 const Title = styled.div`
 width: 95%;
@@ -43,6 +60,15 @@ margin-top: 10px;
 margin-bottom: 10px;
 }
 `;
+const Title3 = styled(Title)`
+h3{
+    line-height: 0;
+    color: #0E3746;
+    margin-top: 45px;
+    margin-bottom: 10px;
+}
+`;
+
 const Button = styled.div`
 display: flex;
 align-items: center;

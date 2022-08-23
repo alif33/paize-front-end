@@ -114,7 +114,7 @@ font-size: 16px;
 
 const TableImage = styled.div`
 display: flex;
-justify-content:space-between;
+justify-content: space-around;
 align-items: center;
 
 input{
