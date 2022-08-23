@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +10,7 @@ const UserDropDown = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         dispatch(logOut());
         navigate("/");
     }
@@ -28,8 +29,8 @@ const UserDropDown = () => {
 
             {close =>
                 <DropDownMenu onClick={close}>
-                    <div onClick={ ()=>navigate("/update-information") } className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Settings</div>
-                    <div onClick={ handleLogout } className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</div>
+                    <div onClick={() => navigate("/update-information")} className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Settings</div>
+                    <div onClick={handleLogout} className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</div>
                 </DropDownMenu>
             }
 
@@ -46,6 +47,7 @@ const Button = styled.button`
     justify-content: space-between;
     align-items: center;
     width: 75px;
+    cursor: pointer;
 .user-icon{
     border-radius: 50%;
     height: 50px;
@@ -76,6 +78,7 @@ cursor: pointer;
 display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 .menu-item:last-child{
     border-bottom: none;

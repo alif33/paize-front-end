@@ -5,7 +5,7 @@ import UserDropDown from './UserDropDown';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-    const { users } =useSelector(state=>state);
+    const { users } = useSelector(state => state);
     // const { __u__ } = users;
 
     console.log(users);
@@ -28,7 +28,9 @@ const Navbar = () => {
                 </SearchDiv>
                 <div className="loginAndIconDiv">
                     <Link to="/about" className="heading" >About</Link>
-                    { users.isLogedIn ?<UserDropDown/>: (
+
+
+                    {users.isLogedIn ? <UserDropDown /> : (
                         <div className="buttonContainer">
                             <Link to="/login">
                                 <LoginBtn>
@@ -36,8 +38,9 @@ const Navbar = () => {
                                 </LoginBtn>
                             </Link>
                         </div>
-                        )  
-                    }
+                    )}
+
+
                 </div>
             </Nav>
         </Container>
@@ -49,11 +52,6 @@ export default Navbar;
 const Container = styled.div`
   width: 100%;
   border-bottom: 1px solid #dadde1;
-
-  button:hover {
-    background-color: #0066bf;
-    /* border: 1px solid #0066bf; */
-  }
   .loginAndIconDiv {
     display: flex;
   }

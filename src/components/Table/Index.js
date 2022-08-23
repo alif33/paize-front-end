@@ -27,6 +27,32 @@ const Table = () => {
                     <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
                     <td><img src="/img/icon/edit.png" alt="" /></td>
                 </tr>
+                <tr>
+                    <td>
+                        <TableImage>
+                            <input type="radio" />
+                            <img src="/img/icon/dummy-image.png" alt="" />
+                            <h5>Study Table</h5>
+                        </TableImage>
+                    </td>
+                    <td><p>1300</p></td>
+                    <td><p>Meera M</p></td>
+                    <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
+                    <td><img src="/img/icon/edit.png" alt="" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <TableImage>
+                            <input type="radio" />
+                            <img src="/img/icon/dummy-image.png" alt="" />
+                            <h5>Study Table</h5>
+                        </TableImage>
+                    </td>
+                    <td><p>1300</p></td>
+                    <td><p>Meera M</p></td>
+                    <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
+                    <td><img src="/img/icon/edit.png" alt="" /></td>
+                </tr>
             </tbody>
         </TableContainer>
     );
