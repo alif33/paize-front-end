@@ -2,75 +2,69 @@ import React from 'react';
 import styled from 'styled-components';
 
 const JoinInfo = () => {
-
   
     return (
-        <Container>
+      <Container>
+      <From>
+        <div className="inputsConatiner">
+          <img src='/img/icon/school.svg'
+            style={{ width: "30px" }}
+            className="ledtIcon"
+            alt=""
+          />
 
-            {/* <From onSubmit={handleSubmit}> */}
-            <From>
-
-                <div className="inputsConatiner">
-                    <img src='/img/icon/school.svg'
-                        style={{ width: "30px" }}
-                        className="ledtIcon"
-                        alt=""
-                    />
-
-                    <div className="inputDiv">
-                        <input
-                            name="schoolName"
-                            placeholder="School Name"
-                        // value={ schoolName }
-                        // onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                        // {...register("schoolName", { required: true })}
-                        />
-                        {/* {errors.schoolName && <span>School Name is required</span>} */}
-                    </div>
-                </div>
-                <div className="inputsConatiner">
-                    <img src='/img/icon/graduate.svg' className="ledtIcon" alt=""
-                    />
-                    <div className="inputDiv">
-                        <input
-                            name="relation"
-                            placeholder="Graduation Year"
-                        // value={ relation }
-                        // onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                        // {...register("schoolName", { required: true })}
-                        />
-                        {/* {errors.schoolName && <span>School Name is required</span>} */}
-                    </div>
-                </div>
-                <div className="inputsConatiner">
-                    <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
-                    <div className="inputDiv">
-                        <input
-                            name="phoneNumber"
-                            placeholder="Phone Number"
-                        // value={ phoneNumber }
-                        // onChange={ e=>dispatch(setSchoolInfo(e)) } 
-                        // {...register("phoneNumber", { required: true })}
-                        />
-                        {/* {errors.phoneNumber && <span>phoneNumber is required</span>} */}
-                    </div>
-                </div>
+          <div className="inputDiv">
+            <select>
+              <option value="School Name"
+              // {...register("schoolName", { required: true })}
+              >School Name</option>
+            </select>
+            {/* {errors.schoolName && <span>School Name is required</span>} */}
+          </div>
+        </div>
+        <div className="inputsConatiner">
+          <img src='/img/icon/graduate.svg' className="ledtIcon" alt=""
+          />
+          <div className="inputDiv">
+            <input
+              name="relation"
+              placeholder="Graduation Year"
+            // value={ relation }
+            // onChange={ e=>dispatch(setSchoolInfo(e)) } 
+            // {...register("schoolName", { required: true })}
+            />
+            {/* {errors.schoolName && <span>School Name is required</span>} */}
+          </div>
+        </div>
+        <div className="inputsConatiner">
+          <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+          />
+          <div className="inputDiv">
+            <input
+              name="phoneNumber"
+              placeholder="Phone Number"
+            // value={ phoneNumber }
+            // onChange={ e=>dispatch(setSchoolInfo(e)) } 
+            // {...register("phoneNumber", { required: true })}
+            />
+            {/* {errors.phoneNumber && <span>phoneNumber is required</span>} */}
+          </div>
+        </div>
 
 
 
-                <Button type="submit">
-                    Next
-                </Button>
-                <Button2
-                    // onClick={ ()=>navigate(-1) }
-                    type="button">
-                    Back
-                </Button2>
+        <Button type="submit">
+          Next
+        </Button>
+        <Button2
+          // onClick={ ()=>navigate(-1) }
+          type="button">
+          Back
+        </Button2>
 
-            </From>
-        </Container>
-    );
+      </From>
+    </Container>
+  );
 };
 
 export default JoinInfo;
@@ -106,7 +100,7 @@ const Container = styled.div`
   }
 
  
-  .inputDiv input{
+  .inputDiv input, .inputDiv select{
     padding-inline: 20px;
     display: flex;
     justify-content: center;
@@ -123,7 +117,7 @@ const Container = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-  .inputDiv input:focus{
+  .inputDiv input:focus, .inputDiv select:focus{
     outline: none;
   }
 
