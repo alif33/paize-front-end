@@ -30,7 +30,7 @@ const LoginCard = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.email ? "inputDiv active" : "inputDiv "}>
                         <input
                             placeholder="Email"
                             {...register("email", { required: true })}
@@ -41,7 +41,7 @@ const LoginCard = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
                             placeholder="Password"
                             {...register("password", { required: true })}
@@ -92,8 +92,6 @@ export default LoginCard;
 
 
 const Container = styled.div`
-  //background-color: green;
-  height: 75vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -104,10 +102,15 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 30px 0;
+    margin: 35px 0;
   }
   .inputsConatiner span{
     color: red;
+    position: absolute;
+    bottom: -12px;
+    left: 22px;
+    background: #fff;
+    padding: 0 6px;
   }
   .whiteText {
     color: white;
@@ -118,6 +121,7 @@ const Container = styled.div`
 
   .inputDiv {
     width: 88%;
+    position: relative;
   }
 
  
@@ -138,15 +142,13 @@ const Container = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
+  .inputDiv.active input{
+    border: 1px solid red;
+    background: #fff;
+  }
   .inputDiv input:focus{
     outline: none;
   }
-
-  // .ledtIcon {
-  //   border: 2px solid #f0f1f3;
-  //   padding: 9px;
-  //   border-radius: 5px;
-  // }
   .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
@@ -164,7 +166,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 margin-top: 50px;
-margin-bottom: 100px;
+
 label{
     font-family: 'Poppins';
 font-style: normal;
@@ -191,12 +193,14 @@ background: #2291F1;
 border-radius: 5px;
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 600;
-font-size: 22px;
-line-height: 39px;
-color: #FFFFFF;
-border: none;
-margin: 10px 0;
+font-weight: 500;
+    font-size: 22px;
+    line-height: 39px;
+    color: #FFFFFF;
+    border: none;
+    margin: 10px 0;
+    padding: 5px 0;
+    margin-top: 100px;
 `;
 
 

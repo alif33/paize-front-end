@@ -121,6 +121,7 @@ color: #111;
 
 `;
 const SearchDiv = styled.div`
+margin-left: 110px;
  width: 42%;
     height: 50px;
     display: flex;

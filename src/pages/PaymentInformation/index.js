@@ -30,11 +30,6 @@ export default PaymentInformation;
 
 
 const Container = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -48,23 +43,19 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
   }
-  #img {
-    display: block;
-    width: 44vw;
-    align-self: center;
-    height: 100vh;
-    object-fit: cover;
-  }
   .leftChild {
     height: 90%;
-    width: 60%;
+    width: 52%;
     padding-top: 1%;
     padding-left: 1%;
     display: flex;
     flex-direction: column;
   }
   .rightChild {
-    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
     margin: 0;
     display: flex;
     align-items: center;

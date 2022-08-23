@@ -18,6 +18,7 @@ import Registered from './pages/Registered';
 import UpdateInfo from './pages/UpdateInfo';
 import JoinSchool from './pages/JoinSchool';
 import JoinSchoolInfo from './pages/JoinSchoolInfo';
+import AdminDashboard from './pages/AdminDashboard';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/registered" element={<Registered />} /> 
         <Route path="/panding" element={<Panding />} />
         <Route path="/join/register" element={<JoinSchool />} />
+        
         <Route path="/enroll" element={<EnrollSchool />} />
         <Route path="/enroll/school-information" element={<SchoolInformation />} />
         <Route path="/enroll/payment-information" element={<PaymentInformation />} />
@@ -49,6 +51,10 @@ const App = () => {
         <Route path="/school-dashboard-amount" element={<SchoolDashboardAmount />} />
         <Route path="/payment-info-table" element={<PaymentInfoTable />} />
         <Route path="/payment" element={<PaymentNowPage />} />
+
+
+
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );

@@ -15,7 +15,7 @@ const PersonalInfoForm = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("bankName", { required: true })}
                             placeholder="First Name"
@@ -28,7 +28,7 @@ const PersonalInfoForm = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("bankName", { required: true })}
                             placeholder="Last Name"
@@ -46,8 +46,8 @@ const PersonalInfoForm = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/mail.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
-                        <inputDiv
+                    <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
+                        <input
                             {...register("bankName", { required: true })}
                             placeholder="Email"
                             defaultValue={__u__.info.email}
@@ -59,7 +59,7 @@ const PersonalInfoForm = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/contact.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("bankName", { required: true })}
                             placeholder="Phone Number"
@@ -97,10 +97,16 @@ const From = styled.form`
   }
   .inputsConatiner span{
     color: red;
+    position: absolute;
+    bottom: -12px;
+    left: 22px;
+    background: #fff;
+    padding: 0 6px;
   }
   
   .inputDiv {
     width: 88%;
+    position: relative;
   }
 
  
@@ -121,6 +127,10 @@ const From = styled.form`
     width: 100%;
     box-sizing: border-box;
   }
+  .inputDiv.active input{
+    border: 1px solid red;
+    background: #fff;
+  }
   .inputDiv input:focus{
     outline: none;
   }
@@ -137,11 +147,12 @@ const Button = styled.button`
     font-size: 20px;
     line-height: 44px;
     background: #2291F1;
-    border-radius: 12px;
+    border-radius: 8px;
     color: #FFFFFF;
     padding: 5px 0;
     border: none;
     width: 50% !important;
     margin: auto;
     margin-top: 30px;
+    cursor: pointer;
 `;

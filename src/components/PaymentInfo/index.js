@@ -39,7 +39,7 @@ const PaymentInfo = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div  className={errors.bankName ? "inputDiv active" : "inputDiv "}>
                         <input
                           // name="bankName"
                           {...register("bankName", { 
@@ -56,7 +56,7 @@ const PaymentInfo = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div  className={errors.routingNumber ? "inputDiv active" : "inputDiv "}>
                         <input
                           // name="routingNumber"
                           {...register("routingNumber", { 
@@ -72,7 +72,7 @@ const PaymentInfo = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div  className={errors.accountName ? "inputDiv active" : "inputDiv "}>
                         <input
                           // name="accountName"
                           {...register("accountName", { 
@@ -88,7 +88,7 @@ const PaymentInfo = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/document.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div  className={errors.accountNumber ? "inputDiv active" : "inputDiv "}>
                         <input
                           // name="accountNumber"
                           {...register("accountNumber", { 
@@ -121,8 +121,6 @@ export default PaymentInfo;
 
 
 const Container = styled.div`
-  //background-color: green;
-  height: 75vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -137,6 +135,11 @@ const Container = styled.div`
   }
   .inputsConatiner span{
     color: red;
+    position: absolute;
+    bottom: -12px;
+    left: 22px;
+    background: #fff;
+    padding: 0 6px;
   }
   .whiteText {
     color: white;
@@ -147,6 +150,7 @@ const Container = styled.div`
 
   .inputDiv {
     width: 88%;
+    position: relative;
   }
 
  
@@ -166,6 +170,10 @@ const Container = styled.div`
     border: 0;
     width: 100%;
     box-sizing: border-box;
+  }
+  .inputDiv.active input{
+    border: 1px solid red;
+    background: #fff;
   }
   .inputDiv input:focus{
     outline: none;
@@ -188,12 +196,13 @@ background: #2291F1;
 border-radius: 5px;
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 600;
-font-size: 22px;
-line-height: 39px;
-color: #FFFFFF;
-border: none;
-margin: 10px 0;
+font-weight: 500;
+    font-size: 22px;
+    line-height: 39px;
+    color: #FFFFFF;
+    border: none;
+    margin: 10px 0;
+    padding: 5px 0;
 `;
 const Button2 = styled(Button)`
 background: #fff;

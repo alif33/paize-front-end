@@ -36,7 +36,7 @@ const JoinInfo = () => {
             alt=""
           />
 
-          <div className="inputDiv">
+          <div  className={errors.schoolName ? "inputDiv active" : "inputDiv "}>
             <select 
               {...register("schoolName", { 
                 required: true 
@@ -52,7 +52,7 @@ const JoinInfo = () => {
         <div className="inputsConatiner">
           <img src='/img/icon/graduate.svg' className="ledtIcon" alt=""
           />
-          <div className="inputDiv">
+          <div  className={errors.graduationYear ? "inputDiv active" : "inputDiv "}>
             <input
               {...register("graduationYear", { 
                 required: true 
@@ -65,7 +65,7 @@ const JoinInfo = () => {
         <div className="inputsConatiner">
           <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
           />
-          <div className="inputDiv">
+          <div  className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
             <input
               {...register("phoneNumber", { 
                 required: true 
@@ -94,8 +94,6 @@ export default JoinInfo;
 
 
 const Container = styled.div`
-  //background-color: green;
-  height: 75vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -110,6 +108,11 @@ const Container = styled.div`
   }
   .inputsConatiner span{
     color: red;
+    position: absolute;
+    bottom: -12px;
+    left: 22px;
+    background: #fff;
+    padding: 0 6px;
   }
   .whiteText {
     color: white;
@@ -120,10 +123,11 @@ const Container = styled.div`
 
   .inputDiv {
     width: 88%;
+    position: relative;
   }
 
  
-  .inputDiv input, .inputDiv select{
+  .inputDiv input{
     padding-inline: 20px;
     display: flex;
     justify-content: center;
@@ -140,15 +144,13 @@ const Container = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-  .inputDiv input:focus, .inputDiv select:focus{
+  .inputDiv.active input{
+    border: 1px solid red;
+    background: #fff;
+  }
+  .inputDiv input:focus{
     outline: none;
   }
-
-  // .ledtIcon {
-  //   border: 2px solid #f0f1f3;
-  //   padding: 9px;
-  //   border-radius: 5px;
-  // }
   .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
@@ -167,12 +169,13 @@ background: #2291F1;
 border-radius: 5px;
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 600;
-font-size: 22px;
-line-height: 39px;
-color: #FFFFFF;
-border: none;
-margin: 10px 0;
+font-weight: 500;
+    font-size: 22px;
+    line-height: 39px;
+    color: #FFFFFF;
+    border: none;
+    margin: 10px 0;
+    padding: 5px 0;
 `;
 const Button2 = styled(Button)`
 background: #fff;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSchoolInfo } from '../../store/users/actions';
-import { useForm } from 'react-hook-form'; 
+import { useForm } from 'react-hook-form';
 
 const SchoolInfo = () => {
 
@@ -12,13 +12,13 @@ const SchoolInfo = () => {
         reset,
         handleSubmit,
         formState: { errors },
-      } = useForm();
+    } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { users } = useSelector(state=>state);
+    const { users } = useSelector(state => state);
     const { schoolInfo } = users;
     const { schoolName, schoolAddress, principleName, relation, phoneNumber, } = schoolInfo;
-    const onSubmit = data =>{
+    const onSubmit = data => {
         dispatch(setSchoolInfo(data));
         navigate('/enroll/payment-information');
     }
@@ -27,32 +27,32 @@ const SchoolInfo = () => {
         <Container>
             <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/school.svg'  
-                        style={{ width: "30px"}} 
-                        className="ledtIcon" 
+                    <img src='/img/icon/school.svg'
+                        style={{ width: "30px" }}
+                        className="ledtIcon"
                         alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.schoolName ? "inputDiv active" : "inputDiv "} >
                         <input
-                            {...register("schoolName", { 
-                                required: true 
+                            {...register("schoolName", {
+                                required: true
                             })}
                             placeholder="School Name"
-                            defaultValue={ schoolName }
+                            defaultValue={schoolName}
                         />
-                        { errors.schoolName && <span>School Name is required</span> }
+                        {errors.schoolName && <span>School Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/school.svg'  style={{ width: "30px"}} className="ledtIcon" alt=""
+                    <img src='/img/icon/school.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.schoolAddress ? "inputDiv active" : "inputDiv "}>
                         <input
-                            {...register("schoolAddress", { 
-                                required: true 
+                            {...register("schoolAddress", {
+                                required: true
                             })}
                             placeholder="School Adress"
-                            defaultValue={ schoolAddress }
+                            defaultValue={schoolAddress}
                         />
                         {errors.schoolAddress && <span>school address is required</span>}
                     </div>
@@ -60,51 +60,51 @@ const SchoolInfo = () => {
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.principleName ? "inputDiv active" : "inputDiv "}>
                         <input
-                            {...register("principleName", { 
-                                required: true 
+                            {...register("principleName", {
+                                required: true
                             })}
                             placeholder="Name of Principle"
-                            defaultValue={ principleName }
+                            defaultValue={principleName}
                         />
-                        { errors.principleName && <span>Principle Name is required</span> }
+                        {errors.principleName && <span>Principle Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.relation ? "inputDiv active" : "inputDiv "}>
                         <input
-                            {...register("relation", { 
-                                required: true 
+                            {...register("relation", {
+                                required: true
                             })}
                             placeholder="Relation to School"
-                            defaultValue={ relation }
+                            defaultValue={relation}
                         />
-                        { errors.relation && <span>School Name is required</span> }
+                        {errors.relation && <span>School Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/contact.svg'  style={{ width: "30px"}} className="ledtIcon" alt=""
+                    <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
                         <input
-                            {...register("phoneNumber", { 
-                                required: true 
+                            {...register("phoneNumber", {
+                                required: true
                             })}
                             placeholder="Phone Number"
-                            defaultValue={ phoneNumber }
+                            defaultValue={phoneNumber}
                         />
-                        { errors.phoneNumber && <span>phoneNumber is required</span> }
+                        {errors.phoneNumber && <span>phoneNumber is required</span>}
                     </div>
                 </div>
 
                 <Button type="submit">
                     Next
                 </Button>
-                <Button2 
-                    onClick={ ()=>navigate(-1) }
+                <Button2
+                    onClick={() => navigate(-1)}
                     type="button">
                     Back
                 </Button2>
@@ -117,8 +117,6 @@ const SchoolInfo = () => {
 export default SchoolInfo;
 
 const Container = styled.div`
-  //background-color: green;
-  height: 75vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -133,6 +131,11 @@ const Container = styled.div`
   }
   .inputsConatiner span{
     color: red;
+    position: absolute;
+    bottom: -12px;
+    left: 22px;
+    background: #fff;
+    padding: 0 6px;
   }
   .whiteText {
     color: white;
@@ -143,6 +146,7 @@ const Container = styled.div`
 
   .inputDiv {
     width: 88%;
+    position: relative;
   }
 
  
@@ -163,15 +167,13 @@ const Container = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
+  .inputDiv.active input{
+    border: 1px solid red;
+    background: #fff;
+  }
   .inputDiv input:focus{
     outline: none;
   }
-
-  // .ledtIcon {
-  //   border: 2px solid #f0f1f3;
-  //   padding: 9px;
-  //   border-radius: 5px;
-  // }
   .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
@@ -190,12 +192,13 @@ background: #2291F1;
 border-radius: 5px;
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 600;
-font-size: 22px;
-line-height: 39px;
-color: #FFFFFF;
-border: none;
-margin: 10px 0;
+font-weight: 500;
+    font-size: 22px;
+    line-height: 39px;
+    color: #FFFFFF;
+    border: none;
+    margin: 10px 0;
+    padding: 5px 0;
 `;
 const Button2 = styled(Button)`
 background: #fff;

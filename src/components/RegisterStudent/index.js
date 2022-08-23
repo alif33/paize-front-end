@@ -123,7 +123,6 @@ export default Register;
 
 
 const Container = styled.div`
-  height: 75vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -199,12 +198,13 @@ background: #2291F1;
 border-radius: 5px;
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 600;
-font-size: 22px;
-line-height: 39px;
-color: #FFFFFF;
-border: none;
-margin: 10px 0;
+font-weight: 500;
+    font-size: 22px;
+    line-height: 39px;
+    color: #FFFFFF;
+    border: none;
+    margin: 10px 0;
+    padding: 5px 0;
 `;
 const Button2 = styled(Button)`
 background: #fff;
