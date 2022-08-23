@@ -12,7 +12,7 @@ const BuyingItem = () => {
             <Navbar />
 
 
-            {false ? <>
+            {true ? <>
                 <Title3>
                     <h3>Needs</h3>
                 </Title3>
@@ -30,12 +30,13 @@ const BuyingItem = () => {
 
                     </Title>
                     <Table />
+                    <ArrowRight>
+                        <Link className="active" to="/"><img src="/img/icon/arrow-right.png" alt="" /></Link>
+                        <Link to="/add-new-item"><img src="/img/icon/arrow-right.png" alt="" /></Link>
+                    </ArrowRight>
                 </>}
 
-            <ArrowRight>
-                <Link className="active" to="/"><img src="/img/icon/arrow-right.png" alt="" /></Link>
-                <Link to="/add-new-item"><img src="/img/icon/arrow-right.png" alt="" /></Link>
-            </ArrowRight>
+
         </div>
     );
 };
