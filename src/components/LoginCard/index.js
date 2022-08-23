@@ -10,17 +10,17 @@ const LoginCard = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const dispatch = useDispatch();
 
-    const onSubmit = data =>{
+    const onSubmit = data => {
         postData('/signin', data)
-        .then(res=>{
-            if(res.success){
-                const { token, info } = res;
-                dispatch(logedIn({
-                    token,
-                    info
-                }))
-            }
-        })
+            .then(res => {
+                if (res.success) {
+                    const { token, info } = res;
+                    dispatch(logedIn({
+                        token,
+                        info
+                    }))
+                }
+            })
     };
 
     return (
@@ -52,7 +52,7 @@ const LoginCard = () => {
 
                 <CheckBox>
 
-                    <div className="form-check">
+                    <div className="form-check active">
 
                         <input className="form-check-input" type="radio" id="flexRadioDefault1"
                             {...register("aluminiCheck", { required: true })}
@@ -166,19 +166,22 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 margin-top: 50px;
+cursor: pointer;
 
 label{
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
-line-height: 36px;
-color: rgba(14, 55, 70, 0.4)
-
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
+    color: rgba(14, 55, 70, 0.4);
+    cursor: pointer;
+    
 }
 .active label{color: #2291F1;}
 
 input{
+    cursor: pointer;
     height: 22px;
     width: 22px;
 }
