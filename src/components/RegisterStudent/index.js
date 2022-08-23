@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { isEmptyObj } from '../../__lib__/helpers/Validator';
-import { setAuthInfo } from '../../store/students/actions';
+import { setStudentAuth } from '../../store/students/actions';
 import { useForm } from 'react-hook-form';
 
 const Register = () => {
@@ -24,33 +23,26 @@ const Register = () => {
             password, 
             confirmPassword } = auth;
 
-    const onSubmit = e =>{
-        // if(isEmptyObj(auth))
-        // {
-            console.log("Not okay");
-        // }else{
-            navigate('/join/school-information');
-        // }
-        // dispatch(setAuth(data));
+    const onSubmit = data =>{
+        dispatch(setStudentAuth(data));
+        navigate('/join/school-information');
     };
 
     console.log(students);
 
     return (
         <Container>
-            <From onSubmit={handleSubmit(onSubmit)}>
+            <From onSubmit={ handleSubmit(onSubmit) }>
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
                     <div className="inputDiv">
                         <input
-                            // name="firstName"
                             {...register("firstName", {
                                 required: "Password requird",
                             })}
                             placeholder="First Name"
-                            onChange={ e=>dispatch(setAuthInfo(e)) } 
-                            value={ firstName }
+                            defaultValue={ firstName }
                         />
                         { errors.firstName && <span>First Name is required</span> }
                     </div>
@@ -60,13 +52,11 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            // name="lastName"
                             {...register("lastName", {
                                 required: "Password requird",
                             })}
                             placeholder="Last Name"
-                            onChange={ e=>dispatch(setAuthInfo(e)) } 
-                            value={ lastName }
+                            defaultValue={ lastName }
                         />
                         { errors.lastName && <span>Last Name is required</span> }
                     </div>
@@ -76,13 +66,11 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            // name="email"
                             {...register("email", {
                                 required: "Password requird",
                             })}
                             placeholder="Email"
-                            onChange={ e=>dispatch(setAuthInfo(e)) } 
-                            value={ email }
+                            defaultValue={ email }
                         />
                         { errors.email && <span>Email is required</span> }
                     </div>
@@ -92,13 +80,11 @@ const Register = () => {
                     />
                     <div className="inputDiv">
                         <input
-                            // name="password"
                             {...register("password", {
                                 required: "Password requird",
                             })}
                             placeholder="Password"
-                            onChange={ e=>dispatch(setAuthInfo(e)) } 
-                            value={ password }
+                            defaultValue={ password }
                         />
                         { errors.password && <span>Password is required</span> }
                     </div>
@@ -111,9 +97,7 @@ const Register = () => {
                             {...register("password", {
                                 required: "Password requird",
                             })}
-                            // name="confirmPassword" 
                             placeholder="Confirm Password "
-                            // onChange={ e=>dispatch(setAuthInfo(e)) } 
                             defaultValue = { confirmPassword }
                         />
                         { errors.confirmPassword && <span>Confirm Password is required</span> }
@@ -129,7 +113,6 @@ const Register = () => {
                 >
                     Back
                 </Button2>
-
             </From>
         </Container>
     );

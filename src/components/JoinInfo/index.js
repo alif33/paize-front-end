@@ -1,11 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { postData } from '../../__lib__/helpers/HttpService';
 
 const JoinInfo = () => {
+
+  const navigate = useNavigate();
+  const { students } = useSelector(state=>state);
   
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = data =>{
+    postData('/join', { ...students.auth, ...data })
+      .then(res=>{
+        console.log(res);
+      })
+    console.log(data);
+  }
     return (
       <Container>
-      <From>
+      <From
+        onSubmit={ handleSubmit(onSubmit) }
+      >
         <div className="inputsConatiner">
           <img src='/img/icon/school.svg'
             style={{ width: "30px" }}
@@ -14,12 +37,16 @@ const JoinInfo = () => {
           />
 
           <div className="inputDiv">
-            <select>
-              <option value="School Name"
-              // {...register("schoolName", { required: true })}
-              >School Name</option>
+            <select 
+              {...register("schoolName", { 
+                required: true 
+              })}
+            >
+              <option value="63035d46b6b878593b5e8c94">A</option>
+              <option value="63035d46b6b878593b5e8c94">B</option>
+              <option value="63035d46b6b878593b5e8c94">C</option>
             </select>
-            {/* {errors.schoolName && <span>School Name is required</span>} */}
+            { errors.schoolName && <span>School Name is required</span> }
           </div>
         </div>
         <div className="inputsConatiner">
@@ -27,13 +54,12 @@ const JoinInfo = () => {
           />
           <div className="inputDiv">
             <input
-              name="relation"
+              {...register("graduationYear", { 
+                required: true 
+              })}
               placeholder="Graduation Year"
-            // value={ relation }
-            // onChange={ e=>dispatch(setSchoolInfo(e)) } 
-            // {...register("schoolName", { required: true })}
             />
-            {/* {errors.schoolName && <span>School Name is required</span>} */}
+            { errors.graduationYear && <span>Graduation Year is required</span> }
           </div>
         </div>
         <div className="inputsConatiner">
@@ -41,23 +67,20 @@ const JoinInfo = () => {
           />
           <div className="inputDiv">
             <input
-              name="phoneNumber"
+              {...register("phoneNumber", { 
+                required: true 
+              })}
               placeholder="Phone Number"
-            // value={ phoneNumber }
-            // onChange={ e=>dispatch(setSchoolInfo(e)) } 
-            // {...register("phoneNumber", { required: true })}
             />
-            {/* {errors.phoneNumber && <span>phoneNumber is required</span>} */}
+            { errors.phoneNumber && <span>Phone Number is required</span> }
           </div>
         </div>
-
-
 
         <Button type="submit">
           Next
         </Button>
         <Button2
-          // onClick={ ()=>navigate(-1) }
+          onClick={ ()=>navigate(-1) }
           type="button">
           Back
         </Button2>
@@ -156,3 +179,6 @@ background: #fff;
 color: #2291F1;
 border: 2px solid #2291F1;
 `;
+
+
+
