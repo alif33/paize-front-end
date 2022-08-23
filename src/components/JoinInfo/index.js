@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { postData } from '../../__lib__/helpers/HttpService';
+import { getData, postData } from '../../__lib__/helpers/HttpService';
 
 const JoinInfo = () => {
 
+  const [ schools, setSchools ] = useState([]);
   const navigate = useNavigate();
   const { students } = useSelector(state => state);
 
@@ -16,6 +17,13 @@ const JoinInfo = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(()=>{
+    getData("/schools")
+    .then(res=>{
+      setSchools(res);
+    })
+  }, [])
 
   const onSubmit = data => {
     postData('/join', { ...students.auth, ...data })
@@ -43,9 +51,9 @@ const JoinInfo = () => {
               })}
             >
               <option>School Name</option>
-              <option value="63035d46b6b878593b5e8c94">A</option>
-              <option value="63035d46b6b878593b5e8c94">B</option>
-              <option value="63035d46b6b878593b5e8c94">C</option>
+              {
+                schools.length >0 && schools.map((item, index)=><option key={index} value={item._id}>{item.schoolName}</option>)
+              }
             </select>
             {errors.schoolName && <span>School Name is required</span>}
           </div>
