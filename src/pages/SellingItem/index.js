@@ -16,6 +16,10 @@ const SellingItem = () => {
                 </Button>
             </Title>
             <Table />
+            <ArrowRight>
+                <Link className="active" to="/"><img src="/img/icon/arrow-right.png" alt="" /></Link>
+                <Link to="/add-new-item"><img src="/img/icon/arrow-right.png" alt="" /></Link>
+            </ArrowRight>
         </div>
     );
 };
@@ -53,4 +57,18 @@ color: #2291F1;
 text-decoration: none;
 padding: 12px 24px;
 }
+`;
+const ArrowRight = styled.div`
+
+position: fixed;
+bottom: 20px;
+right: 20px;
+a:first-child {
+    transform: rotate(180deg);
+    margin-right: 15px;
+}
+a.active {
+    opacity: 0.5;
+}
+
 `;

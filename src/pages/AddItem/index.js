@@ -15,7 +15,7 @@ const AddItem = () => {
                         to add item.
                     </h1>
                 </div>
-                <Link to="/contact">Add New Item</Link>
+                <Link to="/selling-item">Add New Item</Link>
             </Container>
         </div>
     );
@@ -30,7 +30,7 @@ display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 60vh;
+    height: 70vh;
     div{
         width: 100%;
     }
@@ -42,26 +42,31 @@ font-size: 28px;
 line-height: 60px;
 text-align: center;
 color: rgba(14, 55, 70, 0.4);
-width: 70%;
+font-size: 28px;
+    line-height: 36px;
 margin: auto;
+width: 56%;
 text-align: center;
+}
+img{
+    width: 110px;
+    margin-bottom: 30px;
 }
 a{
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 600;
-font-size: 26px;
-line-height: 39px;
-color: #FFFFFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 39px;
+    color: #FFFFFF;
     background: #2291F1;
-border-radius: 5px;
-border: none;
-width: 40%;
-cursor: pointer;
-text-decoration: none;
-display: inline-block;
+    border-radius: 5px;
+    border: none;
+    width: 28%;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
     padding: 6px 0;
-/* margin-top: 128px !important; */
 }
 
 `;
