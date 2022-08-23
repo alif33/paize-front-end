@@ -52,6 +52,7 @@ const Register = () => {
                             onChange={ e=>dispatch(setAuthInfo(e)) } 
                             value={ firstName }
                         />
+                        <span>First Name is required</span> 
                         { errors.firstName && <span>First Name is required</span> }
                     </div>
                 </div>
@@ -165,6 +166,7 @@ const Container = styled.div`
 
   .inputDiv {
     width: 88%;
+    position: relative;
   }
 
  
@@ -184,6 +186,10 @@ const Container = styled.div`
     border: 0;
     width: 100%;
     box-sizing: border-box;
+  }
+  .inputDiv input{
+    border: 1px solid red;
+    background: #fff;
   }
   .inputDiv input:focus{
     outline: none;
