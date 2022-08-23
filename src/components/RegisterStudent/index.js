@@ -12,18 +12,18 @@ const Register = () => {
         reset,
         handleSubmit,
         formState: { errors },
-      } = useForm();
+    } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { students } = useSelector(state=>state);
+    const { students } = useSelector(state => state);
     const { auth } = students;
-    const { firstName, 
-            lastName, 
-            email, 
-            password, 
-            confirmPassword } = auth;
+    const { firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword } = auth;
 
-    const onSubmit = data =>{
+    const onSubmit = data => {
         dispatch(setStudentAuth(data));
         navigate('/join/school-information');
     };
@@ -32,85 +32,84 @@ const Register = () => {
 
     return (
         <Container>
-            <From onSubmit={ handleSubmit(onSubmit) }>
+            <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("firstName", {
                                 required: "Password requird",
                             })}
                             placeholder="First Name"
-                            defaultValue={ firstName }
+                            defaultValue={firstName}
                         />
-                        <span>First Name is required</span> 
-                        { errors.firstName && <span>First Name is required</span> }
+                        {errors.firstName && <span>First Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.lastName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("lastName", {
                                 required: "Password requird",
                             })}
                             placeholder="Last Name"
-                            defaultValue={ lastName }
+                            defaultValue={lastName}
                         />
-                        { errors.lastName && <span>Last Name is required</span> }
+                        {errors.lastName && <span>Last Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/mail.svg' style={{ width: "30px"}} className="ledtIcon" alt=""
+                    <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.email ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("email", {
                                 required: "Password requird",
                             })}
                             placeholder="Email"
-                            defaultValue={ email }
+                            defaultValue={email}
                         />
-                        { errors.email && <span>Email is required</span> }
+                        {errors.email && <span>Email is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px"}} className="ledtIcon" alt=""
+                    <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("password", {
                                 required: "Password requird",
                             })}
                             placeholder="Password"
-                            defaultValue={ password }
+                            defaultValue={password}
                         />
-                        { errors.password && <span>Password is required</span> }
+                        {errors.password && <span>Password is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px"}} className="ledtIcon" alt=""
+                    <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
                     />
-                    <div className="inputDiv">
+                    <div className={errors.confirmPassword ? "inputDiv active" : "inputDiv "}>
                         <input
-                            {...register("password", {
+                            {...register("confirmPassword", {
                                 required: "Password requird",
                             })}
                             placeholder="Confirm Password "
-                            defaultValue = { confirmPassword }
+                            defaultValue={confirmPassword}
                         />
-                        { errors.confirmPassword && <span>Confirm Password is required</span> }
+                        {errors.confirmPassword && <span>Confirm Password is required</span>}
                     </div>
                 </div>
 
                 <Button type="submit">
                     Next
                 </Button>
-                <Button2 
+                <Button2
                     type="button"
-                    onClick={ ()=>navigate(-1) }
+                    onClick={() => navigate(-1)}
                 >
                     Back
                 </Button2>
@@ -175,7 +174,7 @@ const Container = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-  .inputDiv input{
+  .inputDiv.active input{
     border: 1px solid red;
     background: #fff;
   }

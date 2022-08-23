@@ -65,12 +65,12 @@ const Container = styled.div`
    
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 600;
+font-weight: 500;
 font-size: 22px;
 line-height: 42px;
 color: #0E3746;
 text-decoration: none;
-margin-right: 55px;
+margin-right: 40px;
 
   }
 `;
@@ -81,9 +81,9 @@ background: #2291F1;
 border-radius: 5px;
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 400;
+font-weight: 500;
 font-size: 22px;
-line-height: 42px;
+line-height: 30px;
 color: #FFFFFF;
 border: none;
     padding: 5px 25px;
