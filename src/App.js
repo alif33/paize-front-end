@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddItem from './components/AddItem';
 import AddNewItem from './pages/AddNewItem';
 import EnrollSchool from './pages/EnrollSchool';
 import HomePage from './pages/Home';
@@ -26,6 +25,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route path="/" element={<HomePage />} />
         <Route path="/enroll/register" element={<EnrollSchool />} /> 
         <Route path="/enroll/school-information" element={<SchoolInformation />} />
@@ -42,7 +42,7 @@ const App = () => {
 
         <Route path="/join" element={<JoinSchool />} />
         <Route path="/join/school-information" element={<JoinSchoolInfo />} />
-        
+
         <Route path="/update-information" element={<UpdateInfo />} />
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />

@@ -39,7 +39,6 @@ font-size: 28px;
 line-height: 60px;
 text-align: center;
 color: rgba(14, 55, 70, 0.4);
-font-size: 28px;
     line-height: 36px;
 margin: auto;
 width: 56%;
