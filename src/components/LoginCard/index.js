@@ -1,28 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postData } from '../../__lib__/helpers/HttpService';
 import { logedIn } from '../../store/users/actions';
 
 
 const LoginCard = () => {
+    const [ disable, setDisable ] = useState(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const dispatch = useDispatch();
+    const { users } = useSelector(state=>state);
 
     const onSubmit = data => {
-        postData('/signin', data)
+        setDisable(true);
+        postData(`/${data.aluminiCheck}/signin`, data)
             .then(res => {
+                setDisable(false);
                 if (res.success) {
-                    const { token, info } = res;
+                    const { token, info, role } = res;
                     dispatch(logedIn({
                         token,
-                        info
+                        info,
+                        role
                     }))
+                    if(role==="AUTHOR"){
+
+                    }
                 }
+            })
+            .catch(err=>{
+                setDisable(false);
             })
     };
 
+    console.log(users);
     return (
         <Container>
 
@@ -53,9 +65,14 @@ const LoginCard = () => {
                 <CheckBox>
 
                     <div className="form-check active">
-
-                        <input className="form-check-input" type="radio" id="flexRadioDefault1"
-                            {...register("aluminiCheck", { required: true })}
+                        <input 
+                            id="flexRadioDefault1"
+                            className="form-check-input" 
+                            type="radio"
+                            value="student"
+                            {...register("aluminiCheck", { 
+                                required: true 
+                            })}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
                             <img src="/img/icon/alumni.svg" alt="" />
@@ -65,8 +82,14 @@ const LoginCard = () => {
                     </div>
 
                     <div className="form-check">
-                        <input className="form-check-input" type="radio" id="flexRadioDefault2"
-                            {...register("aluminiCheck", { required: true })}
+                        <input 
+                            id="flexRadioDefault2"
+                            className="form-check-input" 
+                            type="radio" 
+                            value="author"
+                            {...register("aluminiCheck", { 
+                                required: true 
+                            })}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault2">
                             <img src="/img/icon/school.png" alt="" />
@@ -78,7 +101,10 @@ const LoginCard = () => {
 
                 {errors.aluminiCheck && <span style={{ color: "red" }} >aluminiCheck is required</span>}
 
-                <Button type="submit">
+                <Button 
+                    type="submit"
+                    disabled={ disable }
+                >
                     Next
                 </Button>
 

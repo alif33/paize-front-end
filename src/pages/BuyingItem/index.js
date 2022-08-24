@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AddItem from '../../components/AddItem';
 import Navbar from '../../components/Navbar';
 import Table from '../../components/Table/Index';
+import { __getData } from '../../__lib__/helpers/HttpService';
 
 
 const BuyingItem = () => {
+    const [ needs, setNeeds ] = useState(null);
+    const { users } = useSelector(state=>state);
+    const { __u__ } = users;
+    useEffect(()=>{
+        __getData("/items", __u__.token)
+            .then(res=>{
+                setNeeds(res);
+            })
+            .catch(err=>console.log(err))
+    })
 
     return (
         <div>
             <Navbar />
 
-
-            {true ? <>
-                <Title3>
-                    <h3>Needs</h3>
-                </Title3>
-                < AddItem />
-            </>
-
-                : <>
+            { needs && needs.length>0 ? <>
                     <Title>
                         <h3>Needs</h3>
 
@@ -30,12 +34,17 @@ const BuyingItem = () => {
                         </Button>
 
                     </Title>
-                    <Table />
+                    <Table needs={ needs } />
                     <ArrowRight>
                         <Link className="active" to="/"><img src="/img/icon/arrow-right.png" alt="" /></Link>
                         <Link to="/add-new-item"><img src="/img/icon/arrow-right.png" alt="" /></Link>
                     </ArrowRight>
-                </>}
+                </>:  <>
+                <Title3>
+                    <h3>Needs</h3>
+                </Title3>
+                < AddItem />
+            </> }
 
 
         </div>

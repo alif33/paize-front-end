@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Table = () => {
+const Table = ({ needs }) => {
     return (
         <TableContainer>
             <thead>
@@ -14,45 +14,25 @@ const Table = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <input type="radio" />
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>1300</p></td>
-                    <td><p>Meera M</p></td>
-                    <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
-                    <td><img src="/img/icon/edit.png" alt="" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <input type="radio" />
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>1300</p></td>
-                    <td><p>Meera M</p></td>
-                    <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
-                    <td><img src="/img/icon/edit.png" alt="" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <input type="radio" />
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>1300</p></td>
-                    <td><p>Meera M</p></td>
-                    <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
-                    <td><img src="/img/icon/edit.png" alt="" /></td>
-                </tr>
+                {
+                    needs.map((need, index)=>{
+                        return(
+                            <tr>
+                                <td>
+                                    <TableImage>
+                                        <input type="radio" />
+                                        <img src="/img/icon/dummy-image.png" alt="" />
+                                        <h5>{need.itemName}</h5>
+                                    </TableImage>
+                                </td>
+                                <td><p>{need.cost}</p></td>
+                                <td><p>{need.studentName}</p></td>
+                                <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
+                                <td><img src="/img/icon/edit.png" alt="" /></td>
+                            </tr>
+                        )
+                    })
+                }
             </tbody>
         </TableContainer>
     );

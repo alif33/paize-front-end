@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import DropDown from './DropDown';
 
-const AdminStudentTable = () => {
+const AdminStudentTable = ({ schools }) => {
+
+    // console.log(schools);
+
     return (
         <TableContainer>
             <thead>
@@ -14,40 +17,26 @@ const AdminStudentTable = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>2011</p></td>
-                    <td><p>510-241-5439</p></td>
-                    {/* <td><Button>Pending <img src="/img/icon/arrow-down.png" alt="" /></Button></td> */}
-                    <td><DropDown /> </td>
-                </tr>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>2011</p></td>
-                    <td><p>510-241-5439</p></td>
-                    <td><Button2>Approved </Button2></td>
-                </tr>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>2011</p></td>
-                    <td><p>510-241-5439</p></td>
-                    <td><Button3>Rejected</Button3></td>
-                </tr>
+                {
+                    schools && schools.map((item, index)=>{
+                        return(
+                            <tr key={ index }>
+                                <td>
+                                    <TableImage>
+                                        <img src="/img/icon/dummy-image.png" alt="" />
+                                        <h5>{item.schoolName}</h5>
+                                    </TableImage>
+                                </td>
+                                <td><p>2011</p></td>
+                                <td><p>{item.phoneNumber}</p></td>
+                                { item.status==="PENDING" && <td><DropDown _id={ item._id } status={ item.status } /> </td> }
+                                { item.status==="APPROVED" && <td><Button2>Approved </Button2></td> }
+                                { item.status==="REJECTED" && <td><Button3>Rejected</Button3></td> }
+                                
+                            </tr>
+                        )
+                    })
+                }
             </tbody>
         </TableContainer>
     );

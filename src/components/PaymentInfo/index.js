@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logedIn } from '../../store/users/actions';
 import { postData } from '../../__lib__/helpers/HttpService';
 import { useForm } from 'react-hook-form';
+import { toast, Toaster } from 'react-hot-toast';
 
 const PaymentInfo = () => {
-
+  const [ disable, setDisable ] = useState(false);
   const {
     register,
     reset,
@@ -21,13 +22,22 @@ const PaymentInfo = () => {
     const {  bankName, routingNumber, accountName, accountNumber } = paymentInfo;
 
     const onSubmit = data =>{
-
+      setDisable(true);
       postData('/enroll', {...auth, ...schoolInfo, ...data})
       .then(res=>{
+        setDisable(false);
         if (res.success) {
-          const { token, info } = res;
-          dispatch(logedIn({ token, info }));
+          const { token, info, role } = res;
+          dispatch(logedIn({ token, info, role }));
+          navigate("/pending");
+        }else{
+          const { response } = res;
+          toast.error(`${response.data.message}`);
         }
+      })
+      .catch(err=>{
+        console.log(err);
+        setDisable(false);
       })
 
     };
@@ -35,6 +45,10 @@ const PaymentInfo = () => {
 
     return (
         <Container>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+          />
             <From  onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
                     <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
@@ -47,7 +61,7 @@ const PaymentInfo = () => {
                           placeholder="Name of Bank"
                           defaultValue={ bankName }
                         />
-                        { errors.bankName && <span>bankName is required</span> }
+                        { errors.bankName && <span>Bank Name is required</span> }
                     </div>
                 </div>
 
@@ -64,7 +78,7 @@ const PaymentInfo = () => {
                           defaultValue={ routingNumber }
                           // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
-                        {errors.routingNumber && <span>routingNumber is required</span>}
+                        {errors.routingNumber && <span>Routing Number is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -72,15 +86,13 @@ const PaymentInfo = () => {
                     />
                     <div  className={errors.accountName ? "inputDiv active" : "inputDiv "}>
                         <input
-                          // name="accountName"
                           {...register("accountName", { 
                             required: true 
                           })}
                           placeholder="Name of Account"
                           defaultValue={ accountName }
-                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
-                        {errors.accountName && <span>accountName is required</span>}
+                        {errors.accountName && <span>Account Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -96,16 +108,19 @@ const PaymentInfo = () => {
                           defaultValue={ accountNumber }
                           // onChange={ e=>dispatch(setPaymentInfo(e)) } 
                         />
-                        { errors.accountNumber && <span>accountNumber is required</span> }
+                        { errors.accountNumber && <span>Account Number is required</span> }
                     </div>
                 </div>
 
-                <Button type="submit">
+                <Button 
+                  type="submit"
+                  disabled={ disable }
+                >
                     Next
                 </Button>
                 <Button2
-                  onClick={ ()=>navigate(-1) } 
                   type="button"
+                  onClick={ ()=>navigate(-1) } 
                 >
                     Back
                 </Button2>
