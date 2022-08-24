@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const adminSlice = createSlice({
-    name: "admins",
+    name: "admin",
     initialState: {
         auth: {
             token: "",
@@ -15,7 +15,10 @@ export const adminSlice = createSlice({
         adminLogin: (state, action) => {
             return {
                 ...state,
-                auth: action.payload
+                auth: {
+                    ...action.payload,
+                    isAdmin: true
+                }
             }
 
         },

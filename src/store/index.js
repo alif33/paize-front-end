@@ -9,7 +9,7 @@ const persistConfig = {
     key: 'root',
     whitelist: [
         'users', 
-        'admins', 
+        'admin', 
         'students'
     ],
     storage,
