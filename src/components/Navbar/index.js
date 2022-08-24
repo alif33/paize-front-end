@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const { users } = useSelector(state => state);
-    // const { __u__ } = users;
+    const { __u__ } = users;
 
     console.log(users);
 
@@ -30,7 +30,7 @@ const Navbar = () => {
                     <Link to="/about" className="heading" >About</Link>
 
 
-                    {users.isLogedIn ? <UserDropDown /> : (
+                    {users.isLogedIn ? <UserDropDown __u__= {__u__}/> : (
                         <div className="buttonContainer">
                             <Link to="/login">
                                 <LoginBtn>

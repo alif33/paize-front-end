@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AdminStudentTable from '../../../components/admin/AdminStudentTable';
-import AdminNavbar from '../../../components/admin/AdminNavbar'
+import AdminNavbar from '../../../components/admin/AdminNavbar';
+import { getData } from '../../../__lib__/helpers/HttpService';
+import { schoolsByStatus } from '../../../__lib__/helpers/Filter';
 
 const AdminDashboard = () => {
-    const [NavLink, setNavLink] = useState('all');
 
+    const [ schools, setSchools ] = useState();
+    const [ schoolsData, setSchoolsData ] = useState();
+    const [ navLink, setNavLink ] = useState('all');
+
+    useEffect(()=>{
+        getData("/schools")
+            .then(res=>{
+                setSchools(res);
+                setSchoolsData(schoolsByStatus(res));
+                // console.log(["pending"]);
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+    },[])
+
+    console.log(schoolsData);
     return (
         <div>
             <AdminNavbar />
@@ -13,13 +31,27 @@ const AdminDashboard = () => {
                 <Title>Admin DashBoard</Title>
 
                 <TableNavList>
-                    <li onClick={() => setNavLink("all")} className={NavLink === "all" ? "active" : "all"} >All(<span>0</span>)</li>
-                    <li onClick={() => setNavLink("pending")} className={NavLink === "pending" ? "active" : "all"}>Pending(<span>0</span>)</li>
-                    <li onClick={() => setNavLink("approved")} className={NavLink === "approved" ? "active" : "all"}>Approved(<span>0</span>)</li>
-                    <li onClick={() => setNavLink("rejected")} className={NavLink === "rejected" ? "active" : "all"}>Rejected(<span>0</span>)</li>
+                    <li 
+                        onClick={() => setNavLink("all")} 
+                        className={ navLink === "all" ? "active" : "all" } 
+                    >All(<span>{schools && schools.length}</span>)</li>
+                    <li 
+                        onClick={() => setNavLink("pending")} 
+                        className={ navLink === "pending" ? "active" : "all" }
+                    >Pending(<span>{schoolsData?.pending && schoolsData?.pending.length}</span>)</li>
+                    <li 
+                        onClick={() => setNavLink("approved")} 
+                        className={ navLink === "approved" ? "active" : "all" }
+                    >Approved(<span>{schoolsData?.approved && schoolsData?.approved.length}</span>)</li>
+                    <li 
+                        onClick={() => setNavLink("rejected")} 
+                        className={ navLink === "rejected" ? "active" : "all" }
+                    >Rejected(<span>{schoolsData?.rejected && schoolsData?.rejected.length}</span>)</li>
                 </TableNavList>
+                {
+                    navLink === "all" ? <AdminStudentTable schools={ schools } />: <AdminStudentTable schools={ schoolsData[navLink] } />
+                }
 
-                <AdminStudentTable />
             </Container>
         </div>
     );

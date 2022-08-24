@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
-import { postData } from '../../__lib__/helpers/HttpService';
+import { authPost } from '../../__lib__/helpers/HttpService';
+import { useSelector } from 'react-redux';
 
 
 const AddNewItem = () => {
@@ -14,9 +15,12 @@ const AddNewItem = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const { users } = useSelector(state=>state);
+    const { __u__ } = users;
+
     const onSubmit = data => {
         setDisable(true);
-        postData("/add-item", data)
+        authPost("/add-item", data, __u__.token)
             .then(res => {
                 setDisable(false);
                 if (res.success) {
@@ -26,6 +30,7 @@ const AddNewItem = () => {
             })
 
     };
+
     return (
         <>
             <Navbar />

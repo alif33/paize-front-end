@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
-// export const ROOT_URL = `http://localhost:4000/`;
-// export const APP_URL = `http://localhost:4000/`;
+export const ROOT_URL = `http://localhost:4000/`;
+export const APP_URL = `http://localhost:4000/`;
 
-export const ROOT_URL = `https://paize.herokuapp.com/`;
-export const APP_URL = `https://paize.herokuapp.com/`;
+// export const ROOT_URL = `https://paize.herokuapp.com/`;
+// export const APP_URL = `https://paize.herokuapp.com/`;
 
 export const IMAGE_URL = `${APP_URL}storage`
 export const API_URL = `${APP_URL}api/`
@@ -29,7 +29,7 @@ export const getData = async (endPoint) => {
     }
 }
 
-export const getUserData = async (endPoint, token) => {
+export const __getData = async (endPoint, token) => {
     try {
         const { data } = await api.get(endPoint, {
             headers: authHeader(token)
@@ -47,7 +47,7 @@ export const postData = async (endPoint, formData) => {
         const { data } = await api.post(endPoint, formData)
         return data
     } catch (error) {
-        toast.error(`${error?.response?.data?.message}`)
+        // toast.error(`${error?.response?.data?.message}`)
         return error
     }
 }

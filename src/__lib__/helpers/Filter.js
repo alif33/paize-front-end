@@ -1,7 +1,7 @@
-export const watchlistByLeague = (arr) =>{
+export const schoolsByStatus = (arr) =>{
     return {
-        NBA: arr.filter(pl => pl.league === 'NBA'),
-        NFL: arr.filter(pl => pl.league === 'NFL'),
-        MLB: arr.filter(pl => pl.league === 'MLB')
+        pending: arr.filter(sc => sc.status === 'PENDING'),
+        approved: arr.filter(sc => sc.status === 'APPROVED'),
+        rejected: arr.filter(sc => sc.status === 'REJECTED')
     }  
 }

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../store/users/actions';
 
-const UserDropDown = () => {
+const UserDropDown = ({ __u__ }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -30,6 +30,10 @@ const UserDropDown = () => {
             {close =>
                 <DropDownMenu onClick={close}>
                     <div onClick={() => navigate("/update-information")} className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Settings</div>
+                    {
+                        __u__?.role === "AUTHOR" &&  <div onClick={() => navigate("/items")} className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Needs</div>
+
+                    }
                     <div onClick={handleLogout} className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</div>
                 </DropDownMenu>
             }
