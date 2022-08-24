@@ -10,7 +10,7 @@ const SchoolDashboard = () => {
     return (
         <div>
             <Navbar />
-            {true ? <Container>
+            {false ? <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>
                     <li onClick={() => setNavLink("all")} className={NavLink === "all" ? "active" : "all"} >All(<span>0</span>)</li>
