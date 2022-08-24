@@ -29,11 +29,13 @@ align-items: center;
 justify-content: space-between;
 h3{ 
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 41px;
-line-height: 62px;
-color: #0E3746;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 51px;
+    color: #0E3746;
+    margin: 0;
+    margin-top: 12px;
 }
 h4{font-family: 'Poppins';
 font-style: normal;

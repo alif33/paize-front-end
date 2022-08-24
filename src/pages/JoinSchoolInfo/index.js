@@ -73,11 +73,12 @@ const Container = styled.div`
   }
 `;
 const Title = styled.h3`
- font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 41px;
-line-height: 62px;
-color: #0E3746;
-margin: 0;
+font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 51px;
+    color: #0E3746;
+    margin: 0;
+    margin-top: 12px;
 `;

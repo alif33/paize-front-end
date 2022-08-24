@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
+import Panding from '../../components/Panding';
 import StudentTable from '../../components/StudentTable';
 
 const SchoolDashboard = () => {
@@ -9,7 +10,7 @@ const SchoolDashboard = () => {
     return (
         <div>
             <Navbar />
-            <Container>
+            {false ? <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>
                     <li onClick={() => setNavLink("all")} className={NavLink === "all" ? "active" : "all"} >All(<span>0</span>)</li>
@@ -18,7 +19,8 @@ const SchoolDashboard = () => {
                     <li onClick={() => setNavLink("rejected")} className={NavLink === "rejected" ? "active" : "all"}>Rejected(<span>0</span>)</li>
                 </TableNavList>
                 <StudentTable />
-            </Container>
+            </Container> : <Panding />}
+
         </div>
     );
 };
