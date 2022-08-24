@@ -33,10 +33,10 @@ h1{
 font-style: normal;
 font-weight: 500;
 font-size: 28px;
-line-height: 60px;
+line-height: 40px;
 text-align: center;
 color: rgba(14, 55, 70, 0.4);
-width: 70%;
+width: 60%;
 margin: auto;
 text-align: center;
 }
@@ -48,9 +48,9 @@ font-size: 26px;
 line-height: 39px;
 color: #FFFFFF;
     background: #2291F1;
-border-radius: 5px;
+border-radius: 4px;
 border: none;
-width: 40%;
+width: 30%;
 cursor: pointer;
 text-decoration: none;
 display: inline-block;

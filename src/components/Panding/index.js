@@ -1,22 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Navbar from '../../components/Navbar';
+import Navbar from '../Navbar';
 
 const Panding = () => {
     return (
-        <div>
-            <Navbar />
-            <Container>
-                <div>
-                    <img src="/img/icon/panding.png" alt="" />
-                    <h1>
-                        Your enrollment is pending verification
-                    </h1>
-                </div>
-                <Link to="/contact">Contact Us</Link>
-            </Container>
-        </div>
+        <Container>
+            <div>
+                <img src="/img/icon/panding.png" alt="" />
+                <h1>
+                    Your enrollment is pending verification
+                </h1>
+            </div>
+            <Link to="/contact">Contact Us</Link>
+        </Container>
     );
 };
 
@@ -29,7 +26,7 @@ display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 60vh;
+    height: 70vh;
     div{
         width: 100%;
     }
@@ -45,6 +42,11 @@ width: 70%;
 margin: auto;
 text-align: center;
 }
+img{
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
 a{
     font-family: 'Poppins';
 font-style: normal;
@@ -55,7 +57,7 @@ color: #FFFFFF;
     background: #2291F1;
 border-radius: 5px;
 border: none;
-width: 40%;
+width: 30%;
 cursor: pointer;
 text-decoration: none;
 display: inline-block;

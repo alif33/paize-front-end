@@ -4,7 +4,7 @@ import AddNewItem from './pages/AddNewItem';
 import EnrollSchool from './pages/EnrollSchool';
 import HomePage from './pages/Home';
 import Login from './pages/Login';
-import Panding from './pages/Panding';
+import Panding from './components/Panding';
 import PaymentDetails from './pages/PaymentDetails';
 import PaymentInformation from './pages/PaymentInformation';
 import PaymentInfoTable from './pages/PaymentInfoTable';
@@ -38,7 +38,6 @@ const App = () => {
         <Route path="/enroll/school-information" element={<SchoolInformation />} />
         <Route path="/enroll/payment-information" element={<PaymentInformation />} />
         <Route path="/registered" element={<Registered />} />
-        <Route path="/pending" element={<Panding />} />
 
         <Route path="/join" element={<JoinSchool />} />
         <Route path="/join/school-information" element={<JoinSchoolInfo />} />
@@ -48,8 +47,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/items" element={<BuyingItem />} />
         <Route path="/add-new-item" element={<AddNewItem />} />
+
         <Route path="/school-dashboard" element={<SchoolDashboard />} />
         <Route path="/school-dashboard-amount" element={<SchoolDashboardAmount />} />
+        
         <Route path="/payment-info-table" element={<PaymentInfoTable />} />
         <Route path="/payment" element={<PaymentNowPage />} />
 
