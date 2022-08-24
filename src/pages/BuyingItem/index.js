@@ -54,7 +54,7 @@ h3{
     font-family: 'Poppins';
 font-style: normal;
 font-weight: 500;
-font-size: 41px;
+font-size: 35px;
 line-height: 62px;
 color: #0E3746;
 margin-top: 10px;
