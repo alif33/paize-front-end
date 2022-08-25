@@ -20,14 +20,15 @@ const LoginCard = () => {
             .then(res => {
                 setDisable(false);
                 if (res.success) {
-                    const { token, info, role } = res;
+                    const { token, info, role, status } = res;
                     dispatch(logedIn({
                         token,
                         info,
-                        role
+                        role,
+                        status
                     }))
                     if(role==="AUTHOR"){
-                        navigate("/school-dashboard");
+                        navigate("/school");
                     }
                 }
             })
@@ -36,7 +37,7 @@ const LoginCard = () => {
             })
     };
 
-    console.log(users);
+    // console.log(users);
     return (
         <Container>
 

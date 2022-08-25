@@ -20,7 +20,7 @@ const Register = () => {
         navigate('/enroll/school-information');
     };
 
-    console.log(users);
+    // console.log(users);
 
     return (
         <Container>

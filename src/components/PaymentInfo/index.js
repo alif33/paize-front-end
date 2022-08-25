@@ -27,8 +27,8 @@ const PaymentInfo = () => {
       .then(res=>{
         setDisable(false);
         if (res.success) {
-          const { token, info, role } = res;
-          dispatch(logedIn({ token, info, role }));
+          const { token, info, role, status } = res;
+          dispatch(logedIn({ token, info, role, status }));
           navigate("/registered");
         }else{
           const { response } = res;
@@ -36,7 +36,6 @@ const PaymentInfo = () => {
         }
       })
       .catch(err=>{
-        console.log(err);
         setDisable(false);
       })
 

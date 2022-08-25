@@ -2,25 +2,30 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Panding from '../../components/Panding';
+import { useSelector } from 'react-redux';
 import StudentTable from '../../components/StudentTable';
 
 const SchoolDashboard = () => {
     const [NavLink, setNavLink] = useState('all');
+    const { users } = useSelector(state=>state);
+    const { __u__ } = users;
 
+
+    console.log(users.__u__);
     return (
         <div>
             <Navbar />
-            {true ? <Container>
+            { __u__.status==="PENDING" && <Panding />}
+            {__u__.status==="APPROVED" && <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>
-                    <li onClick={() => setNavLink("all")} className={NavLink === "all" ? "active" : "all"} >All(<span>0</span>)</li>
-                    <li onClick={() => setNavLink("pending")} className={NavLink === "pending" ? "active" : "all"}>Pending(<span>0</span>)</li>
-                    <li onClick={() => setNavLink("approved")} className={NavLink === "approved" ? "active" : "all"}>Approved(<span>0</span>)</li>
-                    <li onClick={() => setNavLink("rejected")} className={NavLink === "rejected" ? "active" : "all"}>Rejected(<span>0</span>)</li>
+                    <li onClick={ () => setNavLink("all") } className={ NavLink === "all" ? "active" : "all" } >All(<span>0</span>)</li>
+                    <li onClick={ () => setNavLink("pending") } className={ NavLink === "pending" ? "active" : "all" }>Pending(<span>0</span>)</li>
+                    <li onClick={ () => setNavLink("approved") } className={ NavLink === "approved" ? "active" : "all" }>Approved(<span>0</span>)</li>
+                    <li onClick={ () => setNavLink("rejected") } className={ NavLink === "rejected" ? "active" : "all" }>Rejected(<span>0</span>)</li>
                 </TableNavList>
                 <StudentTable />
-            </Container> : <Panding />}
-
+            </Container>}
         </div>
     );
 };

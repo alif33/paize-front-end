@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getData, postData } from '../../__lib__/helpers/HttpService';
+import { logedIn } from '../../store/users/actions'
+import { Toaster, toast } from 'react-hot-toast';
 
 const JoinInfo = () => {
 
+  const [disable, setDisable] = useState(false);
   const [ schools, setSchools ] = useState([]);
   const navigate = useNavigate();
   const { students } = useSelector(state => state);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -28,12 +32,27 @@ const JoinInfo = () => {
   const onSubmit = data => {
     postData('/join', { ...students.auth, ...data })
       .then(res => {
-        console.log(res);
+        setDisable(false);
+        if (res.success) {
+          const { token, info, role, status } = res;
+          dispatch(logedIn({ token, info, role, status }));
+          navigate("/registered");
+        }else{
+          const { response } = res;
+          toast.error(`${response.data.message}`);
+        }
       })
-    console.log(data);
+      .catch(err=>{
+
+      })
+    // console.log(data);
   }
   return (
     <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <From
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -85,10 +104,11 @@ const JoinInfo = () => {
           </div>
         </div>
 
-        <Button type="submit">
+        <Button disabled={disable} type="submit">
           Next
         </Button>
         <Button2
+          disabled={disable}
           onClick={() => navigate(-1)}
           type="button">
           Back

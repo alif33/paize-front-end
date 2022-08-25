@@ -8,7 +8,7 @@ const Navbar = () => {
     const { users } = useSelector(state => state);
     const { __u__ } = users;
 
-    console.log(users);
+    // console.log(users);
 
     return (
         <Container>

@@ -14,9 +14,7 @@ const EnrollSchool = () => {
                         Register
                     </Title>
                 </div>
-
                 <RegisterStudent/>
-
             </div>
             <div className="rightChild">
                 {/* <img src={RegisterImage} id="img" /> */}
