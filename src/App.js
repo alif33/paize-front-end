@@ -19,6 +19,7 @@ import JoinSchool from './pages/JoinSchool';
 import JoinSchoolInfo from './pages/JoinSchoolInfo';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLogin from './pages/admin/AdminLogin';
+import AdminRoute from './auth/AdminRoute';
 
 
 const App = () => {
@@ -57,7 +58,7 @@ const App = () => {
 
 
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
 
       </Routes>
     </BrowserRouter>

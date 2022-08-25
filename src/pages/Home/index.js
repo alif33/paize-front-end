@@ -3,8 +3,12 @@ import styled from "styled-components";
 import HomeLeftChild from '../../components/HomeLeftChild';
 import HomeRightChild from '../../components/HomeRightChild';
 import Navbar from '../../components/Navbar';
+import { useSelector } from 'react-redux';
 
 const HomePage = () => {
+  const { admin } = useSelector(state=>state);
+
+  console.log(admin);
     return (
         <>
             <Navbar />
