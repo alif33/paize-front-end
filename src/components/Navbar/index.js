@@ -78,7 +78,7 @@ margin-right: 40px;
 const LoginBtn = styled.button`
 
 background: #2291F1;
-border-radius: 5px;
+border-radius: 4px;
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 500;
