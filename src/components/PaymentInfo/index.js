@@ -29,7 +29,7 @@ const PaymentInfo = () => {
         if (res.success) {
           const { token, info, role } = res;
           dispatch(logedIn({ token, info, role }));
-          navigate("/pending");
+          navigate("/registered");
         }else{
           const { response } = res;
           toast.error(`${response.data.message}`);

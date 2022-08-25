@@ -16,7 +16,6 @@ const AdminDashboard = () => {
             .then(res=>{
                 setSchools(res);
                 setSchoolsData(schoolsByStatus(res));
-                // console.log(["pending"]);
             })
             .catch(err=>{
                 console.log(err);
@@ -49,7 +48,15 @@ const AdminDashboard = () => {
                     >Rejected(<span>{schoolsData?.rejected && schoolsData?.rejected.length}</span>)</li>
                 </TableNavList>
                 {
-                    navLink === "all" ? <AdminStudentTable schools={ schools } />: <AdminStudentTable schools={ schoolsData[navLink] } />
+                    navLink === "all" ? <AdminStudentTable
+                                            schools={ schools } 
+                                            setSchools={setSchools} 
+                                            setSchoolsData={setSchoolsData}
+                                        />: <AdminStudentTable 
+                                            schools={ schoolsData[navLink] }
+                                            setSchools={setSchools}
+                                            setSchoolsData={setSchoolsData} 
+                     />
                 }
 
             </Container>

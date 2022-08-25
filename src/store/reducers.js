@@ -5,6 +5,6 @@ import { studentSlice } from './students/slice';
 
 export const rootReducer = combineReducers({
     users: userSlice.reducer,
-    admins: adminSlice.reducer,
+    admin: adminSlice.reducer,
     students: studentSlice.reducer
 })

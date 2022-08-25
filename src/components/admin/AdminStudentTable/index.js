@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import DropDown from './DropDown';
+import { Toaster } from 'react-hot-toast';
 
-const AdminStudentTable = ({ schools }) => {
+const AdminStudentTable = ({ schools, setSchools, setSchoolsData }) => {
 
     // console.log(schools);
 
     return (
         <TableContainer>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <thead>
                 <tr>
                     <th>Name</th>
@@ -29,7 +34,13 @@ const AdminStudentTable = ({ schools }) => {
                                 </td>
                                 <td><p>2011</p></td>
                                 <td><p>{item.phoneNumber}</p></td>
-                                { item.status==="PENDING" && <td><DropDown _id={ item._id } status={ item.status } /> </td> }
+                                { item.status==="PENDING" && <td><DropDown 
+                                        _id={ item._id } 
+                                        status={ item.status } 
+                                        setSchools={setSchools}
+                                        setSchoolsData={setSchoolsData}
+                                    /> 
+                                </td> }
                                 { item.status==="APPROVED" && <td><Button2>Approved </Button2></td> }
                                 { item.status==="REJECTED" && <td><Button3>Rejected</Button3></td> }
                                 
