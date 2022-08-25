@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postData } from '../../__lib__/helpers/HttpService';
 import { logedIn } from '../../store/users/actions';
@@ -9,6 +10,7 @@ import { logedIn } from '../../store/users/actions';
 const LoginCard = () => {
     const [ disable, setDisable ] = useState(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { users } = useSelector(state=>state);
 
@@ -25,7 +27,7 @@ const LoginCard = () => {
                         role
                     }))
                     if(role==="AUTHOR"){
-
+                        navigate("/school-dashboard");
                     }
                 }
             })

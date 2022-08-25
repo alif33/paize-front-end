@@ -10,7 +10,7 @@ const SchoolDashboard = () => {
     return (
         <div>
             <Navbar />
-            {false ? <Container>
+            {true ? <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>
                     <li onClick={() => setNavLink("all")} className={NavLink === "all" ? "active" : "all"} >All(<span>0</span>)</li>
@@ -35,15 +35,15 @@ const TableNavList = styled.ul`
 margin-top: 20px;
 li{
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
     line-height: 23px;
-letter-spacing: -0.02em;
-color: rgba(14, 55, 70, 0.4);
-border-right: 2px solid rgba(14, 55, 70, 0.4);
-display: inline-block;
-margin-right: 16px;
+    letter-spacing: -0.02em;
+    color: rgba(14, 55, 70, 0.4);
+    border-right: 2px solid rgba(14, 55, 70, 0.4);
+    display: inline-block;
+    margin-right: 16px;
     padding-right: 16px;
     margin-bottom: 16px;
     cursor: pointer;
@@ -57,10 +57,10 @@ li.active {
 }
 `;
 const Title = styled.h3`
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 34px;
-line-height: 62px;
-color: #0E3746;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 62px;
+    color: #0E3746;
 `;

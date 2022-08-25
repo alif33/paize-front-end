@@ -1,14 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import UserDropDown from './UserDropDown';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminLogout } from '../../../store/admins/actions'
 
 const Navbar = () => {
-    const { users } = useSelector(state => state);
-    // const { __u__ } = users;
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { admin } = useSelector(state => state);
+    const { auth } = admin;
 
-    console.log(users);
+    const handleLogout = ()=>{
+        dispatch(adminLogout());
+        navigate("/");
+    }
 
     return (
         <Container>
@@ -27,20 +32,11 @@ const Navbar = () => {
                     />
                 </SearchDiv>
                 <div className="loginAndIconDiv">
-                    <Link to="/about" className="heading" >About</Link>
-
-
-                    {users.isLogedIn ? <UserDropDown /> : (
-                        <div className="buttonContainer">
-                            <Link to="/login">
-                                <LoginBtn>
-                                    Login
-                                </LoginBtn>
-                            </Link>
-                        </div>
-                    )}
-
-
+                    <div className="buttonContainer">
+                        <LoginBtn onClick={ ()=>handleLogout() }>
+                            Logout
+                        </LoginBtn>
+                    </div>
                 </div>
             </Nav>
         </Container>

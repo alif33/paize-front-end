@@ -5,7 +5,6 @@ import { Toaster } from 'react-hot-toast';
 
 const AdminStudentTable = ({ schools, setSchools, setSchoolsData }) => {
 
-    // console.log(schools);
 
     return (
         <TableContainer>
@@ -23,7 +22,7 @@ const AdminStudentTable = ({ schools, setSchools, setSchoolsData }) => {
             </thead>
             <tbody>
                 {
-                    schools && schools.map((item, index)=>{
+                    schools && schools.length>0 && schools.map((item, index)=>{
                         return(
                             <tr key={ index }>
                                 <td>
