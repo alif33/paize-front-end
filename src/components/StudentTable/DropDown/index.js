@@ -1,8 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import Popup from 'reactjs-popup';
+import { useSelector } from 'react-redux';
+import { __getData, updateData } from '../../../__lib__/helpers/HttpService';
+import { sortByStatus } from '../../../__lib__/helpers/Filter';
+import toast from 'react-hot-toast';
 
-const DropDown = () => {
+const DropDown = ({ _id, setStudents, setStudentsData}) => {
+
+    const { users }= useSelector(state=>state);
+    const { __u__ } = users;
+
+    const handleStatus = __s =>{
+        updateData(`/admin/permission?_id=${_id}&status=${__s}`, {}, __u__.token)
+            .then(res=>{
+                if(res.success){
+                    toast.success(`${res.message}`);
+                    __getData("/schools")
+                    .then(res=>{
+                        setStudents(res);
+                        setStudentsData(sortByStatus(res));
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                    })
+                }
+            })
+    }
+    console.log(users);
+
     return (
         <Popup
             trigger={<Button>Pending <img src="/img/icon/arrow-down.png" alt="" /></Button>}
@@ -17,8 +43,8 @@ const DropDown = () => {
 
             {close =>
                 <DropDownMenu onClick={close}>
-                    <div className="menu-item"> Approved</div>
-                    <div className="menu-item"> Rejected</div>
+                    <div onClick={ ()=>handleStatus("Approved") } className="menu-item"> Approved</div>
+                    <div onClick={ ()=>handleStatus("Rejected") } className="menu-item"> Rejected</div>
                 </DropDownMenu>
             }
 

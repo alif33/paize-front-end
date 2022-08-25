@@ -1,7 +1,7 @@
-export const schoolsByStatus = (arr) =>{
+export const sortByStatus = (arr) =>{
     return {
-        pending: arr.filter(sc => sc.status === 'PENDING'),
-        approved: arr.filter(sc => sc.status === 'APPROVED'),
-        rejected: arr.filter(sc => sc.status === 'REJECTED')
+        pending: arr.filter(item => item.status === 'PENDING'),
+        approved: arr.filter(item => item.status === 'APPROVED'),
+        rejected: arr.filter(item => item.status === 'REJECTED')
     }  
 }

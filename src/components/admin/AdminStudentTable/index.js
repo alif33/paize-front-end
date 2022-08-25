@@ -5,7 +5,6 @@ import { Toaster } from 'react-hot-toast';
 
 const AdminStudentTable = ({ schools, setSchools, setSchoolsData }) => {
 
-
     return (
         <TableContainer>
             <Toaster

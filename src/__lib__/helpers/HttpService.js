@@ -7,8 +7,8 @@ import { toast } from 'react-hot-toast';
 export const ROOT_URL = `https://paize.herokuapp.com/`;
 export const APP_URL = `https://paize.herokuapp.com/`;
 
-export const IMAGE_URL = `${APP_URL}storage`
-export const API_URL = `${APP_URL}api/`
+export const IMAGE_URL = `${APP_URL}storage`;
+export const API_URL = `${APP_URL}api`;
 
 const api = axios.create({
     baseURL: API_URL

@@ -4,7 +4,7 @@ import Popup from 'reactjs-popup';
 import { useSelector } from 'react-redux';
 import { getData, updateData } from '../../../../__lib__/helpers/HttpService';
 import toast from 'react-hot-toast';
-import { schoolsByStatus } from '../../../../__lib__/helpers/Filter';
+import { sortByStatus } from '../../../../__lib__/helpers/Filter';
 
 const DropDown = ({ _id, setSchools, setSchoolsData }) => {
 
@@ -19,16 +19,15 @@ const DropDown = ({ _id, setSchools, setSchoolsData }) => {
                     getData("/schools")
                     .then(res=>{
                         setSchools(res);
-                        setSchoolsData(schoolsByStatus(res));
+                        setSchoolsData(sortByStatus(res));
                     })
                     .catch(err=>{
                         console.log(err);
                     })
                 }
             })
-        // console.log(status, _id);
     }
-    console.log(admin);
+
     return (
         <Popup
             trigger={<Button>Pending <img src="/img/icon/arrow-down.png" alt="" /></Button>}

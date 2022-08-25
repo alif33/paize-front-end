@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import DropDown from './DropDown';
 
 
-const StudentTable = () => {
+const StudentTable = ({ students, setStudents, setStudentsData }) => {
     return (
         <TableContainer>
             <thead>
@@ -15,19 +15,35 @@ const StudentTable = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>2011</p></td>
-                    <td><p>510-241-5439</p></td>
-                    {/* <td><Button>Pending <img src="/img/icon/arrow-down.png" alt="" /></Button></td> */}
-                    <td><DropDown /> </td>
-                </tr>
-                <tr>
+                {
+                    students && students.length>0 && students.map((item, index)=>{
+                        return(
+                        <tr key={ index }>
+                            <td>
+                                <TableImage>
+                                    <img src="/img/icon/dummy-image.png" alt="" />
+                                    <h5>{`${item.firstName} ${item.lastName}`}</h5>
+                                </TableImage>
+                            </td>
+                            <td><p>{item.graduationYear}</p></td>
+                            <td><p>{item.phoneNumber}</p></td>
+                            {/* <td><Button>Pending <img src="/img/icon/arrow-down.png" alt="" /></Button></td> */}
+                            { item.status==="PENDING" && <td>
+                                <DropDown
+                                    _id={ item._id }
+                                    setStudents={ setStudents } 
+                                    setStudentsData={ setStudentsData }
+                                /> 
+                            </td>}
+                            { item.status==="APPROVED" && <td><Button2>Approved </Button2></td> }
+                            { item.status==="REJECTED" && <td><Button3>Rejected</Button3></td> }
+                            
+                        </tr>
+                        )
+                    })
+                }
+
+                {/* <tr>
                     <td>
                         <TableImage>
                             <img src="/img/icon/dummy-image.png" alt="" />
@@ -48,7 +64,7 @@ const StudentTable = () => {
                     <td><p>2011</p></td>
                     <td><p>510-241-5439</p></td>
                     <td><Button3>Rejected</Button3></td>
-                </tr>
+                </tr> */}
             </tbody>
         </TableContainer>
     );

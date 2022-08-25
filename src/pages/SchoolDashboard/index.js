@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Panding from '../../components/Panding';
 import { useSelector } from 'react-redux';
 import StudentTable from '../../components/StudentTable';
+import { __getData } from '../../__lib__/helpers/HttpService';
+import { sortByStatus } from '../../__lib__/helpers/Filter';
 
 const SchoolDashboard = () => {
-    const [NavLink, setNavLink] = useState('all');
+    const [ navLink, setNavLink ] = useState('all');
+    const [ students, setStudents ] = useState();
+    const [ studentsData, setStudentsData ] = useState();
     const { users } = useSelector(state=>state);
     const { __u__ } = users;
 
+    useEffect(()=>{
+        if(__u__.status==="APPROVED"){
+            __getData("/students", __u__.token)
+                .then(res=>{
+                    setStudents(res);
+                    setStudentsData(sortByStatus(res));
+                })
+                .catch(err=>{
+
+                })
+        }
+    }, [])
 
     console.log(users.__u__);
     return (
@@ -19,12 +35,23 @@ const SchoolDashboard = () => {
             {__u__.status==="APPROVED" && <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>
-                    <li onClick={ () => setNavLink("all") } className={ NavLink === "all" ? "active" : "all" } >All(<span>0</span>)</li>
-                    <li onClick={ () => setNavLink("pending") } className={ NavLink === "pending" ? "active" : "all" }>Pending(<span>0</span>)</li>
-                    <li onClick={ () => setNavLink("approved") } className={ NavLink === "approved" ? "active" : "all" }>Approved(<span>0</span>)</li>
-                    <li onClick={ () => setNavLink("rejected") } className={ NavLink === "rejected" ? "active" : "all" }>Rejected(<span>0</span>)</li>
+                    <li onClick={ () => setNavLink("all") } className={ navLink === "all" ? "active" : "all" } >All(<span>{ students && students.length }</span>)</li>
+                    <li onClick={ () => setNavLink("pending") } className={ navLink === "pending" ? "active" : "all" }>Pending(<span>{ studentsData?.pending && studentsData.pending.length }</span>)</li>
+                    <li onClick={ () => setNavLink("approved") } className={ navLink === "approved" ? "active" : "all" }>Approved(<span>{ studentsData?.approved && studentsData.approved.length }</span>)</li>
+                    <li onClick={ () => setNavLink("rejected") } className={ navLink === "rejected" ? "active" : "all" }>Rejected(<span>{ studentsData?.rejected && studentsData.rejected.length }</span>)</li>
                 </TableNavList>
-                <StudentTable />
+                {
+                    navLink ==="all" ? <StudentTable 
+                                        students={ students } 
+                                        setStudents={setStudents}
+                                        setStudentsData={setStudentsData}
+                                        /> : <StudentTable 
+                                        students={ studentsData[navLink] } 
+                                        setStudents={setStudents}
+                                        setStudentsData={setStudentsData}
+                                        />
+                }
+
             </Container>}
         </div>
     );

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AdminStudentTable from '../../../components/admin/AdminStudentTable';
 import AdminNavbar from '../../../components/admin/AdminNavbar';
 import { getData } from '../../../__lib__/helpers/HttpService';
-import { schoolsByStatus } from '../../../__lib__/helpers/Filter';
+import { sortByStatus } from '../../../__lib__/helpers/Filter';
 
 const AdminDashboard = () => {
 
@@ -15,7 +15,7 @@ const AdminDashboard = () => {
         getData("/schools")
             .then(res=>{
                 setSchools(res);
-                setSchoolsData(schoolsByStatus(res));
+                setSchoolsData(sortByStatus(res));
             })
             .catch(err=>{
                 console.log(err);
