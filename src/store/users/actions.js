@@ -20,3 +20,7 @@ export const logedIn = u => (dispatch) => {
 export const logOut = () => (dispatch) => {
     dispatch(slice.logOut())
 }
+
+export const clearCache = () => (dispatch) => {
+    dispatch(slice.clearCache())
+}

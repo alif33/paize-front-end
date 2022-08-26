@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logedIn } from '../../store/users/actions';
+import { clearCache, logedIn } from '../../store/users/actions';
 import { postData } from '../../__lib__/helpers/HttpService';
 import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
@@ -28,6 +28,7 @@ const PaymentInfo = () => {
         setDisable(false);
         if (res.success) {
           const { token, info, role, status } = res;
+          dispatch(clearCache());
           dispatch(logedIn({ token, info, role, status }));
           navigate("/registered");
         }else{

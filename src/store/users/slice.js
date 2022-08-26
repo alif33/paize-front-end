@@ -48,5 +48,13 @@ export const userSlice = createSlice({
                 isLogedIn: false
             }
         },
+
+        clearCache: (state, action) => {
+            return {
+                ...state,
+                ...authorInfo
+            }
+        },
+
     }
 })

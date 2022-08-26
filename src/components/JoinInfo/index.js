@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getData, postData } from '../../__lib__/helpers/HttpService';
 import { logedIn } from '../../store/users/actions'
 import { Toaster, toast } from 'react-hot-toast';
+import { clearData } from '../../store/students/actions';
 
 const JoinInfo = () => {
 
@@ -35,6 +36,7 @@ const JoinInfo = () => {
         setDisable(false);
         if (res.success) {
           const { token, info, role, status } = res;
+          dispatch(clearData());
           dispatch(logedIn({ token, info, role, status }));
           navigate("/registered");
         }else{

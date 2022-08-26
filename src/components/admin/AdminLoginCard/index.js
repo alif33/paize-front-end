@@ -46,6 +46,7 @@ const AdminLoginCard = () => {
                     />
                     <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
+                            type="password"
                             placeholder="Password"
                             {...register("password", { required: true })}
                         />
