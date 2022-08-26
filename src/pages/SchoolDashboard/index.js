@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import StudentTable from '../../components/StudentTable';
 import { __getData } from '../../__lib__/helpers/HttpService';
 import { sortByStatus } from '../../__lib__/helpers/Filter';
+import { Toaster } from 'react-hot-toast';
 
 const SchoolDashboard = () => {
     const [ navLink, setNavLink ] = useState('all');
@@ -31,6 +32,10 @@ const SchoolDashboard = () => {
     return (
         <div>
             <Navbar />
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             { __u__.status==="PENDING" && <Panding />}
             {__u__.status==="APPROVED" && <Container>
                 <Title>School DashBoard</Title>

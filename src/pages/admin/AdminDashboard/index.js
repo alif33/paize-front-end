@@ -22,7 +22,7 @@ const AdminDashboard = () => {
             })
     },[])
 
-    console.log(schoolsData);
+    // console.log(schoolsData);
     return (
         <div>
             <AdminNavbar />

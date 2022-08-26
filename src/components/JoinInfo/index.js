@@ -67,7 +67,7 @@ const JoinInfo = () => {
 
           <div className={errors.schoolName ? "inputDiv active" : "inputDiv "}>
             <select
-              {...register("schoolName", {
+              {...register("_school", {
                 required: true
               })}
             >
@@ -76,7 +76,7 @@ const JoinInfo = () => {
                 schools.length >0 && schools.map((item, index)=><option key={index} value={item._id}>{item.schoolName}</option>)
               }
             </select>
-            {errors.schoolName && <span>School Name is required</span>}
+            {errors._school && <span>School Name is required</span>}
           </div>
         </div>
         <div className="inputsConatiner">
