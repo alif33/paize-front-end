@@ -39,7 +39,7 @@ const Register = () => {
                     <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("firstName", {
-                                required: "Password requird",
+                                required: true,
                             })}
                             placeholder="First Name"
                             defaultValue={firstName}
@@ -53,7 +53,7 @@ const Register = () => {
                     <div className={errors.lastName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("lastName", {
-                                required: "Password requird",
+                                required: true,
                             })}
                             placeholder="Last Name"
                             defaultValue={lastName}
@@ -66,8 +66,9 @@ const Register = () => {
                     />
                     <div className={errors.email ? "inputDiv active" : "inputDiv "}>
                         <input
+                        type="email"
                             {...register("email", {
-                                required: "Password requird",
+                                required: true,
                             })}
                             placeholder="Email"
                             defaultValue={email}
@@ -80,6 +81,7 @@ const Register = () => {
                     />
                     <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
+                        type="password"
                             {...register("password", {
                                 required: "Password requird",
                             })}
@@ -94,6 +96,7 @@ const Register = () => {
                     />
                     <div className={errors.confirmPassword ? "inputDiv active" : "inputDiv "}>
                         <input
+                        type="password"
                             {...register("confirmPassword", {
                                 required: "Password requird",
                             })}

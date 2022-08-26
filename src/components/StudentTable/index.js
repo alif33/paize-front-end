@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, CSSProperties } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 import styled from 'styled-components';
 import DropDown from './DropDown';
 
 
 const StudentTable = ({ students, setStudents, setStudentsData }) => {
+    const override: CSSProperties = {
+        display: "block",
+        margin: "0 auto",
+        borderColor: "red",
+      };
     return (
         <TableContainer>
             <thead>
@@ -15,6 +21,9 @@ const StudentTable = ({ students, setStudents, setStudentsData }) => {
                 </tr>
             </thead>
             <tbody>
+
+            <ClipLoader color="#111" loading={true} cssOverride={override} size={150} />
+
                 {
                     students && students.length>0 && students.map((item, index)=>{
                         return(

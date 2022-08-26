@@ -51,10 +51,10 @@ const SchoolInfo = () => {
                             {...register("schoolAddress", {
                                 required: true
                             })}
-                            placeholder="School Adress"
+                            placeholder="School Address"
                             defaultValue={schoolAddress}
                         />
-                        {errors.schoolAddress && <span>school address is required</span>}
+                        {errors.schoolAddress && <span>School Address is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
@@ -65,7 +65,7 @@ const SchoolInfo = () => {
                             {...register("principleName", {
                                 required: true
                             })}
-                            placeholder="Name of Principle"
+                            placeholder="Name of Principal"
                             defaultValue={principleName}
                         />
                         {errors.principleName && <span>Principle Name is required</span>}
@@ -96,7 +96,7 @@ const SchoolInfo = () => {
                             placeholder="Phone Number"
                             defaultValue={phoneNumber}
                         />
-                        {errors.phoneNumber && <span>phoneNumber is required</span>}
+                        {errors.phoneNumber && <span>Phone Number is required</span>}
                     </div>
                 </div>
 

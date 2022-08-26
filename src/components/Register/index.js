@@ -77,7 +77,7 @@ const Register = () => {
                     />
                     <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
-                            // name="password"
+                            type="password"
                             {...register("password", {
                                 required: true,
                             })}
@@ -93,7 +93,7 @@ const Register = () => {
                     />
                     <div className={errors.confirmPassword ? "inputDiv active" : "inputDiv "}>
                         <input
-                            // name="confirmPassword" 
+                          type="password"
                             {...register("confirmPassword", {
                                 required: true,
                             })}

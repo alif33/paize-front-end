@@ -31,7 +31,9 @@ const SchoolDashboard = () => {
     return (
         <div>
             <Navbar />
+            
             { __u__.status==="PENDING" && <Panding />}
+
             {__u__.status==="APPROVED" && <Container>
                 <Title>School DashBoard</Title>
                 <TableNavList>

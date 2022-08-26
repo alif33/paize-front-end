@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import DotLoader from "react-spinners/DotLoader";
 import styled from "styled-components";
 import HomeLeftChild from '../../components/HomeLeftChild';
 import HomeRightChild from '../../components/HomeRightChild';
@@ -6,22 +7,26 @@ import Navbar from '../../components/Navbar';
 import { useSelector } from 'react-redux';
 
 const HomePage = () => {
-  const { admin } = useSelector(state=>state);
+
+
+  const { admin } = useSelector(state => state);
+
 
   console.log(admin);
-    return (
-        <>
-            <Navbar />
-            <Container>
-                <div className="left">
-                    <HomeLeftChild />
-                </div>
-                <div className="right">
-                    <HomeRightChild />
-                </div>
-            </Container>
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <Container>
+        <div className="left">
+          <HomeLeftChild />
+        </div>
+        <div className="right">
+          <HomeRightChild />
+        </div>
+      </Container>
+      <div style={{ textAlign: "center" }}>  <DotLoader /></div>
+    </>
+  );
 };
 
 export default HomePage;

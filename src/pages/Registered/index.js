@@ -12,7 +12,7 @@ const Registered = () => {
                 Thank you for registering. You will be notified within one
                 business day when your school is enrolled.
             </h1>
-            <Link to="/" >Done</Link>
+            <Link to="/school" >Done</Link>
         </Container>
     </div>
     );
