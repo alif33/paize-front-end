@@ -6,10 +6,10 @@ const PaymentTable = () => {
         <TableContainer>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Graduation Year</th>
-                    <th>Phone</th>
-                    <th>Status</th>
+                    <th>Items</th>
+                    <th>Cost</th>
+                    <th>Student</th>
+                    <th>Description</th>
                     <th></th>
                 </tr>
             </thead>

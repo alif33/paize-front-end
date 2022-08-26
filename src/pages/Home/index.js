@@ -24,7 +24,9 @@ const HomePage = () => {
           <HomeRightChild />
         </div>
       </Container>
-      <div style={{ textAlign: "center" }}>  <DotLoader /></div>
+      <div style={{ textAlign: "center" }}>  
+      {/* <DotLoader /> */}
+      </div>
     </>
   );
 };

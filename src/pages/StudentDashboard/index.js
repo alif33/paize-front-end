@@ -3,19 +3,19 @@ import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import PaymentTable from '../../components/PaymentTable';
 
-const PaymentInfoTable = () => {
+const StudentDashboard = () => {
     return (
         <div>
         <Navbar />
         <Container>
-            <Title>School DashBoard</Title>
+            <Title>Needs</Title>
             <PaymentTable />
         </Container>
     </div>
     );
 };
 
-export default PaymentInfoTable;
+export default StudentDashboard;
 
 const Container = styled.div`
 width: 92%;

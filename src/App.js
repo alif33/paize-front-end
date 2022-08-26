@@ -4,10 +4,9 @@ import AddNewItem from './pages/AddNewItem';
 import EnrollSchool from './pages/EnrollSchool';
 import HomePage from './pages/Home';
 import Login from './pages/Login';
-import Panding from './components/Panding';
 import PaymentDetails from './pages/PaymentDetails';
 import PaymentInformation from './pages/PaymentInformation';
-import PaymentInfoTable from './pages/PaymentInfoTable';
+import StudentDashboard from './pages/StudentDashboard';
 import PaymentNowPage from './pages/PaymentNowPage';
 import SchoolDashboard from './pages/SchoolDashboard';
 import SchoolDashboardAmount from './pages/SchoolDashboardAmount';
@@ -20,6 +19,7 @@ import JoinSchoolInfo from './pages/JoinSchoolInfo';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminRoute from './auth/AdminRoute';
+import Joined from './pages/Joined';
 
 
 const App = () => {
@@ -39,6 +39,7 @@ const App = () => {
         <Route path="/enroll/school-information" element={<SchoolInformation />} />
         <Route path="/enroll/payment-information" element={<PaymentInformation />} />
         <Route path="/registered" element={<Registered />} />
+        <Route path="/joined" element={<Joined />} />
 
         <Route path="/join" element={<JoinSchool />} />
         <Route path="/join/school-information" element={<JoinSchoolInfo />} />
@@ -52,7 +53,7 @@ const App = () => {
         <Route path="/school" element={<SchoolDashboard />} />
         <Route path="/school-dashboard-amount" element={<SchoolDashboardAmount />} />
         
-        <Route path="/payment-info-table" element={<PaymentInfoTable />} />
+        <Route path="/student" element={<StudentDashboard />} />
         <Route path="/payment" element={<PaymentNowPage />} />
 
 

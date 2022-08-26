@@ -17,7 +17,7 @@ const Table = ({ needs }) => {
                 {
                     needs.map((need, index)=>{
                         return(
-                            <tr>
+                            <tr key={ index }>
                                 <td>
                                     <TableImage>
                                         <input type="radio" />

@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import DotLoader from 'react-spinners/DotLoader';
 import AdminStudentTable from '../../../components/admin/AdminStudentTable';
 import AdminNavbar from '../../../components/admin/AdminNavbar';
 import { getData } from '../../../__lib__/helpers/HttpService';
 import { sortByStatus } from '../../../__lib__/helpers/Filter';
 
-const AdminDashboard = () => {
+const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    marginTop: "200px",
+    borderColor: "red",
+};
 
+const AdminDashboard = () => {
+    const [ loading, setLoading ] = useState(true);
     const [ schools, setSchools ] = useState();
     const [ schoolsData, setSchoolsData ] = useState();
     const [ navLink, setNavLink ] = useState('all');
@@ -14,6 +22,7 @@ const AdminDashboard = () => {
     useEffect(()=>{
         getData("/schools")
             .then(res=>{
+                setLoading(false);
                 setSchools(res);
                 setSchoolsData(sortByStatus(res));
             })
@@ -26,9 +35,10 @@ const AdminDashboard = () => {
     return (
         <div>
             <AdminNavbar />
-            <Container>
+            <DotLoader color="#3b9df1" loading={loading} cssOverride={override} /> 
+            {
+                !loading && schools && schools.length >0 && <Container>
                 <Title>Admin DashBoard</Title>
-
                 <TableNavList>
                     <li 
                         onClick={() => setNavLink("all")} 
@@ -60,6 +70,8 @@ const AdminDashboard = () => {
                 }
 
             </Container>
+            }
+
         </div>
     );
 };

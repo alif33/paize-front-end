@@ -8,11 +8,11 @@ import { sortByStatus } from '../../../../__lib__/helpers/Filter';
 
 const DropDown = ({ _id, setSchools, setSchoolsData }) => {
 
-    const { users } = useSelector(state=>state);
-    const { __u__ } = users;
+    const { admin } = useSelector(state=>state);
+    const { auth } = admin;
 
     const handleStatus = __s__ =>{
-        updateData(`/student/permission?_id=${_id}&status=${__s__}`, {}, __u__.token)
+        updateData(`/admin/permission?_id=${_id}&status=${__s__}`, {}, auth.token)
             .then(res=>{
                 if(res.success){
                     toast.success(`${res.message}`);
