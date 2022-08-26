@@ -12,11 +12,11 @@ const DropDown = ({ _id, setStudents, setStudentsData}) => {
     const { __u__ } = users;
 
     const handleStatus = __s =>{
-        updateData(`/admin/permission?_id=${_id}&status=${__s}`, {}, __u__.token)
+        updateData(`/student/permission?_id=${_id}&status=${__s}`, {}, __u__.token)
             .then(res=>{
                 if(res.success){
                     toast.success(`${res.message}`);
-                    __getData("/schools")
+                    __getData("/students", __u__.token)
                     .then(res=>{
                         setStudents(res);
                         setStudentsData(sortByStatus(res));

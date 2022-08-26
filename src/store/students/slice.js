@@ -14,6 +14,14 @@ export const studentSlice = createSlice({
                 ...state,
                 auth: action.payload
             }
-        }
+        },
+
+        clearData: (state, action) => {
+            return {
+                ...state,
+                auth: authorInfo.auth
+            }
+        },
+
     },
 })
