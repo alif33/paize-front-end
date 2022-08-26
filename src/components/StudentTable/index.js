@@ -22,7 +22,7 @@ const StudentTable = ({ students, setStudents, setStudentsData }) => {
             </thead>
             <tbody>
 
-            <ClipLoader color="#111" loading={true} cssOverride={override} size={150} />
+            {/* <ClipLoader color="#111" loading={true} cssOverride={override} size={150} /> */}
 
                 {
                     students && students.length>0 && students.map((item, index)=>{
