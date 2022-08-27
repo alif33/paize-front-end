@@ -28,8 +28,9 @@ const BuyingItem = () => {
                 setNeeds(res);
             })
             .catch(err=>console.log(err))
-    })
+    }, [])
 
+    console.log(needs);
     return (
         <div>
             <Navbar />
