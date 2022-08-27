@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { APP_URL } from '../../__lib__/helpers/HttpService';
 
 const Table = ({ needs }) => {
     return (
@@ -21,7 +22,7 @@ const Table = ({ needs }) => {
                                 <td>
                                     <TableImage>
                                         <input type="radio" />
-                                        <img src="/img/icon/dummy-image.png" alt="" />
+                                        <img src={`${ APP_URL}/${ need.studentImage }`} alt="" />
                                         <h5>{need.itemName}</h5>
                                     </TableImage>
                                 </td>
