@@ -14,9 +14,7 @@ const SchoolInformation = () => {
                     School Information
                     </Title>
                 </div>
-
                 <SchoolInfo/>
-
             </div>
             <div className="rightChild">
                 {/* <img src={RegisterImage} id="img" /> */}
