@@ -9,8 +9,6 @@ import { useSelector } from 'react-redux';
 
 const AddNewItem = () => {
     const [disable, setDisable] = useState(false);
-    const [studentImage, setStudentImage] = useState(null);
-    const [productImage, setProductImage] = useState(null);
 
     const {
         register,
@@ -28,8 +26,8 @@ const AddNewItem = () => {
         _data.append("itemName", data.itemName);
         _data.append("studentName", data.studentName);
         _data.append("cost", data.cost);
-        _data.append("images", productImage[0]);
-        _data.append("images", studentImage[0]);
+        _data.append("images", data.productImage[0]);
+        _data.append("images", data.studentImage[0]);
 
         authPost("/add-item", _data, __u__.token)
             .then(res => {
@@ -93,21 +91,26 @@ const AddNewItem = () => {
                         </div>
                     </InputConatiner>
 
-                    <UploadButton className={studentImage ? "upload-active" : ""} >
+                    <UploadButton className={errors.studentImage ? "upload-active" : ""} >
                         <p>Upload student image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
-                            onChange={(e) => setStudentImage(e.target.files)}
+                            {...register("studentImage", {
+                                required: true
+                            })}
                             accept="image/*" />
                         <img src="/img/icon/upload-icon.png" alt="" />
-                        <span>student image is required</span>
+                        {errors.studentImage && <span>student image is required</span>}
                     </UploadButton>
 
-                    <UploadButton className={productImage ? "" : "upload-active"} >
+                    <UploadButton className={errors.productImage ? "upload-active" : ""} >
                         <p>Upload Product image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
-                            onChange={(e) => setProductImage(e.target.files)}
+                            {...register("productImage", {
+                                required: true
+                            })}
                             accept="image/*" />
                         <img src="/img/icon/upload-icon.png" alt="" />
+                        {errors.studentImage && <span>student image is required</span>}
                     </UploadButton>
 
                     <FormSubmit>
