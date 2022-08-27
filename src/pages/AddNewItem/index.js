@@ -11,7 +11,8 @@ const AddNewItem = () => {
     const [disable, setDisable] = useState(false);
     const [studentImage, setStudentImage] = useState(null);
     const [productImage, setProductImage] = useState(null);
-    
+    const Images = [studentImage, productImage];
+
 
     const {
         register,
@@ -29,7 +30,17 @@ const AddNewItem = () => {
         _data.append("itemName", data.itemName);
         _data.append("studentName", data.studentName);
         _data.append("cost", data.cost);
-        _data.append("images", [studentImage[0], productImage[0]]);
+
+        if (Images.length >= 0) {
+            for (let i = 0; i < Images.length; i++) {
+                const image = Images[i];
+                // console.log(image);
+                _data.append("images", image);
+            }
+        }
+
+        // _data.append("images", [studentImage[0], productImage[0]]);
+
 
         authPost("/add-item", data, __u__.token)
             .then(res => {
