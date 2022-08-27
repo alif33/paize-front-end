@@ -20,6 +20,13 @@ const AddNewItem = () => {
 
     const onSubmit = data => {
         setDisable(true);
+    
+        const _data = new FormData();
+        _data.append("itemName", data.itemName);
+        _data.append("studentName", data.studentName);
+        _data.append("cost", data.cost);
+        _data.append("images", []);
+
         authPost("/add-item", data, __u__.token)
             .then(res => {
                 setDisable(false);
