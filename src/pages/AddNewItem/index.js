@@ -31,19 +31,6 @@ const AddNewItem = () => {
         _data.append("images", productImage[0]);
         _data.append("images", studentImage[0]);
 
-        console.log([studentImage[0], productImage[0]]);
-        // if (Images.length >= 0) {
-        //     for (let i = 0; i < Images.length; i++) {
-        //         const image = Images[i];
-        //         // console.log(image);
-        //         _data.append("images", image);
-        //     }
-        // }
-
-        // _data.append("images", [studentImage[0], productImage[0]]);
-
-
-
         authPost("/add-item", _data, __u__.token)
             .then(res => {
                 setDisable(false);
