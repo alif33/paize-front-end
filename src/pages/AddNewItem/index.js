@@ -104,7 +104,7 @@ const AddNewItem = () => {
                         </div>
                     </InputConatiner>
 
-                    <UploadButton className="upload-active">
+                    <UploadButton className={studentImage ? "upload-active" : ""} >
                         <p>Upload student image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
                             onChange={(e) => setStudentImage(e.target.files)}
@@ -113,7 +113,7 @@ const AddNewItem = () => {
                         <span>student image is required</span>
                     </UploadButton>
 
-                    <UploadButton>
+                    <UploadButton className={productImage ? "" : "upload-active"} >
                         <p>Upload Product image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
                             onChange={(e) => setProductImage(e.target.files)}
