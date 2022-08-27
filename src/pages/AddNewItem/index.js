@@ -9,23 +9,27 @@ import { useSelector } from 'react-redux';
 
 const AddNewItem = () => {
     const [disable, setDisable] = useState(false);
+    const [studentImage, setStudentImage] = useState(null);
+    const [productImage, setProductImage] = useState(null);
+    
+
     const {
         register,
         reset,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const { users } = useSelector(state=>state);
+    const { users } = useSelector(state => state);
     const { __u__ } = users;
 
     const onSubmit = data => {
         setDisable(true);
-    
+
         const _data = new FormData();
         _data.append("itemName", data.itemName);
         _data.append("studentName", data.studentName);
         _data.append("cost", data.cost);
-        _data.append("images", []);
+        _data.append("images", [studentImage[0], productImage[0]]);
 
         authPost("/add-item", data, __u__.token)
             .then(res => {
@@ -92,6 +96,7 @@ const AddNewItem = () => {
                     <UploadButton className="upload-active">
                         <p>Upload student image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
+                            onChange={(e) => setStudentImage(e.target.files)}
                             accept="image/*" />
                         <img src="/img/icon/upload-icon.png" alt="" />
                         <span>student image is required</span>
@@ -100,6 +105,7 @@ const AddNewItem = () => {
                     <UploadButton>
                         <p>Upload Product image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
+                            onChange={(e) => setProductImage(e.target.files)}
                             accept="image/*" />
                         <img src="/img/icon/upload-icon.png" alt="" />
                     </UploadButton>
