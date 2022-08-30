@@ -25,4 +25,8 @@ const Container = styled.div`
     margin-top: 20px;
     position: absolute;
   }
+  @media (max-width: 768px){
+    margin: auto;
+    margin-top: 40px;
+  }
 `;
