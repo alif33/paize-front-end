@@ -2,28 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HomeRightChild = () => {
-    return (
-        <Container>
-        <div className="firstImagesColumn">
-          <img src="/img/icon/cycle.svg" style={{ width: 160, height: 160, marginTop: 20 }} alt="" />
-  
-          <img src="/img/icon/bag.svg" style={{ width: 160, height: 160, marginTop: 20 }} alt="" />
-        </div>
-        <div className="secondImagesColumn">
-          <img
-            src="/img/icon/books.svg"
-            style={{ width: 160, height: 160, marginBottom: 20 }}
-            alt=""
-          />
-  
-          <img
-            src='/img/icon/table.svg'
-            style={{ width: 160, height: 160, marginBottom: 20 }}
-            alt=""
-          />
-        </div>
-      </Container>
-    );
+  return (
+    <Container>
+      <div className="firstImagesColumn">
+        <img src="/img/icon/cycle.svg" style={{ width: 160, height: 160, marginTop: 20 }} alt="" />
+
+        <img src="/img/icon/bag.svg" style={{ width: 160, height: 160, marginTop: 20 }} alt="" />
+      </div>
+      <div className="secondImagesColumn">
+        <img
+          src="/img/icon/books.svg"
+          style={{ width: 160, height: 160, marginBottom: 20 }}
+          alt=""
+        />
+
+        <img
+          src='/img/icon/table.svg'
+          style={{ width: 160, height: 160, marginBottom: 20 }}
+          alt=""
+        />
+      </div>
+    </Container>
+  );
 };
 
 export default HomeRightChild;
@@ -31,7 +31,7 @@ export default HomeRightChild;
 
 const Container = styled.div`
   background-color: white;
-  height: 80vh;
+  /* height: 80vh; */
   width: 100%;
   display: flex;
   align-items: center;
@@ -76,5 +76,10 @@ const Container = styled.div`
   img {
     height: 100%;
     width: 100%;
+    @media (max-width: 576px){
+      width: 115px !important;
+    height: auto;
+
+    }
   }
 `;

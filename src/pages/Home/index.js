@@ -24,8 +24,8 @@ const HomePage = () => {
           <HomeRightChild />
         </div>
       </Container>
-      <div style={{ textAlign: "center" }}>  
-      {/* <DotLoader /> */}
+      <div style={{ textAlign: "center" }}>
+        {/* <DotLoader /> */}
       </div>
     </>
   );
@@ -72,6 +72,26 @@ const Container = styled.div`
     }
     .text {
       font-size: 8px;
+    }
+  }
+  @media (max-width: 992px){
+    .left{
+      width: 50%;
+    }
+    .right{
+    width: 50%;
+
+    }
+  }
+  @media (max-width: 768px){
+    margin-top: 30px;
+    display: block;
+    .left{
+      width: 100%;
+    }
+    .right{
+    width: 100%;
+
     }
   }
 `;

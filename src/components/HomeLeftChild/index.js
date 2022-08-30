@@ -96,7 +96,7 @@ const Container = styled.div`
     background-color: skyblue;
   }
   .detailTextConatiner {
-    width: 70%;
+    width: 100%;
   }
   .detailText {
     font-family: 'Poppins';
@@ -108,12 +108,21 @@ font-size: 27px;
     margin: 0px 0;
     margin-bottom: 48px;
     margin-top: 22px;
+    @media (max-width: 992px){
+      
+    font-size: 16px;
+    line-height: 29px;
+
+}
   }
   .needsText {
     font-size: 50px;
     margin-inline: 5px;
     margin: 0px;
     color: #0e3746;
+    @media (max-width: 992px){
+      font-size: 38px;
+}
   }
   .leftMargin {
     margin-left: 3%;
@@ -164,7 +173,9 @@ padding: 10px 19px;
 color: #2291F1;
 transition: all .4s ease-in-out;
 width: 250px;
-
+@media (max-width: 992px){
+  padding: 2px 19px;
+}
     }
     a h3{
       font-family: 'Poppins';
@@ -173,6 +184,9 @@ font-weight: 400;
     font-size: 23px;
     line-height: 23px;
 margin: 0;
+@media (max-width: 992px){
+  font-size: 17px;
+}
     }
     a h4{font-family: 'Poppins';
 font-style: normal;
@@ -181,6 +195,9 @@ font-size: 15px;
 line-height: 26px;
 
 margin: 0;
+@media (max-width: 992px){
+  font-size: 13px;
+}
 
 }
 

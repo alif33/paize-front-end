@@ -21,7 +21,7 @@ const Navbar = () => {
                 <SearchDiv>
                     <img
                         src='/img/icon/search-icon.svg' alt=""
-                    />{" "}
+                    />
                     <SearchInput
                         placeholder="Search"
                     />
@@ -30,7 +30,7 @@ const Navbar = () => {
                     <Link to="/about" className="heading" >About</Link>
 
 
-                    {users.isLogedIn ? <UserDropDown __u__= {__u__}/> : (
+                    {users.isLogedIn ? <UserDropDown __u__={__u__} /> : (
                         <div className="buttonContainer">
                             <Link to="/login">
                                 <LoginBtn>
@@ -54,6 +54,11 @@ const Container = styled.div`
   border-bottom: 1px solid #dadde1;
   .loginAndIconDiv {
     display: flex;
+    @media (max-width: 576px){
+        position: absolute;
+        top: 26px;
+        right: 0;
+}
   }
   .buttonContainer {
     display: flex;
@@ -104,6 +109,10 @@ const Nav = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 18px 0;
+    @media (max-width: 576px){
+        display: block;
+        position: relative;
+}
 `;
 const NavBrand = styled.div``;
 const SearchInput = styled.input`
@@ -139,5 +148,14 @@ border-radius: 11px;
       height: 20px;
       margin-left: 20px;
       margin-right: 6px;
-      border-radius: 20px;}
+      border-radius: 20px;
+    }
+      @media (max-width: 768px){
+        margin-left: 0px;
+}
+      @media (max-width: 576px){
+        width: 100%;
+        margin-top: 14px;
+}
+
 `;
