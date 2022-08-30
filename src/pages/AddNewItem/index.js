@@ -91,7 +91,9 @@ const AddNewItem = () => {
                         </div>
                     </InputConatiner>
 
-                    <UploadButton className={errors.studentImage ? "upload-active" : ""} >
+                    <UploadButton
+                        className={errors.studentImage ? "upload-active" : ""}
+                    >
                         <p>Upload student image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
                             {...register("studentImage", {
@@ -102,7 +104,10 @@ const AddNewItem = () => {
                         {errors.studentImage && <span>student image is required</span>}
                     </UploadButton>
 
-                    <UploadButton className={errors.productImage ? "upload-active" : ""} >
+                    <UploadButton
+
+                        className={errors.productImage ? "upload-active" : ""}
+                    >
                         <p>Upload Product image, size between 220*220 to 2000*2000px.</p>
                         <input type="file"
                             {...register("productImage", {
