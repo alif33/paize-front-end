@@ -1,32 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PaymentTable = () => {
+const PaymentTable = ({ infos }) => {
     return (
         <TableContainer>
-            <thead>
-                <tr>
-                    <th>Items</th>
-                    <th>Cost</th>
-                    <th>Student</th>
-                    <th>Description</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>2011</p></td>
-                    <td><p>510-241-5439</p></td>
-                    <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
-                    <td><Button>Pay Now</Button></td>
-                </tr>
-            </tbody>
+            {
+                infos && infos.length>0 && <>
+                    <thead>
+                        <tr>
+                            <th>Items</th>
+                            <th>Cost</th>
+                            <th>Student</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {   infos.map((item, index)=>{
+                                return(
+                                    <tr key={ index }>
+                                        <td>
+                                            <TableImage>
+                                                <img src="/img/icon/dummy-image.png" alt="" />
+                                                <h5>{ item.itemName }</h5>
+                                            </TableImage>
+                                        </td>
+                                        <td><p>{ item.cost }</p></td>
+                                        <td><p>{ item.studentName }</p></td>
+                                        <td><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></td>
+                                        <td><Button disabled={ item.status==="UNPAID" ? false: true }>Pay Now</Button></td>
+                                    </tr>
+                                )
+                        })
+                        }
+                    </tbody>
+                </>
+            }
+            {
+                infos && infos.length===0 && <h1>You have no Data</h1>
+            }
         </TableContainer>
     );
 };

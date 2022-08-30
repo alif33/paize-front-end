@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postData } from '../../__lib__/helpers/HttpService';
 import { logedIn } from '../../store/users/actions';
+import { toast, Toaster } from 'react-hot-toast';
 
 
 const LoginCard = () => {
@@ -21,15 +22,20 @@ const LoginCard = () => {
                 setDisable(false);
                 if (res.success) {
                     const { token, info, role, status } = res;
-                    dispatch(logedIn({
-                        token,
-                        info,
-                        role,
-                        status
-                    }))
-                    if(role==="AUTHOR"){
-                        navigate("/school");
+                    if(status==="REJECTED"){
+                        toast.error("Account is restricted")
+                    }else{
+                        dispatch(logedIn({
+                            token,
+                            info,
+                            role,
+                            status
+                        }))
+                        if(role==="AUTHOR"){
+                            navigate("/school");
+                        }
                     }
+
                 }
             })
             .catch(err=>{
@@ -40,7 +46,10 @@ const LoginCard = () => {
     // console.log(users);
     return (
         <Container>
-
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
                     <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""

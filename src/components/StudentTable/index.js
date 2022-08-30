@@ -5,11 +5,7 @@ import DropDown from './DropDown';
 
 
 const StudentTable = ({ students, setStudents, setStudentsData }) => {
-    const override: CSSProperties = {
-        display: "block",
-        margin: "0 auto",
-        borderColor: "red",
-      };
+
     return (
         <TableContainer>
             <thead>

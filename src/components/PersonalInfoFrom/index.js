@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,11 +8,13 @@ import { logedIn } from '../../store/users/actions';
 
 const PersonalInfoForm = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [ disable, setDisable ] = useState(false);
     const dispatch = useDispatch();
     const { users } = useSelector(state => state);
     const { __u__ } = users;
 
     const onSubmit = data => {
+        setDisable(true);
         const _data = new FormData();
         _data.append("firstName", data.firstName);
         _data.append("lastName", data.lastName);
@@ -21,6 +23,7 @@ const PersonalInfoForm = () => {
         // _data.append("images", data.studentImage[0]);
         updateData(`/${ __u__.role==="AUTHOR"?"author": "student" }/profile`, _data, __u__.token)
         .then(res=>{
+            setDisable(false);
             if (res.success) {
                 toast.success(`${ res.message }`);
                 const { token, info, role, status } = res;
@@ -33,11 +36,13 @@ const PersonalInfoForm = () => {
                 }))
 
             }
-            // console.log(res);
         })
-        // console.log(__u__);
+        .catch(err=>{
+            setDisable(false);
+        })
     };
     return (
+        
         <From onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
                 <div className="inputsConatiner">
@@ -94,7 +99,7 @@ const PersonalInfoForm = () => {
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>
-                <Button>Update</Button>
+                <Button disabled={ disable }>Update</Button>
             </div>
         </From>
     );
