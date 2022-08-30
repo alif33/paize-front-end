@@ -6,7 +6,8 @@ import AddItem from '../../components/AddItem';
 import Navbar from '../../components/Navbar';
 import Table from '../../components/Table/Index';
 import DotLoader from 'react-spinners/DotLoader';
-import { __getData } from '../../__lib__/helpers/HttpService';
+import { authPost, __getData } from '../../__lib__/helpers/HttpService';
+import { Toaster, toast} from 'react-hot-toast';
 
 const override: CSSProperties = {
     display: "block",
@@ -18,6 +19,7 @@ const override: CSSProperties = {
 const BuyingItem = () => {
     const [ loading, setLoading ] = useState(true);
     const [ needs, setNeeds ] = useState(null);
+    const [ items, setItems ] = useState([]);
     const { users } = useSelector(state=>state);
     const { __u__ } = users;
 
@@ -30,10 +32,28 @@ const BuyingItem = () => {
             .catch(err=>console.log(err))
     }, [])
 
+    const handleDelete = ()=>{
+        authPost("/remove-items",{ _ids: items}, __u__.token)
+            .then(res=>{
+                console.log(res);
+                if (res.success) {
+                    toast.success(`${res.message}`);
+                    __getData("/items", __u__.token)
+                    .then(res=>{
+                        setNeeds(res);
+                    })
+                }
+            })
+    }
+
     console.log(needs);
     return (
         <div>
             <Navbar />
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <DotLoader color="#3b9df1" loading={loading} cssOverride={override} /> 
 
             { !loading && needs && needs.length>0 && <>
@@ -41,12 +61,22 @@ const BuyingItem = () => {
                         <h3>Needs</h3>
 
                         <Button>
-                            <img src="/img/icon/trash-icon.png" alt="" />
+                            {
+                                items.length>0 && <img 
+                                    style={{ cursor: "pointer" }} 
+                                    onClick={handleDelete} 
+                                    src="/img/icon/trash-icon.png" 
+                                    alt="" />
+                            }
                             <Link to="/add-new-item">Add New</Link>
                         </Button>
 
                     </Title>
-                    <Table needs={ needs } />
+                    <Table 
+                        needs={ needs } 
+                        items={ items }
+                        setItems={ setItems }
+                    />
                     <ArrowRight>
                         <Link className="active" to="/"><img src="/img/icon/arrow-right.png" alt="" /></Link>
                         <Link to="/add-new-item"><img src="/img/icon/arrow-right.png" alt="" /></Link>

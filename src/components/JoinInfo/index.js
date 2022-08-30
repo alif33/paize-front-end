@@ -24,7 +24,7 @@ const JoinInfo = () => {
   } = useForm();
 
   useEffect(()=>{
-    getData("/schools")
+    getData("/public/schools")
     .then(res=>{
       setSchools(res);
     })

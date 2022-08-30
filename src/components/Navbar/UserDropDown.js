@@ -29,7 +29,12 @@ const UserDropDown = ({ __u__ }) => {
 
             {close =>
                 <DropDownMenu onClick={close}>
-                    <div onClick={() => navigate("/update-information")} className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Settings</div>
+                    {
+                         __u__?.status ==="APPROVED" &&  <div onClick={() => navigate("/update-information")} className="menu-item"> 
+                                    <img src="/img/icon/settings.svg" alt="" /> Settings
+                                </div>
+                    }
+
                     {
                         __u__?.role === "AUTHOR" &&  __u__?.status ==="APPROVED" && <div 
                             onClick={() => navigate("/items")} 
