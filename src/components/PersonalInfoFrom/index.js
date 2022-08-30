@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateData } from '../../__lib__/helpers/HttpService';
+import toast from 'react-hot-toast';
+import { logedIn } from '../../store/users/actions';
 
 const PersonalInfoForm = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const dispatch = useDispatch();
     const { users } = useSelector(state => state);
     const { __u__ } = users;
 
@@ -18,13 +21,24 @@ const PersonalInfoForm = () => {
         // _data.append("images", data.studentImage[0]);
         updateData(`/${ __u__.role==="AUTHOR"?"author": "student" }/profile`, _data, __u__.token)
         .then(res=>{
-            console.log(res);
+            if (res.success) {
+                toast.success(`${ res.message }`);
+                const { token, info, role, status } = res;
+
+                dispatch(logedIn({
+                    token,
+                    info,
+                    role,
+                    status
+                }))
+
+            }
+            // console.log(res);
         })
-        console.log(__u__);
+        // console.log(__u__);
     };
     return (
         <From onSubmit={handleSubmit(onSubmit)}>
-
             <div className="row">
                 <div className="inputsConatiner">
                     <img src='/img/icon/user.svg' className="ledtIcon" alt=""
