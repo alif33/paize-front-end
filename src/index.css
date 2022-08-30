@@ -1,15 +1,202 @@
+:root,
 *,
-html,
-body {
+body,
+html {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 button:disabled,
-button[disabled]{
+button[disabled] {
   opacity: 0.4;
+}
+
+.header-img1 {
+  top: 40px;
+  left: 62px;
+  width: 160px;
+  height: 160px;
+  animation: animation1 10s infinite;
+}
+.header-img2 {
+  top: 0;
+  right: 90px;
+  width: 160px;
+  height: 160px;
+  animation: animation2 10s infinite;
+}
+.header-img3 {
+  left: 62px;
+  bottom: -40px;
+  width: 160px;
+  height: 160px;
+  animation: animation3 10s infinite;
+}
+.header-img4 {
+  right: 90px;
+  bottom: 0;
+  width: 160px;
+  height: 160px;
+  animation: animation4 10s infinite;
+}
+
+@keyframes animation1 {
+  0% {
+    transform: translateY(0, 0);
+  }
+  16% {
+    transform: translate(137%, 0%) rotate(360deg);
+  }
+  20% {
+    transform: translate(137%, 0%) rotate(360deg);
+  }
+  34% {
+    transform: translate(137%, -27%) rotate(360deg);
+  }
+  38% {
+    transform: translate(137%, -27%) rotate(360deg);
+  }
+  48% {
+    transform: translate(137%, 100%) rotate(720deg);
+  }
+  54% {
+    transform: translate(137%, 100%) rotate(720deg);
+  }
+  64% {
+    transform: translate(0%, 100%) rotate(1080deg);
+  }
+  70% {
+    transform: translate(0%, 100%) rotate(1080deg);
+  }
+  80% {
+    transform: translate(0%, 126%) rotate(1080deg);
+  }
+  86% {
+    transform: translate(0%, 126%) rotate(1080deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(1440deg);
+  }
+}
+
+@keyframes animation2 {
+  0% {
+    transform: translateY(0, 0);
+  }
+  16% {
+    transform: translate(-137%, 0%) rotate(360deg);
+  }
+  20% {
+    transform: translate(-137%, 0%) rotate(360deg);
+  }
+  34% {
+    transform: translate(-137%, 27%) rotate(360deg);
+  }
+  38% {
+    transform: translate(-137%, 27%) rotate(360deg);
+  }
+  48% {
+    transform: translate(-137%, 100%) rotate(720deg);
+  }
+  54% {
+    transform: translate(-137%, 100%) rotate(720deg);
+  }
+  64% {
+    transform: translate(0%, 100%) rotate(1080deg);
+  }
+  70% {
+    transform: translate(0%, 100%) rotate(1080deg);
+  }
+  80% {
+    transform: translate(0%, 126%) rotate(1080deg);
+  }
+  86% {
+    transform: translate(0%, 126%) rotate(1080deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(1440deg);
+  }
+}
+
+@keyframes animation3 {
+  0% {
+    transform: translateY(0, 0);
+  }
+  16% {
+    transform: translate(137%, 0%) rotate(360deg);
+  }
+  20% {
+    transform: translate(137%, 0%) rotate(360deg);
+  }
+  34% {
+    transform: translate(137%, -27%) rotate(360deg);
+  }
+  38% {
+    transform: translate(137%, -27%) rotate(360deg);
+  }
+  48% {
+    transform: translate(137%, -153%) rotate(720deg);
+  }
+  54% {
+    transform: translate(137%, -153%) rotate(720deg);
+  }
+  64% {
+    transform: translate(0%, -153%) rotate(1080deg);
+  }
+  70% {
+    transform: translate(0%, -153%) rotate(1080deg);
+  }
+  80% {
+    transform: translate(0%, -126%) rotate(1080deg);
+  }
+  86% {
+    transform: translate(0%, -126%) rotate(1080deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(1440deg);
+  }
+}
+
+@keyframes animation4 {
+  0% {
+    transform: translateY(0, 0);
+  }
+  16% {
+    transform: translate(-137%, 0%) rotate(360deg);
+  }
+  20% {
+    transform: translate(-137%, 0%) rotate(360deg);
+  }
+  34% {
+    transform: translate(-137%, 27%) rotate(360deg);
+  }
+  38% {
+    transform: translate(-137%, 27%) rotate(360deg);
+  }
+  48% {
+    transform: translate(-137%, -153%) rotate(720deg);
+  }
+  54% {
+    transform: translate(-137%, -153%) rotate(720deg);
+  }
+  64% {
+    transform: translate(0%, -153%) rotate(1080deg);
+  }
+  70% {
+    transform: translate(0%, -153%) rotate(1080deg);
+  }
+  80% {
+    transform: translate(0%, -126%) rotate(1080deg);
+  }
+  86% {
+    transform: translate(0%, -126%) rotate(1080deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(1440deg);
+  }
 }
