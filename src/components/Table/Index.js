@@ -6,7 +6,31 @@ const Table = ({ needs, items, setItems }) => {
 
     const handleSelect = e =>{
         const { value } = e.target;
-        setItems([...items, value]);
+
+        if(e.target.checked){
+            document.getElementById(value).checked = false;
+        }
+        
+        // else{
+        //     document.getElementById(value).checked = true;
+        // }
+
+        // console.log();
+        // document.querySelectorAll(`#${value}`)
+        // if(e.target.checked){
+        //     e.target.checked = false;
+        // }else{
+        //     e.target.checked = true;
+        // }
+        // console.log(value);
+        // setItems(needs);
+        // if(!items.includes(value)){
+        //     setItems([items.remove(value)]);
+        // }else{
+        //     setItems([...items, value]);
+        // }
+
+        // console.log(e.target.checked);
     }
 
     return (
@@ -27,11 +51,12 @@ const Table = ({ needs, items, setItems }) => {
                             <tr key={ index }>
                                 <td>
                                     <TableImage>
-                                        <input 
+                                        <input
+                                            id={ need._id } 
                                             type="radio"
                                             name={ need._id } 
                                             value={ need._id }
-                                            // checked={ true }
+                                            // checked={ items.includes(need._id) }
                                             onChange={e=>handleSelect(e)}
                                         />
                                         <img src={`${ APP_URL}/${ need.studentImage }`} alt="" />
