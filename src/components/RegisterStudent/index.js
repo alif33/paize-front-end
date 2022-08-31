@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStudentAuth } from '../../store/students/actions';
 import { useForm } from 'react-hook-form';
+import UserIcon from '../../svg/UserIcon';
+import MailIcon from '../../svg/MailIcon';
+import LockIcon from '../../svg/LockIocn';
 
 const Register = () => {
 
@@ -34,8 +37,9 @@ const Register = () => {
         <Container>
             <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+                    /> */}
+                    <UserIcon />
                     <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("firstName", {
@@ -48,8 +52,9 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+                    /> */}
+                    <UserIcon />
                     <div className={errors.lastName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("lastName", {
@@ -62,11 +67,12 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <MailIcon />
                     <div className={errors.email ? "inputDiv active" : "inputDiv "}>
                         <input
-                        type="email"
+                            type="email"
                             {...register("email", {
                                 required: true,
                             })}
@@ -77,11 +83,12 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <LockIcon />
                     <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
-                        type="password"
+                            type="password"
                             {...register("password", {
                                 required: "Password requird",
                             })}
@@ -92,11 +99,12 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <LockIcon />
                     <div className={errors.confirmPassword ? "inputDiv active" : "inputDiv "}>
                         <input
-                        type="password"
+                            type="password"
                             {...register("confirmPassword", {
                                 required: "Password requird",
                             })}

@@ -5,17 +5,20 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAuth } from '../../store/users/actions';
 import { isEmptyObj } from '../../__lib__/helpers/Validator';
+import UserIcon from '../../svg/UserIcon';
+import MailIcon from '../../svg/MailIcon';
+import LockIcon from '../../svg/LockIocn';
 
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-    const { users } = useSelector(state=>state);
+    const { users } = useSelector(state => state);
     const { auth } = users;
     const { firstName, lastName, email, password, confirmPassword } = auth;
     const dispatch = useDispatch();
 
-    const onSubmit = data =>{
+    const onSubmit = data => {
         dispatch(setAuth(data));
         navigate('/enroll/school-information');
     };
@@ -24,10 +27,10 @@ const Register = () => {
 
     return (
         <Container>
-            <From onSubmit={ handleSubmit(onSubmit) }>
+            <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/user.png' className="ledtIcon" alt="" /> */}
+                    <UserIcon />
                     <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("firstName", {
@@ -35,14 +38,13 @@ const Register = () => {
                             })}
                             placeholder="First Name"
                             // onChange={ e=>dispatch(setAuth(e)) } 
-                            defaultValue={ firstName }
+                            defaultValue={firstName}
                         />
-                        { errors.firstName && <span>First Name is required</span> }
+                        {errors.firstName && <span>First Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    <UserIcon />
                     <div className={errors.lastName ? "inputDiv active" : "inputDiv "}>
                         <input
                             // name="lastName"
@@ -51,14 +53,15 @@ const Register = () => {
                             })}
                             placeholder="Last Name"
                             // onChange={ e=>dispatch(setAuth(e)) } 
-                            defaultValue={ lastName }
+                            defaultValue={lastName}
                         />
-                        { errors.lastName && <span>Last Name is required</span> }
+                        {errors.lastName && <span>Last Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/mail.svg' style={{ width: "30px"}} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <MailIcon />
                     <div className={errors.email ? "inputDiv active" : "inputDiv "}>
                         <input
                             // name="email"
@@ -67,14 +70,14 @@ const Register = () => {
                             })}
                             placeholder="Email"
                             // onChange={ e=>dispatch(setAuth(e)) } 
-                            defaultValue={ email }
+                            defaultValue={email}
                         />
-                        { errors.email && <span>Email is required</span> }
+                        {errors.email && <span>Email is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px"}} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt="" /> */}
+                    <LockIcon />
                     <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
                             type="password"
@@ -83,34 +86,34 @@ const Register = () => {
                             })}
                             placeholder="Password"
                             // onChange={ e=>dispatch(setAuth(e)) } 
-                            defaultValue={ password }
+                            defaultValue={password}
                         />
-                        { errors.password && <span>Password is required</span> }
+                        {errors.password && <span>Password is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px"}} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""/> */}
+                    <LockIcon />
                     <div className={errors.confirmPassword ? "inputDiv active" : "inputDiv "}>
                         <input
-                          type="password"
+                            type="password"
                             {...register("confirmPassword", {
                                 required: true,
                             })}
                             placeholder="Confirm Password "
                             // onChange={ e=>dispatch(setAuth(e)) } 
-                            defaultValue={ confirmPassword }
+                            defaultValue={confirmPassword}
                         />
-                        { errors.confirmPassword && <span>Confirm Password is required</span> }
+                        {errors.confirmPassword && <span>Confirm Password is required</span>}
                     </div>
                 </div>
 
                 <Button type="submit">
                     Next
                 </Button>
-                <Button2 
+                <Button2
                     type="button"
-                    onClick={ ()=>navigate(-1) }
+                    onClick={() => navigate(-1)}
                 >
                     Back
                 </Button2>

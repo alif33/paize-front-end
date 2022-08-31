@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSchoolInfo } from '../../store/users/actions';
 import { useForm } from 'react-hook-form';
+import SchoolIcon from '../../svg/SchoolIcon';
+import UserIcon from '../../svg/UserIcon';
+import ContactIcon from '../../svg/ContactIcon/indes';
 
 const SchoolInfo = () => {
 
@@ -27,11 +30,12 @@ const SchoolInfo = () => {
         <Container>
             <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/school.svg'
+                    {/* <img src='/img/icon/school.svg'
                         style={{ width: "30px" }}
                         className="ledtIcon"
                         alt=""
-                    />
+                    /> */}
+                    <SchoolIcon />
                     <div className={errors.schoolName ? "inputDiv active" : "inputDiv "} >
                         <input
                             {...register("schoolName", {
@@ -44,8 +48,9 @@ const SchoolInfo = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/school.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/school.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <SchoolIcon />
                     <div className={errors.schoolAddress ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("schoolAddress", {
@@ -58,8 +63,9 @@ const SchoolInfo = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+                    /> */}
+                    <UserIcon />
                     <div className={errors.principleName ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("principleName", {
@@ -72,8 +78,9 @@ const SchoolInfo = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+                    /> */}
+                    <UserIcon />
                     <div className={errors.relation ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("relation", {
@@ -86,8 +93,9 @@ const SchoolInfo = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <ContactIcon />
                     <div className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
                         <input
                             {...register("phoneNumber", {
