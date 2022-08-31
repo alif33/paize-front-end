@@ -59,13 +59,13 @@ const AdminDashboard = () => {
                 </TableNavList>
                 {
                     navLink === "all" ? <AdminStudentTable
-                                            schools={ schools } 
-                                            setSchools={setSchools} 
-                                            setSchoolsData={setSchoolsData}
-                                        />: <AdminStudentTable 
-                                            schools={ schoolsData[navLink] }
-                                            setSchools={setSchools}
-                                            setSchoolsData={setSchoolsData} 
+                                schools={ schools } 
+                                setSchools={setSchools} 
+                                setSchoolsData={setSchoolsData}
+                            />: <AdminStudentTable 
+                                schools={ schoolsData[navLink] }
+                                setSchools={setSchools}
+                                setSchoolsData={setSchoolsData} 
                      />
                 }
 
