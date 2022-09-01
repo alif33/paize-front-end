@@ -6,14 +6,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postData } from '../../__lib__/helpers/HttpService';
 import { logedIn } from '../../store/users/actions';
 import { toast, Toaster } from 'react-hot-toast';
+import MailIcon from '../../svg/MailIcon';
+import LockIcon from '../../svg/LockIocn';
+import AlumniIcon from '../../svg/AlumniIcon';
+import SchoolIcon2 from '../../svg/SchoolIcon2';
 
 
 const LoginCard = () => {
-    const [ disable, setDisable ] = useState(false);
+    const [disable, setDisable] = useState(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { users } = useSelector(state=>state);
+    const { users } = useSelector(state => state);
 
     const onSubmit = data => {
         setDisable(true);
@@ -22,23 +26,23 @@ const LoginCard = () => {
                 setDisable(false);
                 if (res.success) {
                     const { token, info, role, status } = res;
-                    if(status==="REJECTED"){
+                    if (status === "REJECTED") {
                         toast.error("Account is restricted")
-                    }else{
+                    } else {
                         dispatch(logedIn({
                             token,
                             info,
                             role,
                             status
                         }))
-                        if(role==="AUTHOR"){
+                        if (role === "AUTHOR") {
                             navigate("/school");
                         }
                     }
 
                 }
             })
-            .catch(err=>{
+            .catch(err => {
                 setDisable(false);
             })
     };
@@ -52,11 +56,12 @@ const LoginCard = () => {
             />
             <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <MailIcon />
                     <div className={errors.email ? "inputDiv active" : "inputDiv "}>
                         <input
-                        type="email"
+                            type="email"
                             placeholder="Email"
                             {...register("email", { required: true })}
                         />
@@ -64,11 +69,12 @@ const LoginCard = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+                    <LockIcon />
                     <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
-                        type="password"
+                            type="password"
                             placeholder="Password"
                             {...register("password", { required: true })}
                         />
@@ -79,34 +85,36 @@ const LoginCard = () => {
                 <CheckBox>
 
                     <div className="form-check active">
-                        <input 
+                        <input
                             id="flexRadioDefault1"
-                            className="form-check-input" 
+                            className="form-check-input"
                             type="radio"
                             value="student"
-                            {...register("aluminiCheck", { 
-                                required: true 
+                            {...register("aluminiCheck", {
+                                required: true
                             })}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
-                            <img src="/img/icon/alumni.svg" alt="" />
+                            {/* <img src="/img/icon/alumni.svg" alt="" /> */}
+                            <AlumniIcon color={true ? "#2291F1" : "#0E3746"} />
                             Alumini
                         </label>
 
                     </div>
 
                     <div className="form-check">
-                        <input 
+                        <input
                             id="flexRadioDefault2"
-                            className="form-check-input" 
-                            type="radio" 
+                            className="form-check-input"
+                            type="radio"
                             value="author"
-                            {...register("aluminiCheck", { 
-                                required: true 
+                            {...register("aluminiCheck", {
+                                required: true
                             })}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault2">
-                            <img src="/img/icon/school.png" alt="" />
+                            {/* <img src="/img/icon/school.png" alt="" /> */}
+                            <SchoolIcon2 color={false ? "#2291F1" : "#9f9f9f"} />
                             School
                         </label>
                     </div>
@@ -115,9 +123,9 @@ const LoginCard = () => {
 
                 {errors.aluminiCheck && <span style={{ color: "red" }} >aluminiCheck is required</span>}
 
-                <Button 
+                <Button
                     type="submit"
-                    disabled={ disable }
+                    disabled={disable}
                 >
                     Next
                 </Button>
@@ -225,7 +233,7 @@ input{
     height: 22px;
     width: 22px;
 }
-img{margin: 0 10px;
+svg{margin: 0 10px;
     width: 19px;}
 
 `;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import StartIcon from '../../svg/StartIcon';
 
 const PaymentForm = () => {
     return (
@@ -16,7 +17,8 @@ const PaymentForm = () => {
             <span>-</span>
             <input type="text" />
 
-            <img src="/img/icon/start.svg" alt="" />
+            {/* <img src="/img/icon/start.svg" alt="" /> */}
+            <StartIcon />
         </CardInputs>
 
         <NumberCard>

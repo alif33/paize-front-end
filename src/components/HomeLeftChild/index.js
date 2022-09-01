@@ -214,5 +214,16 @@ a.active:hover{
   color: #2291F1;
 }
 
+@media(max-width: 527px){
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  a{ 
+    margin-right: 0;
+    margin-bottom: 16px;
+    width: 100%;
+    // max-width: 250px;
+  }
+}
 
 `;

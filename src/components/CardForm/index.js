@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import StartIcon from '../../svg/StartIcon';
 
 const CardForm = () => {
     return (
@@ -16,7 +17,8 @@ const CardForm = () => {
                 <span>-</span>
                 <input type="text" />
 
-                <img src="/img/icon/start.svg" alt="" />
+                {/* <img src="/img/icon/start.svg" alt="" /> */}
+                <StartIcon />
             </CardInputs>
 
             <NumberCard>
@@ -43,7 +45,7 @@ const CardForm = () => {
                     <Input type="text" />
                 </CardInputDate>
             </NumberCard>
-<Button>Update</Button>
+            <Button>Update</Button>
         </From>
     );
 };

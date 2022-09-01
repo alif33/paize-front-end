@@ -20,13 +20,24 @@ const Container = styled.div`
   height: 382px;
   width: 530px;
   position: relative;
+  margin: auto;
+    margin-bottom: 92px;
 
   img {
     margin-top: 20px;
     position: absolute;
+  width: 160px;
+  height: 160px;
+ @media(max-width: 481px){
+  width: 124px;
+  height: 124px;
+ }
   }
-  @media (max-width: 768px){
-    margin: auto;
-    margin-top: 40px;
+  @media (max-width: 576px){
+    width: 450px !important;
+  }
+  @media(max-width: 481px){
+    width: 281px !important;
+    height: 298px;
   }
 `;

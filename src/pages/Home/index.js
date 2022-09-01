@@ -38,14 +38,22 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 50px 10px 0 10px;
+
   .left {
     height: 100%;
     width: 50%;
     background-color: honeydew;
+    @media (max-width: 992px){
+      order: 2;
+    }
   }
   .right {
     height: 100%;
     width: 40%;
+    @media (max-width: 992px){
+
+      order: 1;
+    }
   }
 
   h3 {
@@ -75,17 +83,9 @@ const Container = styled.div`
     }
   }
   @media (max-width: 992px){
-    .left{
-      width: 50%;
-    }
-    .right{
-    width: 50%;
+   
+    flex-direction: column;
 
-    }
-  }
-  @media (max-width: 768px){
-    margin-top: 30px;
-    display: block;
     .left{
       width: 100%;
     }
@@ -93,5 +93,8 @@ const Container = styled.div`
     width: 100%;
 
     }
+  }
+  @media (max-width: 481px){
+    padding: 20px 4px 0 4px;
   }
 `;
