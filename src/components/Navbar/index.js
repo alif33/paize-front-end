@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import UserDropDown from './UserDropDown';
 import { useSelector } from 'react-redux';
+import SearchIocn from '../../svg/SearchIcon';
 
 const Navbar = () => {
     const { users } = useSelector(state => state);
@@ -19,9 +20,10 @@ const Navbar = () => {
                     </Link>
                 </NavBrand>
                 <SearchDiv>
-                    <img
+                    {/* <img
                         src='/img/icon/search-icon.svg' alt=""
-                    />
+                    /> */}
+                    <SearchIocn />
                     <SearchInput
                         placeholder="Search"
                     />
@@ -143,7 +145,7 @@ margin-left: 110px;
     background: rgba(218, 221, 225, 0.4);
 border: 1px solid #DADDE1;
 border-radius: 11px;
-    img{ 
+    svg{ 
        width: 20px;
       height: 20px;
       margin-left: 20px;

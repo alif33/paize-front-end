@@ -5,14 +5,17 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postData } from '../../../__lib__/helpers/HttpService';
 import { adminLogin } from '../../../store/admins/actions';
+import MailIcon from '../../../svg/MailIcon';
+import LockIcon from '../../../svg/LockIocn';
 
 const AdminLoginCard = () => {
-    const [ disable, setDisable ] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { admins } = useSelector(state=> state);
+  const [disable, setDisable] = useState(false);
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { admins } = useSelector(state => state);
 
+<<<<<<< HEAD
     const onSubmit = data => {
         setDisable(true);
         postData("/admin/signin", data)
@@ -28,47 +31,63 @@ const AdminLoginCard = () => {
               setDisable(false);
             })
     };
+=======
+  const onSubmit = data => {
+    setDisable(true);
+    postData("/admin/signin", data)
+      .then(res => {
+        if (res.success) {
+          setDisable(false);
+          const { token, email } = res;
+          dispatch(adminLogin({ token, email }))
+          navigate("/admin/dashboard")
+        }
+      })
+  };
+>>>>>>> 53bf877a7207baf35dd719fd0682bfa5ff1c19c5
 
-    return (
-        <Container>
+  return (
+    <Container>
 
-            <From onSubmit={handleSubmit(onSubmit)}>
-                <div className="inputsConatiner">
-                    <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
-                    <div className={errors.email ? "inputDiv active" : "inputDiv "}>
-                        <input
-                        type="email"
-                            placeholder="Email"
-                            {...register("email", { required: true })}
-                        />
-                        {errors.email && <span>Email is required</span>}
-                    </div>
-                </div>
-                <div className="inputsConatiner">
-                    <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    />
-                    <div className={errors.password ? "inputDiv active" : "inputDiv "}>
-                        <input
-                        type="password"
-                            placeholder="Password"
-                            {...register("password", { required: true })}
-                        />
-                        {errors.password && <span>Password is required</span>}
-                    </div>
-                </div>
+      <From onSubmit={handleSubmit(onSubmit)}>
+        <div className="inputsConatiner">
+          {/* <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+          <MailIcon />
+          <div className={errors.email ? "inputDiv active" : "inputDiv "}>
+            <input
+              type="email"
+              placeholder="Email"
+              {...register("email", { required: true })}
+            />
+            {errors.email && <span>Email is required</span>}
+          </div>
+        </div>
+        <div className="inputsConatiner">
+          {/* <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+                    /> */}
+          <LockIcon />
+          <div className={errors.password ? "inputDiv active" : "inputDiv "}>
+            <input
+              type="password"
+              placeholder="Password"
+              {...register("password", { required: true })}
+            />
+            {errors.password && <span>Password is required</span>}
+          </div>
+        </div>
 
 
-                <Button 
-                    type="submit"
-                    disabled={ disable }
-                >
-                    Next
-                </Button>
+        <Button
+          type="submit"
+          disabled={disable}
+        >
+          Next
+        </Button>
 
-            </From>
-        </Container>
-    );
+      </From>
+    </Container>
+  );
 };
 
 export default AdminLoginCard;

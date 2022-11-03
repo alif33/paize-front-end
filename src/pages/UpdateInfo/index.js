@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PersonalInfoForm from '../../components/PersonalInfoFrom';
 
 const UpdateInfo = () => {
-    const { users } = useSelector(state=>state);
+    const { users } = useSelector(state => state);
     const { __u__ } = users;
 
     return (
@@ -27,8 +27,8 @@ const UpdateInfo = () => {
                     <ProfileInfo>
                         <UserImage src="/img/icon/user-avatar.png" alt="" />
                         <NameEmail>
-                            <h4>{ __u__.info.firstName }</h4>
-                            <p>{__u__.info.email }</p>
+                            <h4>{__u__.info?.firstName}</h4>
+                            <p>{__u__.info?.email}</p>
                         </NameEmail>
                         <UpButton>Upload <input type="file" /> </UpButton>
                     </ProfileInfo>

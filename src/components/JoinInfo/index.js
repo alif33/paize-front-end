@@ -7,11 +7,14 @@ import { getData, postData } from '../../__lib__/helpers/HttpService';
 import { logedIn } from '../../store/users/actions'
 import { Toaster, toast } from 'react-hot-toast';
 import { clearData } from '../../store/students/actions';
+import SchoolIcon from '../../svg/SchoolIcon';
+import GraduateIcon from '../../svg/GraduateIcon';
+import ContactIcon from '../../svg/ContactIcon/indes';
 
 const JoinInfo = () => {
 
   const [disable, setDisable] = useState(false);
-  const [ schools, setSchools ] = useState([]);
+  const [schools, setSchools] = useState([]);
   const navigate = useNavigate();
   const { students } = useSelector(state => state);
   const dispatch = useDispatch();
@@ -23,11 +26,11 @@ const JoinInfo = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(()=>{
+  useEffect(() => {
     getData("/public/schools")
-    .then(res=>{
-      setSchools(res);
-    })
+      .then(res => {
+        setSchools(res);
+      })
   }, [])
 
   const onSubmit = data => {
@@ -39,12 +42,12 @@ const JoinInfo = () => {
           dispatch(clearData());
           dispatch(logedIn({ token, info, role, status }));
           navigate("/registered");
-        }else{
+        } else {
           const { response } = res;
           toast.error(`${response.data.message}`);
         }
       })
-      .catch(err=>{
+      .catch(err => {
 
       })
     // console.log(data);
@@ -59,12 +62,12 @@ const JoinInfo = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="inputsConatiner">
-          <img src='/img/icon/school.svg'
+          {/* <img src='/img/icon/school.svg'
             style={{ width: "30px" }}
             className="ledtIcon"
             alt=""
-          />
-
+          /> */}
+          <SchoolIcon />
           <div className={errors.schoolName ? "inputDiv active" : "inputDiv "}>
             <select
               {...register("_school", {
@@ -73,15 +76,15 @@ const JoinInfo = () => {
             >
               <option>School Name</option>
               {
-                schools.length >0 && schools.map((item, index)=><option key={index} value={item._id}>{item.schoolName}</option>)
+                schools.length > 0 && schools.map((item, index) => <option key={index} value={item._id}>{item.schoolName}</option>)
               }
             </select>
             {errors._school && <span>School Name is required</span>}
           </div>
         </div>
         <div className="inputsConatiner">
-          <img src='/img/icon/graduate.svg' className="ledtIcon" alt=""
-          />
+          {/* <img src='/img/icon/graduate.svg' className="ledtIcon" alt="" /> */}
+          <GraduateIcon />
           <div className={errors.graduationYear ? "inputDiv active" : "inputDiv "}>
             <input
               {...register("graduationYear", {
@@ -93,8 +96,9 @@ const JoinInfo = () => {
           </div>
         </div>
         <div className="inputsConatiner">
-          <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-          />
+          {/* <img src='/img/icon/contact.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
+          /> */}
+          <ContactIcon />
           <div className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
             <input
               {...register("phoneNumber", {

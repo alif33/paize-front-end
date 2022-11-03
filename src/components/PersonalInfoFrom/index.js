@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateData } from '../../__lib__/helpers/HttpService';
 import toast from 'react-hot-toast';
 import { logedIn } from '../../store/users/actions';
+import UserIcon from '../../svg/UserIcon';
+import MailIcon from '../../svg/MailIcon';
+import ContactIcon from '../../svg/ContactIcon/indes';
 
 const PersonalInfoForm = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const [ disable, setDisable ] = useState(false);
+    const [disable, setDisable] = useState(false);
     const dispatch = useDispatch();
     const { users } = useSelector(state => state);
     const { __u__ } = users;
@@ -21,49 +24,51 @@ const PersonalInfoForm = () => {
         _data.append("phoneNumber", data.phoneNumber);
         // _data.append("images", data.productImage[0]);
         // _data.append("images", data.studentImage[0]);
-        updateData(`/${ __u__.role==="AUTHOR"?"author": "student" }/profile`, _data, __u__.token)
-        .then(res=>{
-            setDisable(false);
-            if (res.success) {
-                toast.success(`${ res.message }`);
-                const { token, info, role, status } = res;
+        updateData(`/${__u__.role === "AUTHOR" ? "author" : "student"}/profile`, _data, __u__.token)
+            .then(res => {
+                setDisable(false);
+                if (res.success) {
+                    toast.success(`${res.message}`);
+                    const { token, info, role, status } = res;
 
-                dispatch(logedIn({
-                    token,
-                    info,
-                    role,
-                    status
-                }))
+                    dispatch(logedIn({
+                        token,
+                        info,
+                        role,
+                        status
+                    }))
 
-            }
-        })
-        .catch(err=>{
-            setDisable(false);
-        })
+                }
+            })
+            .catch(err => {
+                setDisable(false);
+            })
     };
     return (
-        
+
         <From onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+                    /> */}
+<UserIcon/>
                     <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
                         <input
                             placeholder="First Name"
-                            defaultValue={__u__.info.firstName}
+                            defaultValue={__u__.info?.firstName}
                             {...register("firstName", { required: true })}
                         />
                         {errors.firstName && <span>First Name is required</span>}
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+                    /> */}
+                    <UserIcon />
                     <div className={errors.lastName ? "inputDiv active" : "inputDiv "}>
                         <input
                             placeholder="Last Name"
-                            defaultValue={__u__.info.lastName}
+                            defaultValue={__u__.info?.lastName}
                             {...register("lastName", {
                                 required: true
                             })
@@ -75,23 +80,25 @@ const PersonalInfoForm = () => {
             </div>
             <div className="row">
                 <div className="inputsConatiner">
-                    <img src='/img/icon/mail.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/mail.svg' className="ledtIcon" alt=""
+                    /> */}
+                    <MailIcon/>
                     <div className="inputDiv">
                         <input
                             placeholder="Email"
-                            disabled={ true }
-                            defaultValue={__u__.info.email}
+                            disabled={true}
+                            defaultValue={__u__.info?.email}
                         />
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    <img src='/img/icon/contact.svg' className="ledtIcon" alt=""
-                    />
+                    {/* <img src='/img/icon/contact.svg' className="ledtIcon" alt=""
+                    /> */}
+                    <ContactIcon/>
                     <div className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
                         <input
                             placeholder="Phone Number"
-                            defaultValue={__u__.info.phoneNumber}
+                            defaultValue={__u__.info?.phoneNumber}
                             {...register("phoneNumber", { required: true })}
                         />
                         {errors.phoneNumber && <span>Phone Number is required</span>}
@@ -99,7 +106,7 @@ const PersonalInfoForm = () => {
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>
-                <Button disabled={ disable }>Update</Button>
+                <Button disabled={disable}>Update</Button>
             </div>
         </From>
     );

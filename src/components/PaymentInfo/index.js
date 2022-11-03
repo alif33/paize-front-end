@@ -6,128 +6,135 @@ import { clearCache, logedIn } from '../../store/users/actions';
 import { postData } from '../../__lib__/helpers/HttpService';
 import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
+import BankIcon from '../../svg/BankIcon';
+import UserIcon from '../../svg/UserIcon';
+import DocumentIcon from '../../svg/DocumentIcon';
 
 const PaymentInfo = () => {
-  const [ disable, setDisable ] = useState(false);
+  const [disable, setDisable] = useState(false);
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { users } = useSelector(state=>state);
-    const { auth, schoolInfo, paymentInfo } = users;
-    const {  bankName, routingNumber, accountName, accountNumber } = paymentInfo;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { users } = useSelector(state => state);
+  const { auth, schoolInfo, paymentInfo } = users;
+  const { bankName, routingNumber, accountName, accountNumber } = paymentInfo;
 
-    const onSubmit = data =>{
-      setDisable(true);
-      postData('/enroll', {...auth, ...schoolInfo, ...data})
-      .then(res=>{
+  const onSubmit = data => {
+    setDisable(true);
+    postData('/enroll', { ...auth, ...schoolInfo, ...data })
+      .then(res => {
         setDisable(false);
         if (res.success) {
           const { token, info, role, status } = res;
           dispatch(clearCache());
           dispatch(logedIn({ token, info, role, status }));
           navigate("/registered");
-        }else{
+        } else {
           const { response } = res;
           toast.error(`${response.data.message}`);
         }
       })
-      .catch(err=>{
+      .catch(err => {
         setDisable(false);
       })
 
-    };
+  };
 
 
-    return (
-        <Container>
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-          />
-            <From  onSubmit={handleSubmit(onSubmit)}>
-                <div className="inputsConatiner">
-                    <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
-                    />
-                    <div  className={errors.bankName ? "inputDiv active" : "inputDiv "}>
-                        <input
-                          {...register("bankName", { 
-                            required: true 
-                          })}
-                          placeholder="Name of Bank"
-                          defaultValue={ bankName }
-                        />
-                        { errors.bankName && <span>Bank Name is required</span> }
-                    </div>
-                </div>
+  return (
+    <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
+      <From onSubmit={handleSubmit(onSubmit)}>
+        <div className="inputsConatiner">
+          {/* <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
+                    /> */}
+          <BankIcon />
+          <div className={errors.bankName ? "inputDiv active" : "inputDiv "}>
+            <input
+              {...register("bankName", {
+                required: true
+              })}
+              placeholder="Name of Bank"
+              defaultValue={bankName}
+            />
+            {errors.bankName && <span>Bank Name is required</span>}
+          </div>
+        </div>
 
-                <div className="inputsConatiner">
-                    <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
-                    />
-                    <div  className={errors.routingNumber ? "inputDiv active" : "inputDiv "}>
-                        <input
-                          // name="routingNumber"
-                          {...register("routingNumber", { 
-                            required: true 
-                          })}
-                          placeholder="Routing Number"
-                          defaultValue={ routingNumber }
-                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
-                        />
-                        {errors.routingNumber && <span>Routing Number is required</span>}
-                    </div>
-                </div>
-                <div className="inputsConatiner">
-                    <img src='/img/icon/user.svg' className="ledtIcon" alt=""
-                    />
-                    <div  className={errors.accountName ? "inputDiv active" : "inputDiv "}>
-                        <input
-                          {...register("accountName", { 
-                            required: true 
-                          })}
-                          placeholder="Name of Account"
-                          defaultValue={ accountName }
-                        />
-                        {errors.accountName && <span>Account Name is required</span>}
-                    </div>
-                </div>
-                <div className="inputsConatiner">
-                    <img src='/img/icon/document.svg' className="ledtIcon" alt=""
-                    />
-                    <div  className={errors.accountNumber ? "inputDiv active" : "inputDiv "}>
-                        <input
-                          // name="accountNumber"
-                          {...register("accountNumber", { 
-                            required: true 
-                          })}
-                          placeholder="Account Number"
-                          defaultValue={ accountNumber }
-                          // onChange={ e=>dispatch(setPaymentInfo(e)) } 
-                        />
-                        { errors.accountNumber && <span>Account Number is required</span> }
-                    </div>
-                </div>
+        <div className="inputsConatiner">
+          {/* <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
+          /> */}
+          <BankIcon />
+          <div className={errors.routingNumber ? "inputDiv active" : "inputDiv "}>
+            <input
+              // name="routingNumber"
+              {...register("routingNumber", {
+                required: true
+              })}
+              placeholder="Routing Number"
+              defaultValue={routingNumber}
+            // onChange={ e=>dispatch(setPaymentInfo(e)) } 
+            />
+            {errors.routingNumber && <span>Routing Number is required</span>}
+          </div>
+        </div>
+        <div className="inputsConatiner">
+          {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+          /> */}
+          <UserIcon />
+          <div className={errors.accountName ? "inputDiv active" : "inputDiv "}>
+            <input
+              {...register("accountName", {
+                required: true
+              })}
+              placeholder="Name of Account"
+              defaultValue={accountName}
+            />
+            {errors.accountName && <span>Account Name is required</span>}
+          </div>
+        </div>
+        <div className="inputsConatiner">
+          {/* <img src='/img/icon/document.svg' className="ledtIcon" alt=""
+          /> */}
+          <DocumentIcon />
+          <div className={errors.accountNumber ? "inputDiv active" : "inputDiv "}>
+            <input
+              // name="accountNumber"
+              {...register("accountNumber", {
+                required: true
+              })}
+              placeholder="Account Number"
+              defaultValue={accountNumber}
+            // onChange={ e=>dispatch(setPaymentInfo(e)) } 
+            />
+            {errors.accountNumber && <span>Account Number is required</span>}
+          </div>
+        </div>
 
-                <Button 
-                  type="submit"
-                  disabled={ disable }
-                >
-                    Next
-                </Button>
-                <Button2
-                  type="button"
-                  onClick={ ()=>navigate(-1) } 
-                >
-                    Back
-                </Button2>
+        <Button
+          type="submit"
+          disabled={disable}
+        >
+          Next
+        </Button>
+        <Button2
+          type="button"
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </Button2>
 
-            </From>
-        </Container>
-    );
+      </From>
+    </Container>
+  );
 };
 
 export default PaymentInfo;
