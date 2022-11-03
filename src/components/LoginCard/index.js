@@ -90,7 +90,7 @@ const LoginCard = () => {
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
                             <img src="/img/icon/alumni.svg" alt="" />
-                            Alumini
+                            Alumni
                         </label>
 
                     </div>
@@ -113,7 +113,7 @@ const LoginCard = () => {
 
                 </CheckBox>
 
-                {errors.aluminiCheck && <span style={{ color: "red" }} >aluminiCheck is required</span>}
+                {errors.aluminiCheck && <span style={{ color: "red" }} >alumni is required</span>}
 
                 <Button 
                     type="submit"

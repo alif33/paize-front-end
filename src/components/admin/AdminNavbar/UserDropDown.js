@@ -17,7 +17,7 @@ const UserDropDown = () => {
 
     return (
         <Popup
-            trigger={<Button> <img className="user-icon" src="/img/icon/user-image.png" alt="" /> <img className="down-icon" src="/img/icon/drop-down.svg" alt="" /></Button>}
+            trigger={<Button> <img className="user-icon" src="/img/icon/dummy-profile.png" alt="" /> <img className="down-icon" src="/img/icon/drop-down.svg" alt="" /></Button>}
             position="bottom right "
             on="click"
             closeOnDocumentClick

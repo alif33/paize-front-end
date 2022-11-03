@@ -17,7 +17,7 @@ const UserDropDown = ({ __u__ }) => {
 
     return (
         <Popup
-            trigger={<Button> <img className="user-icon" src="/img/icon/user-image.png" alt="" /> <img className="down-icon" src="/img/icon/drop-down.svg" alt="" /></Button>}
+            trigger={<Button> <img className="user-icon" src="/img/icon/dummy-profile.png" alt="" /> <img className="down-icon" src="/img/icon/drop-down.svg" alt="" /></Button>}
             position="bottom right "
             on="click"
             closeOnDocumentClick
@@ -31,14 +31,18 @@ const UserDropDown = ({ __u__ }) => {
                 <DropDownMenu onClick={close}>
                     {
                          __u__?.status ==="APPROVED" &&  <div onClick={() => navigate("/update-information")} className="menu-item"> 
+                                    <img src="/img/icon/dashboard.svg" alt="" /> Dashboard
+                                </div>
+                    }
+                    {
+                         __u__?.status ==="APPROVED" &&  <div onClick={() => navigate("/update-information")} className="menu-item"> 
                                     <img src="/img/icon/settings.svg" alt="" /> Settings
                                 </div>
                     }
-
                     {
                         __u__?.role === "AUTHOR" &&  __u__?.status ==="APPROVED" && <div 
                             onClick={() => navigate("/items")} 
-                            className="menu-item"> <img src="/img/icon/settings.svg" alt="" /> Needs</div>
+                            className="menu-item"> <img src="/img/icon/needs.svg" alt="" /> Needs</div>
 
                     }
                     <div onClick={handleLogout} className="menu-item"> <img src="/img/icon/log-out.svg" alt="" /> Logout</div>
@@ -60,7 +64,6 @@ const Button = styled.button`
     width: 75px;
     cursor: pointer;
 .user-icon{
-    border-radius: 50%;
     height: 50px;
     width: 50px;
 }

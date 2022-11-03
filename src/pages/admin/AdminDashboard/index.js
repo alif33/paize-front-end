@@ -31,7 +31,6 @@ const AdminDashboard = () => {
             })
     },[])
 
-    // console.log(schoolsData);
     return (
         <div>
             <AdminNavbar />
@@ -113,4 +112,5 @@ font-style: normal;
 font-weight: 500;
 font-size: 34px;
 line-height: 62px;
-color: #0E3746;`;
+color: #0E3746;
+padding: 30px 0px 10px 0px`;

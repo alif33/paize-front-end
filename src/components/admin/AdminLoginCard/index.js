@@ -17,12 +17,15 @@ const AdminLoginCard = () => {
         setDisable(true);
         postData("/admin/signin", data)
             .then(res=>{
+              setDisable(false);
                 if(res.success){
-                    setDisable(false);
                     const { token, email } = res;
                     dispatch(adminLogin({ token, email }))
                     navigate("/admin/dashboard")
                 }
+            })
+            .catch(err=>{
+              setDisable(false);
             })
     };
 
