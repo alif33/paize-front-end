@@ -15,36 +15,21 @@ const AdminLoginCard = () => {
   const navigate = useNavigate();
   const { admins } = useSelector(state => state);
 
-<<<<<<< HEAD
-    const onSubmit = data => {
-        setDisable(true);
-        postData("/admin/signin", data)
-            .then(res=>{
-              setDisable(false);
-                if(res.success){
-                    const { token, email } = res;
-                    dispatch(adminLogin({ token, email }))
-                    navigate("/admin/dashboard")
-                }
-            })
-            .catch(err=>{
-              setDisable(false);
-            })
-    };
-=======
   const onSubmit = data => {
-    setDisable(true);
-    postData("/admin/signin", data)
-      .then(res => {
-        if (res.success) {
+      setDisable(true);
+      postData("/admin/signin", data)
+        .then(res=>{
           setDisable(false);
-          const { token, email } = res;
-          dispatch(adminLogin({ token, email }))
-          navigate("/admin/dashboard")
-        }
-      })
+            if(res.success){
+                const { token, email } = res;
+                dispatch(adminLogin({ token, email }))
+                navigate("/admin/dashboard")
+            }
+        })
+        .catch(err=>{
+          setDisable(false);
+        })
   };
->>>>>>> 53bf877a7207baf35dd719fd0682bfa5ff1c19c5
 
   return (
     <Container>
