@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Panding from '../../components/Panding';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import StudentTable from '../../components/StudentTable';
 import { __getData } from '../../__lib__/helpers/HttpService';
 import { sortByStatus } from '../../__lib__/helpers/Filter';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { logedIn } from '../../store/users/actions';
 
 const SchoolDashboard = () => {
     const [ navLink, setNavLink ] = useState('all');
     const [ students, setStudents ] = useState();
     const [ studentsData, setStudentsData ] = useState();
     const { users } = useSelector(state=>state);
+    const dispatch = useDispatch();
     const { __u__ } = users;
 
     useEffect(()=>{
@@ -26,6 +28,24 @@ const SchoolDashboard = () => {
 
                 })
         }
+        __getData("/author/refresh", __u__.token)
+        .then(res=>{
+            if (res.success) {
+                const { token, info, role, status } = res;
+                if (status === "REJECTED") {
+                    toast.error("Account is restricted");
+                } else {
+                    dispatch(logedIn({
+                        token,
+                        info,
+                        role,
+                        status
+                    }))
+                }
+
+            }
+        })
+        
     }, [])
 
     console.log(users.__u__);

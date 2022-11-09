@@ -132,7 +132,7 @@ export default AddNewItem;
 
 
 const Container = styled.div`
-width: 92%;
+width: 75%;
 margin: auto;
 padding-bottom: 40px;
 
@@ -140,7 +140,7 @@ padding-bottom: 40px;
 
 const Title = styled.h3`
 
-font-family: 'Poppins';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 35px;
@@ -148,11 +148,12 @@ font-family: 'Poppins';
     color: #0E3746;
     margin: 0;
     margin-top: 12px;
+    padding: 30px 0px 10px 150px;
     `;
 
 
 const Form = styled.form`
-width: 50%;
+width: 65%;
 margin: auto;
 
 .upload-active{
@@ -256,7 +257,7 @@ input:focus{
 `;
 
 const UploadButton = styled.div`
-    border: 4px solid rgba(218,221,225,0.4);
+    border: 1px solid rgba(218,221,225,0.4);
     padding: 10px 28px;
     position: relative;
     margin-top: 30px;

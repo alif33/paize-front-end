@@ -26,7 +26,9 @@ const AdminStudentTable = ({ schools, setSchools, setSchoolsData }) => {
                             <tr key={ index }>
                                 <td>
                                     <TableImage>
-                                        <img src="/img/icon/dummy-image.png" alt="" />
+                                        <img 
+                                            src={`${item.image? item.image : "/img/school-dummy.png"}`} 
+                                            alt="" />
                                         <h5>{item.schoolName}</h5>
                                     </TableImage>
                                 </td>

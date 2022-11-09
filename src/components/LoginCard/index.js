@@ -27,7 +27,6 @@ const LoginCard = () => {
         setDisable(true);
         postData(`/${data.radioCheck}/signin`, data)
             .then(res => {
-                console.log(res);
                 setDisable(false);
                 if (res.success) {
                     const { token, info, role, status } = res;
