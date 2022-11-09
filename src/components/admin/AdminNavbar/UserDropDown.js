@@ -50,8 +50,8 @@ const Button = styled.button`
     cursor: pointer;
 .user-icon{
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
 }
 .down-icon{
     height: 14px;

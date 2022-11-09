@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
-// export const ROOT_URL = `http://localhost:4000/`;
-// export const APP_URL = `http://localhost:4000/`;
+export const ROOT_URL = `http://localhost:4000/`;
+export const APP_URL = `http://localhost:4000/`;
 
-export const ROOT_URL = `https://paize.herokuapp.com/`;
-export const APP_URL = `https://paize.herokuapp.com/`;
+// export const ROOT_URL = `https://paize.herokuapp.com/`;
+// export const APP_URL = `https://paize.herokuapp.com/`;
 
 export const IMAGE_URL = `${APP_URL}storage`;
 export const API_URL = `${APP_URL}api`;

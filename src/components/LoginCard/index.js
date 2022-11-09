@@ -14,6 +14,10 @@ import SchoolIcon2 from '../../svg/SchoolIcon2';
 
 const LoginCard = () => {
     const [disable, setDisable] = useState(false);
+    const [check, setCheck] = useState({
+        student: false,
+        author: false
+    });
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -21,13 +25,14 @@ const LoginCard = () => {
 
     const onSubmit = data => {
         setDisable(true);
-        postData(`/${data.aluminiCheck}/signin`, data)
+        postData(`/${data.radioCheck}/signin`, data)
             .then(res => {
+                console.log(res);
                 setDisable(false);
                 if (res.success) {
                     const { token, info, role, status } = res;
                     if (status === "REJECTED") {
-                        toast.error("Account is restricted")
+                        toast.error("Account is restricted");
                     } else {
                         dispatch(logedIn({
                             token,
@@ -38,8 +43,14 @@ const LoginCard = () => {
                         if (role === "AUTHOR") {
                             navigate("/school");
                         }
+                        if (role === "STUDENT") {
+                            navigate("/student");
+                        }
                     }
 
+                }
+                if(res.invalid){
+                    toast.error(`${res.message}`);
                 }
             })
             .catch(err => {
@@ -47,7 +58,6 @@ const LoginCard = () => {
             })
     };
 
-    // console.log(users);
     return (
         <Container>
             <Toaster
@@ -56,8 +66,6 @@ const LoginCard = () => {
             />
             <From onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputsConatiner">
-                    {/* <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    /> */}
                     <MailIcon />
                     <div className={errors.email ? "inputDiv active" : "inputDiv "}>
                         <input
@@ -69,8 +77,6 @@ const LoginCard = () => {
                     </div>
                 </div>
                 <div className="inputsConatiner">
-                    {/* <img src='/img/icon/lock.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
-                    /> */}
                     <LockIcon />
                     <div className={errors.password ? "inputDiv active" : "inputDiv "}>
                         <input
@@ -84,45 +90,55 @@ const LoginCard = () => {
 
                 <CheckBox>
 
-                    <div className="form-check active">
+                    <div className={`form-check ${errors.radioCheck && "danger"} ${check.student && "active"}`}>
                         <input
                             id="flexRadioDefault1"
                             className="form-check-input"
                             type="radio"
                             value="student"
-                            {...register("aluminiCheck", {
+                            {...register("radioCheck", {
                                 required: true
                             })}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
-                            <img src="/img/icon/alumni.svg" alt="" />
-                            Alumni
-                            {/* <img src="/img/icon/alumni.svg" alt="" /> */}
-                            <AlumniIcon color={true ? "#2291F1" : "#0E3746"} />
+                            <AlumniIcon danger={errors.radioCheck} color={check.student ? "#2291F1" : "#9f9f9f"} />
                             Alumni
                         </label>
                     </div>
-
-                    <div className="form-check">
+                    <div className={`form-check ${errors.radioCheck && "danger"} ${check.author && "active"}`}>
                         <input
                             id="flexRadioDefault2"
                             className="form-check-input"
                             type="radio"
                             value="author"
-                            {...register("aluminiCheck", {
+                            {...register("radioCheck", {
+                                onChange: (e) => {
+                                    if(e.target.value==="author"){
+                                        setCheck({
+                                            ...check,
+                                            author: true,
+                                            student: false
+                                        });
+                                    }else{
+                                        setCheck({
+                                            ...check,
+                                            student: true,
+                                            author: false
+                                        });
+                                    }
+                                },
                                 required: true
                             })}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault2">
-                            {/* <img src="/img/icon/school.png" alt="" /> */}
-                            <SchoolIcon2 color={false ? "#2291F1" : "#9f9f9f"} />
+                            <SchoolIcon2 danger={errors.radioCheck} color={check.author ? "#2291F1" : "#9f9f9f"} />
                             School
                         </label>
                     </div>
 
                 </CheckBox>
 
-                {errors.aluminiCheck && <span style={{ color: "red" }} >alumni is required</span>}
+                
 
                 <Button
                     type="submit"
@@ -228,6 +244,7 @@ label{
     
 }
 .active label{color: #2291F1;}
+.danger label{color: #dc3545;}
 
 input{
     cursor: pointer;

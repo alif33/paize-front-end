@@ -25,7 +25,7 @@ const UpdateInfo = () => {
                 <ProfileSction>
                     <p>Your Avatar</p>
                     <ProfileInfo>
-                        <UserImage src="/img/icon/user-avatar.png" alt="" />
+                        <UserImage src="/img/icon/dummy-profile.png" alt="" />
                         <NameEmail>
                             <h4>{__u__.info?.firstName}</h4>
                             <p>{__u__.info?.email}</p>

@@ -30,7 +30,7 @@ const UserDropDown = ({ __u__ }) => {
             {close =>
                 <DropDownMenu onClick={close}>
                     {
-                         __u__?.status ==="APPROVED" &&  <div onClick={() => navigate("/update-information")} className="menu-item"> 
+                         __u__?.status ==="APPROVED" &&  <div onClick={() => navigate(`/${__u__?.role === "AUTHOR"? "school": "student"}`)} className="menu-item"> 
                                     <img src="/img/icon/dashboard.svg" alt="" /> Dashboard
                                 </div>
                     }
@@ -64,8 +64,8 @@ const Button = styled.button`
     width: 75px;
     cursor: pointer;
 .user-icon{
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
 }
 .down-icon{
     height: 14px;
