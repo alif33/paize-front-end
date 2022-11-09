@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
 import { authPost } from '../../__lib__/helpers/HttpService';
 import { useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ const AddNewItem = () => {
     } = useForm();
     const { users } = useSelector(state => state);
     const { __u__ } = users;
+    const navigate = useNavigate();
 
     const onSubmit = data => {
         setDisable(true);
@@ -33,8 +35,9 @@ const AddNewItem = () => {
             .then(res => {
                 setDisable(false);
                 if (res.success) {
-                    reset();
                     toast.success(`${res.message}`);
+                    reset();
+                    navigate("/items");
                 }
             })
 
@@ -60,7 +63,6 @@ const AddNewItem = () => {
                                 {...register("itemName", {
                                     required: true
                                 })}
-                            // placeholder="Item Name"
                             />
                             {errors.itemName && <span>Item Name is required</span>}
                         </div>
@@ -73,24 +75,28 @@ const AddNewItem = () => {
                                 {...register("studentName", {
                                     required: true
                                 })}
-                            // placeholder="Student Name"
                             />
                             {errors.studentName && <span>Student Name is required</span>}
                         </div>
                     </InputConatiner>
                     <InputConatiner>
-                        <label htmlFor="">cost <span>*</span></label>
+                        <label htmlFor="">Cost <span>*</span></label>
                         <div className={errors.cost ? "inputDiv active" : "inputDiv "}>
                             <input
                                 {...register("cost", {
                                     required: true
                                 })}
-                            // placeholder="Cost"
                             />
                             {errors.cost && <span>Cost is required</span>}
                         </div>
                     </InputConatiner>
-
+                    <TextArae>
+                        <h5>Description</h5>
+                        <textarea
+                            rows={3}
+                        >                    
+                        </textarea>
+                    </TextArae>
                     <UploadButton
                         className={errors.studentImage ? "upload-active" : ""}
                     >
@@ -139,22 +145,21 @@ padding-bottom: 40px;
 `;
 
 const Title = styled.h3`
-
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 35px;
+    font-size: 30px;
     line-height: 51px;
     color: #0E3746;
     margin: 0;
     margin-top: 12px;
-    padding: 30px 0px 10px 150px;
+    padding: 25px 0px 10px 150px;
     `;
 
 
 const Form = styled.form`
-width: 65%;
-margin: auto;
+    width: 65%;
+    margin: auto;
 
 .upload-active{
     border: 4px solid red;
@@ -186,7 +191,7 @@ margin-top: 30px;
 label{
     font-family: 'Poppins';
 font-style: normal;
-font-weight: 600;
+font-weight: 500;
 font-size: 18px;
 line-height: 30px;
 letter-spacing: -0.02em;
@@ -195,24 +200,6 @@ color: #0E3746;
 label span{
     color: red;
 }
-/* input{
-    background: rgba(218, 221, 225, 0.4);
-border-radius: 5px;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 600;
-font-size: 15px;
-line-height: 30px;
-letter-spacing: -0.02em;
-color: #0E3746;
-width: 70%;
-border: none;
-padding: 5px 30px;
-}
-input:focus{
-    outline: none;
-} */
-
 .inputDiv {
     width: 70%;
     position: relative;
@@ -222,7 +209,6 @@ input:focus{
     display: flex;
     justify-content: center;
     border-radius: 5px;
-    background-color: rgba(218, 221, 225, 0.4);
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
@@ -230,7 +216,7 @@ input:focus{
     line-height: 36px;
     color: #111;
     padding: 5px 20px;
-    border: 0;
+    border: 1px solid rgba(218, 221, 225, 0.4);
     width: 100%;
     box-sizing: border-box;
   }
@@ -252,6 +238,26 @@ input:focus{
   .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
+  }
+
+`;
+
+const TextArae = styled.div`
+padding: 20px 0px;
+  h5{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    padding: 10px 0px;
+  }
+  textarea{
+    width: 100%;
+    border: 1px solid rgba(218,221,225,0.4);
+  }
+  textarea:focus{
+    outline: none;
   }
 
 `;
