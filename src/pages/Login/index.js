@@ -16,7 +16,7 @@ const Login = () => {
               alt=""
             />
           </Link>
-          <Title>Login</Title>
+          <Title>Log in</Title>
         </div>
 
         <LoginCard />
@@ -82,6 +82,7 @@ const Title = styled.h3`
   line-height: 51px;
   color: #0e3746;
   margin: 0;
+  text-align: center;
   padding: 10px 0px;
   margin-top: 12px;
 `;

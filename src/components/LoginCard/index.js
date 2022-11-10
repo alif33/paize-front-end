@@ -88,9 +88,6 @@ const LoginCard = () => {
             {errors.password && <span>Password is required</span>}
           </div>
         </div>
-        <div className="forget-password">
-          <Link to="/forget-password">Forget Password</Link>
-        </div>
 
         <CheckBox>
           <div
@@ -153,10 +150,17 @@ const LoginCard = () => {
             </label>
           </div>
         </CheckBox>
+        <div className="forget-password">
+          <Link to="/forget-password">Forgot your password?</Link>
+        </div>
 
         <Button type="submit" disabled={disable}>
           Next
         </Button>
+
+        <p className="new-to">
+          New to Student Book? &nbsp;<Link to="">Register</Link>
+        </p>
       </From>
     </Container>
   );
@@ -205,7 +209,7 @@ const Container = styled.div`
     border: 1px solid #2291f1;
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     line-height: 36px;
     color: #111;
@@ -225,6 +229,18 @@ const Container = styled.div`
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
   }
+  .new-to {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 20px;
+  }
+  .new-to a {
+    text-decoration: none;
+    color: #2291f1;
+  }
+  .new-to a:hover {
+    text-decoration: underline;
+  }
 `;
 
 const From = styled.form`
@@ -239,8 +255,12 @@ const From = styled.form`
   }
   .forget-password a {
     text-decoration: none;
-    color: rgba(14, 55, 70, 0.4);
+    color: #2291f1;
     text-align: right;
+    margin-top: 30px;
+  }
+  .forget-password a:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -291,5 +311,5 @@ const Button = styled.button`
   border: none;
   margin: 10px 0;
   padding: 5px 0;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
