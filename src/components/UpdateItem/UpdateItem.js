@@ -38,7 +38,7 @@ const UpdateItem = () => {
 
   const onSubmit = (data) => {
     setDisable(true);
-    console.log("updateFromDate", data);
+    console.log("form-data", data);
 
     const _data = new FormData();
     _data.append("itemName", data.itemName);
@@ -48,13 +48,15 @@ const UpdateItem = () => {
     // _data.append("images", data.productImage[0]);
     // _data.append("images", data.studentImage[0]);
 
-    updateData(`/edit-item?_id=${id}`, _data, __u__.token).then((res) => {
+    updateData(`/edit-item?_id=${id}`, _data, __u__.token)
+    .then((res) => {
+      console.log(res);
       setDisable(false);
       console.log("update Data", res);
       if (res.success) {
         toast.success(`${res.message}`);
         reset();
-        navigate("/items");
+        // navigate("/items");
       }
     });
   };
@@ -125,9 +127,9 @@ const UpdateItem = () => {
             <p>Upload student image, size between 220*220 to 2000*2000px.</p>
             <input
               type="file"
-              {...register("studentImage", {
-                // required: true,
-              })}
+              // {...register("studentImage", {
+              //   // required: true,
+              // })}
               accept="image/*"
             />
             <img src="/img/icon/upload-icon.png" alt="" />
@@ -138,9 +140,9 @@ const UpdateItem = () => {
             <p>Upload Product image, size between 220*220 to 2000*2000px.</p>
             <input
               type="file"
-              {...register("productImage", {
-                // required: true,
-              })}
+              // {...register("productImage", {
+              //   // required: true,
+              // })}
               accept="image/*"
             />
             <img src="/img/icon/upload-icon.png" alt="" />
