@@ -33,6 +33,7 @@ const UpdateItem = () => {
   useEffect(() => {
     __getData(`/item?_id=${id}`, __u__.token)
       .then((res) => {
+        console.log("getData", res);
         setLoading(false);
         // setUpdateNeeds(res);
         setValue([{ itemName: res?.itemName }]);
@@ -63,7 +64,7 @@ const UpdateItem = () => {
       }
     });
   };
-  console.log("updateNeeds", updateNeeds);
+  console.log("setValue", setValue);
   return (
     <>
       <Navbar />
