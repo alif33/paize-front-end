@@ -1,39 +1,43 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { postData } from '../../../__lib__/helpers/HttpService';
-import { adminLogin } from '../../../store/admins/actions';
-import MailIcon from '../../../svg/MailIcon';
-import LockIcon from '../../../svg/LockIocn';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { postData } from "../../../__lib__/helpers/HttpService";
+import { adminLogin } from "../../../store/admins/actions";
+import MailIcon from "../../../svg/MailIcon";
+import LockIcon from "../../../svg/LockIocn";
 
 const AdminLoginCard = () => {
   const [disable, setDisable] = useState(false);
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { admins } = useSelector(state => state);
+  const { admins } = useSelector((state) => state);
 
-  const onSubmit = data => {
-      setDisable(true);
-      postData("/admin/signin", data)
-        .then(res=>{
-          setDisable(false);
-            if(res.success){
-                const { token, email } = res;
-                dispatch(adminLogin({ token, email }))
-                navigate("/admin/dashboard")
-            }
-        })
-        .catch(err=>{
-          setDisable(false);
-        })
+  const onSubmit = (data) => {
+    setDisable(true);
+    postData("/admin/signin", data)
+      .then((res) => {
+        setDisable(false);
+        if (res.success) {
+          const { token, email } = res;
+          dispatch(adminLogin({ token, email }));
+          navigate("/admin/dashboard");
+        }
+      })
+      .catch((err) => {
+        setDisable(false);
+      });
   };
 
   return (
     <Container>
-
       <From onSubmit={handleSubmit(onSubmit)}>
         <div className="inputsConatiner">
           {/* <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""
@@ -62,22 +66,15 @@ const AdminLoginCard = () => {
           </div>
         </div>
 
-
-        <Button
-          type="submit"
-          disabled={disable}
-        >
+        <Button type="submit" disabled={disable}>
           Next
         </Button>
-
       </From>
     </Container>
   );
 };
 
 export default AdminLoginCard;
-
-
 
 const Container = styled.div`
   width: 100%;
@@ -92,7 +89,7 @@ const Container = styled.div`
     justify-content: space-between;
     margin: 35px 0;
   }
-  .inputsConatiner span{
+  .inputsConatiner span {
     color: red;
     position: absolute;
     bottom: -12px;
@@ -112,29 +109,29 @@ const Container = styled.div`
     position: relative;
   }
 
- 
-  .inputDiv input{
+  .inputDiv input {
     padding-inline: 20px;
     display: flex;
     justify-content: center;
-    border-radius: 5px;
-    background-color: rgba(218, 221, 225, 0.4);
-    font-family: 'Poppins';
+    border-radius: 3px;
+    border: 1px solid #2291f1;
+    box-shadow: 0px 1px 10px -5px rgba(0, 0, 0, 0.76);
+    font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
     line-height: 36px;
     color: #111;
     padding: 5px 20px;
-    border: 0;
+
     width: 100%;
     box-sizing: border-box;
   }
-  .inputDiv.active input{
+  .inputDiv.active input {
     border: 1px solid red;
     background: #fff;
   }
-  .inputDiv input:focus{
+  .inputDiv input:focus {
     outline: none;
   }
   .inputDiv::placeholder {
@@ -144,54 +141,54 @@ const Container = styled.div`
 `;
 
 const From = styled.form`
-width: 80%;
-height: 100%; 
-margin: auto;
+  width: 80%;
+  height: 100%;
+  margin: auto;
 `;
 
 const CheckBox = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-top: 50px;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+  cursor: pointer;
 
-label{
-    font-family: 'Poppins';
+  label {
+    font-family: "Poppins";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 36px;
     color: rgba(14, 55, 70, 0.4);
     cursor: pointer;
-    
-}
-.active label{color: #2291F1;}
+  }
+  .active label {
+    color: #2291f1;
+  }
 
-input{
+  input {
     cursor: pointer;
     height: 22px;
     width: 22px;
-}
-img{margin: 0 10px;
-    width: 19px;}
-
+  }
+  img {
+    margin: 0 10px;
+    width: 19px;
+  }
 `;
 
 const Button = styled.button`
-width: 100%;
-background: #2291F1;
-border-radius: 5px;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-    font-size: 22px;
-    line-height: 39px;
-    color: #FFFFFF;
-    border: none;
-    margin: 10px 0;
-    padding: 5px 0;
-    margin-top: 100px;
+  width: 100%;
+  background: #2291f1;
+  border-radius: 5px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 39px;
+  color: #ffffff;
+  border: none;
+  margin: 10px 0;
+  padding: 5px 0;
+  margin-top: 100px;
 `;
-
-
