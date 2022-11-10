@@ -24,7 +24,7 @@ const UpdateItem = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm({ mode: "onBlur" });
+  } = useForm();
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
   // const { handleSubmit, control, setValue } = useForm({ mode: "onBlur" });
@@ -36,7 +36,10 @@ const UpdateItem = () => {
         console.log("getData", res);
         setLoading(false);
         // setUpdateNeeds(res);
-        setValue([{ itemName: res?.itemName }]);
+        setValue("itemName", res.itemName);
+        setValue("studentName", res.studentName);
+        setValue("cost", res.cost);
+        setValue("description", res.description);
       })
       .catch((err) => console.log(err));
   }, []);
