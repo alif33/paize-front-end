@@ -41,6 +41,7 @@ const Container = styled.div`
   h3 {
     font-family: "Poppins";
     font-style: normal;
+    text-transform: uppercase;
     font-weight: 500;
     font-size: 30px;
     line-height: 42px;
