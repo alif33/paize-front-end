@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { clearCache, logedIn } from '../../store/users/actions';
-import { postData } from '../../__lib__/helpers/HttpService';
-import { useForm } from 'react-hook-form';
-import { toast, Toaster } from 'react-hot-toast';
-import BankIcon from '../../svg/BankIcon';
-import UserIcon from '../../svg/UserIcon';
-import DocumentIcon from '../../svg/DocumentIcon';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCache, logedIn } from "../../store/users/actions";
+import { postData } from "../../__lib__/helpers/HttpService";
+import { useForm } from "react-hook-form";
+import { toast, Toaster } from "react-hot-toast";
+import BankIcon from "../../svg/BankIcon";
+import UserIcon from "../../svg/UserIcon";
+import DocumentIcon from "../../svg/DocumentIcon";
 
 const PaymentInfo = () => {
   const [disable, setDisable] = useState(false);
@@ -20,14 +20,14 @@ const PaymentInfo = () => {
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { users } = useSelector(state => state);
+  const { users } = useSelector((state) => state);
   const { auth, schoolInfo, paymentInfo } = users;
   const { bankName, routingNumber, accountName, accountNumber } = paymentInfo;
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     setDisable(true);
-    postData('/enroll', { ...auth, ...schoolInfo, ...data })
-      .then(res => {
+    postData("/enroll", { ...auth, ...schoolInfo, ...data })
+      .then((res) => {
         setDisable(false);
         if (res.success) {
           const { token, info, role, status } = res;
@@ -39,19 +39,14 @@ const PaymentInfo = () => {
           toast.error(`${response.data.message}`);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setDisable(false);
-      })
-
+      });
   };
-
 
   return (
     <Container>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
+      <Toaster position="top-center" reverseOrder={false} />
       <From onSubmit={handleSubmit(onSubmit)}>
         <div className="inputsConatiner">
           {/* <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
@@ -60,7 +55,7 @@ const PaymentInfo = () => {
           <div className={errors.bankName ? "inputDiv active" : "inputDiv "}>
             <input
               {...register("bankName", {
-                required: true
+                required: true,
               })}
               placeholder="Name of Bank"
               defaultValue={bankName}
@@ -73,15 +68,17 @@ const PaymentInfo = () => {
           {/* <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
           /> */}
           <BankIcon />
-          <div className={errors.routingNumber ? "inputDiv active" : "inputDiv "}>
+          <div
+            className={errors.routingNumber ? "inputDiv active" : "inputDiv "}
+          >
             <input
               // name="routingNumber"
               {...register("routingNumber", {
-                required: true
+                required: true,
               })}
               placeholder="Routing Number"
               defaultValue={routingNumber}
-            // onChange={ e=>dispatch(setPaymentInfo(e)) } 
+              // onChange={ e=>dispatch(setPaymentInfo(e)) }
             />
             {errors.routingNumber && <span>Routing Number is required</span>}
           </div>
@@ -93,7 +90,7 @@ const PaymentInfo = () => {
           <div className={errors.accountName ? "inputDiv active" : "inputDiv "}>
             <input
               {...register("accountName", {
-                required: true
+                required: true,
               })}
               placeholder="Name of Account"
               defaultValue={accountName}
@@ -105,40 +102,34 @@ const PaymentInfo = () => {
           {/* <img src='/img/icon/document.svg' className="ledtIcon" alt=""
           /> */}
           <DocumentIcon />
-          <div className={errors.accountNumber ? "inputDiv active" : "inputDiv "}>
+          <div
+            className={errors.accountNumber ? "inputDiv active" : "inputDiv "}
+          >
             <input
               // name="accountNumber"
               {...register("accountNumber", {
-                required: true
+                required: true,
               })}
               placeholder="Account Number"
               defaultValue={accountNumber}
-            // onChange={ e=>dispatch(setPaymentInfo(e)) } 
+              // onChange={ e=>dispatch(setPaymentInfo(e)) }
             />
             {errors.accountNumber && <span>Account Number is required</span>}
           </div>
         </div>
 
-        <Button
-          type="submit"
-          disabled={disable}
-        >
+        <Button type="submit" disabled={disable}>
           Next
         </Button>
-        <Button2
-          type="button"
-          onClick={() => navigate(-1)}
-        >
+        <Button2 type="button" onClick={() => navigate(-1)}>
           Back
         </Button2>
-
       </From>
     </Container>
   );
 };
 
 export default PaymentInfo;
-
 
 const Container = styled.div`
   width: 100%;
@@ -147,7 +138,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  
+
   .inputsConatiner {
     display: flex;
     align-items: center;
@@ -155,7 +146,7 @@ const Container = styled.div`
     margin: 20px 0;
   }
 
-  .inputsConatiner span{
+  .inputsConatiner span {
     color: red;
     position: absolute;
     bottom: -12px;
@@ -175,14 +166,13 @@ const Container = styled.div`
     position: relative;
   }
 
- 
-  .inputDiv input{
+  .inputDiv input {
     padding-inline: 20px;
     display: flex;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: rgba(218, 221, 225, 0.4);
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
@@ -193,11 +183,11 @@ const Container = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-  .inputDiv.active input{
+  .inputDiv.active input {
     border: 1px solid red;
     background: #fff;
   }
-  .inputDiv input:focus{
+  .inputDiv input:focus {
     outline: none;
   }
   .inputDiv::placeholder {
@@ -207,27 +197,27 @@ const Container = styled.div`
 `;
 
 const From = styled.form`
-width: 80%;
-height: 100%; 
-margin: auto;
+  width: 80%;
+  height: 100%;
+  margin: auto;
 `;
 
 const Button = styled.button`
-width: 100%;
-background: #2291F1;
-border-radius: 5px;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-    font-size: 22px;
-    line-height: 39px;
-    color: #FFFFFF;
-    border: none;
-    margin: 10px 0;
-    padding: 5px 0;
+  width: 100%;
+  background: #2291f1;
+  border-radius: 5px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 39px;
+  color: #ffffff;
+  border: none;
+  margin: 10px 0;
+  padding: 5px 0;
 `;
 const Button2 = styled(Button)`
-background: #fff;
-color: #2291F1;
-border: 2px solid #2291F1;
+  background: #fff;
+  color: #2291f1;
+  border: 2px solid #2291f1;
 `;

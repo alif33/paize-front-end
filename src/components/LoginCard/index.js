@@ -198,7 +198,7 @@ const Container = styled.div`
     padding-inline: 20px;
     display: flex;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid #2291f1;
     font-family: "Poppins";
     font-style: normal;

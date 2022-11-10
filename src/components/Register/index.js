@@ -163,7 +163,7 @@ const Container = styled.div`
     padding-inline: 20px;
     display: flex;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 3px;
 
     font-family: "Poppins";
     font-style: normal;
@@ -199,7 +199,7 @@ const From = styled.form`
 const Button = styled.button`
   width: 100%;
   background: #2291f1;
-  border-radius: 5px;
+  border-radius: 3px;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
