@@ -1,33 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import LoginCard from '../../components/LoginCard';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import LoginCard from "../../components/LoginCard";
 
 const Login = () => {
-    return (
-        <Container>
-
-        <div className="leftChild">
-            <div style={{ paddingLeft: "20px" }}>
-                <Link to="/">    <img src="/img/icon/logo.svg" style={{ width: "90px", height: "80px" }} alt="" /></Link>
-                <Title>
-                Login
-                </Title>
-            </div>
-
-            <LoginCard />
-
+  return (
+    <Container>
+      <div className="leftChild">
+        <div style={{ paddingLeft: "20px" }}>
+          <Link to="/">
+            {" "}
+            <img
+              src="/img/icon/logo.svg"
+              style={{ width: "90px", height: "80px" }}
+              alt=""
+            />
+          </Link>
+          <Title>Login</Title>
         </div>
-        <div className="rightChild">
-            {/* <img src={RegisterImage} id="img" /> */}
-            <div className="rightImg"></div>
-        </div>
+
+        <LoginCard />
+      </div>
+      <div className="rightChild">
+        {/* <img src={RegisterImage} id="img" /> */}
+        <div className="rightImg"></div>
+      </div>
     </Container>
-    );
+  );
 };
 
 export default Login;
-
 
 const Container = styled.div`
   display: flex;
@@ -38,7 +40,7 @@ const Container = styled.div`
     position: fixed;
     bottom: 0;
     background-position-x: right;
-    background: url('/img/icon/register-image.svg');
+    background: url("/img/icon/register-image.svg");
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
@@ -67,18 +69,19 @@ const Container = styled.div`
   .rightImg {
     width: 680px;
     height: 100vh;
-    background-image: url('/img/icon/register-image.svg');
+    background-image: url("/img/icon/register-image.svg");
     background-repeat: no-repeat;
     background-size: cover;
   }
 `;
 const Title = styled.h3`
- font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 35px;
-    line-height: 51px;
-    color: #0E3746;
-    margin: 0;
-    margin-top: 12px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 51px;
+  color: #0e3746;
+  margin: 0;
+  padding: 10px 0px;
+  margin-top: 12px;
 `;
