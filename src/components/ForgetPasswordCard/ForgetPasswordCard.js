@@ -36,7 +36,6 @@ const ForgetPasswordCard = () => {
 
         console.log("forget", res);
         if (res.success) {
-          
           toast.message(`${res.message}`);
         }
       })
