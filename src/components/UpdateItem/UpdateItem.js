@@ -7,7 +7,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { authPost } from "../../__lib__/helpers/HttpService";
 import { useSelector } from "react-redux";
 
-const AddNewItem = () => {
+const UpdateItem = () => {
   const [disable, setDisable] = useState(false);
 
   const {
@@ -31,22 +31,21 @@ const AddNewItem = () => {
     _data.append("images", data.productImage[0]);
     _data.append("images", data.studentImage[0]);
 
-    authPost("/add-item", _data, __u__.token).then((res) => {
-      setDisable(false);
-      if (res.success) {
-        toast.success(`${res.message}`);
-        reset();
-        navigate("/items");
-      }
-    });
+    // authPost("/add-item", _data, __u__.token).then((res) => {
+    //   setDisable(false);
+    //   if (res.success) {
+    //     toast.success(`${res.message}`);
+    //     reset();
+    //     navigate("/items");
+    //   }
+    // });
   };
-
   return (
     <>
       <Navbar />
       <Toaster position="top-center" reverseOrder={false} />
       <Container>
-        <Title>Add New Item</Title>
+        <Title>Update Item</Title>
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputConatiner>
@@ -134,7 +133,7 @@ const AddNewItem = () => {
   );
 };
 
-export default AddNewItem;
+export default UpdateItem;
 
 const Container = styled.div`
   width: 75%;
