@@ -11,7 +11,7 @@ import LockIcon from "../../svg/LockIocn";
 import AlumniIcon from "../../svg/AlumniIcon";
 import SchoolIcon2 from "../../svg/SchoolIcon2";
 
-const ForgetPasswordCard = () => {
+const ConfirmPasswordCard = () => {
   const [disable, setDisable] = useState(false);
   const [check, setCheck] = useState({
     student: false,
@@ -67,27 +67,37 @@ const ForgetPasswordCard = () => {
       <Toaster position="top-center" reverseOrder={false} />
       <From onSubmit={handleSubmit(onSubmit)}>
         <div className="inputsConatiner">
-          <MailIcon />
+          <LockIcon />
           <div className={errors.email ? "inputDiv active" : "inputDiv "}>
             <input
-              type="email"
-              placeholder="Email"
-              {...register("email", { required: true })}
+              type="password"
+              placeholder="Password"
+              {...register("password", { required: true })}
             />
-            {errors.email && <span>Email is required</span>}
+            {errors.password && <span>Password is required</span>}
           </div>
         </div>
-        <Link to="/confirm-password">
-          <Button type="submit" disabled={disable}>
-            Next
-          </Button>
-        </Link>
+        <div className="inputsConatiner">
+          <LockIcon />
+          <div className={errors.email ? "inputDiv active" : "inputDiv "}>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              {...register("confirm_password", { required: true })}
+            />
+            {errors.confirm_password && <span>Confirm is required</span>}
+          </div>
+        </div>
+
+        <Button type="submit" disabled={disable}>
+          Confirm Password
+        </Button>
       </From>
     </Container>
   );
 };
 
-export default ForgetPasswordCard;
+export default ConfirmPasswordCard;
 
 const Container = styled.div`
   width: 100%;

@@ -24,6 +24,7 @@ import UpdateItem from "./components/UpdateItem/UpdateItem";
 import About from "./pages/About/About";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
+import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
 
 const App = () => {
   return (
@@ -62,6 +63,7 @@ const App = () => {
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/confirm-password" element={<ConfirmPassword />} />
         <Route path="/items" element={<BuyingItem />} />
         <Route path="/add-new-item" element={<AddNewItem />} />
         <Route path="/update-item/:id" element={<UpdateItem />} />
