@@ -29,37 +29,17 @@ const ConfirmPasswordCard = () => {
 
   const onSubmit = (data) => {
     setDisable(true);
-    // postData(`/${data.radioCheck}/signin`, data)
-    //   .then((res) => {
-    //     setDisable(false);
-    //     if (res.success) {
-    //       const { token, info, role, status } = res;
-    //       if (status === "REJECTED") {
-    //         toast.error("Account is restricted");
-    //       } else {
-    //         dispatch(
-    //           logedIn({
-    //             token,
-    //             info,
-    //             role,
-    //             status,
-    //           })
-    //         );
-    //         if (role === "AUTHOR") {
-    //           navigate("/school");
-    //         }
-    //         if (role === "STUDENT") {
-    //           navigate("/student");
-    //         }
-    //       }
-    //     }
-    //     if (res.invalid) {
-    //       toast.error(`${res.message}`);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     setDisable(false);
-    //   });
+    postData(`update-password/`, data)
+      .then((res) => {
+        setDisable(false);
+        if (res.success) {
+         
+        }
+       
+      })
+      .catch((err) => {
+        setDisable(false);
+      });
   };
 
   return (
@@ -90,7 +70,7 @@ const ConfirmPasswordCard = () => {
         </div>
 
         <Button type="submit" disabled={disable}>
-          Set Password
+          Update Password
         </Button>
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back

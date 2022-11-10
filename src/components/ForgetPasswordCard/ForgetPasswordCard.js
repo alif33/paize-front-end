@@ -33,7 +33,12 @@ const ForgetPasswordCard = () => {
     getData(`${data.radioCheck}/forget-password?email=${data.email}`, data)
       .then((res) => {
         setDisable(false);
+
         console.log("forget", res);
+        if (res.success) {
+          
+          toast.message(`${res.message}`);
+        }
       })
       .catch((err) => {
         setDisable(false);
