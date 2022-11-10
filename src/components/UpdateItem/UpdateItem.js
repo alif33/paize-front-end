@@ -14,49 +14,52 @@ import { useSelector } from "react-redux";
 const UpdateItem = () => {
   const { id } = useParams();
   const [disable, setDisable] = useState(false);
-  const [updateNeeds, setUpdateNeeds] = useState(null);
+  const [updateNeeds, setUpdateNeeds] = useState();
   const [loading, setLoading] = useState(true);
   const {
     register,
     reset,
     handleSubmit,
+    watch,
+    control,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onBlur" });
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
-
+  // const { handleSubmit, control, setValue } = useForm({ mode: "onBlur" });
   const navigate = useNavigate();
 
   useEffect(() => {
     __getData(`/item?_id=${id}`, __u__.token)
       .then((res) => {
         setLoading(false);
-        setUpdateNeeds(res);
+        // setUpdateNeeds(res);
+        setValue([{ itemName: res?.itemName }]);
       })
       .catch((err) => console.log(err));
   }, []);
 
   const onSubmit = (data) => {
-    setDisable(true);
     console.log("form-data", data);
+    setDisable(true);
 
-    // const _data = new FormData();
-    // _data.append("itemName", data.itemName);
-    // _data.append("studentName", data.studentName);
-    // _data.append("cost", data.cost);
-    // _data.append("description", data.description);
+    const _data = new FormData();
+    _data.append("itemName", data.itemName);
+    _data.append("studentName", data.studentName);
+    _data.append("cost", data.cost);
+    _data.append("description", data.description);
     // _data.append("images", data.productImage[0]);
     // _data.append("images", data.studentImage[0]);
 
-    updateData(`/edit-item?_id=${id}`, data, __u__.token)
-    .then((res) => {
+    updateData(`/edit-item?_id=${id}`, data, __u__.token).then((res) => {
       console.log(res);
       setDisable(false);
       console.log("update Data", res);
       if (res.success) {
         toast.success(`${res.message}`);
         reset();
-        // navigate("/items");
+        navigate("/items");
       }
     });
   };
@@ -75,7 +78,6 @@ const UpdateItem = () => {
             </label>
             <div className={errors.itemName ? "inputDiv active" : "inputDiv "}>
               <input
-                defaultValue={updateNeeds?.itemName}
                 {...register("itemName", {
                   required: true,
                 })}
@@ -91,7 +93,6 @@ const UpdateItem = () => {
               className={errors.studentName ? "inputDiv active" : "inputDiv "}
             >
               <input
-                defaultValue={updateNeeds?.studentName}
                 {...register("studentName", {
                   required: true,
                 })}
@@ -105,7 +106,6 @@ const UpdateItem = () => {
             </label>
             <div className={errors.cost ? "inputDiv active" : "inputDiv "}>
               <input
-                defaultValue={updateNeeds?.cost}
                 {...register("cost", {
                   required: true,
                 })}
@@ -117,7 +117,6 @@ const UpdateItem = () => {
             <h5>Description</h5>
             <textarea
               rows={3}
-              defaultValue={updateNeeds?.description}
               {...register("description", {
                 required: true,
               })}
