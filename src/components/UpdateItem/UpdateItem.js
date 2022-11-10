@@ -40,15 +40,15 @@ const UpdateItem = () => {
     setDisable(true);
     console.log("form-data", data);
 
-    const _data = new FormData();
-    _data.append("itemName", data.itemName);
-    _data.append("studentName", data.studentName);
-    _data.append("cost", data.cost);
-    _data.append("description", data.description);
+    // const _data = new FormData();
+    // _data.append("itemName", data.itemName);
+    // _data.append("studentName", data.studentName);
+    // _data.append("cost", data.cost);
+    // _data.append("description", data.description);
     // _data.append("images", data.productImage[0]);
     // _data.append("images", data.studentImage[0]);
 
-    updateData(`/edit-item?_id=${id}`, _data, __u__.token)
+    updateData(`/edit-item?_id=${id}`, data, __u__.token)
     .then((res) => {
       console.log(res);
       setDisable(false);
