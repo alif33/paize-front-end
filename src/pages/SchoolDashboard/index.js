@@ -31,6 +31,7 @@ const SchoolDashboard = () => {
         __getData("/author/refresh", __u__.token)
         .then(res=>{
             if (res.success) {
+                console.log(res, "00");
                 const { token, info, role, status } = res;
                 if (status === "REJECTED") {
                     toast.error("Account is restricted");
