@@ -20,6 +20,7 @@ const authHeader = (token) => {
     "Content-Type": "application/json",
   };
 };
+
 export const getData = async (endPoint) => {
   try {
     const { data } = await api.get(endPoint);
@@ -95,7 +96,7 @@ export const deleteData = async (endPoint, token) => {
 };
 
 export const getFormData = async (key, data) => {
-  // needed for images
+  
   const formData = new FormData();
   for (let i = 0; i < key.length; i++) {
     formData.append(key[i], data[i]);

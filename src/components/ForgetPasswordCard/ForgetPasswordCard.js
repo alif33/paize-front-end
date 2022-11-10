@@ -30,7 +30,7 @@ const ForgetPasswordCard = () => {
   const onSubmit = (data) => {
     console.log(data);
     setDisable(true);
-    getData(`${data.radioCheck}/forget-password?${data.email}`, data)
+    getData(`${data.radioCheck}/forget-password?email=${data.email}`, data)
       .then((res) => {
         setDisable(false);
         console.log("forget", res);
