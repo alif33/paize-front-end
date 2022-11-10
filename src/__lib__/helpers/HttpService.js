@@ -1,11 +1,11 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-// export const ROOT_URL = `http://localhost:4000/`;
-// export const APP_URL = `http://localhost:4000/`;
+export const ROOT_URL = `http://localhost:4000/`;
+export const APP_URL = `http://localhost:4000/`;
 
-export const ROOT_URL = `https://paize.herokuapp.com/`;
-export const APP_URL = `https://paize.herokuapp.com/`;
+// export const ROOT_URL = `https://paize.herokuapp.com/`;
+// export const APP_URL = `https://paize.herokuapp.com/`;
 
 export const IMAGE_URL = `${APP_URL}storage`;
 export const API_URL = `${APP_URL}api`;
@@ -96,7 +96,7 @@ export const deleteData = async (endPoint, token) => {
 };
 
 export const getFormData = async (key, data) => {
-  
+
   const formData = new FormData();
   for (let i = 0; i < key.length; i++) {
     formData.append(key[i], data[i]);
