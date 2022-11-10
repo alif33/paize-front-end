@@ -232,7 +232,7 @@ const Container = styled.div`
   .new-to {
     text-align: center;
     font-size: 16px;
-    padding-top: 25px;
+    padding-top: 20px;
   }
   .new-to a {
     text-decoration: none;
@@ -311,5 +311,5 @@ const Button = styled.button`
   border: none;
   margin: 10px 0;
   padding: 5px 0;
-  margin-top: 40px;
+  margin-top: 30px;
 `;

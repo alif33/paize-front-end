@@ -6,6 +6,7 @@ import { deleteData, __getData } from "../../../__lib__/helpers/HttpService";
 
 const Contactus = () => {
   const [loading, setLoading] = useState(true);
+  const [isReload, setIsReload] = useState(false);
 
   const [contactMessages, setContactMessages] = useState(null);
   const { admin } = useSelector((state) => state);
@@ -19,12 +20,13 @@ const Contactus = () => {
         setContactMessages(res);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [isReload]);
 
   const handleDelete = (id) => {
     console.log(id);
     deleteData(`/contact?_id=${id}`, admin?.auth?.token).then((res) => {
       console.log("delete", res);
+      setIsReload(!isReload);
     });
   };
   console.log("contactMessage", contactMessages);

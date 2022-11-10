@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { postData } from "../../__lib__/helpers/HttpService";
+import { getData, postData } from "../../__lib__/helpers/HttpService";
 import { logedIn } from "../../store/users/actions";
 import { toast, Toaster } from "react-hot-toast";
 import MailIcon from "../../svg/MailIcon";
@@ -28,40 +28,18 @@ const ForgetPasswordCard = () => {
   const { users } = useSelector((state) => state);
 
   const onSubmit = (data) => {
+    console.log(data);
     setDisable(true);
-    // postData(`/${data.radioCheck}/signin`, data)
-    //   .then((res) => {
-    //     setDisable(false);
-    //     if (res.success) {
-    //       const { token, info, role, status } = res;
-    //       if (status === "REJECTED") {
-    //         toast.error("Account is restricted");
-    //       } else {
-    //         dispatch(
-    //           logedIn({
-    //             token,
-    //             info,
-    //             role,
-    //             status,
-    //           })
-    //         );
-    //         if (role === "AUTHOR") {
-    //           navigate("/school");
-    //         }
-    //         if (role === "STUDENT") {
-    //           navigate("/student");
-    //         }
-    //       }
-    //     }
-    //     if (res.invalid) {
-    //       toast.error(`${res.message}`);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     setDisable(false);
-    //   });
+    getData(`${data.radioCheck}/forget-password?${data.email}`, data)
+      .then((res) => {
+        setDisable(false);
+        console.log("forget", res);
+      })
+      .catch((err) => {
+        setDisable(false);
+      });
   };
-
+  console.log(check);
   return (
     <Container>
       <Toaster position="top-center" reverseOrder={false} />
@@ -77,11 +55,71 @@ const ForgetPasswordCard = () => {
             {errors.email && <span>Email is required</span>}
           </div>
         </div>
-        <Link to="/confirm-password">
-          <Button type="submit" disabled={disable}>
-            Next
-          </Button>
-        </Link>
+        <CheckBox>
+          <div
+            className={`form-check ${errors.radioCheck && "danger"} ${
+              check.student && "active"
+            }`}
+          >
+            <input
+              id="flexRadioDefault1"
+              className="form-check-input"
+              type="radio"
+              value="student"
+              {...register("radioCheck", {
+                required: true,
+              })}
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
+              <AlumniIcon
+                danger={errors.radioCheck}
+                color={check.student ? "#2291F1" : "#9f9f9f"}
+              />
+              Alumni
+            </label>
+          </div>
+          <div
+            className={`form-check ${errors.radioCheck && "danger"} ${
+              check.author && "active"
+            }`}
+          >
+            <input
+              id="flexRadioDefault2"
+              className="form-check-input"
+              type="radio"
+              value="author"
+              {...register("radioCheck", {
+                onChange: (e) => {
+                  if (e.target.value === "author") {
+                    setCheck({
+                      ...check,
+                      author: true,
+                      student: false,
+                    });
+                  } else {
+                    setCheck({
+                      ...check,
+                      student: true,
+                      author: false,
+                    });
+                  }
+                },
+                required: true,
+              })}
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
+              <SchoolIcon2
+                danger={errors.radioCheck}
+                color={check.author ? "#2291F1" : "#9f9f9f"}
+              />
+              School
+            </label>
+          </div>
+        </CheckBox>
+        <Button type="submit" disabled={disable}>
+          Next
+        </Button>
+        {/* <Link to="/confirm-password"></Link> */}
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back
         </Button2>
