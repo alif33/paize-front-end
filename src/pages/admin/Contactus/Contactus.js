@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Navbar from "../../../components/admin/AdminNavbar";
-import { __getData } from "../../../__lib__/helpers/HttpService";
+import { deleteData, __getData } from "../../../__lib__/helpers/HttpService";
 
 const Contactus = () => {
   const [loading, setLoading] = useState(true);
+
   const [contactMessages, setContactMessages] = useState(null);
   const { admin } = useSelector((state) => state);
   console.log(admin?.auth?.token);
@@ -19,11 +20,18 @@ const Contactus = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const handleDelete = (id) => {
+    console.log(id);
+    deleteData(`/contact?_id=${id}`, admin?.auth?.token).then((res) => {
+      console.log("delete", res);
+    });
+  };
   console.log("contactMessage", contactMessages);
   return (
     <Container>
       <Navbar />
-      <Title>Contactus Massage</Title>
+      <Title>Massage</Title>
       <TableContainer>
         <thead>
           <tr>
@@ -31,6 +39,7 @@ const Contactus = () => {
             <th>Email</th>
             <th>Phone</th>
             <th>Message</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +49,12 @@ const Contactus = () => {
               <td>{contactMessage.email}</td>
               <td>{contactMessage.phone}</td>
               <td>{contactMessage.message}</td>
+              <td
+                onClick={() => handleDelete(contactMessage._id)}
+                className="delete-btn"
+              >
+                x
+              </td>
             </tr>
           ))}
         </tbody>
@@ -101,6 +116,9 @@ const TableContainer = styled.table`
     align-items: center;
     height: 100%;
     padding: 15px 0;
+  }
+  .delete-btn {
+    cursor: pointer;
   }
   /* tbody tr td span{
 height: 100%;
