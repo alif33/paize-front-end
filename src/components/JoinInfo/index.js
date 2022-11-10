@@ -107,9 +107,9 @@ const JoinInfo = () => {
           </div>
         </div>
 
-        <Button2 disabled={disable} type="submit">
+        <Button disabled={disable} type="submit">
           Next
-        </Button2>
+        </Button>
         <Button2 disabled={disable} onClick={() => navigate(-1)} type="button">
           Back
         </Button2>
@@ -159,7 +159,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     border-radius: 5px;
-    border: 3px solid rgba(218, 221, 225, 1);
+    border: 1px solid #2291f1;
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
