@@ -90,7 +90,7 @@ const ConfirmPasswordCard = () => {
         </div>
 
         <Button type="submit" disabled={disable}>
-          Confirm Password
+          Set Password
         </Button>
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back
@@ -229,7 +229,7 @@ const Button = styled.button`
   border: none;
   margin: 10px 0 0 0;
   padding: 5px 0;
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 const Button2 = styled(Button)`
   background: #fff;
