@@ -108,6 +108,7 @@ const TableContainer = styled.table`
   thead {
     background: rgba(34, 145, 241, 0.14);
   }
+
   thead th {
     background: rgba(34, 145, 241, 0.14);
     font-family: "Poppins";
@@ -151,8 +152,9 @@ const TableContainer = styled.table`
 `;
 
 const TableImage = styled.div`
+  padding-left: 30px;
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   align-items: center;
 
   input {
@@ -163,6 +165,7 @@ const TableImage = styled.div`
     width: 62px;
     height: 62px;
     border-radius: 7px;
+    margin-left: 20px;
   }
   h5 {
     font-family: "Poppins";
@@ -171,6 +174,7 @@ const TableImage = styled.div`
     font-size: 18px;
     line-height: 36px;
     color: #0e3746;
+    padding-left: 10px;
   }
 `;
 

@@ -109,6 +109,8 @@ const Title = styled.div`
     color: #0e3746;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 `;
 const Title3 = styled(Title)`

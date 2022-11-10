@@ -234,7 +234,7 @@ const InputConatiner = styled.div`
     border-radius: 5px;
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     line-height: 36px;
     color: #111;
@@ -276,9 +276,11 @@ const TextArae = styled.div`
   }
   textarea {
     width: 100%;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 17px;
     border: 1px solid rgba(218, 221, 225, 0.4);
+    padding-top: 5px;
+    padding-left: 10px;
   }
   textarea:focus {
     outline: none;
