@@ -11,7 +11,7 @@ import LockIcon from "../../svg/LockIocn";
 import AlumniIcon from "../../svg/AlumniIcon";
 import SchoolIcon2 from "../../svg/SchoolIcon2";
 
-const LoginCard = () => {
+const ForgetPasswordCard = () => {
   const [disable, setDisable] = useState(false);
   const [check, setCheck] = useState({
     student: false,
@@ -29,37 +29,37 @@ const LoginCard = () => {
 
   const onSubmit = (data) => {
     setDisable(true);
-    postData(`/${data.radioCheck}/signin`, data)
-      .then((res) => {
-        setDisable(false);
-        if (res.success) {
-          const { token, info, role, status } = res;
-          if (status === "REJECTED") {
-            toast.error("Account is restricted");
-          } else {
-            dispatch(
-              logedIn({
-                token,
-                info,
-                role,
-                status,
-              })
-            );
-            if (role === "AUTHOR") {
-              navigate("/school");
-            }
-            if (role === "STUDENT") {
-              navigate("/student");
-            }
-          }
-        }
-        if (res.invalid) {
-          toast.error(`${res.message}`);
-        }
-      })
-      .catch((err) => {
-        setDisable(false);
-      });
+    // postData(`/${data.radioCheck}/signin`, data)
+    //   .then((res) => {
+    //     setDisable(false);
+    //     if (res.success) {
+    //       const { token, info, role, status } = res;
+    //       if (status === "REJECTED") {
+    //         toast.error("Account is restricted");
+    //       } else {
+    //         dispatch(
+    //           logedIn({
+    //             token,
+    //             info,
+    //             role,
+    //             status,
+    //           })
+    //         );
+    //         if (role === "AUTHOR") {
+    //           navigate("/school");
+    //         }
+    //         if (role === "STUDENT") {
+    //           navigate("/student");
+    //         }
+    //       }
+    //     }
+    //     if (res.invalid) {
+    //       toast.error(`${res.message}`);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     setDisable(false);
+    //   });
   };
 
   return (
@@ -77,82 +77,6 @@ const LoginCard = () => {
             {errors.email && <span>Email is required</span>}
           </div>
         </div>
-        <div className="inputsConatiner">
-          <LockIcon />
-          <div className={errors.password ? "inputDiv active" : "inputDiv "}>
-            <input
-              type="password"
-              placeholder="Password"
-              {...register("password", { required: true })}
-            />
-            {errors.password && <span>Password is required</span>}
-          </div>
-        </div>
-        <div className="forget-password">
-          <Link to="/forget-password">Forget Password</Link>
-        </div>
-
-        <CheckBox>
-          <div
-            className={`form-check ${errors.radioCheck && "danger"} ${
-              check.student && "active"
-            }`}
-          >
-            <input
-              id="flexRadioDefault1"
-              className="form-check-input"
-              type="radio"
-              value="student"
-              {...register("radioCheck", {
-                required: true,
-              })}
-            />
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
-              <AlumniIcon
-                danger={errors.radioCheck}
-                color={check.student ? "#2291F1" : "#9f9f9f"}
-              />
-              Alumni
-            </label>
-          </div>
-          <div
-            className={`form-check ${errors.radioCheck && "danger"} ${
-              check.author && "active"
-            }`}
-          >
-            <input
-              id="flexRadioDefault2"
-              className="form-check-input"
-              type="radio"
-              value="author"
-              {...register("radioCheck", {
-                onChange: (e) => {
-                  if (e.target.value === "author") {
-                    setCheck({
-                      ...check,
-                      author: true,
-                      student: false,
-                    });
-                  } else {
-                    setCheck({
-                      ...check,
-                      student: true,
-                      author: false,
-                    });
-                  }
-                },
-                required: true,
-              })}
-            />
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
-              <SchoolIcon2
-                danger={errors.radioCheck}
-                color={check.author ? "#2291F1" : "#9f9f9f"}
-              />
-              School
-            </label>
-          </div>
-        </CheckBox>
 
         <Button type="submit" disabled={disable}>
           Next
@@ -162,7 +86,7 @@ const LoginCard = () => {
   );
 };
 
-export default LoginCard;
+export default ForgetPasswordCard;
 
 const Container = styled.div`
   width: 100%;

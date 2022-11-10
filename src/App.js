@@ -21,6 +21,9 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminRoute from "./auth/AdminRoute";
 import Joined from "./pages/Joined";
 import UpdateItem from "./components/UpdateItem/UpdateItem";
+import About from "./pages/About/About";
+import ContactUs from "./pages/ContactUs/ContactUs";
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
 const App = () => {
   return (
@@ -58,6 +61,7 @@ const App = () => {
         <Route path="/update-information" element={<UpdateInfo />} />
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/items" element={<BuyingItem />} />
         <Route path="/add-new-item" element={<AddNewItem />} />
         <Route path="/update-item/:id" element={<UpdateItem />} />
@@ -70,6 +74,8 @@ const App = () => {
 
         <Route path="/student" element={<StudentDashboard />} />
         <Route path="/payment" element={<PaymentNowPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact-us" element={<ContactUs />} />
 
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
