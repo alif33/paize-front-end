@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Navbar from "../../components/Navbar";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
-import { authPost } from "../../__lib__/helpers/HttpService";
+import {
+  authPost,
+  updateData,
+  __getData,
+} from "../../__lib__/helpers/HttpService";
 import { useSelector } from "react-redux";
 
 const UpdateItem = () => {
+  const { id } = useParams();
   const [disable, setDisable] = useState(false);
-
+  const [updateNeeds, setUpdateNeeds] = useState(null);
+  const [loading, setLoading] = useState(true);
   const {
     register,
     reset,
@@ -18,28 +24,41 @@ const UpdateItem = () => {
   } = useForm();
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    __getData(`/item?_id=${id}`, __u__.token)
+      .then((res) => {
+        setLoading(false);
+        setUpdateNeeds(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const onSubmit = (data) => {
     setDisable(true);
+    console.log("updateFromDate", data);
 
     const _data = new FormData();
     _data.append("itemName", data.itemName);
     _data.append("studentName", data.studentName);
     _data.append("cost", data.cost);
     _data.append("description", data.description);
-    _data.append("images", data.productImage[0]);
-    _data.append("images", data.studentImage[0]);
+    // _data.append("images", data.productImage[0]);
+    // _data.append("images", data.studentImage[0]);
 
-    // authPost("/add-item", _data, __u__.token).then((res) => {
-    //   setDisable(false);
-    //   if (res.success) {
-    //     toast.success(`${res.message}`);
-    //     reset();
-    //     navigate("/items");
-    //   }
-    // });
+    updateData(`/edit-item?_id=${id}`, _data, __u__.token).then((res) => {
+      setDisable(false);
+      console.log("update Data", res);
+      if (res.success) {
+        toast.success(`${res.message}`);
+        reset();
+        navigate("/items");
+      }
+    });
   };
+  console.log("updateNeeds", updateNeeds);
   return (
     <>
       <Navbar />
@@ -54,6 +73,7 @@ const UpdateItem = () => {
             </label>
             <div className={errors.itemName ? "inputDiv active" : "inputDiv "}>
               <input
+                defaultValue={updateNeeds?.itemName}
                 {...register("itemName", {
                   required: true,
                 })}
@@ -69,6 +89,7 @@ const UpdateItem = () => {
               className={errors.studentName ? "inputDiv active" : "inputDiv "}
             >
               <input
+                defaultValue={updateNeeds?.studentName}
                 {...register("studentName", {
                   required: true,
                 })}
@@ -82,6 +103,7 @@ const UpdateItem = () => {
             </label>
             <div className={errors.cost ? "inputDiv active" : "inputDiv "}>
               <input
+                defaultValue={updateNeeds?.cost}
                 {...register("cost", {
                   required: true,
                 })}
@@ -93,6 +115,7 @@ const UpdateItem = () => {
             <h5>Description</h5>
             <textarea
               rows={3}
+              defaultValue={updateNeeds?.description}
               {...register("description", {
                 required: true,
               })}
@@ -103,7 +126,7 @@ const UpdateItem = () => {
             <input
               type="file"
               {...register("studentImage", {
-                required: true,
+                // required: true,
               })}
               accept="image/*"
             />
@@ -116,7 +139,7 @@ const UpdateItem = () => {
             <input
               type="file"
               {...register("productImage", {
-                required: true,
+                // required: true,
               })}
               accept="image/*"
             />

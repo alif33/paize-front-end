@@ -43,7 +43,7 @@ const BuyingItem = () => {
       }
     });
   };
-
+  console.log(__u__.token);
   console.log("needs-needs", needs);
   return (
     <div>

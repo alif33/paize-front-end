@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 
@@ -75,16 +76,18 @@ const Table = ({ needs, items, setItems }) => {
                 <span>{need.description}</span>
               </td>
 
-              <td
-                id={need._id}
-                name={need._id}
-                value={need._id}
-                className=""
-                style={{ cursor: "pointer" }}
-                onClick={() => handleUpdate(need._id)}
-              >
-                <img src="/img/icon/edit.png" alt="" />
-              </td>
+              <Link to={`/update-item/${need._id}`}>
+                <td
+                  id={need._id}
+                  name={need._id}
+                  value={need._id}
+                  className=""
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleUpdate(need._id)}
+                >
+                  <img src="/img/icon/edit.png" alt="" />
+                </td>
+              </Link>
             </tr>
           );
         })}
