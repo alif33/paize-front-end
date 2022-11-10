@@ -4,37 +4,15 @@ import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 
 const Table = ({ needs, items, setItems }) => {
-  const handleSelect = (e) => {
-    const { value } = e.target;
-    console.log("value", value);
 
-    if (e.target.checked) {
-      document.getElementById(value).checked = false;
+  const handleSelect = _id => {
+    if(items.includes(_id)){
+      setItems(items.filter( 
+        item=> item !==_id
+      ))
+    }else{
+      setItems([...items, _id])
     }
-
-    // else{
-    //     document.getElementById(value).checked = true;
-    // }
-
-    // console.log();
-    // document.querySelectorAll(`#${value}`)
-    // if(e.target.checked){
-    //     e.target.checked = false;
-    // }else{
-    //     e.target.checked = true;
-    // }
-    // console.log(value);
-    // setItems(needs);
-    // if(!items.includes(value)){
-    //     setItems([items.remove(value)]);
-    // }else{
-    //     setItems([...items, value]);
-    // }
-
-    // console.log(e.target.checked);
-  };
-  const handleUpdate = (id) => {
-    console.log("object", id);
   };
 
   return (
@@ -49,48 +27,47 @@ const Table = ({ needs, items, setItems }) => {
         </tr>
       </thead>
       <tbody>
-        {needs.map((need, index) => {
-          return (
-            <tr key={index}>
-              <td>
-                <TableImage>
-                  <input
+          {needs.map((need, index) => {
+            return (
+              <tr key={index}>
+                <td>
+                  <TableImage>
+                    <div 
+                      onClick={()=>handleSelect(need._id)} 
+                      className="radio-container"
+                    >
+                      {
+                        items.includes(need._id) && (<div className="radio"></div>)
+                      }
+                    </div>
+                    <img src={`${APP_URL}/${need.studentImage}`} alt="" />
+                    <h5>{need.itemName}</h5>
+                  </TableImage>
+                </td>
+                <td>
+                  <p>{need.cost}</p>
+                </td>
+                <td>
+                  <p>{need.studentName}</p>
+                </td>
+                <td>
+                  <span>{need.description}</span>
+                </td>
+
+                <Link to={`/update-item/${need._id}`}>
+                  <td
                     id={need._id}
-                    type="radio"
                     name={need._id}
                     value={need._id}
-                    // checked={ items.includes(need._id) }
-                    onChange={(e) => handleSelect(e)}
-                  />
-                  <img src={`${APP_URL}/${need.studentImage}`} alt="" />
-                  <h5>{need.itemName}</h5>
-                </TableImage>
-              </td>
-              <td>
-                <p>{need.cost}</p>
-              </td>
-              <td>
-                <p>{need.studentName}</p>
-              </td>
-              <td>
-                <span>{need.description}</span>
-              </td>
-
-              <Link to={`/update-item/${need._id}`}>
-                <td
-                  id={need._id}
-                  name={need._id}
-                  value={need._id}
-                  className=""
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleUpdate(need._id)}
-                >
-                  <img src="/img/icon/edit.png" alt="" />
-                </td>
-              </Link>
-            </tr>
-          );
-        })}
+                    className=""
+                    style={{ cursor: "pointer" }}
+                  >
+                    <img src="/img/icon/edit.png" alt="" />
+                  </td>
+                </Link>
+              </tr>
+            );
+          })}
       </tbody>
     </TableContainer>
   );
@@ -157,6 +134,21 @@ const TableImage = styled.div`
   justify-content: start;
   align-items: center;
 
+  .radio-container {
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #2291f1;
+    position: relative;
+  }
+  .radio {
+    top: 2px;
+    left: 2px;
+    padding: 6px;
+    border-radius: 6px;
+    background: #2291f1;
+    position: absolute;
+  }
   input {
     width: 25px;
     height: 25px;
