@@ -82,6 +82,9 @@ const ForgetPasswordCard = () => {
             Next
           </Button>
         </Link>
+        <Button2 type="button" onClick={() => navigate(-1)}>
+          Back
+        </Button2>
       </From>
     </Container>
   );
@@ -216,5 +219,11 @@ const Button = styled.button`
   border: none;
   margin: 10px 0;
   padding: 5px 0;
-  margin-top: 100px;
+  margin-top: 40px;
+`;
+const Button2 = styled(Button)`
+  background: #fff;
+  color: #2291f1;
+  margin-top: 15px;
+  border: 2px solid #2291f1;
 `;

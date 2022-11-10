@@ -231,8 +231,8 @@ const Container = styled.div`
   }
   .new-to {
     text-align: center;
-    font-size: 14px;
-    padding-top: 20px;
+    font-size: 16px;
+    padding-top: 25px;
   }
   .new-to a {
     text-decoration: none;
@@ -311,5 +311,5 @@ const Button = styled.button`
   border: none;
   margin: 10px 0;
   padding: 5px 0;
-  margin-top: 50px;
+  margin-top: 40px;
 `;

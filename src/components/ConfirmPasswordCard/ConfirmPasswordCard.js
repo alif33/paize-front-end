@@ -92,6 +92,9 @@ const ConfirmPasswordCard = () => {
         <Button type="submit" disabled={disable}>
           Confirm Password
         </Button>
+        <Button2 type="button" onClick={() => navigate(-1)}>
+          Back
+        </Button2>
       </From>
     </Container>
   );
@@ -140,7 +143,7 @@ const Container = styled.div`
     border: 1px solid #2291f1;
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     line-height: 36px;
     color: #111;
@@ -224,7 +227,13 @@ const Button = styled.button`
   line-height: 39px;
   color: #ffffff;
   border: none;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   padding: 5px 0;
-  margin-top: 100px;
+  margin-top: 50px;
+`;
+const Button2 = styled(Button)`
+  background: #fff;
+  color: #2291f1;
+  margin-top: 15px;
+  border: 2px solid #2291f1;
 `;

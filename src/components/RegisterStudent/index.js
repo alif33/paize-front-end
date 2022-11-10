@@ -166,7 +166,7 @@ const Container = styled.div`
     border: 1px solid #2291f1;
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     line-height: 36px;
     color: #111;

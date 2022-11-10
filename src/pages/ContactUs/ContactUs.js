@@ -25,6 +25,7 @@ const ContactUs = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
@@ -34,37 +35,18 @@ const ContactUs = () => {
   const onSubmit = (data) => {
     console.log(data);
     setDisable(true);
-    // postData(`/${data.radioCheck}/signin`, data)
-    //   .then((res) => {
-    //     setDisable(false);
-    //     if (res.success) {
-    //       const { token, info, role, status } = res;
-    //       if (status === "REJECTED") {
-    //         toast.error("Account is restricted");
-    //       } else {
-    //         dispatch(
-    //           logedIn({
-    //             token,
-    //             info,
-    //             role,
-    //             status,
-    //           })
-    //         );
-    //         if (role === "AUTHOR") {
-    //           navigate("/school");
-    //         }
-    //         if (role === "STUDENT") {
-    //           navigate("/student");
-    //         }
-    //       }
-    //     }
-    //     if (res.invalid) {
-    //       toast.error(`${res.message}`);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     setDisable(false);
-    //   });
+    postData(`/contact`, data)
+      .then((res) => {
+        console.log("contact-us", res);
+        setDisable(false);
+        if (res.success) {
+          toast.success(`${res.message}`);
+          reset();
+        }
+      })
+      .catch((err) => {
+        setDisable(false);
+      });
   };
 
   return (
@@ -122,9 +104,7 @@ const ContactUs = () => {
             </div>
           </div>
 
-          <Button type="submit" disabled={disable}>
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </From>
       </Container>
     </>
@@ -239,6 +219,10 @@ const Container = styled.div`
     height: 100px;
     box-sizing: border-box;
   }
+  .inputsTextarea.active textarea {
+    border: 1px solid red;
+    background: #fff;
+  }
 `;
 const From = styled.form`
   width: 40%;
@@ -297,6 +281,7 @@ const Button = styled.button`
   margin: 10px 0;
   padding: 5px 0;
   margin-top: 40px;
+  cursor: pointer;
 `;
 const TextArae = styled.div`
   padding: 20px 0px;

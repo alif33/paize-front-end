@@ -25,6 +25,7 @@ import About from "./pages/About/About";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
+import Contactus from "./pages/admin/Contactus/Contactus";
 
 const App = () => {
   return (
@@ -78,6 +79,7 @@ const App = () => {
         <Route path="/payment" element={<PaymentNowPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/admin/contact-us" element={<Contactus />} />
 
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route

@@ -80,8 +80,12 @@ const Title = styled.h3`
   font-weight: 500;
   font-size: 35px;
   line-height: 51px;
+  text-align: center;
   color: #0e3746;
   margin: 0;
-  padding: 10px 0px;
+  padding-top: 80px;
+  padding-bottom: 30px;
+  padding-left: 0;
+  padding-right: 0;
   margin-top: 12px;
 `;

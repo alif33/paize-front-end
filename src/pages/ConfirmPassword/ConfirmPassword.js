@@ -83,6 +83,7 @@ const Title = styled.h3`
   line-height: 51px;
   color: #0e3746;
   margin: 0;
-  padding: 10px 0px;
+  padding: 70px 0 30px 0px;
   margin-top: 12px;
+  text-align: center;
 `;
