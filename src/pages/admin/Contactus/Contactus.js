@@ -6,20 +6,20 @@ import { __getData } from "../../../__lib__/helpers/HttpService";
 
 const Contactus = () => {
   const [loading, setLoading] = useState(true);
-  const [contactMessage, setContactMessage] = useState(null);
-  const { users } = useSelector((state) => state);
-  const { __u__ } = users;
+  const [contactMessages, setContactMessages] = useState(null);
+  const { admin } = useSelector((state) => state);
+  console.log(admin?.auth?.token);
 
   useEffect(() => {
-    __getData("/contacts", __u__.token)
+    __getData("/contacts", admin?.auth?.token)
       .then((res) => {
         console.log("contactMessage-res", res);
         setLoading(false);
-        setContactMessage(res);
+        setContactMessages(res);
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log("contactMessage", contactMessage);
+  console.log("contactMessage", contactMessages);
   return (
     <Container>
       <Navbar />
@@ -34,18 +34,14 @@ const Contactus = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>
-              2
-            </td>
-            <td>
-              3
-            </td>
-            <td>
-              4
-            </td>
-          </tr>
+          {contactMessages?.map((contactMessage) => (
+            <tr>
+              <td>{contactMessage.name}</td>
+              <td>{contactMessage.email}</td>
+              <td>{contactMessage.phone}</td>
+              <td>{contactMessage.message}</td>
+            </tr>
+          ))}
         </tbody>
       </TableContainer>
     </Container>
