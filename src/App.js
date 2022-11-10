@@ -64,7 +64,7 @@ const App = () => {
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
-        <Route path="/confirm-password" element={<ConfirmPassword />} />
+        <Route path="/update-password/:status/:token" element={<ConfirmPassword />} />
         <Route path="/items" element={<BuyingItem />} />
         <Route path="/add-new-item" element={<AddNewItem />} />
         <Route path="/update-item/:id" element={<UpdateItem />} />

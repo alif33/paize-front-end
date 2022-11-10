@@ -96,7 +96,6 @@ export const deleteData = async (endPoint, token) => {
 };
 
 export const getFormData = async (key, data) => {
-
   const formData = new FormData();
   for (let i = 0; i < key.length; i++) {
     formData.append(key[i], data[i]);
