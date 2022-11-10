@@ -171,7 +171,7 @@ const Container = styled.div`
     line-height: 36px;
     color: #111;
     padding: 5px 20px;
-    box-shadow: 0px 1px 15px -5px rgba(0, 0, 0, 0.76);
+    box-shadow: 0px 1px 10px -5px rgba(0, 0, 0, 0.76);
 
     width: 100%;
     box-sizing: border-box;
