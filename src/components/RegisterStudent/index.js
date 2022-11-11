@@ -187,6 +187,9 @@ const Container = styled.div`
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
   }
+  @media only screen and (max-width: 688px) {
+    width: 360px;
+  }
 `;
 
 const From = styled.form`

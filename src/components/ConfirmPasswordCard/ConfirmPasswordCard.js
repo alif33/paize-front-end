@@ -28,18 +28,14 @@ const ConfirmPasswordCard = () => {
   const { users } = useSelector((state) => state);
 
   const onSubmit = (data) => {
+    console.log(data);
     setDisable(true);
-    postData(`update-password/`, data)
-      .then((res) => {
-        setDisable(false);
-        if (res.success) {
-         
-        }
-       
-      })
-      .catch((err) => {
-        setDisable(false);
-      });
+
+    postData(`update-password/`, data).then((res) => {
+      setDisable(false);
+      if (res.success) {
+      }
+    });
   };
 
   return (
