@@ -119,7 +119,7 @@ const PaymentInfo = () => {
         </div>
 
         <Button type="submit" disabled={disable}>
-          Next
+          Submit
         </Button>
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back

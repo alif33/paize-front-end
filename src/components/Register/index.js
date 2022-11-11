@@ -12,7 +12,7 @@ import LockIcon from "../../svg/LockIocn";
 const Register = () => {
   const {
     register,
-    handleSubmit, 
+    handleSubmit,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
@@ -115,7 +115,7 @@ const Register = () => {
           </div>
         </div>
 
-        <Button type="submit">Next</Button>
+        <Button type="submit">Submit</Button>
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back
         </Button2>

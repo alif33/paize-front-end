@@ -9,7 +9,7 @@ import MailIcon from "../../svg/MailIcon";
 import LockIcon from "../../svg/LockIocn";
 
 const Register = () => {
-  const { 
+  const {
     register,
     reset,
     handleSubmit,
@@ -114,7 +114,7 @@ const Register = () => {
           </div>
         </div>
 
-        <Button type="submit">Next</Button>
+        <Button type="submit">Submit</Button>
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back
         </Button2>

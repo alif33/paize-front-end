@@ -112,7 +112,7 @@ const SchoolInfo = () => {
           </div>
         </div>
 
-        <Button type="submit">Next</Button>
+        <Button type="submit">Submit</Button>
         <Button2 onClick={() => navigate(-1)} type="button">
           Back
         </Button2>

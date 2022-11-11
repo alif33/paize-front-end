@@ -5,7 +5,7 @@ import RegisterStudent from "../../components/RegisterStudent";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 const EnrollSchool = () => {
   const navigate = useNavigate();
-  return (
+  return ( 
     <Container> 
       <div className="leftChild">
 
