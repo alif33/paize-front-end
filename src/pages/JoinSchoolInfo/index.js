@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { IoChevronBackCircleOutline } from "react-icons/io5";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import JoinInfo from "../../components/JoinInfo";
 
 const JoinSchoolInfo = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <div className="leftChild">
+        <button className="btn-back" type="button" onClick={() => navigate(-1)}>
+          <IoChevronBackCircleOutline className="btn" />
+        </button>
         <div style={{ paddingLeft: "20px" }}>
           <Link to="/">
             {" "}
@@ -73,6 +78,38 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
   }
+  .btn-back {
+    border: 0;
+    background: none;
+    display: inline-block;
+    text-align: start;
+    padding-left: 10px;
+  }
+  .btn {
+    font-size: 40px;
+  }
+  @media only screen and (max-width: 688px) {
+    /* display: flex;
+   flex-direction: column; */
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 72%;
+    }
+  }
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 100%;
+    }
+  }
 `;
 const Title = styled.h3`
   font-family: "Poppins";
@@ -84,4 +121,13 @@ const Title = styled.h3`
   margin: 0;
   padding: 10px 0px;
   margin-top: 12px;
+  @media only screen and (max-width: 688px) {
+    margin-left: 7px;
+    margin-right: -20px;
+    font-size: 25px;
+  }
+
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    margin-left: 200px;
+  }
 `;

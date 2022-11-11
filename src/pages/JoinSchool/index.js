@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RegisterStudent from "../../components/RegisterStudent";
-
+import { IoChevronBackCircleOutline } from "react-icons/io5";
 const EnrollSchool = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <div className="leftChild">
+        <button className="btn-back" type="button" onClick={() => navigate(-1)}>
+          <IoChevronBackCircleOutline className="btn" />
+        </button>
+
         <div style={{ paddingLeft: "20px" }}>
           <Link to="/">
             <img
@@ -15,6 +20,7 @@ const EnrollSchool = () => {
               alt=""
             />
           </Link>
+
           <Title>Register</Title>
         </div>
         <RegisterStudent />
@@ -50,6 +56,16 @@ const Container = styled.div`
     padding-left: 1%;
     display: flex;
     flex-direction: column;
+  }
+  .btn-back {
+    border: 0;
+    background: none;
+    display: inline-block;
+    text-align: start;
+    padding-left: 10px;
+  }
+  .btn {
+    font-size: 40px;
   }
   .rightChild {
     position: fixed;
@@ -100,6 +116,7 @@ const Title = styled.h3`
   font-weight: 500;
   font-size: 35px;
   line-height: 51px;
+  text-align: center;
   color: #0e3746;
   margin: 0;
   padding: 10px 0px;

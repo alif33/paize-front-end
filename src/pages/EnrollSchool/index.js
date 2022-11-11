@@ -72,6 +72,28 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
   }
+  @media only screen and (max-width: 688px) {
+    /* display: flex;
+   flex-direction: column; */
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 72%;
+    }
+  }
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 95%;
+    }
+  }
 `;
 const Title = styled.h3`
   font-family: "Poppins";
@@ -83,4 +105,11 @@ const Title = styled.h3`
   margin: 0;
   padding: 10px 0px;
   margin-top: 12px;
+  @media only screen and (max-width: 688px) {
+    margin-left: 90px;
+  }
+
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    margin-left: 300px;
+  }
 `;

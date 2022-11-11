@@ -15,7 +15,7 @@ const ForgetPasswordCard = () => {
   const [disable, setDisable] = useState(false);
   const [check, setCheck] = useState({
     student: false,
-    author: false,
+    author: false, 
   });
   const {
     register,

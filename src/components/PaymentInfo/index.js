@@ -170,8 +170,7 @@ const Container = styled.div`
     padding-inline: 20px;
     display: flex;
     justify-content: center;
-    border-radius: 3px;
-    background-color: rgba(218, 221, 225, 0.4);
+    box-shadow: 0px 1px 10px -5px rgba(0, 0, 0, 0.76);
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
@@ -179,7 +178,8 @@ const Container = styled.div`
     line-height: 36px;
     color: #111;
     padding: 5px 20px;
-    border: 0;
+    border-radius: 3px;
+    border: 1px solid #2291f1;
     width: 100%;
     box-sizing: border-box;
   }
@@ -193,6 +193,9 @@ const Container = styled.div`
   .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
+  }
+  @media only screen and (max-width: 688px) {
+    width: 360px;
   }
 `;
 

@@ -115,9 +115,6 @@ const Register = () => {
         </div>
 
         <Button type="submit">Next</Button>
-        <Button2 type="button" onClick={() => navigate(-1)}>
-          Back
-        </Button2>
       </From>
     </Container>
   );
