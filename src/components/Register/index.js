@@ -189,7 +189,7 @@ const Container = styled.div`
     opacity: 1;
   }
   @media only screen and (max-width: 688px) {
-    width: 360px;
+    width: 100%;
   }
 `;
 

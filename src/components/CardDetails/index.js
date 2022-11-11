@@ -42,6 +42,10 @@ export default CardDetails;
 
 const Container = styled.div`
 margin-top: 52px;
+@media only screen and (max-width: 688px) {
+    margin-top: 100px;
+    margin-bottom: 20px;
+  }
 `;
 
 const CardDetailsContainer = styled.div`

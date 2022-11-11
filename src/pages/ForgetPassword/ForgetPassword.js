@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ForgetPasswordCard from "../../components/ForgetPasswordCard/ForgetPasswordCard";
 import LoginCard from "../../components/LoginCard";
-
+import { IoIosArrowBack } from "react-icons/io";
 const ForgetPassword = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <div className="leftChild">
@@ -17,6 +18,13 @@ const ForgetPassword = () => {
               alt=""
             />
           </Link>
+          <button
+            className="btn-back"
+            type="button"
+            onClick={() => navigate(-1)}
+          >
+            <IoIosArrowBack className="btn" />
+          </button>
           <Title>Forget Password</Title>
         </div>
 
@@ -73,6 +81,19 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
   }
+  .btn-back {
+    border: 0;
+    background: none;
+    display: block;
+   
+    text-align: start;
+    padding-top: 30px;
+    padding-left: 50px;
+  }
+  .btn {
+    color: #0e3746;
+    font-size: 40px;
+  }
   @media only screen and (max-width: 688px) {
     /* display: flex;
    flex-direction: column; */
@@ -105,7 +126,7 @@ const Title = styled.h3`
   text-align: center;
   color: #0e3746;
   margin: 0;
-  padding-top: 80px;
+  padding-top: 40px;
   padding-bottom: 30px;
   padding-left: 0;
   padding-right: 0;

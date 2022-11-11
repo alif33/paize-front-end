@@ -110,6 +110,9 @@ const JoinInfo = () => {
         <Button disabled={disable} type="submit">
           Next
         </Button>
+        <Button2 type="button" onClick={() => navigate(-1)}>
+          Back
+        </Button2>
       </From>
     </Container>
   );
@@ -181,8 +184,9 @@ const Container = styled.div`
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
   }
+  
   @media only screen and (max-width: 688px) {
-    width: 360px;
+    width: 100%;
     .inputDiv.active select {
       width: 50px;
     }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import LoginCard from "../../components/LoginCard";
 
 const Login = () => {
-  return (
+  return ( 
     <Container>
       <div className="leftChild">
         <div style={{ paddingLeft: "20px" }}>
@@ -83,7 +83,7 @@ const Container = styled.div`
     }
 
     .leftChild {
-      width: 72%;
+      width: 100%;
     }
   }
   @media only screen and (min-width: 688px) and (max-width: 992px) {
@@ -93,11 +93,11 @@ const Container = styled.div`
     }
 
     .leftChild {
-      width: 95%;
+      width: 100%;
     }
   }
 `;
-const Title = styled.h3`
+const Title = styled.h3` 
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
@@ -110,7 +110,7 @@ const Title = styled.h3`
   margin-top: 12px;
 
   @media only screen and (max-width: 688px) {
-    margin-left: 60px;
+    margin-left: 0px;
   }
 
   @media only screen and (min-width: 688px) and (max-width: 992px) {

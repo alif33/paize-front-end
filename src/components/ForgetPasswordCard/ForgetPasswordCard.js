@@ -124,9 +124,9 @@ const ForgetPasswordCard = () => {
           Next
         </Button>
         {/* <Link to="/confirm-password"></Link> */}
-        <Button2 type="button" onClick={() => navigate(-1)}>
+        {/* <Button2 type="button" onClick={() => navigate(-1)}>
           Back
-        </Button2>
+        </Button2> */}
       </From>
     </Container>
   );

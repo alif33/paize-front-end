@@ -9,7 +9,7 @@ import MailIcon from "../../svg/MailIcon";
 import LockIcon from "../../svg/LockIocn";
 
 const Register = () => {
-  const {
+  const { 
     register,
     reset,
     handleSubmit,
@@ -115,6 +115,9 @@ const Register = () => {
         </div>
 
         <Button type="submit">Next</Button>
+        <Button2 type="button" onClick={() => navigate(-1)}>
+          Back
+        </Button2>
       </From>
     </Container>
   );
@@ -185,7 +188,7 @@ const Container = styled.div`
     opacity: 1;
   }
   @media only screen and (max-width: 688px) {
-    width: 360px;
+    width: 100%;
   }
 `;
 

@@ -15,7 +15,7 @@ const LoginCard = () => {
   const [disable, setDisable] = useState(false);
   const [check, setCheck] = useState({
     student: false,
-    author: false, 
+    author: false,
   });
   const {
     register,
@@ -155,7 +155,7 @@ const LoginCard = () => {
         </div>
 
         <Button type="submit" disabled={disable}>
-          Next
+          Submit
         </Button>
 
         <p className="new-to">
@@ -240,10 +240,9 @@ const Container = styled.div`
   }
   .new-to a:hover {
     text-decoration: underline;
-  
   }
   @media only screen and (max-width: 688px) {
-    width: 360px;
+    width: 100%;
   }
 `;
 

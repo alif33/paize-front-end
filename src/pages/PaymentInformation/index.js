@@ -100,14 +100,15 @@ const Title = styled.h3`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
+  text-align: center;
   font-size: 35px;
   line-height: 51px;
   color: #0e3746;
   margin: 0;
   margin-top: 12px;
   @media only screen and (max-width: 688px) {
-    margin-left: 25px;
-    
+    margin-left: 0px;
+
     font-size: 25px;
   }
 

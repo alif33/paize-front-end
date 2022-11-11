@@ -5,7 +5,7 @@ import SchoolInfo from "../../components/SchoolInfo";
 
 const SchoolInformation = () => {
   return (
-    <Container> 
+    <Container>
       <div className="leftChild">
         <div style={{ paddingLeft: "20px" }}>
           <Link to="/">
@@ -100,12 +100,13 @@ const Title = styled.h3`
   font-style: normal;
   font-weight: 500;
   font-size: 35px;
+  text-align: center;
   line-height: 51px;
   color: #0e3746;
   margin: 0;
   margin-top: 12px;
   @media only screen and (max-width: 688px) {
-    margin-left: 30px;
+    margin-left: 0px;
     font-size: 30px;
   }
 

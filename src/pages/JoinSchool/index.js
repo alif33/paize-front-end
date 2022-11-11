@@ -6,16 +6,14 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 const EnrollSchool = () => {
   const navigate = useNavigate();
   return (
-    <Container>
+    <Container> 
       <div className="leftChild">
-        <button className="btn-back" type="button" onClick={() => navigate(-1)}>
-          <IoChevronBackCircleOutline className="btn" />
-        </button>
+
 
         <div style={{ paddingLeft: "20px" }}>
           <Link to="/">
             <img
-              src="/img/icon/logo.svg"
+              src="/img/icon/logo.svg" 
               style={{ width: "90px", height: "80px" }}
               alt=""
             />
@@ -96,7 +94,7 @@ const Container = styled.div`
     }
 
     .leftChild {
-      width: 72%;
+      width: 100%;
     }
   }
   @media only screen and (min-width: 688px) and (max-width: 992px) {
@@ -122,7 +120,7 @@ const Title = styled.h3`
   padding: 10px 0px;
   margin-top: 12px;
   @media only screen and (max-width: 688px) {
-    margin-left: 90px;
+    margin-left: 0px;
   }
 
   @media only screen and (min-width: 688px) and (max-width: 992px) {

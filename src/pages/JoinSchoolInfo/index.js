@@ -9,9 +9,6 @@ const JoinSchoolInfo = () => {
   return (
     <Container>
       <div className="leftChild">
-        <button className="btn-back" type="button" onClick={() => navigate(-1)}>
-          <IoChevronBackCircleOutline className="btn" />
-        </button>
         <div style={{ paddingLeft: "20px" }}>
           <Link to="/">
             {" "}
@@ -97,7 +94,7 @@ const Container = styled.div`
     }
 
     .leftChild {
-      width: 72%;
+      width: 100%;
     }
   }
   @media only screen and (min-width: 688px) and (max-width: 992px) {
@@ -117,14 +114,17 @@ const Title = styled.h3`
   font-weight: 500;
   font-size: 35px;
   line-height: 51px;
+  text-align: center;
   color: #0e3746;
   margin: 0;
   padding: 10px 0px;
   margin-top: 12px;
   @media only screen and (max-width: 688px) {
-    margin-left: 7px;
-    margin-right: -20px;
-    font-size: 25px;
+    margin-left: 0px;
+    margin-right: 20px;
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 20px;
   }
 
   @media only screen and (min-width: 688px) and (max-width: 992px) {
