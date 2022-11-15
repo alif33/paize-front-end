@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../../store/users/actions";
+import MessageIcon from "../../../svg/MessageIcon/MessageIcon";
+import MessageFill from "../../../svg/MessageFill";
 
 const UserDropDown = () => {
   const navigate = useNavigate();
@@ -50,7 +52,7 @@ const UserDropDown = () => {
             className="menu-item"
           >
             {" "}
-            <img src="/img/icon/settings.svg" alt="" /> ContactUs
+         <MessageFill/> &nbsp; Inbox 
           </div>
           <div onClick={handleLogout} className="menu-item">
             {" "}

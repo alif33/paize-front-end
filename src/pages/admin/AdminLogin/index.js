@@ -16,7 +16,7 @@ const AdminLogin = () => {
               alt=""
             />
           </Link>
-          <Title>Login</Title>
+          <Title>Log in</Title>
         </div>
 
         <AdminLoginCard />

@@ -67,7 +67,7 @@ const AdminLoginCard = () => {
         </div>
 
         <Button type="submit" disabled={disable}>
-          Next
+          Submit
         </Button>
       </From>
     </Container>
