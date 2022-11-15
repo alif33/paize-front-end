@@ -26,6 +26,7 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
 import Contactus from "./pages/admin/Contactus/Contactus";
+import History from "./pages/History/History";
 
 const App = () => {
   return (
@@ -64,10 +65,14 @@ const App = () => {
         <Route path="/payment-details" element={<PaymentDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
-        <Route path="/update-password/:status/:token" element={<ConfirmPassword />} />
+        <Route
+          path="/update-password/:status/:token"
+          element={<ConfirmPassword />}
+        />
         <Route path="/items" element={<BuyingItem />} />
         <Route path="/add-new-item" element={<AddNewItem />} />
         <Route path="/update-item/:id" element={<UpdateItem />} />
+        <Route path="/history" element={<History />} />
 
         <Route path="/school" element={<SchoolDashboard />} />
         <Route

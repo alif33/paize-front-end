@@ -4,14 +4,11 @@ import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 
 const Table = ({ needs, items, setItems }) => {
-
-  const handleSelect = _id => {
-    if(items.includes(_id)){
-      setItems(items.filter( 
-        item=> item !==_id
-      ))
-    }else{
-      setItems([...items, _id])
+  const handleSelect = (_id) => {
+    if (items.includes(_id)) {
+      setItems(items.filter((item) => item !== _id));
+    } else {
+      setItems([...items, _id]);
     }
   };
 
@@ -27,47 +24,46 @@ const Table = ({ needs, items, setItems }) => {
         </tr>
       </thead>
       <tbody>
-          {needs.map((need, index) => {
-            return (
-              <tr key={index}>
-                <td>
-                  <TableImage>
-                    <div 
-                      onClick={()=>handleSelect(need._id)} 
-                      className="radio-container"
-                    >
-                      {
-                        items.includes(need._id) && (<div className="radio"></div>)
-                      }
-                    </div>
-                    <img src={`${APP_URL}/${need.studentImage}`} alt="" />
-                    <h5>{need.itemName}</h5>
-                  </TableImage>
-                </td>
-                <td>
-                  <p>{need.cost}</p>
-                </td>
-                <td>
-                  <p>{need.studentName}</p>
-                </td>
-                <td>
-                  <span>{need.description}</span>
-                </td>
-
-                <Link to={`/update-item/${need._id}`}>
-                  <td
-                    id={need._id}
-                    name={need._id}
-                    value={need._id}
-                    className=""
-                    style={{ cursor: "pointer" }}
+        {needs.map((need, index) => {
+          console.log("need", need);
+          return (
+            <tr key={index}>
+              <td>
+                <TableImage>
+                  <div
+                    onClick={() => handleSelect(need._id)}
+                    className="radio-container"
                   >
-                    <img src="/img/icon/edit.png" alt="" />
-                  </td>
-                </Link>
-              </tr>
-            );
-          })}
+                    {items.includes(need._id) && <div className="radio"></div>}
+                  </div>
+                  <img src={`${APP_URL}/${need.itemImage}`} alt="" />
+                  <h5>{need.itemName}</h5>
+                </TableImage>
+              </td>
+              <td>
+                <p>{need.cost}</p>
+              </td>
+              <td>
+                <p>{need.studentName}</p>
+              </td>
+              <td>
+                <span>{need.description}</span>
+              </td>
+
+              <Link to={`/update-item/${need._id}`}>
+                <td
+                  id={need._id}
+                  name={need._id}
+                  value={need._id}
+                  className=""
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src="/img/icon/edit.png" alt="" />
+                </td>
+              </Link>
+            </tr>
+          );
+        })}
       </tbody>
     </TableContainer>
   );

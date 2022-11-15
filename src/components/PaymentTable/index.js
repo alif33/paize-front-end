@@ -1,7 +1,13 @@
 import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import { APP_URL } from "../../__lib__/helpers/HttpService";
+import ItemModal from "../ItemModal/ItemModal";
 const PaymentTable = ({ infos }) => {
+  const [modal, setModal] = useState(false);
+  const [itemData, setItemData] = useState(" ");
+  console.log("itemData", itemData);
   return (
     <TableContainer>
       {infos && infos.length > 0 && (
@@ -17,11 +23,20 @@ const PaymentTable = ({ infos }) => {
           </thead>
           <tbody>
             {infos.map((item, index) => {
+              console.log(item);
               return (
                 <tr key={index}>
                   <td>
                     <TableImage>
-                      <img src="/img/icon/dummy-image.png" alt="" />
+                      <img
+                        onClick={() => {
+                          setModal(!modal);
+                          setItemData(item);
+                        }}
+                        src={`${APP_URL}/${item.itemImage}`}
+                        alt=""
+                      />
+
                       <h5>{item.itemName}</h5>
                     </TableImage>
                   </td>
@@ -32,14 +47,16 @@ const PaymentTable = ({ infos }) => {
                     <p>{item.studentName}</p>
                   </td>
                   <td>
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </span>
+                    <span>{item.description.slice(1, 40)}...</span>
                   </td>
                   <td>
-                    <Button disabled={item.status === "UNPAID" ? false : true}>
-                      Pay Now
-                    </Button>
+                    <Link to="/payment">
+                      <Button
+                        disabled={item.status === "UNPAID" ? false : true}
+                      >
+                        Pay Now
+                      </Button>
+                    </Link>
                   </td>
                 </tr>
               );
@@ -48,6 +65,15 @@ const PaymentTable = ({ infos }) => {
         </>
       )}
       {infos && infos.length === 0 && <h1>You have no Data</h1>}
+
+      {modal && (
+        <ItemModal
+          setItemData={setItemData}
+          itemData={itemData}
+          setModal={setModal}
+          modal={modal}
+        />
+      )}
     </TableContainer>
   );
 };
@@ -111,9 +137,9 @@ const TableContainer = styled.table`
 
 const TableImage = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
+  margin-left: 30px;
   input {
     width: 25px;
     height: 25px;
@@ -130,6 +156,7 @@ const TableImage = styled.div`
     font-size: 18px;
     line-height: 36px;
     color: #0e3746;
+    margin-left: 10px;
   }
 `;
 const Button = styled.button`
