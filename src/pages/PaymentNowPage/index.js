@@ -49,7 +49,7 @@ h3{
     color: #0E3746;
     margin: 0;
     text-transform: capitalize;
-    margin: 8px 0;
+    margin: 20px 0;
 }
 img{}
 
@@ -61,4 +61,8 @@ width: 80%;
 margin: auto;
 grid-template-columns: 70% 30%;
 column-gap: 5%;
+@media only screen and (max-width: 688px){
+    grid-template-columns: 100% ;
+    column-gap: 10%;
+}
 `;

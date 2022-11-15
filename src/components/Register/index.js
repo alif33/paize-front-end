@@ -115,7 +115,7 @@ const Register = () => {
           </div>
         </div>
 
-        <Button type="submit">Next</Button>
+        <Button type="submit">Submit</Button>
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back
         </Button2>
@@ -187,6 +187,9 @@ const Container = styled.div`
   .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
+  }
+  @media only screen and (max-width: 688px) {
+    width: 100%;
   }
 `;
 

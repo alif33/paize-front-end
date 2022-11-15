@@ -141,6 +141,7 @@ const Container = styled.div`
     font-weight: 500;
     font-size: 30px;
     line-height: 42px;
+    text-align: center;
     color: #0e3746;
     text-decoration: none;
     text-align: center;
@@ -181,7 +182,7 @@ const Container = styled.div`
     border: 1px solid #2291f1;
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     line-height: 36px;
     color: #111;
@@ -225,11 +226,15 @@ const Container = styled.div`
   }
 `;
 const From = styled.form`
-  width: 40%;
+  width: 50%;
   height: 70%;
   margin: auto;
   .contact-from {
     display: grid;
+  }
+
+  @media only screen and (max-width: 688px) {
+    width: 85%;
   }
 `;
 

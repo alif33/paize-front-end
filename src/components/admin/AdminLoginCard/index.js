@@ -11,7 +11,7 @@ import LockIcon from "../../../svg/LockIocn";
 const AdminLoginCard = () => {
   const [disable, setDisable] = useState(false);
   const {
-    register,
+    register,  
     handleSubmit,
     watch,
     formState: { errors },
@@ -190,5 +190,5 @@ const Button = styled.button`
   border: none;
   margin: 10px 0;
   padding: 5px 0;
-  margin-top: 100px;
+  margin-top: 50px;
 `;

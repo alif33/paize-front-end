@@ -179,6 +179,10 @@ const Title = styled.h3`
   margin: 0;
   margin-top: 12px;
   padding: 25px 0px 10px 150px;
+  @media only screen and (max-width: 688px) {
+    padding: 0;
+    padding-left: 50px;
+  }
 `;
 
 const Form = styled.form`
@@ -202,6 +206,9 @@ const Form = styled.form`
     transform: translate(-50%, 0);
     padding: 0 17px;
     font-size: 17px;
+  }
+  @media only screen and (max-width: 688px) {
+    width: 100%;
   }
 `;
 

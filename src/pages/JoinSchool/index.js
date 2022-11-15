@@ -1,20 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RegisterStudent from "../../components/RegisterStudent";
-
+import { IoChevronBackCircleOutline } from "react-icons/io5";
 const EnrollSchool = () => {
-  return (
-    <Container>
+  const navigate = useNavigate();
+  return ( 
+    <Container> 
       <div className="leftChild">
+
+
         <div style={{ paddingLeft: "20px" }}>
           <Link to="/">
             <img
-              src="/img/icon/logo.svg"
+              src="/img/icon/logo.svg" 
               style={{ width: "90px", height: "80px" }}
               alt=""
             />
           </Link>
+
           <Title>Register</Title>
         </div>
         <RegisterStudent />
@@ -51,6 +55,16 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
   }
+  .btn-back {
+    border: 0;
+    background: none;
+    display: inline-block;
+    text-align: start;
+    padding-left: 10px;
+  }
+  .btn {
+    font-size: 40px;
+  }
   .rightChild {
     position: fixed;
     top: 0;
@@ -71,6 +85,28 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
   }
+  @media only screen and (max-width: 688px) {
+    /* display: flex;
+   flex-direction: column; */
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 100%;
+    }
+  }
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 95%;
+    }
+  }
 `;
 const Title = styled.h3`
   font-family: "Poppins";
@@ -78,8 +114,16 @@ const Title = styled.h3`
   font-weight: 500;
   font-size: 35px;
   line-height: 51px;
+  text-align: center;
   color: #0e3746;
   margin: 0;
   padding: 10px 0px;
   margin-top: 12px;
+  @media only screen and (max-width: 688px) {
+    margin-left: 0px;
+  }
+
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    margin-left: 300px;
+  }
 `;

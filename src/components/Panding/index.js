@@ -11,7 +11,7 @@ const Panding = () => {
                     Your enrollment is pending verification
                 </h1>
             </div>
-            <Link to="/contact">Contact Us</Link>
+            <Link to="/contact-us">Contact Us</Link>
         </Container>
     );
 };
@@ -62,6 +62,11 @@ text-decoration: none;
 display: inline-block;
     padding: 6px 0;
 /* margin-top: 128px !important; */
+}
+@media only screen and (max-width: 688px){
+    a{
+        width: 50%;
+    }
 }
 
 `;

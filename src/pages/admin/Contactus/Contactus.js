@@ -32,7 +32,9 @@ const Contactus = () => {
   console.log("contactMessage", contactMessages);
   return (
     <Container>
-      <Navbar />
+      <div className="admin-navbar">
+        <Navbar />
+      </div>
       <Title>Massage</Title>
       <TableContainer>
         <thead>
@@ -70,6 +72,11 @@ export default Contactus;
 const Container = styled.div`
   width: 92%;
   margin: auto;
+  @media only screen and (max-width: 688px) {
+    .admin-navbar {
+      width: 600px;
+    }
+  }
 `;
 const Title = styled.h3`
   font-family: "Poppins";

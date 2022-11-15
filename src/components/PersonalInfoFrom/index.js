@@ -140,9 +140,9 @@ const From = styled.form`
     grid-template-columns: 48% 48%;
     column-gap: 4%;
   }
-.icon{
+  .icon {
     margin-left: 30px;
-}
+  }
   .inputsConatiner {
     display: flex;
     align-items: center;
@@ -176,7 +176,7 @@ const From = styled.form`
     font-size: 17px;
     line-height: 36px;
     color: #111;
-    padding-left: -20px
+    padding-left: 20px;
     padding: 5px;
 
     width: 100%;
@@ -192,6 +192,21 @@ const From = styled.form`
   .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
     opacity: 1;
+  }
+  @media only screen and (max-width: 688px) {
+    .row {
+      display: grid;
+      grid-template-columns: 90%;
+      column-gap: 10%;
+    }
+    .icon {
+      margin-right: 20px;
+    }
+  }
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    .icon {
+      margin-right: 20px;
+    }
   }
 `;
 

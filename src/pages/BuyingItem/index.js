@@ -140,6 +140,11 @@ const Button = styled.div`
     text-decoration: none;
     padding: 12px 24px;
   }
+  @media only screen and (max-width: 688px) {
+    a {
+      font-size: 6px;
+    }
+  }
 `;
 const ArrowRight = styled.div`
   position: fixed;

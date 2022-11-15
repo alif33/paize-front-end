@@ -9,7 +9,7 @@ const UpdateInfo = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
-  return (
+  return ( 
     <>
       <Navbar />
       <Container>
@@ -91,6 +91,12 @@ const TapGroup = styled.div`
     color: #fff;
     background: #2291f1;
   }
+  @media only screen and (max-width: 688px) {
+    a {
+      display: block;
+      margin: 10px;
+    }
+  }
 `;
 
 const ProfileSction = styled.div`
@@ -104,6 +110,11 @@ const ProfileSction = styled.div`
     margin: 0;
     margin-top: 28px;
   }
+  @media only screen and (max-width: 688px) {
+    p {
+      font-size: 12px;
+    }
+  }
 `;
 const ProfileInfo = styled.div`
   display: flex;
@@ -114,6 +125,10 @@ const UserImage = styled.img`
   width: 85px;
   height: 85px;
   border-radius: 50%;
+  @media only screen and (max-width: 688px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 const NameEmail = styled.div`
   margin: 0 20px;
@@ -135,6 +150,14 @@ const NameEmail = styled.div`
     color: #2291f1;
     margin: 0;
     margin-top: 12px;
+  }
+  @media only screen and (max-width: 688px) {
+    h4 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 15px;
+    }
   }
 `;
 const UpButton = styled.button`
@@ -158,5 +181,10 @@ const UpButton = styled.button`
     height: 100%;
     cursor: pointer;
     opacity: 0;
+  }
+  @media only screen and (max-width: 688px){
+    font-size: 17px;
+    width: 100px !important;
+    padding: 3px 0;
   }
 `;

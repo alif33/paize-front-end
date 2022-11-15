@@ -155,7 +155,7 @@ const LoginCard = () => {
         </div>
 
         <Button type="submit" disabled={disable}>
-          Next
+          Submit
         </Button>
 
         <p className="new-to">
@@ -240,6 +240,9 @@ const Container = styled.div`
   }
   .new-to a:hover {
     text-decoration: underline;
+  }
+  @media only screen and (max-width: 688px) {
+    width: 100%;
   }
 `;
 

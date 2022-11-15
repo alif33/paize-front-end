@@ -74,6 +74,28 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
   }
+  @media only screen and (max-width: 688px) {
+    /* display: flex;
+   flex-direction: column; */
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 100%;
+    }
+  }
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    flex-direction: column;
+    .rightChild {
+      display: none;
+    }
+
+    .leftChild {
+      width: 100%;
+    }
+  }
 `;
 const Title = styled.h3`
   font-family: "Poppins";
