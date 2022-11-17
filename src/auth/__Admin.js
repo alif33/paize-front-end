@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-const AdminRoute = ({ children })=> {
+const __Admin = ({ children })=> {
     const { admin } = useSelector(state=>state);
     const { auth } = admin;
-
+    
     if ( !auth.isAdmin ) {
         return <Navigate to="/admin/login" replace />;
     }
@@ -13,4 +13,4 @@ const AdminRoute = ({ children })=> {
     return children;
   }
 
-export default AdminRoute;
+export default __Admin;

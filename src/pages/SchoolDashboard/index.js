@@ -60,7 +60,7 @@ const SchoolDashboard = () => {
             { __u__.status==="PENDING" && <Panding />}
 
             {__u__.status==="APPROVED" && <Container>
-                <Title>School DashBoard</Title>
+                <Title>School Dashboard</Title>
                 <TableNavList>
                     <li onClick={ () => setNavLink("all") } className={ navLink === "all" ? "active" : "all" } >All(<span>{ students && students.length }</span>)</li>
                     <li onClick={ () => setNavLink("pending") } className={ navLink === "pending" ? "active" : "all" }>Pending(<span>{ studentsData?.pending && studentsData.pending.length }</span>)</li>
@@ -68,15 +68,16 @@ const SchoolDashboard = () => {
                     <li onClick={ () => setNavLink("rejected") } className={ navLink === "rejected" ? "active" : "all" }>Rejected(<span>{ studentsData?.rejected && studentsData.rejected.length }</span>)</li>
                 </TableNavList>
                 {
-                    navLink ==="all" ? <StudentTable 
-                                        students={ students } 
-                                        setStudents={setStudents}
-                                        setStudentsData={setStudentsData}
-                                        /> : <StudentTable 
-                                        students={ studentsData[navLink] } 
-                                        setStudents={setStudents}
-                                        setStudentsData={setStudentsData}
-                                        />
+                    navLink ==="all" 
+                    ? <StudentTable 
+                        students={ students } 
+                        setStudents={setStudents}
+                        setStudentsData={setStudentsData}
+                        /> : <StudentTable 
+                        students={ studentsData[navLink] } 
+                        setStudents={setStudents}
+                        setStudentsData={setStudentsData}
+                    />
                 }
 
             </Container>}
@@ -122,4 +123,5 @@ const Title = styled.h3`
     font-size: 34px;
     line-height: 62px;
     color: #0E3746;
+    padding-top: 15px;
 `;

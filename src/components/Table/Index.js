@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 
 const Table = ({ needs, items, setItems }) => {
+  
   const handleSelect = (_id) => {
     if (items.includes(_id)) {
       setItems(items.filter((item) => item !== _id));
@@ -25,7 +26,6 @@ const Table = ({ needs, items, setItems }) => {
       </thead>
       <tbody>
         {needs.map((need, index) => {
-          console.log("need", need);
           return (
             <tr key={index}>
               <td>
@@ -137,6 +137,7 @@ const TableImage = styled.div`
     border: 1px solid #2291f1;
     position: relative;
   }
+
   .radio {
     top: 2px;
     left: 2px;

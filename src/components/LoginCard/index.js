@@ -159,7 +159,7 @@ const LoginCard = () => {
         </Button>
 
         <p className="new-to">
-          New to Student Book? &nbsp;<Link to="">Register</Link>
+          New to Student Book? &nbsp;<Link to="/">Register</Link>
         </p>
       </From>
     </Container>

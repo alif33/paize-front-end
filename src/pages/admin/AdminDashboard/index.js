@@ -40,7 +40,7 @@ const AdminDashboard = () => {
       <DotLoader color="#3b9df1" loading={loading} cssOverride={override} />
       {!loading && schools && schools.length > 0 && (
         <Container>
-          <Title>Admin DashBoard</Title>
+          <Title>Admin Dashboard</Title>
           <TableNavList>
             <li
               onClick={() => setNavLink("all")}
@@ -141,7 +141,6 @@ const Title = styled.h3`
   line-height: 62px;
   color: #0e3746;
   padding: 30px 0px 10px 0px;
-  text-align: center;
 `;
 const ResNav = styled.div`
   @media only screen and (max-width: 688px) {

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { adminLogout } from "../../../store/admins/actions";
+import { LogOut } from "../../../store/admins/actions";
 import UserDropDown from "./UserDropDown";
 
 const Navbar = () => {
@@ -12,7 +12,7 @@ const Navbar = () => {
   const { auth } = admin;
 
   const handleLogout = () => {
-    dispatch(adminLogout());
+    dispatch(LogOut());
     navigate("/");
   };
 

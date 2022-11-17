@@ -43,8 +43,7 @@ const BuyingItem = () => {
       }
     });
   };
-  console.log(__u__.token);
-  console.log("needs-needs", needs);
+
   return (
     <div>
       <Navbar />
@@ -100,6 +99,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   h3 {
     font-family: "Poppins";
     font-style: normal;

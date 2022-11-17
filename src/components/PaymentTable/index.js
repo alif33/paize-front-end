@@ -1,13 +1,39 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 import styled from "styled-components";
-import { APP_URL } from "../../__lib__/helpers/HttpService";
+import { APP_URL, authPost } from "../../__lib__/helpers/HttpService";
 import ItemModal from "../ItemModal/ItemModal";
-const PaymentTable = ({ infos }) => {
+
+const PaymentTable = ({ infos, items, setItems, amount, setAmount  }) => {
   const [modal, setModal] = useState(false);
   const [itemData, setItemData] = useState(" ");
-  console.log("itemData", itemData);
+  const { users } = useSelector(state=>state);
+  const { __u__ } = users;
+
+  const handleSelect = (_id, cost) => {
+    if (items.includes(_id)) {
+      setAmount(amount - cost);
+      setItems(items.filter((item) => item !== _id));
+    } else {
+      setAmount(amount + cost);
+      setItems([...items, _id]);
+    }
+  };
+
+  const payNow = _stripe =>{
+    authPost("/pay",{
+      _stripe,
+      amount: 1000
+    }, __u__.token)
+    .then(res=>{
+      console.log(res);
+    })
+
+  } 
+
   return (
     <TableContainer>
       {infos && infos.length > 0 && (
@@ -18,16 +44,24 @@ const PaymentTable = ({ infos }) => {
               <th>Cost</th>
               <th>Student</th>
               <th>Description</th>
-              <th></th>
+              <th>{
+                 !items.length > 0? "Action": ""
+                }</th>
             </tr>
           </thead>
           <tbody>
             {infos.map((item, index) => {
-              console.log(item);
+
               return (
                 <tr key={index}>
                   <td>
                     <TableImage>
+                      <div
+                        onClick={() => handleSelect(item._id, item.cost)}
+                        className="radio-container"
+                      >
+                        {items.includes(item._id) && <div className="radio"></div>}
+                      </div>
                       <img
                         onClick={() => {
                           setModal(!modal);
@@ -50,13 +84,25 @@ const PaymentTable = ({ infos }) => {
                     <span>{item.description.slice(1, 40)}...</span>
                   </td>
                   <td>
-                    <Link to="/payment">
-                      <Button
-                        disabled={item.status === "UNPAID" ? false : true}
-                      >
-                        Pay Now
-                      </Button>
-                    </Link>
+                      {
+                        item.status === "PAID" || items.length > 0?(
+                          <></>
+                        ): (
+                          <Button>
+                            <StripeCheckout
+                              stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
+                              label="Pay Now"
+                              name="Pay With Credit Card"
+                              billingAddress
+                              shippingAddress
+                              amount={ item.cost*100 }
+                              description={`Your total is $${ item.cost }`}
+                              token={payNow}
+                            />
+                          </Button>
+                        )
+                      }
+                     
                   </td>
                 </tr>
               );
@@ -138,17 +184,36 @@ const TableContainer = styled.table`
 const TableImage = styled.div`
   display: flex;
   align-items: center;
-
   margin-left: 30px;
+
+  .radio-container {
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #2291f1;
+    position: relative;
+  }
+
+  .radio {
+    top: 2px;
+    left: 2px;
+    padding: 6px;
+    border-radius: 6px;
+    background: #2291f1;
+    position: absolute;
+  }
+
   input {
     width: 25px;
     height: 25px;
   }
+
   img {
     width: 62px;
     height: 62px;
     border-radius: 7px;
   }
+
   h5 {
     font-family: "Poppins";
     font-style: normal;
@@ -159,16 +224,11 @@ const TableImage = styled.div`
     margin-left: 10px;
   }
 `;
-const Button = styled.button`
-  background: #2291f1;
-  border-radius: 5px;
+
+const Button = styled.div`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
-  line-height: 30px;
-  color: #ffffff;
-  border: none;
-  padding: 7px 17px;
-  margin-top: 9px;
+  cursor: pointer;
 `;

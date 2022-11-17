@@ -18,7 +18,8 @@ import JoinSchool from "./pages/JoinSchool";
 import JoinSchoolInfo from "./pages/JoinSchoolInfo";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
-import AdminRoute from "./auth/AdminRoute";
+import Admin from "./auth/__Admin";
+import Auth from "./auth/__Auth";
 import Joined from "./pages/Joined";
 import UpdateItem from "./components/UpdateItem/UpdateItem";
 import About from "./pages/About/About";
@@ -29,6 +30,7 @@ import Contactus from "./pages/admin/Contactus/Contactus";
 import History from "./pages/History/History";
 
 const App = () => {
+  console.log(process.env.REACT_APP_API_KEY);
   return (
     <BrowserRouter>
       <Routes>
@@ -69,12 +71,24 @@ const App = () => {
           path="/update-password/:status/:token"
           element={<ConfirmPassword />}
         />
-        <Route path="/items" element={<BuyingItem />} />
-        <Route path="/add-new-item" element={<AddNewItem />} />
+        <Route path="/items" element={
+          <Auth role="AUTHOR">
+            <BuyingItem />
+          </Auth>
+        }/>
+        <Route path="/add-new-item" element={
+          <Auth role="AUTHOR">
+            <AddNewItem />
+          </Auth>
+        }/>
         <Route path="/update-item/:id" element={<UpdateItem />} />
         <Route path="/history" element={<History />} />
 
-        <Route path="/school" element={<SchoolDashboard />} />
+        <Route path="/school" element={
+          <Auth role="AUTHOR">
+            <SchoolDashboard />
+          </Auth>
+        }/>
         <Route
           path="/school-dashboard-amount"
           element={<SchoolDashboardAmount />}
@@ -84,17 +98,18 @@ const App = () => {
         <Route path="/payment" element={<PaymentNowPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/admin/contact-us" element={<Contactus />} />
+        <Route path="/admin/contact-us" element={
+          <Admin>
+            <Contactus />
+          </Admin>
+        }/>
 
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route
-          path="/admin/dashboard"
-          element={
-            <AdminRoute>
+        <Route path="/admin/dashboard" element={
+            <Admin>
               <AdminDashboard />
-            </AdminRoute>
-          }
-        />
+            </Admin>
+        }/>
       </Routes>
     </BrowserRouter>
   );

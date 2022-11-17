@@ -4,7 +4,7 @@ import Popup from "reactjs-popup";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logOut } from "../../../store/users/actions";
+import { LogOut } from "../../../store/admins/actions";
 import MessageIcon from "../../../svg/MessageIcon/MessageIcon";
 import MessageFill from "../../../svg/MessageFill";
 
@@ -13,7 +13,7 @@ const UserDropDown = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logOut());
+    dispatch(LogOut());
     navigate("/");
   };
 

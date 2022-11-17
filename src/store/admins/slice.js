@@ -12,7 +12,7 @@ export const adminSlice = createSlice({
     },
     reducers: {
 
-        adminLogin: (state, action) => {
+        LogedIn: (state, action) => {
             return {
                 ...state,
                 auth: {
@@ -23,7 +23,7 @@ export const adminSlice = createSlice({
 
         },
 
-        adminLogout: (state, action) => {
+        LogOut: (state, action) => {
             return {
                 ...state,
                 auth: {
