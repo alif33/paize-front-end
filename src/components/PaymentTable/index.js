@@ -7,10 +7,10 @@ import styled from "styled-components";
 import { APP_URL, authPost } from "../../__lib__/helpers/HttpService";
 import ItemModal from "../ItemModal/ItemModal";
 
-const PaymentTable = ({ infos, items, setItems, amount, setAmount  }) => {
+const PaymentTable = ({ infos, items, setItems, amount, setAmount }) => {
   const [modal, setModal] = useState(false);
   const [itemData, setItemData] = useState(" ");
-  const { users } = useSelector(state=>state);
+  const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
   const handleSelect = (_id, cost) => {
@@ -23,16 +23,18 @@ const PaymentTable = ({ infos, items, setItems, amount, setAmount  }) => {
     }
   };
 
-  const payNow = _stripe =>{
-    authPost("/pay",{
-      _stripe,
-      amount: 1000
-    }, __u__.token)
-    .then(res=>{
+  const payNow = (_stripe) => {
+    authPost(
+      "/pay",
+      {
+        _stripe,
+        amount: 1000,
+      },
+      __u__.token
+    ).then((res) => {
       console.log(res);
-    })
-
-  } 
+    });
+  };
 
   return (
     <TableContainer>
@@ -44,14 +46,11 @@ const PaymentTable = ({ infos, items, setItems, amount, setAmount  }) => {
               <th>Cost</th>
               <th>Student</th>
               <th>Description</th>
-              <th>{
-                 !items.length > 0? "Action": ""
-                }</th>
+              <th>{!items.length > 0 ? "Action" : ""}</th>
             </tr>
           </thead>
           <tbody>
             {infos.map((item, index) => {
-
               return (
                 <tr key={index}>
                   <td>
@@ -60,7 +59,9 @@ const PaymentTable = ({ infos, items, setItems, amount, setAmount  }) => {
                         onClick={() => handleSelect(item._id, item.cost)}
                         className="radio-container"
                       >
-                        {items.includes(item._id) && <div className="radio"></div>}
+                        {items.includes(item._id) && (
+                          <div className="radio"></div>
+                        )}
                       </div>
                       <img
                         onClick={() => {
@@ -84,25 +85,22 @@ const PaymentTable = ({ infos, items, setItems, amount, setAmount  }) => {
                     <span>{item.description.slice(1, 40)}...</span>
                   </td>
                   <td>
-                      {
-                        item.status === "PAID" || items.length > 0?(
-                          <></>
-                        ): (
-                          <Button>
-                            <StripeCheckout
-                              stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
-                              label="Pay Now"
-                              name="Pay With Credit Card"
-                              billingAddress
-                              shippingAddress
-                              amount={ item.cost*100 }
-                              description={`Your total is $${ item.cost }`}
-                              token={payNow}
-                            />
-                          </Button>
-                        )
-                      }
-                     
+                    {item.status === "PAID" || items.length > 0 ? (
+                      <></>
+                    ) : (
+                      <Button>
+                        <StripeCheckout
+                          stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
+                          label="Pay Now"
+                          name="Pay With Credit Card"
+                          billingAddress
+                          shippingAddress
+                          amount={item.cost * 100}
+                          description={`Your total is $${item.cost}`}
+                          token={payNow}
+                        />
+                      </Button>
+                    )}
                   </td>
                 </tr>
               );
@@ -192,6 +190,7 @@ const TableImage = styled.div`
     cursor: pointer;
     border: 1px solid #2291f1;
     position: relative;
+    margin-right: 10px;
   }
 
   .radio {
