@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import styled from "styled-components";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-const Invoice = () => {
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { __getData } from "../../__lib__/helpers/HttpService";
+import { useDispatch, useSelector } from "react-redux";
+const Receipt = () => {
+  const { _id } = useParams();
+  const [paymentsData, setPaymentsData] = useState();
+  const { users } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { __u__ } = users;
+
+  useEffect(() => {
+    console.log("id", _id);
+    __getData(`/payment?_id=${_id}`, __u__.token).then((res) => {
+      console.log(res);
+    });
+  }, []);
   const handlePrint = () => {
     const input = document.getElementById("divToPrint");
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF();
-      pdf.addImage(imgData, "JPEG", 35, 10);
+      const pdf = new jsPDF({
+        unit: "px",
+        format: [700, 550],
+      });
+
+      pdf.addImage(imgData, "JPEG", 50, 50);
       // pdf.output('dataurlnewwindow');
-      pdf.save("invoice.pdf");
+      pdf.save("receipt.pdf");
     });
   };
+  console.log(__u__);
   return (
     <div>
       <Navbar />
@@ -21,7 +42,7 @@ const Invoice = () => {
         <div className="invoice-top">
           <div id="divToPrint" className="invoice">
             <div className="invoice-data">
-              <h5>Invoice</h5>
+              <h5>Receipt</h5>
               <p>#dsfhisfc506160</p>
             </div>
             {/* <div className="invoice-header">
@@ -75,25 +96,31 @@ const Invoice = () => {
                   </div>
                 </div>
               </div>
-              <div className="invoice-btn">
-                <button onClick={handlePrint}>Download PDF</button>
-              </div>
+              {/*  */}
             </div>
 
             <div className="invoice-bal">
               <div>
-                <h3>Total</h3>
-                <p>$5000</p>
+                <h3>
+                  Total <span>5000$</span>
+                </h3>
+                <p></p>
               </div>
             </div>
           </div>
         </div>
       </Container>
+      <Button>
+        <div className="invoice-btn">
+          {" "}
+          <button onClick={handlePrint}>Download PDF</button>
+        </div>
+      </Button>
     </div>
   );
 };
 
-export default Invoice;
+export default Receipt;
 const Container = styled.div`
   position: static;
   top: 15%;
@@ -104,7 +131,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 50px;
   }
   .invoice {
     position: relative;
@@ -127,22 +154,24 @@ const Container = styled.div`
   }
   .invoice-bal {
     position: absolute;
-    background-color: #404551;
-    width: 300px;
-    height: 100px;
-    border-radius: 10px;
-    top: 20%;
-    left: 17%;
+    background-color: #74aff8;
+    width: 270px;
+    height: 70px;
+    border-radius: 5px;
+    top: 23%;
+    left: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    border: 2px solid #f8fafe;
   }
 
   .invoice-bal h3 {
     font-weight: 500;
     font-size: 30px;
     color: white;
+    text-transform: uppercase;
   }
   .invoice-bal p {
     font-size: 25px;
@@ -152,11 +181,12 @@ const Container = styled.div`
     position: absolute;
     text-align: center;
     top: 5%;
-    left: 35%;
+    left: 43%;
   }
   .invoice-data h5 {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 500;
+    text-transform: uppercase;
   }
   .invoice-details {
     display: flex;
@@ -238,11 +268,15 @@ const Container = styled.div`
     margin-right: 50px;
     font-weight: 500;
   }
+`;
+
+const Button = styled.div`
   .invoice-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   .invoice-btn button {
     width: 250px;

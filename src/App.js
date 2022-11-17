@@ -28,7 +28,8 @@ import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
 import Contactus from "./pages/admin/Contactus/Contactus";
 import History from "./pages/History/History";
-import Invoice from "./pages/Invoice/Invoice";
+import Invoice from "./pages/Receipt/Receipt";
+import Receipt from "./pages/Receipt/Receipt";
 
 const App = () => {
   console.log(process.env.REACT_APP_API_KEY);
@@ -118,7 +119,7 @@ const App = () => {
         />
 
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/invoice" element={<Invoice />} />
+        <Route path="/receipt/:_id" element={<Receipt />} />
         <Route
           path="/admin/dashboard"
           element={
