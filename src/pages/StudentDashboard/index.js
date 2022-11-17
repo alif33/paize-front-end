@@ -11,7 +11,7 @@ import styled from "styled-components";
 import Navbar from "../../components/Navbar";
 import DotLoader from "react-spinners/DotLoader";
 import PaymentTable from "../../components/PaymentTable";
-import { __getData } from "../../__lib__/helpers/HttpService";
+import { authPost, __getData } from "../../__lib__/helpers/HttpService";
 import { Link } from "react-router-dom";
 
 
@@ -32,31 +32,33 @@ const StudentDashboard = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
-  useEffect(() => {
-    __getData("/student/items", __u__.token).then((res) => {
+  const fetchItems = ()=>{
+    __getData(`/student/items?_school=${ __u__.info._school }&status=UNPAID`, __u__.token).then((res) => {
       setLoading(false);
       setInfos(res);
     });
+  }
+
+  useEffect(() => {
+   fetchItems();
   }, []);
 
 
-  const payNow = async token => {
-    try {
-      console.log(token);
-      // const response = await axios({
-      //   url: 'http://localhost:5000/payment',
-      //   method: 'post',
-      //   data: {
-      //     amount: product.price * 100,
-      //     token,
-      //   },
-      // });
-      // if (response.status === 200) {
-      //   handleSuccess();
-      // }
-    } catch (error) {
-      console.log(error);
-    }
+  const payNow = async _stripe => {
+    authPost(
+      "/pay",
+      {
+        _stripe,
+        amount,
+        needs: items,
+        school: __u__.info._school
+      },
+      __u__.token
+    ).then((res) => {
+      if(res.success){
+        fetchItems();
+      }
+    });
   };
 
 
@@ -103,6 +105,7 @@ const StudentDashboard = () => {
             setItems={setItems}
             amount={amount}
             setAmount={setAmount}
+            fetchItems={fetchItems}
           />
         }
       </Container>
