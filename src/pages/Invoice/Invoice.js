@@ -109,7 +109,7 @@ const Container = styled.div`
   .invoice {
     position: relative;
     margin: 30px 0;
-    width: 450px;
+    width: 650px;
     height: 680px;
     border: 0;
     border-radius: 30px;
