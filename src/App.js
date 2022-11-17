@@ -28,6 +28,7 @@ import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
 import Contactus from "./pages/admin/Contactus/Contactus";
 import History from "./pages/History/History";
+import Invoice from "./pages/Invoice/Invoice";
 
 const App = () => {
   console.log(process.env.REACT_APP_API_KEY);
@@ -71,24 +72,33 @@ const App = () => {
           path="/update-password/:status/:token"
           element={<ConfirmPassword />}
         />
-        <Route path="/items" element={
-          <Auth role="AUTHOR">
-            <BuyingItem />
-          </Auth>
-        }/>
-        <Route path="/add-new-item" element={
-          <Auth role="AUTHOR">
-            <AddNewItem />
-          </Auth>
-        }/>
+        <Route
+          path="/items"
+          element={
+            <Auth role="AUTHOR">
+              <BuyingItem />
+            </Auth>
+          }
+        />
+        <Route
+          path="/add-new-item"
+          element={
+            <Auth role="AUTHOR">
+              <AddNewItem />
+            </Auth>
+          }
+        />
         <Route path="/update-item/:id" element={<UpdateItem />} />
         <Route path="/history" element={<History />} />
 
-        <Route path="/school" element={
-          <Auth role="AUTHOR">
-            <SchoolDashboard />
-          </Auth>
-        }/>
+        <Route
+          path="/school"
+          element={
+            <Auth role="AUTHOR">
+              <SchoolDashboard />
+            </Auth>
+          }
+        />
         <Route
           path="/school-dashboard-amount"
           element={<SchoolDashboardAmount />}
@@ -98,18 +108,25 @@ const App = () => {
         <Route path="/payment" element={<PaymentNowPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/admin/contact-us" element={
-          <Admin>
-            <Contactus />
-          </Admin>
-        }/>
+        <Route
+          path="/admin/contact-us"
+          element={
+            <Admin>
+              <Contactus />
+            </Admin>
+          }
+        />
 
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={
+        <Route path="/invoice" element={<Invoice />} />
+        <Route
+          path="/admin/dashboard"
+          element={
             <Admin>
               <AdminDashboard />
             </Admin>
-        }/>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

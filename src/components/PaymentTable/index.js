@@ -7,9 +7,17 @@ import styled from "styled-components";
 import { APP_URL, authPost } from "../../__lib__/helpers/HttpService";
 import ItemModal from "../ItemModal/ItemModal";
 
-const PaymentTable = ({ infos, items, setItems, amount, setAmount, fetchItems }) => {
+const PaymentTable = ({
+  infos,
+  items,
+  setItems,
+  amount,
+  setAmount,
+  fetchItems,
+}) => {
   const [modal, setModal] = useState(false);
   const [itemData, setItemData] = useState(" ");
+
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
@@ -23,14 +31,14 @@ const PaymentTable = ({ infos, items, setItems, amount, setAmount, fetchItems })
     }
   };
 
-  const payNow = (_stripe, _id ) => {
+  const payNow = (_stripe, _id) => {
     authPost(
       "/pay",
       {
         _stripe,
         amount,
         needs: [_id],
-        school: __u__.info._school
+        school: __u__.info._school,
       },
       __u__.token
     ).then((res) => {
@@ -100,7 +108,7 @@ const PaymentTable = ({ infos, items, setItems, amount, setAmount, fetchItems })
                           shippingAddress
                           amount={item.cost * 100}
                           description={`Your total is $${item.cost}`}
-                          token={e=>payNow(e, item._id)}
+                          token={(e) => payNow(e, item._id)}
                         />
                       </Button>
                     )}

@@ -28,20 +28,7 @@ const ItemModal = ({ itemData, setItemData, setModal, modal }) => {
           </div>
         </div>
 
-        <div className="item-card">
-          <p className="item-card-text">
-            Payment:{" "}
-            <span
-              className={
-                itemData?.status === "UNPAID"
-                  ? "payment-unpaid"
-                  : "payment-paid"
-              }
-            >
-              {itemData.status}
-            </span>
-          </p>
-        </div>
+      
         <p className="item-description">
           <span>Description: </span>
           {itemData.description}

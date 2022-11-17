@@ -12,7 +12,7 @@ const Navbar = () => {
   const { auth } = admin;
 
   const handleLogout = () => {
-    dispatch(LogOut());
+    dispatch(LogOut()); 
     navigate("/");
   };
 
