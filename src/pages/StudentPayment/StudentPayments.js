@@ -11,18 +11,17 @@ const StudentPayment = () => {
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState();
   const [payments, setPayments] = useState([]);
-  const { users } = useSelector(state=>state);
+  const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
-  useEffect(()=>{
-    __getData("student/payments", __u__.token)
-      .then(res=>{
-        if(res){
-          setPayments(res);
-          setLoading(false);
-        }
-      })
-  }, [])
+  useEffect(() => {
+    __getData("student/payments", __u__.token).then((res) => {
+      if (res) {
+        setPayments(res);
+        setLoading(false);
+      }
+    });
+  }, []);
 
   return (
     <div>
@@ -37,45 +36,46 @@ const StudentPayment = () => {
           <div className="data-header">
             <p className="">DATE</p>
             <p className="ml">STATUS</p>
-            <p className="ml-2">TOTAL</p>
+            <p className="ml-2 position">TOTAL</p>
           </div>
-          { !loading && payments.map((payment, index)=>(
-            <>
-            <div className="data-main">
-              <p>#88698</p>
-              <p>PENDING</p>
-              <p
-                onClick={() => setOpen(open===index? -1: index)}
-                style={{ cursor: "pointer" }}
-                className="table-end"
-              >
-                { payment.amount }
-                <span className="table-end-icon">
-                  {open===index && <IoMdArrowDropup />}
-                  {open!==index && <IoMdArrowDropdown />}
-                </span>
-              </p>
-            </div>
-            {open===index && (
-              <TableData>
-                <div className="data">
-                  <div className="data-header">
-                    <p>Item Name</p>
-                    <p>Per Cost</p>
-                  </div>
-                  <div className="data-main">
-                    <p>Member ship</p>
-                    <p>$1000</p>
-                  </div>
-                  <div className="data-main">
-                    <p>Member ship</p>
-                    <p>$300</p>
-                  </div>
+          {!loading &&
+            payments.map((payment, index) => (
+              <>
+                <div className="data-main">
+                  <p>#88698</p>
+                  <p className="">PENDING</p>
+                  <p
+                    onClick={() => setOpen(open === index ? -1 : index)}
+                    style={{ cursor: "pointer" }}
+                    className="table-end position"
+                  >
+                    {payment.amount}
+                    <span className="table-end-icon">
+                      {open === index && <IoMdArrowDropup />}
+                      {open !== index && <IoMdArrowDropdown />}
+                    </span>
+                  </p>
                 </div>
-              </TableData>
-            )}
-          </>
-          ))}
+                {open === index && (
+                  <TableData>
+                    <div className="data">
+                      <div className="data-header">
+                        <p>Item Name</p>
+                        <p>Per Cost</p>
+                      </div>
+                      <div className="data-main">
+                        <p>Member ship</p>
+                        <p>$1000</p>
+                      </div>
+                      <div className="data-main">
+                        <p>Member ship</p>
+                        <p>$300</p>
+                      </div>
+                    </div>
+                  </TableData>
+                )}
+              </>
+            ))}
         </div>
       </Container>
     </div>
@@ -92,7 +92,7 @@ const Container = styled.div`
     padding: 10px;
     background: rgba(34, 145, 241, 0.14);
     text-align: left;
-    gap: 100px;
+    gap: -100px;
     //styleName: Heading 5;
     font-family: Poppins;
     font-size: 20px;
@@ -120,11 +120,9 @@ const Container = styled.div`
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  .ml {
-    width: 160px;
-  }
-  .ml-2 {
-    width: 100px;
+  .position {
+    width: 400px;
+    text-align: right;
   }
 `;
 const Title = styled.div`

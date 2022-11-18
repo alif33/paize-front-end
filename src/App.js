@@ -31,6 +31,7 @@ import Contactus from "./pages/admin/Contactus/Contactus";
 import History from "./pages/History/History";
 import Invoice from "./pages/Receipt/Receipt";
 import Receipt from "./pages/Receipt/Receipt";
+import StudentPayments2 from "./pages/StudentPayment/StudentPayments2";
 
 const App = () => {
   console.log(process.env.REACT_APP_API_KEY);
@@ -109,6 +110,7 @@ const App = () => {
         <Route path="/student" element={<StudentDashboard />} />
         <Route path="/payment" element={<PaymentNowPage />} />
         <Route path="/student/payments" element={<StudentPayments />} />
+     
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
