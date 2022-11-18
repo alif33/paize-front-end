@@ -1,3 +1,5 @@
+//
+
 // import React, { useState } from "react";
 // import Navbar from "../../components/Navbar";
 // import styled from "styled-components";
@@ -510,8 +512,8 @@ const Button = styled.div`
   cursor: pointer;
 `;
 const TableData = styled.div`
-  display: flex;
-  justify-content: end;
+  position: relative;
+  left: 920px;
   .data {
     width: 400px;
   }
