@@ -268,7 +268,7 @@ const StudentPayment = () => {
 
         <div>
           <div className="data-header">
-            <p className="">Purchase Date</p>
+            <p className="">Donation Date</p>
             <p className="ml">Item Number</p>
             <p className="ml-2">Cost</p>
           </div>

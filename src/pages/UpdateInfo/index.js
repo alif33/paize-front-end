@@ -9,7 +9,7 @@ const UpdateInfo = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
-  return ( 
+  return (
     <>
       <Navbar />
       <Container>
@@ -64,9 +64,11 @@ const Title = styled.h3`
   text-transform: capitalize;
   padding: 20px 0px;
   margin: 8px 0;
+  padding-left: 40px;
 `;
 
 const TapGroup = styled.div`
+  padding-left: 40px;
   a {
     font-family: "Poppins";
     font-style: normal;
@@ -100,6 +102,7 @@ const TapGroup = styled.div`
 `;
 
 const ProfileSction = styled.div`
+  padding-left: 40px;
   p {
     font-family: "Poppins";
     font-style: normal;
@@ -182,7 +185,7 @@ const UpButton = styled.button`
     cursor: pointer;
     opacity: 0;
   }
-  @media only screen and (max-width: 688px){
+  @media only screen and (max-width: 688px) {
     font-size: 17px;
     width: 100px !important;
     padding: 3px 0;
