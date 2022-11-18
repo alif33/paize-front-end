@@ -7,19 +7,20 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { __getData } from "../../__lib__/helpers/HttpService";
 import { useDispatch, useSelector } from "react-redux";
-const Receipt = () => {
+
+const StudentPayment = () => {
   const { _id } = useParams();
   const [paymentsData, setPaymentsData] = useState();
   const { users } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { __u__ } = users;
 
-  useEffect(() => {
-    console.log("id", _id);
-    __getData(`/payment?_id=${_id}`, __u__.token).then((res) => {
-      setPaymentsData(res);
-    });
-  }, []);
+  //   useEffect(() => {
+  //     console.log("id", _id);
+  //     __getData(`/payment?_id=${_id}`, __u__.token).then((res) => {
+  //       setPaymentsData(res);
+  //     });
+  //   }, []);
   const handlePrint = () => {
     const input = document.getElementById("divToPrint");
     html2canvas(input).then((canvas) => {
@@ -34,7 +35,7 @@ const Receipt = () => {
       pdf.save("receipt.pdf");
     });
   };
-  console.log("paymentsData", paymentsData);
+
   return (
     <div>
       <Navbar />
@@ -42,23 +43,22 @@ const Receipt = () => {
         <div className="invoice-top">
           <div id="divToPrint" className="invoice">
             <div className="invoice-data">
-              <h5>Receipt</h5>
-              <p>#{paymentsData?._id}</p>
+              <h5>donate statement</h5>
             </div>
             {/* <div className="invoice-header">
-            <h3>Invoice</h3>
-            <img
-              src="/img/icon/logo.svg"
-              style={{ width: "90px", height: "50px" }}
-              alt=""
-            />
-          </div> */}
+          <h3>Invoice</h3>
+          <img
+            src="/img/icon/logo.svg"
+            style={{ width: "90px", height: "50px" }}
+            alt=""
+          />
+        </div> */}
 
             <div className="invoice-main">
               <div className="invoice-bal">
                 <div>
                   <h3>
-                    Total <span>{paymentsData?.amount}$</span>
+                    Total DONATE <span>$0000</span>
                   </h3>
                   <p></p>
                 </div>
@@ -66,17 +66,14 @@ const Receipt = () => {
               <div className="invoice-details">
                 <div className="invoice-detail-1">
                   <h6>Name</h6>
-                  <p>
-                    {paymentsData?.student?.firstName}{" "}
-                    {paymentsData?.student?.lastName}
-                  </p>
+                  <p>Shahadat</p>
                 </div>
                 <div className="invoice-detail-2">
                   <h6>Date</h6>
-                  <p>{paymentsData?.createdAt.slice(0, 10)}</p>
+                  <p>12-11-2022</p>
                 </div>
               </div>
-              <div className="className=invoice-all-data-main">
+              <div>
                 <div className="invoice-all-data">
                   <table className="table">
                     <thead>
@@ -85,23 +82,33 @@ const Receipt = () => {
                         <td className="text-right">Price</td>
                       </tr>
                     </thead>
-                    {paymentsData?.needs.map((paymentData, index) => {
-                      return (
-                        <tbody>
-                          <tr className="t-m">
-                            <td className="text-left">
-                              {paymentData?.itemName}
-                            </td>
-                            <td className="text-right">${paymentData?.cost}</td>
-                          </tr>
-                        </tbody>
-                      );
-                    })}
+                    <tbody>
+                      <tr className="t-m">
+                        <td className="text-left">Chair</td>
+                        <td className="text-right">$500</td>
+                      </tr>
+                      <tr className="t-m">
+                        <td className="text-left">Chair</td>
+                        <td className="text-right">$500</td>
+                      </tr>
+                      <tr className="t-m">
+                        <td className="text-left">Chair</td>
+                        <td className="text-right">$500</td>
+                      </tr>
+                      <tr className="t-m">
+                        <td className="text-left">Chair</td>
+                        <td className="text-right">$500</td>
+                      </tr>
+   
+               
+  
+          
+                    </tbody>
                   </table>
                   <div className="border-b"></div>
                   <div className="invoice-total">
                     <h3>Total</h3>
-                    <p>${paymentsData?.amount}</p>
+                    <p>$500</p>
                   </div>
                 </div>
               </div>
@@ -120,7 +127,7 @@ const Receipt = () => {
   );
 };
 
-export default Receipt;
+export default StudentPayment;
 const Container = styled.div`
   position: static;
   top: 15%;
@@ -157,12 +164,11 @@ const Container = styled.div`
   .invoice-bal {
     position: absolute;
     background-color: #74aff8;
-    width: 270px;
-    height: 70px;
+    width: 370px;
 
     border-radius: 5px;
-    top: -35px;
-    left: 30%;
+    top: -25px;
+    left: 22%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -184,7 +190,7 @@ const Container = styled.div`
     position: absolute;
     text-align: center;
     top: 20px;
-    left: 32%;
+    left: 25%;
   }
   .invoice-data h5 {
     font-size: 35px;
