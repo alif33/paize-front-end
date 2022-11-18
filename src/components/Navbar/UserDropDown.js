@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../store/users/actions";
+import PaymentBtn from "../../svg/PaymentBtn";
 
 const UserDropDown = ({ __u__ }) => {
   const navigate = useNavigate();
@@ -48,6 +49,10 @@ const UserDropDown = ({ __u__ }) => {
               <img src="/img/icon/dashboard.svg" alt="" /> Dashboard
             </div>
           )}
+          <Link to={`/${__u__?.role === "AUTHOR"? "school": "student"}/payments`} className="menu-item">
+            {" "}
+            <PaymentBtn/> &nbsp; Payments
+          </Link>
           {__u__?.status === "APPROVED" && (
             <div
               onClick={() => navigate("/update-information")}
@@ -62,10 +67,6 @@ const UserDropDown = ({ __u__ }) => {
               <img src="/img/icon/needs.svg" alt="" /> Needs
             </div>
           )}
-          <Link to="/history" className="menu-item">
-            {" "}
-            <img src="/img/history.svg" alt="" /> History
-          </Link>
           <div onClick={handleLogout} className="menu-item">
             {" "}
             <img src="/img/icon/log-out.svg" alt="" /> Logout
