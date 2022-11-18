@@ -397,8 +397,9 @@ const Title = styled.div`
     line-height: 62px;
     color: #0e3746;
     margin-top: 10px;
-
+    padding-left: 20px;
     padding-top: 10px;
+    padding-bottom: 10px;
   }
 `;
 
