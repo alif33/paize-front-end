@@ -320,11 +320,12 @@ const Receipt = () => {
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
-        unit: "px",
-        format: [700, 550],
+        orientation: "landscape",
+        unit: "in",
+        format: [20, 25],
       });
 
-      pdf.addImage(imgData, "JPEG", 50, 50);
+      pdf.addImage(imgData, "JPEG", 2, 2);
       // pdf.output('dataurlnewwindow');
       pdf.save("receipt.pdf");
     });
@@ -334,19 +335,22 @@ const Receipt = () => {
     <div>
       <Navbar />
       <Container>
-        <div>
+        <div id="divToPrint">
           <div className="receipt-header">
             <p>Money Recipt</p>
-            <p>Order ID: #909084</p>
+            <p>Order ID: #{paymentsData?._id}</p>
           </div>
           <div className="receipt-header-2">
-            <h4>Hello Tyler,</h4>
+            <h4>Hello {paymentsData?.student?.firstName},</h4>
             <h3>THANKS FOR YOUR ORDER!</h3>
           </div>
           <div className="receipt-header-3">
             <div>
               <p>Full Name</p>
-              <h4>Tyler H </h4>
+              <h4>
+                {paymentsData?.student?.firstName}{" "}
+                {paymentsData?.student?.lastName}{" "}
+              </h4>
             </div>
             <div>
               <p>Payment Method</p>
@@ -354,50 +358,32 @@ const Receipt = () => {
             </div>
           </div>
           <div className="border-b"></div>
-          <div className="receipt-data">
-            <div className="receipt-data-div">
-              <img
-                src="/img/icon/logo.svg"
-                style={{ width: "100px", height: "95px" }}
-                alt=""
-                srcset=""
-              />
+
+          {paymentsData?.needs?.map((paymentData) => (
+            <div className="receipt-data">
+              <div className="receipt-data-div">
+                <img
+                  src="/img/icon/logo.svg"
+                  style={{ width: "100px", height: "95px" }}
+                  alt=""
+                  srcset=""
+                />
+                <div>
+                  <p>Product Name</p>
+                  <h3>{paymentData?.itemName}</h3>
+                </div>
+              </div>
               <div>
-                <p>Product Name</p>
-                <h3>Premium membership</h3>
+                <p>Membership </p>
+                <h3>Student </h3>
+              </div>
+              <div>
+                <p>Amount </p>
+                <h3>${paymentData?.cost}</h3>
               </div>
             </div>
-            <div>
-              <p>Membership </p>
-              <h3>Student </h3>
-            </div>
-            <div>
-              <p>Amount </p>
-              <h3>$499</h3>
-            </div>
-          </div>
-          <div className="receipt-data">
-            <div className="receipt-data-div">
-              <img
-                src="/img/icon/logo.svg"
-                style={{ width: "100px", height: "95px" }}
-                alt=""
-                srcset=""
-              />
-              <div>
-                <p>Product Name</p>
-                <h3>Premium membership</h3>
-              </div>
-            </div>
-            <div>
-              <p>Membership </p>
-              <h3>Student </h3>
-            </div>
-            <div>
-              <p>Amount </p>
-              <h3>$499</h3>
-            </div>
-          </div>
+          ))}
+
           <div className="border-b"></div>
           <div className="receipt-total">
             <div>
@@ -405,12 +391,12 @@ const Receipt = () => {
               <p>(Vat & Tax Included)</p>
             </div>
             <div>
-              <p id="total-value">$1199</p>
+              <p id="total-value">${paymentsData?.amount}</p>
             </div>
           </div>
         </div>
         <div className="receipt-footer">
-          <button>Download PDF</button>
+          <button onClick={handlePrint}>Download PDF</button>
           <div className="receipt-footer-under">
             <p>Student Book</p>
             <img
@@ -559,6 +545,7 @@ const Container = styled.div`
     text-align: left;
     color: white;
     text-align: center;
+    cursor: pointer;
   }
   .receipt-footer-under {
     display: flex;
