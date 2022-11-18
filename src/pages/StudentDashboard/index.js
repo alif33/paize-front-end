@@ -18,12 +18,12 @@ const override: CSSProperties = {
 };
 
 const StudentDashboard = () => {
-  const [infos, setInfos] = useState();
-  const [make, payment] = useState(true);
+  const [infos, setInfos] = useState([]);
+  const [paids, setPaids] = useState([]);
   const [amount, setAmount] = useState(0);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [navLink, setNavLink] = useState("all");
+  const [navLink, setNavLink] = useState("active");
   const [students, setStudents] = useState();
   const [unPaidData, setUnPaidData] = useState();
   const [studentsData, setStudentsData] = useState();
@@ -36,19 +36,15 @@ const StudentDashboard = () => {
       __u__.token
     ).then((res) => {
       setLoading(false);
-      console.log("res", res);
-      setInfos(res);
+      setInfos(res.actives);
+      setPaids(res.paids);
     });
   };
 
   useEffect(() => {
     fetchItems();
   }, []);
-  const unPaid = () => {
-    const unPaidData = infos.filter("UNPAID");
-    setUnPaidData(unPaidData);
-    console.log("unPaidData", unPaidData);
-  };
+
   const payNow = async (_stripe) => {
     authPost(
       "/pay",
@@ -93,17 +89,17 @@ const StudentDashboard = () => {
         </Title>
         <TableNavList>
           <li
-            onClick={() => setNavLink("all")}
-            className={navLink === "all" ? "active" : "all"}
+            onClick={() => setNavLink("active")}
+            className={ navLink === "active" ? "active" : "" }
           >
-            UpComing(<span>{students && students.length}</span>)
+            Active(<span>{ infos.length }</span>)
           </li>
           <li
-            onClick={() => setNavLink("pending")}
-            className={navLink === "pending" ? "active" : "all"}
+            onClick={() => setNavLink("paid")}
+            className={ navLink === "paid" ? "active" : "" }
           >
             Paid(
-            <span>{studentsData?.pending && studentsData.pending.length}</span>)
+            <span>{ paids.length }</span>)
           </li>
         </TableNavList>
 
@@ -111,9 +107,11 @@ const StudentDashboard = () => {
           <DotLoader color="#3b9df1" loading={loading} cssOverride={override} />
         )}
 
+
         {!loading && infos && (
           <PaymentTable
-            infos={infos}
+            active={navLink === "active"? true: false }
+            infos={ navLink === "active"? infos: paids }
             items={items}
             setItems={setItems}
             amount={amount}

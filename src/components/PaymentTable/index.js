@@ -8,6 +8,7 @@ import { APP_URL, authPost } from "../../__lib__/helpers/HttpService";
 import ItemModal from "../ItemModal/ItemModal";
 
 const PaymentTable = ({
+  active,
   infos,
   items,
   setItems,
@@ -57,7 +58,9 @@ const PaymentTable = ({
               <th>Cost</th>
               <th>Student</th>
               <th>Description</th>
-              <th>{!items.length > 0 ? "Action" : ""}</th>
+              {
+                active && (<th>{!items.length > 0 ? "Action" : ""}</th>)
+              }
             </tr>
           </thead>
           <tbody>
@@ -66,14 +69,19 @@ const PaymentTable = ({
                 <tr key={index}>
                   <td>
                     <TableImage>
-                      <div
-                        onClick={() => handleSelect(item._id, item.cost)}
-                        className="radio-container"
-                      >
-                        {items.includes(item._id) && (
-                          <div className="radio"></div>
-                        )}
-                      </div>
+                      {
+                        active && (
+                          <div
+                            onClick={() => handleSelect(item._id, item.cost)}
+                            className="radio-container"
+                          >
+                            {items.includes(item._id) && (
+                              <div className="radio"></div>
+                            )}
+                          </div>
+                        )
+                      }
+
                       <img
                         onClick={() => {
                           setModal(!modal);
