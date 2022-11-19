@@ -84,9 +84,9 @@ const Container = styled.div`
     padding-right: 1.5rem /* 28px */;
     border-radius: 20px;
     overflow-y: scroll;
-    box-shadow: 0px 0px 38px 0px rgba(56, 148, 212, 0.78);
-    -webkit-box-shadow: 0px 0px 38px 0px rgba(56, 148, 212, 0.78);
-    -moz-box-shadow: 0px 0px 38px 0px rgba(56, 148, 212, 0.78);
+    box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
     font-family: "Roboto", sans-serif;
     ::-webkit-scrollbar {
       width: 9px;
