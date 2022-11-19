@@ -34,6 +34,7 @@ import Receipt from "./pages/Receipt/Receipt";
 
 import NotFound from "./pages/NotFound/NotFound";
 import SchoolPayment from "./pages/SchoolPayment/SchoolPayment";
+import AdminPayments from "./pages/AdminPayments/AdminPayments";
 
 const App = () => {
   console.log(process.env.REACT_APP_API_KEY);
@@ -134,6 +135,7 @@ const App = () => {
         />
 
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/payments" element={<AdminPayments />} />
         <Route path="/receipt/:_id" element={<Receipt />} />
 
         <Route

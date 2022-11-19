@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { LogOut } from "../../../store/admins/actions";
 import MessageIcon from "../../../svg/MessageIcon/MessageIcon";
 import MessageFill from "../../../svg/MessageFill";
+import PaymentBtn from "../../../svg/PaymentBtn";
 
 const UserDropDown = () => {
   const navigate = useNavigate();
@@ -48,11 +49,18 @@ const UserDropDown = () => {
             <img src="/img/icon/settings.svg" alt="" /> DashBoard
           </div>
           <div
+            onClick={() => navigate("/admin/payments")}
+            className="menu-item"
+          >
+            {" "}
+            <PaymentBtn /> &nbsp; Payments
+          </div>
+          <div
             onClick={() => navigate("/admin/contact-us")}
             className="menu-item"
           >
             {" "}
-         <MessageFill/> &nbsp; Inbox 
+            <MessageFill /> &nbsp; Inbox
           </div>
           <div onClick={handleLogout} className="menu-item">
             {" "}

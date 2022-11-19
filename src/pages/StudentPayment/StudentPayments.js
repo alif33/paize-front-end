@@ -25,7 +25,7 @@ const StudentPayment = () => {
     });
   }, []);
 
-  return (
+  return ( 
     <div>
       <Navbar />
       <Container>

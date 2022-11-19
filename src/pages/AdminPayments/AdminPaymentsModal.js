@@ -3,52 +3,56 @@ import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 import { IoIosCloseCircle } from "react-icons/io";
 
-const NeedsModal = ({
+const AdminPaymentsModal = (
   setNeedData,
   setItemData,
   itemData,
   needData,
   setModal,
-  modal,
-}) => {
-  console.log("needData", needData);
+  modal
+) => {
   return (
     <Container>
       {/* <div className="top-part"></div> */}
 
-      <div className="down-part">
-        <div className="badge">
-          <div>
-            <p className="item-card-text">Cost: {needData?.cost}$</p>
-          </div>
-
-          <div onClick={() => setModal(!modal)} className="x-icon">
-            {" "}
-            <button>
-              <IoIosCloseCircle />
-            </button>
-          </div>
-        </div>
-
-        <div className="modal-photo">
-          <div>
-            <img src={`${APP_URL}/${needData?.itemImage}`} alt="" />
-            <p className="img-text">{needData?.itemName}</p>
-          </div>
-          <div>
-            <img src={`${APP_URL}/${needData?.studentImage}`} alt="" />
-
-            <p className="img-text">{needData?.studentName}</p>
-          </div>
-        </div>
-        <div className="border-b"></div>
-        <p className="item-description">{needData?.description}</p>
-      </div>
+      <TableContainer>
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Item Name</th>
+                      <th>Item Image</th>
+                      <th>Student</th>
+                      <th>Student Image</th>
+                      <th>School</th>
+                      <th>Bank</th>
+                      <th>Per Cost</th>
+                    </tr>
+                  </thead>
+                  {detailsData.needs.map((need) => (
+                    <tbody>
+                      <tr>
+                        {" "}
+                        <td>{need?._id}</td>
+                        <td>{need?.itemName}</td>
+                        <td>
+                          <img src={need?.itemImage} alt="" />
+                        </td>
+                        <td>{need?.studentName}</td>
+                        <td>
+                          <img src={need?.studentImage} alt="" />
+                        </td>
+                        <td>{detailsData?.school?.schoolName}</td>
+                        <td>{detailsData?.school?.bankName}</td>
+                        <td>${need?.cost}</td>
+                      </tr>
+                    </tbody>
+                  ))}
+                </TableContainer>
     </Container>
   );
 };
 
-export default NeedsModal;
+export default AdminPaymentsModal;
 const Container = styled.div`
   img {
     width: 240px;
@@ -73,7 +77,7 @@ const Container = styled.div`
   .down-part {
     position: absolute;
     left: 26%;
-    top: 7%; 
+    top: 7%;
     width: 700px;
     height: 550px;
     /* background-color: rgb(255 255 255 / var(--tw-bg-opacity)); */

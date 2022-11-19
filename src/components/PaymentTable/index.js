@@ -198,7 +198,7 @@ const TableContainer = styled.table`
 
 const TableImage = styled.div`
   display: flex;
-  align-items: center;
+  align-items: center; 
   margin-left: 30px;
 
   .radio-container {
