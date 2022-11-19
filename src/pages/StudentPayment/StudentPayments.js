@@ -6,6 +6,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { __getData } from "../../__lib__/helpers/HttpService";
+import moment from "moment/moment";
+
 const StudentPayment = () => {
   const [detailsData, setDetailsData] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ const StudentPayment = () => {
       }
     });
   }, []);
-  console.log(payments);
+
   return (
     <div>
       <Navbar />
@@ -42,7 +44,7 @@ const StudentPayment = () => {
             payments.map((payment, index) => (
               <>
                 <div className="data-main">
-                  <p className="ml-33">{payment.createdAt.slice(0, 10)}</p>
+                  <p className="ml-33">{moment(payment.createdAt).format('ll')}</p>
                   <p className="ml-33">
                     {payment?.amount === 0 ? "PENDING" : "PAID"}
                   </p>

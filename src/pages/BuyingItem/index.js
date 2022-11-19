@@ -17,9 +17,10 @@ const override: CSSProperties = {
 };
 
 const BuyingItem = () => {
-  const [navLink, setNavLink] = useState("all");
+  const [navLink, setNavLink] = useState("active");
   const [loading, setLoading] = useState(true);
-  const [needs, setNeeds] = useState(null);
+  const [needs, setNeeds] = useState([]);
+  const [paids, setPaids] = useState([]);
   const [items, setItems] = useState([]);
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
@@ -28,7 +29,8 @@ const BuyingItem = () => {
     __getData("/items", __u__.token)
       .then((res) => {
         setLoading(false);
-        setNeeds(res);
+        setNeeds(res.needs);
+        setPaids(res.paids);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -70,19 +72,24 @@ const BuyingItem = () => {
           </Title>
           <TableNavList>
             <li
-              onClick={() => setNavLink("all")}
-              className={navLink === "all" ? "active" : "all"}
+              onClick={() => setNavLink("active")}
+              className={navLink === "active" ? "active" : ""}
             >
-              All
+              Active ({needs.length})
             </li>
             <li
-              onClick={() => setNavLink("active")}
-              className={navLink === "active" ? "active" : "all"}
+              onClick={() => setNavLink("paid")}
+              className={navLink === "paid" ? "active" : ""}
             >
-              Active
+              Paid ({paids.length})
             </li>
           </TableNavList>
-          <Table needs={needs} items={items} setItems={setItems} />
+          <Table 
+            active={navLink === "active" ? true: false}
+            needs={navLink === "active" ? needs: paids} 
+            items={items} 
+            setItems={setItems} 
+          />
           <ArrowRight>
             <Link className="active" to="/">
               <img src="/img/icon/arrow-right.png" alt="" />

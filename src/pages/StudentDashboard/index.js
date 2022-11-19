@@ -61,8 +61,7 @@ const StudentDashboard = () => {
       }
     });
   };
-  console.log("infos", infos);
-  console.log("unPaidData", unPaidData);
+
   return (
     <div>
       <ResNav>

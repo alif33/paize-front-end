@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
+import { Sortern } from "../../__lib__/helpers/Validator";
 
-const Table = ({ needs, items, setItems }) => {
+const Table = ({ active, needs, items, setItems }) => {
   const handleSelect = (_id) => {
     if (items.includes(_id)) {
       setItems(items.filter((item) => item !== _id));
@@ -20,7 +21,11 @@ const Table = ({ needs, items, setItems }) => {
           <th>Cost</th>
           <th>Student</th>
           <th>Description</th>
-          <th></th>
+          {
+            active && (
+              <th>Action</th>
+            )
+          }
         </tr>
       </thead>
       <tbody>
@@ -29,12 +34,16 @@ const Table = ({ needs, items, setItems }) => {
             <tr key={index}>
               <td>
                 <TableImage>
-                  <div
-                    onClick={() => handleSelect(need._id)}
-                    className="radio-container"
-                  >
-                    {items.includes(need._id) && <div className="radio"></div>}
-                  </div>
+                  {
+                    active && (
+                      <div
+                        onClick={() => handleSelect(need._id)}
+                        className="radio-container"
+                      >
+                        {items.includes(need._id) && <div className="radio"></div>}
+                      </div>
+                    )
+                  }
                   <img src={`${APP_URL}/${need.itemImage}`} alt="" />
                   <h5>{need.itemName}</h5>
                 </TableImage>
@@ -46,20 +55,19 @@ const Table = ({ needs, items, setItems }) => {
                 <p>{need.studentName}</p>
               </td>
               <td>
-                <span>{need.description}</span>
+                <span>{Sortern(need.description, 10)}</span>
               </td>
-
-              <Link to={`/update-item/${need._id}`}>
-                <td
-                  id={need._id}
-                  name={need._id}
-                  value={need._id}
-                  className=""
-                  style={{ cursor: "pointer" }}
-                >
-                  <img src="/img/icon/edit.png" alt="" />
-                </td>
-              </Link>
+              {
+                active && (
+                  <Link to={`/update-item/${need._id}`}>
+                    <td
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img src="/img/icon/edit.png" alt="" />
+                    </td>
+                  </Link>
+                )
+              }
             </tr>
           );
         })}

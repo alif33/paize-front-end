@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import styled from "styled-components";
 import { APP_URL, authPost } from "../../__lib__/helpers/HttpService";
+import { Sortern } from "../../__lib__/helpers/Validator";
 import ItemModal from "../ItemModal/ItemModal";
 
 const PaymentTable = ({
@@ -101,7 +102,7 @@ const PaymentTable = ({
                     <p>{item.studentName}</p>
                   </td>
                   <td>
-                    <span>{item.description.slice(1, 40)}...</span>
+                    <span>{Sortern(item.description, 10)}</span>
                   </td>
                   <td>
                     {item.status === "PAID" || items.length > 0 ? (
