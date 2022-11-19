@@ -9,6 +9,7 @@ import DotLoader from "react-spinners/DotLoader";
 import { authPost, __getData } from "../../__lib__/helpers/HttpService";
 import { Toaster, toast } from "react-hot-toast";
 import ReactPaginate from "react-paginate";
+
 const override: CSSProperties = {
   display: "block",
   margin: "0 auto",
@@ -74,7 +75,6 @@ const BuyingItem = () => {
     }
   };
 
-  console.log(activePost - itemsPerPage, activePost, "PAGINATION");
 
   return (
     <div>
