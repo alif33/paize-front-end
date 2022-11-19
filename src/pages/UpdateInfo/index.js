@@ -1,14 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import PersonalInfoForm from "../../components/PersonalInfoFrom";
+import { authPost, postData } from "../../__lib__/helpers/HttpService";
 
 const UpdateInfo = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
+  const [images, setImages] = useState({
+    userImage: "",
+  });
+  const ImageHandler = (file, field) => {
+    if (file.length > 0) {
+      let ready = {};
+      ready[`${field}`] = false;
+      setImages({
+        ...images,
+        ...ready,
+      });
 
+      const formData = new FormData();
+      formData.append("image", file[0]);
+      authPost("/upload", formData, __u__.token)
+        .then((res) => {
+          console.log("ImageHandler", res);
+          if (res.success) {
+            const { secure_url } = res.image;
+            let uploaded = {};
+            uploaded[`${field}`] = secure_url;
+            setImages({
+              ...images,
+              ...uploaded,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log("ImageHandler-formData", err);
+        });
+    }
+  };
+
+  console.log("images", images);
   return (
     <>
       <Navbar />
@@ -25,13 +59,25 @@ const UpdateInfo = () => {
         <ProfileSction>
           <p>Your Avatar</p>
           <ProfileInfo>
-            <UserImage src="/img/icon/dummy-profile.png" alt="" />
+            <UserImage
+              src={
+                images.userImage.length > 0
+                  ? images.userImage
+                  : "/img/icon/dummy-profile.png"
+              }
+              alt=""
+            />
             <NameEmail>
               <h4>{__u__.info?.firstName}</h4>
               <p>{__u__.info?.email}</p>
             </NameEmail>
             <UpButton>
-              Upload <input type="file" />{" "}
+              Upload{" "}
+              <input
+                type="file"
+                onChange={(e) => ImageHandler(e.target.files, "userImage")}
+                accept="image/*"
+              />{" "}
             </UpButton>
           </ProfileInfo>
         </ProfileSction>

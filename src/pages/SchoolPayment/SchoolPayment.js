@@ -112,7 +112,7 @@ const Container = styled.div`
 
     //styleName: Heading 5;
     font-family: Poppins;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 30px;
     letter-spacing: -0.02em;
@@ -125,11 +125,9 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 16px!;
     font-weight: 500;
-    line-height: 36px;
     letter-spacing: 0em;
     text-align: left;
     padding-left: 50px;
