@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import PersonalInfoForm from "../../components/PersonalInfoFrom";
 import { authPost, postData } from "../../__lib__/helpers/HttpService";
+import { Toaster } from "react-hot-toast";
 
 const UpdateInfo = () => {
   const { users } = useSelector((state) => state);
@@ -31,6 +32,7 @@ const UpdateInfo = () => {
   console.log("users", users);
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <Navbar />
       <Container>
         <Title>Settings</Title>

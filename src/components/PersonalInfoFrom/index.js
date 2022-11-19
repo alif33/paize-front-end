@@ -25,7 +25,7 @@ const PersonalInfoForm = ({ image }) => {
     setDisable(true);
     let _data = { ...data };
     if (image && image.length > 0) {
-      data.image = image;
+      _data.image = image;
     }
     console.log("_data", _data);
     updateData(
@@ -34,7 +34,7 @@ const PersonalInfoForm = ({ image }) => {
       __u__.token
     )
       .then((res) => {
-        console.log("update-data", res);
+        console.log("update-data", res.success);
         setDisable(false);
         if (res.success) {
           toast.success(`${res.message}`);
