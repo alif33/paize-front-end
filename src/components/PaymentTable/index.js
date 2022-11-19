@@ -85,7 +85,7 @@ const PaymentTable = ({
                           setModal(!modal);
                           setNeedData(item);
                         }}
-                        src={`${APP_URL}/${item.itemImage}`}
+                        src={item.itemImage}
                         alt=""
                       />
 

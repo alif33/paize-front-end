@@ -16,6 +16,10 @@ const UpdateItem = () => {
   const [disable, setDisable] = useState(false);
   const [updateNeeds, setUpdateNeeds] = useState();
   const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState({
+    studentImage: "",
+    itemImage: "",
+  });
   const {
     register,
     reset,
@@ -33,6 +37,7 @@ const UpdateItem = () => {
   useEffect(() => {
     __getData(`/item?_id=${id}`, __u__.token)
       .then((res) => {
+        setUpdateNeeds(res);
         console.log("getData", res);
         setLoading(false);
         // setUpdateNeeds(res);
@@ -44,22 +49,48 @@ const UpdateItem = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const ImageHandler = (file, field) => {
+    if (file.length > 0) {
+      let ready = {};
+      ready[`${field}`] = false;
+      setImages({
+        ...images,
+        ...ready,
+      });
+
+      const formData = new FormData();
+      formData.append("image", file[0]);
+      authPost("/upload", formData, __u__.token)
+        .then((res) => {
+          console.log("ImageHandler", res);
+          if (res.success) {
+            const { secure_url } = res.image;
+            let uploaded = {};
+            uploaded[`${field}`] = secure_url;
+            setImages({
+              ...images,
+              ...uploaded,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log("ImageHandler-formData", err);
+        });
+    }
+  };
+
   const onSubmit = (data) => {
     console.log("form-data", data);
     setDisable(true);
 
-    const _data = new FormData();
-    _data.append("itemName", data.itemName);
-    _data.append("studentName", data.studentName);
-    _data.append("cost", data.cost);
-    _data.append("description", data.description);
-    // _data.append("images", data.productImage[0]);
-    // _data.append("images", data.studentImage[0]);
-
-    updateData(`/edit-item?_id=${id}`, data, __u__.token).then((res) => {
-      console.log(res);
+    updateData(
+      `/edit-item?_id=${id}`,
+      { ...data, ...images },
+      __u__.token
+    ).then((res) => {
+      console.log("updateData", res);
       setDisable(false);
-      console.log("update Data", res);
+
       if (res.success) {
         toast.success(`${res.message}`);
         reset();
@@ -67,7 +98,7 @@ const UpdateItem = () => {
       }
     });
   };
-  console.log("setValue", setValue);
+  // console.log("updateNeeds", updateNeeds?.itemImage, updateNeeds?.studentImage);
   return (
     <>
       <Navbar />
@@ -130,12 +161,22 @@ const UpdateItem = () => {
             <p>Upload student image, size between 220*220 to 2000*2000px.</p>
             <input
               type="file"
-              // {...register("studentImage", {
-              //   // required: true,
-              // })}
+              required
+              onChange={(e) => ImageHandler(e.target.files, "studentImage")}
               accept="image/*"
             />
-            <img src="/img/icon/upload-icon.png" alt="" />
+            <div className="productImage absolute flex justify-center items-center gap-2">
+              <img src="/img/icon/upload-icon.png" alt="" />
+
+              <img
+                className="productImg"
+                src={
+                  images.studentImage.length > 0
+                    ? images?.studentImage
+                    : updateNeeds?.studentImage
+                }
+              />
+            </div>
             {errors.studentImage && <span>student image is required</span>}
           </UploadButton>
 
@@ -143,12 +184,21 @@ const UpdateItem = () => {
             <p>Upload Product image, size between 220*220 to 2000*2000px.</p>
             <input
               type="file"
-              // {...register("productImage", {
-              //   // required: true,
-              // })}
+              onChange={(e) => ImageHandler(e.target.files, "itemImage")}
               accept="image/*"
             />
-            <img src="/img/icon/upload-icon.png" alt="" />
+            <div className="productImage absolute flex justify-center items-center gap-2">
+              <img src="/img/icon/upload-icon.png" alt="" />
+
+              <img
+                className="productImg"
+                src={
+                  images.itemImage.length > 0
+                    ? images?.itemImage
+                    : updateNeeds?.itemImage
+                }
+              />
+            </div>
             {errors.studentImage && <span>student image is required</span>}
           </UploadButton>
 
@@ -167,6 +217,17 @@ const Container = styled.div`
   width: 75%;
   margin: auto;
   padding-bottom: 40px;
+
+  .productImage {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .productImg {
+    border: none;
+    height: 100px;
+    width: 200px;
+  }
 `;
 
 const Title = styled.h3`

@@ -94,7 +94,7 @@ const StudentDashboard = () => {
       <Container>
         <Title>
           <h3>Needs</h3>
-          {items.length > 0 && (
+          {items?.length > 0 && (
             <AreaPay>
               <p>Total : {amount}$</p>
               <StripeCheckout
@@ -115,14 +115,14 @@ const StudentDashboard = () => {
             onClick={() => setNavLink("active")}
             className={navLink === "active" ? "active" : ""}
           >
-            Active(<span>{infos.length}</span>)
+            Active(<span>{infos?.length}</span>)
           </li>
           <li
             onClick={() => setNavLink("paid")}
             className={navLink === "paid" ? "active" : ""}
           >
             Paid(
-            <span>{paids.length}</span>)
+            <span>{paids?.length}</span>)
           </li>
         </TableNavList>
 

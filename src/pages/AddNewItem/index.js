@@ -55,14 +55,7 @@ const AddNewItem = () => {
 
   const onSubmit = (data) => {
     setDisable(true);
-
-    const _data = new FormData();
-    _data.append("itemName", data.itemName);
-    _data.append("studentName", data.studentName);
-    _data.append("cost", data.cost);
-    _data.append("description", data.description);
-    console.log(_data, images);
-    authPost("/add-item", { ..._data, ...images }, __u__.token).then((res) => {
+    authPost("/add-item", { ...data, ...images }, __u__.token).then((res) => {
       console.log("add-new-item", res);
       setDisable(false);
       if (res.success) {

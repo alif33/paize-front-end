@@ -69,12 +69,12 @@ const BuyingItem = () => {
           }
         }
       }
-    }else{
-
+    } else {
     }
   };
 
   console.log(activePost - itemsPerPage, activePost, "PAGINATION");
+  console.log(needs, "needs");
 
   return (
     <div>
@@ -129,7 +129,7 @@ const BuyingItem = () => {
             {/* <Link className="active" to="/"> */}
             <img
               onClick={() => handlePagination("prev")}
-              style={{ transform: "scaleX(-1)", marginRight:"5px" }}
+              style={{ transform: "scaleX(-1)", marginRight: "5px" }}
               src="/img/icon/arrow-right.png"
               alt="right-arrow"
             />
@@ -176,7 +176,6 @@ const Title = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
     padding-top: 10px;
- 
   }
 `;
 const Title3 = styled(Title)`

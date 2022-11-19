@@ -29,6 +29,7 @@ const Table = ({ active, needs, items, setItems }) => {
       </thead>
       <tbody>
         {needs.map((need, index) => {
+        
           return (
             <tr key={index}>
               <td>
@@ -48,7 +49,7 @@ const Table = ({ active, needs, items, setItems }) => {
                       setModal(!modal);
                       setNeedData(need);
                     }}
-                    src={`${APP_URL}/${need.itemImage}`}
+                    src={need.itemImage}
                     alt=""
                   />
                   <h5>{need.itemName}</h5>
