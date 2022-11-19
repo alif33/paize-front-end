@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 import { Sortern } from "../../__lib__/helpers/Validator";
-
+import ReactPaginate from "react-paginate";
 const Table = ({ active, needs, items, setItems }) => {
   const handleSelect = (_id) => {
     if (items.includes(_id)) {
@@ -21,11 +21,7 @@ const Table = ({ active, needs, items, setItems }) => {
           <th>Cost</th>
           <th>Student</th>
           <th>Description</th>
-          {
-            active && (
-              <th>Action</th>
-            )
-          }
+          {active && <th>Action</th>}
         </tr>
       </thead>
       <tbody>
@@ -34,16 +30,16 @@ const Table = ({ active, needs, items, setItems }) => {
             <tr key={index}>
               <td>
                 <TableImage>
-                  {
-                    active && (
-                      <div
-                        onClick={() => handleSelect(need._id)}
-                        className="radio-container"
-                      >
-                        {items.includes(need._id) && <div className="radio"></div>}
-                      </div>
-                    )
-                  }
+                  {active && (
+                    <div
+                      onClick={() => handleSelect(need._id)}
+                      className="radio-container"
+                    >
+                      {items.includes(need._id) && (
+                        <div className="radio"></div>
+                      )}
+                    </div>
+                  )}
                   <img src={`${APP_URL}/${need.itemImage}`} alt="" />
                   <h5>{need.itemName}</h5>
                 </TableImage>
@@ -57,21 +53,26 @@ const Table = ({ active, needs, items, setItems }) => {
               <td>
                 <span>{Sortern(need.description, 10)}</span>
               </td>
-              {
-                active && (
-                  <Link to={`/update-item/${need._id}`}>
-                    <td
-                      style={{ cursor: "pointer" }}
-                    >
-                      <img src="/img/icon/edit.png" alt="" />
-                    </td>
-                  </Link>
-                )
-              }
+              {active && (
+                <Link to={`/update-item/${need._id}`}>
+                  <td style={{ cursor: "pointer" }}>
+                    <img src="/img/icon/edit.png" alt="" />
+                  </td>
+                </Link>
+              )}
             </tr>
           );
         })}
       </tbody>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={0}
+        pageRangeDisplayed={5}
+        pageCount={0}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
     </TableContainer>
   );
 };

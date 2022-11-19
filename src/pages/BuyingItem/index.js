@@ -8,7 +8,7 @@ import Table from "../../components/Table/Index";
 import DotLoader from "react-spinners/DotLoader";
 import { authPost, __getData } from "../../__lib__/helpers/HttpService";
 import { Toaster, toast } from "react-hot-toast";
-
+import ReactPaginate from "react-paginate";
 const override: CSSProperties = {
   display: "block",
   margin: "0 auto",
@@ -47,6 +47,7 @@ const BuyingItem = () => {
     });
   };
 
+  console.log("needs", needs.length);
   return (
     <div>
       <Navbar />
@@ -84,12 +85,13 @@ const BuyingItem = () => {
               Paid ({paids.length})
             </li>
           </TableNavList>
-          <Table 
-            active={navLink === "active" ? true: false}
-            needs={navLink === "active" ? needs: paids} 
-            items={items} 
-            setItems={setItems} 
+          <Table
+            active={navLink === "active" ? true : false}
+            needs={navLink === "active" ? needs : paids}
+            items={items}
+            setItems={setItems}
           />
+
           <ArrowRight>
             <Link className="active" to="/">
               <img src="/img/icon/arrow-right.png" alt="" />

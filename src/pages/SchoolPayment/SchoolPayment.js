@@ -178,7 +178,7 @@ const TableData = styled.div`
   }
   .data-header p {
     font-family: Poppins;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 39px;
     letter-spacing: 0em;
