@@ -9,31 +9,17 @@ import { authPost, postData } from "../../__lib__/helpers/HttpService";
 const UpdateInfo = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
-  const [images, setImages] = useState({
-    userImage: "",
-  });
+  const [image, setImage] = useState();
   const ImageHandler = (file, field) => {
     if (file.length > 0) {
-      let ready = {};
-      ready[`${field}`] = false;
-      setImages({
-        ...images,
-        ...ready,
-      });
-
       const formData = new FormData();
       formData.append("image", file[0]);
       authPost("/upload", formData, __u__.token)
         .then((res) => {
-          console.log("ImageHandler", res);
+          console.log("Update-ImageHandler", res);
           if (res.success) {
             const { secure_url } = res.image;
-            let uploaded = {};
-            uploaded[`${field}`] = secure_url;
-            setImages({
-              ...images,
-              ...uploaded,
-            });
+            setImage(secure_url);
           }
         })
         .catch((err) => {
@@ -42,7 +28,7 @@ const UpdateInfo = () => {
     }
   };
 
-  console.log("images", images);
+  console.log("users", users);
   return (
     <>
       <Navbar />
@@ -60,11 +46,7 @@ const UpdateInfo = () => {
           <p>Your Avatar</p>
           <ProfileInfo>
             <UserImage
-              src={
-                images.userImage.length > 0
-                  ? images.userImage
-                  : "/img/icon/dummy-profile.png"
-              }
+              src={image?.length > 0 ? image : __u__?.info?.image}
               alt=""
             />
             <NameEmail>
@@ -75,14 +57,14 @@ const UpdateInfo = () => {
               Upload{" "}
               <input
                 type="file"
-                onChange={(e) => ImageHandler(e.target.files, "userImage")}
+                onChange={(e) => ImageHandler(e.target.files, "image")}
                 accept="image/*"
               />{" "}
             </UpButton>
           </ProfileInfo>
         </ProfileSction>
 
-        <PersonalInfoForm />
+        <PersonalInfoForm image={image} />
       </Container>
     </>
   );

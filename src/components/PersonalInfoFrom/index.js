@@ -9,7 +9,7 @@ import UserIcon from "../../svg/UserIcon";
 import MailIcon from "../../svg/MailIcon";
 import ContactIcon from "../../svg/ContactIcon/indes";
 
-const PersonalInfoForm = () => {
+const PersonalInfoForm = ({ image }) => {
   const {
     register,
     handleSubmit,
@@ -21,21 +21,20 @@ const PersonalInfoForm = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
-
   const onSubmit = (data) => {
     setDisable(true);
-    const _data = new FormData();
-    _data.append("firstName", data.firstName);
-    _data.append("lastName", data.lastName);
-    _data.append("phoneNumber", data.phoneNumber);
-    // _data.append("images", data.productImage[0]);
-    // _data.append("images", data.studentImage[0]);
+    let _data = { ...data };
+    if (image && image.length > 0) {
+      data.image = image;
+    }
+    console.log("_data", _data);
     updateData(
       `/${__u__.role === "AUTHOR" ? "author" : "student"}/profile`,
       _data,
       __u__.token
     )
       .then((res) => {
+        console.log("update-data", res);
         setDisable(false);
         if (res.success) {
           toast.success(`${res.message}`);
@@ -55,6 +54,7 @@ const PersonalInfoForm = () => {
         setDisable(false);
       });
   };
+
   return (
     <From onSubmit={handleSubmit(onSubmit)}>
       <div className="row">
@@ -222,7 +222,7 @@ const Button = styled.button`
   color: #ffffff;
   padding: 5px 0;
   border: none;
-  width: 50% !important;
+  width: 25% !important;
   margin: auto;
   margin-top: 30px;
   cursor: pointer;
