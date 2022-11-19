@@ -61,7 +61,7 @@ const AddNewItem = () => {
     _data.append("studentName", data.studentName);
     _data.append("cost", data.cost);
     _data.append("description", data.description);
-    console.log(..._data, ...images);
+    console.log(_data, images);
     authPost("/add-item", { ..._data, ...images }, __u__.token).then((res) => {
       console.log("add-new-item", res);
       setDisable(false);
@@ -142,12 +142,14 @@ const AddNewItem = () => {
             />
             <div className="productImage absolute flex justify-center items-center gap-2">
               <img src="/img/icon/upload-icon.png" alt="" />
-              <img
-                className="productImg"
-                src={
-                  images.studentImage.length > 0 ? images.studentImage : null
-                }
-              />
+              {images.studentImage.length > 0 && (
+                <img
+                  className="productImg"
+                  src={
+                    images.studentImage.length > 0 ? images.studentImage : null
+                  }
+                />
+              )}
             </div>
             {errors.studentImage && <span>student image is required</span>}
           </UploadButton>
@@ -161,10 +163,12 @@ const AddNewItem = () => {
             />
             <div className="productImage absolute flex justify-center items-center gap-2">
               <img src="/img/icon/upload-icon.png" alt="" />
-              <img
-                className="productImg"
-                src={images.itemImage.length > 0 ? images.itemImage : null}
-              />
+              {images.itemImage.length > 0 && (
+                <img
+                  className="productImg"
+                  src={images.itemImage.length > 0 ? images.itemImage : null}
+                />
+              )}
             </div>
             {errors.studentImage && <span>student image is required</span>}
           </UploadButton>
