@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import styled from "styled-components";
+import NeedsModal from "../../pages/NeedsModal/NeedsModal";
 import { APP_URL, authPost } from "../../__lib__/helpers/HttpService";
 import { Sortern } from "../../__lib__/helpers/Validator";
-import ItemModal from "../ItemModal/ItemModal";
+
 
 const PaymentTable = ({
-  active, 
+  active,
   infos,
   items,
   setItems,
@@ -19,7 +20,7 @@ const PaymentTable = ({
 }) => {
   const [modal, setModal] = useState(false);
   const [itemData, setItemData] = useState(" ");
-
+  const [needData, setNeedData] = useState(" ");
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
@@ -59,9 +60,7 @@ const PaymentTable = ({
               <th>Cost</th>
               <th>Student</th>
               <th>Description</th>
-              {
-                active && (<th>{!items.length > 0 ? "Action" : ""}</th>)
-              }
+              {active && <th>{!items.length > 0 ? "Action" : ""}</th>}
             </tr>
           </thead>
           <tbody>
@@ -70,23 +69,21 @@ const PaymentTable = ({
                 <tr key={index}>
                   <td>
                     <TableImage>
-                      {
-                        active && (
-                          <div
-                            onClick={() => handleSelect(item._id, item.cost)}
-                            className="radio-container"
-                          >
-                            {items.includes(item._id) && (
-                              <div className="radio"></div>
-                            )}
-                          </div>
-                        )
-                      }
+                      {active && (
+                        <div
+                          onClick={() => handleSelect(item._id, item.cost)}
+                          className="radio-container"
+                        >
+                          {items.includes(item._id) && (
+                            <div className="radio"></div>
+                          )}
+                        </div>
+                      )}
 
                       <img
                         onClick={() => {
                           setModal(!modal);
-                          setItemData(item);
+                          setNeedData(item);
                         }}
                         src={`${APP_URL}/${item.itemImage}`}
                         alt=""
@@ -131,9 +128,9 @@ const PaymentTable = ({
       {infos && infos.length === 0 && <h1>You have no Data</h1>}
 
       {modal && (
-        <ItemModal
-          setItemData={setItemData}
-          itemData={itemData}
+        <NeedsModal
+          setNeedData={setNeedData}
+          needData={needData}
           setModal={setModal}
           modal={modal}
         />

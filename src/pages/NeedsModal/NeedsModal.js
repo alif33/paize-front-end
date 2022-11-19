@@ -3,7 +3,14 @@ import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 import { IoIosCloseCircle } from "react-icons/io";
 
-const NeedsModal = ({ setNeedData, needData, setModal, modal }) => {
+const NeedsModal = ({
+  setNeedData,
+  setItemData,
+  itemData,
+  needData,
+  setModal,
+  modal,
+}) => {
   console.log("needData", needData);
   return (
     <Container>
@@ -12,7 +19,7 @@ const NeedsModal = ({ setNeedData, needData, setModal, modal }) => {
       <div className="down-part">
         <div className="badge">
           <div>
-            <p className="item-card-text">Cost: {needData.cost}$</p>
+            <p className="item-card-text">Cost: {needData?.cost}$</p>
           </div>
 
           <div onClick={() => setModal(!modal)} className="x-icon">
@@ -25,25 +32,17 @@ const NeedsModal = ({ setNeedData, needData, setModal, modal }) => {
 
         <div className="modal-photo">
           <div>
-            <img src={`${APP_URL}/${needData.itemImage}`} alt="" />
+            <img src={`${APP_URL}/${needData?.itemImage}`} alt="" />
             <p className="img-text">{needData?.itemName}</p>
           </div>
           <div>
-            <img src={`${APP_URL}/${needData.studentImage}`} alt="" />
+            <img src={`${APP_URL}/${needData?.studentImage}`} alt="" />
 
             <p className="img-text">{needData?.studentName}</p>
           </div>
         </div>
         <div className="border-b"></div>
-        <p className="item-description">{needData.description}</p>
-
-        {/* <p>Item Name: {itemData.itemName}</p>
-    <p>Cost: {itemData.cost}</p>
-    <p>Student Name: {itemData.studentName}</p>
-    <p>Description:{itemData.description}</p>
-    <p>Status: {itemData.status}</p>
-
-    <p>fffffffffffffffffff</p> */}
+        <p className="item-description">{needData?.description}</p>
       </div>
     </Container>
   );
@@ -79,7 +78,7 @@ const Container = styled.div`
     height: 550px;
     /* background-color: rgb(255 255 255 / var(--tw-bg-opacity)); */
     background-color: white;
-  
+
     padding-bottom: 0.5rem /* 32px */;
     padding-left: 1.5rem /* 28px */;
     padding-right: 1.5rem /* 28px */;
@@ -175,6 +174,7 @@ const Container = styled.div`
     /* position: absolute;
     top: 5%;
     left: 25%; */
+
     margin-top: 20px;
     margin-bottom: 20px;
   }
