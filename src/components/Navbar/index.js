@@ -34,14 +34,15 @@ const Navbar = () => {
           <SearchInput placeholder="Search" />
         </SearchDiv>
         <div className="loginAndIconDiv">
-          {location.pathname === "/about" ? (
-            ""
-          ) : (
-            <Link to="/about" className="heading">
-              About
-            </Link>
-          )}
-
+       
+          <Link
+            to="/about"
+            className={`${
+              location.pathname === "/about" ? "blue-active heading" : "heading"
+            }`}
+          >
+            About
+          </Link>
           {users.isLogedIn ? (
             <UserDropDown __u__={__u__} />
           ) : (
@@ -85,6 +86,9 @@ const Container = styled.div`
     color: #0e3746;
     text-decoration: none;
     margin-right: 40px;
+  }
+  .blue-active {
+    color: #2291f1;
   }
 `;
 

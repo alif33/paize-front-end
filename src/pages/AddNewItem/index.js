@@ -4,12 +4,15 @@ import Navbar from "../../components/Navbar";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
-import { authPost } from "../../__lib__/helpers/HttpService";
+import { authPost, postData } from "../../__lib__/helpers/HttpService";
 import { useSelector } from "react-redux";
 
 const AddNewItem = () => {
   const [disable, setDisable] = useState(false);
-
+  const [images, setImages] = useState({
+    studentImage: "",
+    itemImage: "",
+  });
   const {
     register,
     reset,
@@ -20,6 +23,36 @@ const AddNewItem = () => {
   const { __u__ } = users;
   const navigate = useNavigate();
 
+  const ImageHandler = (file, field) => {
+    if (file.length > 0) {
+      let ready = {};
+      ready[`${field}`] = false;
+      setImages({
+        ...images,
+        ...ready,
+      });
+
+      const formData = new FormData();
+      formData.append("image", file[0]);
+      authPost("/upload", formData, __u__.token)
+        .then((res) => {
+          console.log("ImageHandler", res);
+          if (res.success) {
+            const { secure_url } = res.image;
+            let uploaded = {};
+            uploaded[`${field}`] = secure_url;
+            setImages({
+              ...images,
+              ...uploaded,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log("ImageHandler-formData", err);
+        });
+    }
+  };
+
   const onSubmit = (data) => {
     setDisable(true);
 
@@ -28,10 +61,9 @@ const AddNewItem = () => {
     _data.append("studentName", data.studentName);
     _data.append("cost", data.cost);
     _data.append("description", data.description);
-    _data.append("images", data.productImage[0]);
-    _data.append("images", data.studentImage[0]);
-
-    authPost("/add-item", _data, __u__.token).then((res) => {
+    console.log(_data, images);
+    authPost("/add-item", { ..._data, ...images }, __u__.token).then((res) => {
+      console.log("add-new-item", res);
       setDisable(false);
       if (res.success) {
         toast.success(`${res.message}`);
@@ -40,7 +72,7 @@ const AddNewItem = () => {
       }
     });
   };
-
+  console.log("images", images);
   return (
     <>
       <Navbar />
@@ -83,6 +115,7 @@ const AddNewItem = () => {
             </label>
             <div className={errors.cost ? "inputDiv active" : "inputDiv "}>
               <input
+                type="number"
                 {...register("cost", {
                   required: true,
                 })}
@@ -93,7 +126,7 @@ const AddNewItem = () => {
           <TextArae>
             <h5>Description</h5>
             <textarea
-              rows={3} 
+              rows={3}
               {...register("description", {
                 required: true,
               })}
@@ -103,12 +136,21 @@ const AddNewItem = () => {
             <p>Upload student image, size between 220*220 to 2000*2000px.</p>
             <input
               type="file"
-              {...register("studentImage", {
-                required: true,
-              })}
+              required
+              onChange={(e) => ImageHandler(e.target.files, "studentImage")}
               accept="image/*"
             />
-            <img src="/img/icon/upload-icon.png" alt="" />
+            <div className="productImage absolute flex justify-center items-center gap-2">
+              <img src="/img/icon/upload-icon.png" alt="" />
+              {images.studentImage.length > 0 && (
+                <img
+                  className="productImg"
+                  src={
+                    images.studentImage.length > 0 ? images.studentImage : null
+                  }
+                />
+              )}
+            </div>
             {errors.studentImage && <span>student image is required</span>}
           </UploadButton>
 
@@ -116,12 +158,18 @@ const AddNewItem = () => {
             <p>Upload Product image, size between 220*220 to 2000*2000px.</p>
             <input
               type="file"
-              {...register("productImage", {
-                required: true,
-              })}
+              onChange={(e) => ImageHandler(e.target.files, "itemImage")}
               accept="image/*"
             />
-            <img src="/img/icon/upload-icon.png" alt="" />
+            <div className="productImage absolute flex justify-center items-center gap-2">
+              <img src="/img/icon/upload-icon.png" alt="" />
+              {images.itemImage.length > 0 && (
+                <img
+                  className="productImg"
+                  src={images.itemImage.length > 0 ? images.itemImage : null}
+                />
+              )}
+            </div>
             {errors.studentImage && <span>student image is required</span>}
           </UploadButton>
 
@@ -140,6 +188,17 @@ const Container = styled.div`
   width: 75%;
   margin: auto;
   padding-bottom: 40px;
+
+  .productImage {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .productImg {
+    border: none;
+    height: 100px;
+    width: 200px;
+  }
 `;
 
 const Title = styled.h3`
@@ -152,7 +211,7 @@ const Title = styled.h3`
   margin: 0;
   margin-top: 12px;
   padding: 25px 0px 10px 150px;
-  @media only screen and (max-width: 688px){
+  @media only screen and (max-width: 688px) {
     padding: 0;
     padding-left: 40px;
   }
@@ -180,7 +239,7 @@ const Form = styled.form`
     padding: 0 17px;
     font-size: 17px;
   }
-  @media only screen and (max-width: 688px){
+  @media only screen and (max-width: 688px) {
     width: 100%;
   }
 `;

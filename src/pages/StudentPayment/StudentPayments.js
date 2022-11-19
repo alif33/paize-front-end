@@ -37,15 +37,17 @@ const StudentPayment = () => {
         <div>
           <div className="data-header">
             <p className="ml-33">DATE</p>
-            <p className="ml-33">STATUS</p>
+            <p className="ml-33-2">STATUS</p>
             <p className="ml-34 position">TOTAL</p>
           </div>
           {!loading &&
             payments.map((payment, index) => (
               <>
                 <div className="data-main">
-                  <p className="ml-33">{moment(payment.createdAt).format('ll')}</p>
                   <p className="ml-33">
+                    {moment(payment.createdAt).format("ll")}
+                  </p>
+                  <p className="ml-33-2">
                     {payment?.amount === 0 ? "PENDING" : "PAID"}
                   </p>
                   <p
@@ -65,14 +67,18 @@ const StudentPayment = () => {
                     <div className="data">
                       <div className="data-header">
                         <p className="ml-33">Item Name</p>
-                        <p className="ml-33">Item Image</p>
+                        <p className="ml-33-2">Item Image</p>
                         <p className="ml-34">Per Cost</p>
                       </div>
                       {payment.needs.map((need) => (
                         <div className="data-main">
                           <p className="ml-33">{need?.itemName}</p>
 
-                          <img className="ml-33" src={need.itemImage} alt="" />
+                          <img
+                            className="ml-33-2"
+                            src={need.itemImage}
+                            alt=""
+                          />
                           <p className="ml-34">${need?.cost}</p>
                         </div>
                       ))}
@@ -100,7 +106,7 @@ const Container = styled.div`
 
     //styleName: Heading 5;
     font-family: Poppins;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     line-height: 30px;
     letter-spacing: -0.02em;
@@ -115,7 +121,7 @@ const Container = styled.div`
     padding: 10px;
 
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 36px;
     letter-spacing: 0em;
@@ -132,6 +138,11 @@ const Container = styled.div`
   .ml-33 {
     width: 33%;
     text-align: left;
+  }
+  .ml-33-2 {
+    width: 33%;
+    text-align: left;
+    padding-left: 15%;
   }
   .ml-34 {
     width: 34%;
@@ -155,11 +166,12 @@ const Title = styled.div`
 
 const TableData = styled.div`
   /* margin-left: 1007px; */
-  img{
+  img {
     width: 40px;
     height: 40px;
   }
   .data {
+    border: 2px dotted;
     width: 100%;
   }
   .data-header {

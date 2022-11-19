@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { updateData } from "../../__lib__/helpers/HttpService";
+import { postData, updateData } from "../../__lib__/helpers/HttpService";
 import toast from "react-hot-toast";
 import { logedIn } from "../../store/users/actions";
 import UserIcon from "../../svg/UserIcon";
@@ -20,6 +20,7 @@ const PersonalInfoForm = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
+
 
   const onSubmit = (data) => {
     setDisable(true);
