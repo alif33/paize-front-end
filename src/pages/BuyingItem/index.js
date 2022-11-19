@@ -58,12 +58,14 @@ const BuyingItem = () => {
           setActivePost(activePost + itemsPerPage);
         }
       }else{
-        if(needs.length > 0){
-          const _rem = needs.length %  itemsPerPage;
-          if(_rem > 0){
-            setActivePost(activePost - _rem);
-          }else{
-            setActivePost(activePost - itemsPerPage);
+        if(needs.length > itemsPerPage){
+          if(activePost - itemsPerPage >= itemsPerPage){
+            const _rem = needs.length %  itemsPerPage;
+            if(_rem > 0){
+              setActivePost(activePost - _rem);
+            }else{
+              setActivePost(activePost - itemsPerPage);
+            }
           }
         }
       }
