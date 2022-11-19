@@ -17,6 +17,7 @@ const override: CSSProperties = {
 };
 
 const BuyingItem = () => {
+  const [navLink, setNavLink] = useState("all");
   const [loading, setLoading] = useState(true);
   const [needs, setNeeds] = useState(null);
   const [items, setItems] = useState([]);
@@ -67,6 +68,20 @@ const BuyingItem = () => {
               <Link to="/add-new-item">Add New</Link>
             </Button>
           </Title>
+          <TableNavList>
+            <li
+              onClick={() => setNavLink("all")}
+              className={navLink === "all" ? "active" : "all"}
+            >
+              All
+            </li>
+            <li
+              onClick={() => setNavLink("active")}
+              className={navLink === "active" ? "active" : "all"}
+            >
+              Active
+            </li>
+          </TableNavList>
           <Table needs={needs} items={items} setItems={setItems} />
           <ArrowRight>
             <Link className="active" to="/">
@@ -156,5 +171,30 @@ const ArrowRight = styled.div`
   }
   a.active {
     opacity: 0.5;
+  }
+`;
+const TableNavList = styled.ul`
+  margin-top: 10px;
+  margin-left: 40px;
+  li {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+    color: rgba(14, 55, 70, 0.4);
+    border-right: 2px solid rgba(14, 55, 70, 0.4);
+    display: inline-block;
+    margin-right: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  li:last-child {
+    border-right: none;
+  }
+  li.active {
+    color: #2291f1;
   }
 `;

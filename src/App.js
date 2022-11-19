@@ -31,7 +31,9 @@ import Contactus from "./pages/admin/Contactus/Contactus";
 import History from "./pages/History/History";
 import Invoice from "./pages/Receipt/Receipt";
 import Receipt from "./pages/Receipt/Receipt";
-import StudentPayments2 from "./pages/StudentPayment/StudentPayments2";
+
+import NotFound from "./pages/NotFound/NotFound";
+import SchoolPayment from "./pages/SchoolPayment/SchoolPayment";
 
 const App = () => {
   console.log(process.env.REACT_APP_API_KEY);
@@ -102,6 +104,15 @@ const App = () => {
             </Auth>
           }
         />
+
+        <Route
+          path="/school/payments"
+          element={
+            <Auth role="AUTHOR">
+              <SchoolPayment />
+            </Auth>
+          }
+        />
         <Route
           path="/school-dashboard-amount"
           element={<SchoolDashboardAmount />}
@@ -110,7 +121,7 @@ const App = () => {
         <Route path="/student" element={<StudentDashboard />} />
         <Route path="/payment" element={<PaymentNowPage />} />
         <Route path="/student/payments" element={<StudentPayments />} />
-     
+
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
@@ -124,6 +135,7 @@ const App = () => {
 
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/receipt/:_id" element={<Receipt />} />
+
         <Route
           path="/admin/dashboard"
           element={
@@ -132,6 +144,7 @@ const App = () => {
             </Admin>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

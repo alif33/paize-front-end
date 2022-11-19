@@ -6,7 +6,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { __getData } from "../../__lib__/helpers/HttpService";
-const StudentPayment = () => {
+
+const SchoolPayment = () => {
+  const [navLink, setNavLink] = useState("all");
+  const [students, setStudents] = useState();
+  const [studentsData, setStudentsData] = useState();
   const [detailsData, setDetailsData] = useState(false);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState();
@@ -14,14 +18,15 @@ const StudentPayment = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
-  useEffect(() => {
-    __getData("student/payments", __u__.token).then((res) => {
-      if (res) {
-        setPayments(res);
-        setLoading(false);
-      }
-    });
-  }, []);
+  //   useEffect(() => {
+  //     __getData("student/payments", __u__.token).then((res) => {
+  //       if (res) {
+  //         setPayments(res);
+  //         setLoading(false);
+  //       }
+  //     });
+  //   }, []);
+
   console.log(payments);
   return (
     <div>
@@ -29,9 +34,22 @@ const StudentPayment = () => {
       <Container>
         <Title>
           {" "}
-          <h3>Payments History</h3>{" "}
+          <h3>School Donation History</h3>{" "}
         </Title>
-
+        <TableNavList>
+          <li
+            onClick={() => setNavLink("all")}
+            className={navLink === "all" ? "active" : "all"}
+          >
+            All
+          </li>
+          <li
+            onClick={() => setNavLink("pending")}
+            className={navLink === "pending" ? "active" : "all"}
+          >
+            Pending
+          </li>
+        </TableNavList>
         <div>
           <div className="data-header">
             <p className="ml-33">DATE</p>
@@ -42,10 +60,8 @@ const StudentPayment = () => {
             payments.map((payment, index) => (
               <>
                 <div className="data-main">
-                  <p className="ml-33">{payment.createdAt.slice(0, 10)}</p>
-                  <p className="ml-33">
-                    {payment?.amount === 0 ? "PENDING" : "PAID"}
-                  </p>
+                  <p className="ml-33">12.11.2022</p>
+                  <p className="ml-33">PENDING</p>
                   <p
                     onClick={() => setOpen(open === index ? -1 : index)}
                     style={{ cursor: "pointer" }}
@@ -62,18 +78,17 @@ const StudentPayment = () => {
                   <TableData>
                     <div className="data">
                       <div className="data-header">
-                        <p className="ml-33">Item Name</p>
-                        <p className="ml-33">Item Image</p>
-                        <p className="ml-34">Per Cost</p>
+                        <p>Item Name</p>
+                        <p>Per Cost</p>
                       </div>
-                      {payment.needs.map((need) => (
-                        <div className="data-main">
-                          <p className="ml-33">{need?.itemName}</p>
-
-                          <img className="ml-33" src={need.itemImage} alt="" />
-                          <p className="ml-34">${need?.cost}</p>
-                        </div>
-                      ))}
+                      <div className="data-main">
+                        <p>Member ship</p>
+                        <p>$1000</p>
+                      </div>
+                      <div className="data-main">
+                        <p>Member ship</p>
+                        <p>$300</p>
+                      </div>
                     </div>
                   </TableData>
                 )}
@@ -85,8 +100,7 @@ const StudentPayment = () => {
   );
 };
 
-export default StudentPayment;
-
+export default SchoolPayment;
 const Container = styled.div`
   .data-header {
     display: flex;
@@ -117,7 +131,7 @@ const Container = styled.div`
     font-weight: 500;
     line-height: 36px;
     letter-spacing: 0em;
-    text-align: right;
+    text-align: left;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 20px;
@@ -153,10 +167,7 @@ const Title = styled.div`
 
 const TableData = styled.div`
   /* margin-left: 1007px; */
-  img{
-    width: 40px;
-    height: 40px;
-  }
+
   .data {
     width: 100%;
   }
@@ -171,7 +182,7 @@ const TableData = styled.div`
     font-weight: 600;
     line-height: 39px;
     letter-spacing: 0em;
-
+    text-align: left;
     color: #3d9ff3;
   }
   .data-main {
@@ -185,5 +196,30 @@ const TableData = styled.div`
     letter-spacing: 0em;
     text-align: left;
     color: #8b8b8b;
+  }
+`;
+const TableNavList = styled.ul`
+  margin-top: 10px;
+  margin-left: 40px;
+  li {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+    color: rgba(14, 55, 70, 0.4);
+    border-right: 2px solid rgba(14, 55, 70, 0.4);
+    display: inline-block;
+    margin-right: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  li:last-child {
+    border-right: none;
+  }
+  li.active {
+    color: #2291f1;
   }
 `;

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 
 const Table = ({ needs, items, setItems }) => {
-  
   const handleSelect = (_id) => {
     if (items.includes(_id)) {
       setItems(items.filter((item) => item !== _id));
