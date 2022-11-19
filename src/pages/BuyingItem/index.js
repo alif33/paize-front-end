@@ -69,8 +69,12 @@ const BuyingItem = () => {
           }
         }
       }
+    }else{
+
     }
   };
+
+  console.log(activePost - itemsPerPage, activePost, "PAGINATION");
 
   return (
     <div>
