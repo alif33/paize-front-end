@@ -4,7 +4,7 @@ import { APP_URL } from "../../__lib__/helpers/HttpService";
 import { IoIosCloseCircle } from "react-icons/io";
 const ItemModal = ({ itemData, setItemData, setModal, modal }) => {
   console.log("itemData", itemData);
-  return (
+  return ( 
     <Container>
       {/* <div className="top-part"></div> */}
 

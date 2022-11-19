@@ -29,7 +29,8 @@ const StudentDashboard = () => {
   const [studentsData, setStudentsData] = useState();
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
-
+  const itemsPerPage = 3;
+  const [activePost, setActivePost] = useState(itemsPerPage);
   const fetchItems = () => {
     __getData(
       `/student/items?_school=${__u__.info._school}&status=UNPAID`,
@@ -62,6 +63,29 @@ const StudentDashboard = () => {
     });
   };
 
+  const handlePagination = (state) => {
+    if (navLink === "active") {
+      if (state === "next") {
+        if (activePost + itemsPerPage >= infos.length) {
+          setActivePost(infos.length);
+        } else {
+          setActivePost(activePost + itemsPerPage);
+        }
+      } else {
+        if (infos.length > itemsPerPage) {
+          if (activePost - itemsPerPage >= itemsPerPage) {
+            const _rem = infos.length % itemsPerPage;
+            if (_rem > 0) {
+              setActivePost(activePost - _rem);
+            } else {
+              setActivePost(activePost - itemsPerPage);
+            }
+          }
+        }
+      }
+    }
+  };
+
   return (
     <div>
       <ResNav>
@@ -89,16 +113,16 @@ const StudentDashboard = () => {
         <TableNavList>
           <li
             onClick={() => setNavLink("active")}
-            className={ navLink === "active" ? "active" : "" }
+            className={navLink === "active" ? "active" : ""}
           >
-            Active(<span>{ infos.length }</span>)
+            Active(<span>{infos.length}</span>)
           </li>
           <li
             onClick={() => setNavLink("paid")}
-            className={ navLink === "paid" ? "active" : "" }
+            className={navLink === "paid" ? "active" : ""}
           >
             Paid(
-            <span>{ paids.length }</span>)
+            <span>{paids.length}</span>)
           </li>
         </TableNavList>
 
@@ -106,11 +130,15 @@ const StudentDashboard = () => {
           <DotLoader color="#3b9df1" loading={loading} cssOverride={override} />
         )}
 
-
         {!loading && infos && (
           <PaymentTable
-            active={navLink === "active"? true: false }
-            infos={ navLink === "active"? infos: paids }
+            active={navLink === "active" ? true : false}
+            activePost={activePost}
+            infos={
+              navLink === "active"
+                ? infos.slice(activePost - itemsPerPage, activePost)
+                : paids
+            }
             items={items}
             setItems={setItems}
             amount={amount}
@@ -118,6 +146,23 @@ const StudentDashboard = () => {
             fetchItems={fetchItems}
           />
         )}
+        <ArrowRight>
+          {/* <Link className="active" to="/"> */}
+          <img
+            onClick={() => handlePagination("prev")}
+            style={{ transform: "scaleX(-1)", marginRight: "5px" }}
+            src="/img/icon/arrow-right.png"
+            alt="right-arrow"
+          />
+          {/* </Link> */}
+          {/* <Link to="/add-new-item"> */}
+          <img
+            onClick={() => handlePagination("next")}
+            src="/img/icon/arrow-right.png"
+            alt="left arrow"
+          />
+          {/* </Link> */}
+        </ArrowRight>
       </Container>
     </div>
   );
@@ -229,7 +274,21 @@ const TableNavList = styled.ul`
     color: #2291f1;
   }
 `;
-
+const ArrowRight = styled.div`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  a:first-child {
+    transform: rotate(180deg);
+    margin-right: 15px;
+  }
+  a.active {
+    opacity: 0.5;
+  }
+  img {
+    cursor: pointer;
+  }
+`;
 const ResNav = styled.div`
   @media only screen and (max-width: 688px) {
     width: 650px;

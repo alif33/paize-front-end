@@ -4,7 +4,10 @@ import styled from "styled-components";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 import { Sortern } from "../../__lib__/helpers/Validator";
 import ReactPaginate from "react-paginate";
+import NeedsModal from "../../pages/NeedsModal/NeedsModal";
 const Table = ({ active, needs, items, setItems }) => {
+  const [modal, setModal] = useState(false);
+  const [needData, setNeedData] = useState(" ");
   const handleSelect = (_id) => {
     if (items.includes(_id)) {
       setItems(items.filter((item) => item !== _id));
@@ -40,7 +43,14 @@ const Table = ({ active, needs, items, setItems }) => {
                       )}
                     </div>
                   )}
-                  <img src={`${APP_URL}/${need.itemImage}`} alt="" />
+                  <img
+                    onClick={() => {
+                      setModal(!modal);
+                      setNeedData(need);
+                    }}
+                    src={`${APP_URL}/${need.itemImage}`}
+                    alt=""
+                  />
                   <h5>{need.itemName}</h5>
                 </TableImage>
               </td>
@@ -54,25 +64,28 @@ const Table = ({ active, needs, items, setItems }) => {
                 <span>{Sortern(need.description, 10)}</span>
               </td>
               {active && (
-                <Link to={`/update-item/${need._id}`}>
-                  <td style={{ cursor: "pointer" }}>
-                    <img src="/img/icon/edit.png" alt="" />
-                  </td>
-                </Link>
+                <td>
+                  <Link to={`/update-item/${need._id}`}>
+                    <img
+                      style={{ cursor: "pointer" }}
+                      src="/img/icon/edit.png"
+                      alt=""
+                    />
+                  </Link>
+                </td>
               )}
             </tr>
           );
         })}
       </tbody>
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={0}
-        pageRangeDisplayed={5}
-        pageCount={0}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+      {modal && (
+        <NeedsModal
+          modal={modal}
+          setModal={setModal}
+          needData={needData}
+          setNeedData={setNeedData}
+        />
+      )}
     </TableContainer>
   );
 };

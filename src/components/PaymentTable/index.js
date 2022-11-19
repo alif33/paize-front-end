@@ -9,7 +9,7 @@ import { Sortern } from "../../__lib__/helpers/Validator";
 import ItemModal from "../ItemModal/ItemModal";
 
 const PaymentTable = ({
-  active,
+  active, 
   infos,
   items,
   setItems,

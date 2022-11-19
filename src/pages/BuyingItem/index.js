@@ -49,29 +49,28 @@ const BuyingItem = () => {
     });
   };
 
-  const handlePagination = state =>{
-    if(navLink === "active"){
-      if(state==="next"){
-        if(activePost + itemsPerPage >= needs.length){
-          setActivePost(needs.length)
-        }else{
+  const handlePagination = (state) => {
+    if (navLink === "active") {
+      if (state === "next") {
+        if (activePost + itemsPerPage >= needs.length) {
+          setActivePost(needs.length);
+        } else {
           setActivePost(activePost + itemsPerPage);
         }
-      }else{
-        if(needs.length > itemsPerPage){
-          if(activePost - itemsPerPage >= itemsPerPage){
-            const _rem = needs.length %  itemsPerPage;
-            if(_rem > 0){
+      } else {
+        if (needs.length > itemsPerPage) {
+          if (activePost - itemsPerPage >= itemsPerPage) {
+            const _rem = needs.length % itemsPerPage;
+            if (_rem > 0) {
               setActivePost(activePost - _rem);
-            }else{
+            } else {
               setActivePost(activePost - itemsPerPage);
             }
           }
         }
       }
     }
-  }
-
+  };
 
   return (
     <div>
@@ -112,26 +111,31 @@ const BuyingItem = () => {
           </TableNavList>
           <Table
             active={navLink === "active" ? true : false}
-            activePost={ activePost }
-            needs={navLink === "active" ? needs.slice(activePost-itemsPerPage, activePost) : paids}
+            activePost={activePost}
+            needs={
+              navLink === "active"
+                ? needs.slice(activePost - itemsPerPage, activePost)
+                : paids
+            }
             items={items}
             setItems={setItems}
           />
 
           <ArrowRight>
             {/* <Link className="active" to="/"> */}
-              <img
-                onClick={()=>handlePagination("prev")}
-                src="/img/icon/arrow-right.png" 
-                alt="right-arrow" 
-                />
+            <img
+              onClick={() => handlePagination("prev")}
+              style={{ transform: "scaleX(-1)", marginRight:"5px" }}
+              src="/img/icon/arrow-right.png"
+              alt="right-arrow"
+            />
             {/* </Link> */}
             {/* <Link to="/add-new-item"> */}
-              <img 
-                onClick={()=>handlePagination("next")}
-                src="/img/icon/arrow-right.png" 
-                alt="left arrow" 
-              />
+            <img
+              onClick={() => handlePagination("next")}
+              src="/img/icon/arrow-right.png"
+              alt="left arrow"
+            />
             {/* </Link> */}
           </ArrowRight>
         </>
