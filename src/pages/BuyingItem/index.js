@@ -22,6 +22,8 @@ const BuyingItem = () => {
   const [needs, setNeeds] = useState([]);
   const [paids, setPaids] = useState([]);
   const [items, setItems] = useState([]);
+  const itemsPerPage = 3;
+  const [activePost, setActivePost] = useState(itemsPerPage);
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
@@ -47,7 +49,21 @@ const BuyingItem = () => {
     });
   };
 
-  console.log("needs", needs.length);
+  const handlePagination = state =>{
+    if(navLink === "active"){
+      if(state==="next"){
+        if(activePost + itemsPerPage >= needs.length){
+          setActivePost(needs.length)
+        }else{
+          setActivePost(activePost + itemsPerPage);
+        }
+      }
+    }else{
+
+    }
+  }
+
+
   return (
     <div>
       <Navbar />
@@ -87,18 +103,27 @@ const BuyingItem = () => {
           </TableNavList>
           <Table
             active={navLink === "active" ? true : false}
-            needs={navLink === "active" ? needs : paids}
+            activePost={ activePost }
+            needs={navLink === "active" ? needs.slice(activePost-itemsPerPage, activePost) : paids}
             items={items}
             setItems={setItems}
           />
 
           <ArrowRight>
-            <Link className="active" to="/">
-              <img src="/img/icon/arrow-right.png" alt="" />
-            </Link>
-            <Link to="/add-new-item">
-              <img src="/img/icon/arrow-right.png" alt="" />
-            </Link>
+            {/* <Link className="active" to="/"> */}
+              <img
+                onClick={()=>handlePagination("prev")}
+                src="/img/icon/arrow-right.png" 
+                alt="right-arrow" 
+                />
+            {/* </Link> */}
+            {/* <Link to="/add-new-item"> */}
+              <img 
+                onClick={()=>handlePagination("next")}
+                src="/img/icon/arrow-right.png" 
+                alt="left arrow" 
+              />
+            {/* </Link> */}
           </ArrowRight>
         </>
       )}
@@ -180,6 +205,9 @@ const ArrowRight = styled.div`
   }
   a.active {
     opacity: 0.5;
+  }
+  img {
+    cursor: pointer;
   }
 `;
 const TableNavList = styled.ul`
