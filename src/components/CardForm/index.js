@@ -91,7 +91,7 @@ const CardForm = () => {
       </div>
       <div className="row">
         <div className="inputsConatiner">
-          <div className="icon">
+          <div style={{ marginLeft: "20px" }} className="icon">
             <UserIcon />
           </div>
           <div className="inputDiv">
