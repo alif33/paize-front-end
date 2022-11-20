@@ -29,7 +29,8 @@ const UpdateInfo = () => {
     }
   };
 
-  console.log("users", users);
+  // console.log("users", users);
+  // console.log("users", __u__?.role);
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -41,7 +42,12 @@ const UpdateInfo = () => {
           <Link to="/update-Information" className="active">
             Personal Information 
           </Link>
-          <Link to="/payment-details">Payment Details</Link>
+          {
+            __u__?.role === "AUTHOR" && (
+              <Link to="/payment-details">Payment Details</Link>
+            )
+          }
+
         </TapGroup>
 
         <ProfileSction>

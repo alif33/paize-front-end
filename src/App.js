@@ -29,7 +29,6 @@ import StudentPayments from "./pages/StudentPayment/StudentPayments";
 import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
 import Contactus from "./pages/admin/Contactus/Contactus";
 import History from "./pages/History/History";
-import Invoice from "./pages/Receipt/Receipt";
 import Receipt from "./pages/Receipt/Receipt";
 
 import NotFound from "./pages/NotFound/NotFound";
@@ -71,7 +70,11 @@ const App = () => {
         <Route path="/join/school-information" element={<JoinSchoolInfo />} />
 
         <Route path="/update-information" element={<UpdateInfo />} />
-        <Route path="/payment-details" element={<PaymentDetails />} />
+        <Route path="/payment-details" element={
+           <Auth role="AUTHOR">
+             <PaymentDetails />
+           </Auth>
+        }/>
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route
