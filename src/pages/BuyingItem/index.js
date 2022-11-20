@@ -74,11 +74,9 @@ const BuyingItem = () => {
     }
   };
 
-<<<<<<< HEAD
   console.log(activePost - itemsPerPage, activePost, "PAGINATION");
   console.log(needs, "needs");
-=======
->>>>>>> 5ed3ac105ca6e0e4f46259e34bb50e916b063793
+
 
   return (
     <div>

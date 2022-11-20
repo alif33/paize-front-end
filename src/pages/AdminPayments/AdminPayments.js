@@ -10,10 +10,12 @@ import moment from "moment/moment";
 import { IoIosCheckmarkCircle, IoIosCloseCircle } from "react-icons/io";
 import NeedsModal from "../NeedsModal/NeedsModal";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
+import MapPin from "../../svg/MapPin/MapPin";
+import AdminPaymentsModal from "./AdminPaymentsModal";
 const AdminPayments = () => {
   const [detailsData, setDetailsData] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState();
+  const [modal, setModal] = useState(false);
   const [payments, setPayments] = useState([]);
   const { users, admin } = useSelector((state) => state);
 
@@ -58,7 +60,6 @@ const AdminPayments = () => {
                       <td
                         onClick={() => {
                           setModal(!modal);
-
                           setDetailsData(payment, index);
                         }}
                       >
@@ -74,30 +75,12 @@ const AdminPayments = () => {
           {payments && payments.length === 0 && <h1>You have no Data</h1>}
 
           {modal && (
-            <AdminPaymentsModal>
-              <div className="top-part" onClick={() => setModal(!modal)}></div>
-              <div className="down-part">
-                <div onClick={() => setModal(!modal)} className="x-icon">
-                  {" "}
-                  <p>Payment Information</p>
-                  <button>
-                    <IoIosCloseCircle />
-                  </button>
-                </div>
-
-                <div className="school">
-                  <p>{detailsData?.school?.schoolName}</p>
-                  <p>{detailsData?.school?.schoolAddress}</p>
-                </div>
-                {/* {detailsData.needs.map((need) => (
-                  <div>
-                    <div className="model-header">
-                      <img src={`${APP_URL}/${need?.itemImage}`} alt="" />
-                    </div>
-                  </div>
-                ))} */}
-              </div>
-            </AdminPaymentsModal>
+            <AdminPaymentsModal
+              setModal={setModal}
+              modal={modal}
+              detailsData={detailsData}
+              setDetailsData={setDetailsData}
+            />
           )}
         </TableContainer>
       </Container>
@@ -160,59 +143,6 @@ const TableContainer = styled.table`
   /* @media only screen and (max-width: 688px) {
     width: 200px;
   } */
-`;
-
-const AdminPaymentsModal = styled.div`
-  .top-part {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100vh;
-    background-color: #e0e0eb;
-    opacity: 0.5;
-  }
-  .down-part {
-    position: absolute;
-    left: 10%;
-    top: 15%;
-    width: 80%;
-    background-color: white;
-    padding-top: 1rem /* 32px */;
-    padding-bottom: 1rem /* 32px */;
-    padding-left: 0.5rem /* 28px */;
-    padding-right: 0.5rem /* 28px */;
-    border-radius: 20px;
-    box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
-    -moz-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
-    font-family: "Roboto", sans-serif;
-  }
-  .x-icon {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .x-icon p {
-    font-size: 20px;
-  }
-  .x-icon button {
-    border: 0;
-    background-color: transparent;
-    font-size: 30px;
-    cursor: pointer;
-  }
-
-  .x-icon button:hover {
-    color: #33adff;
-  }
-  .model-header {
-  }
-  .model-header img {
-    display: block;
-    width: 150px;
-    height: 150px;
-  }
 `;
 
 const TableData = styled.div`
