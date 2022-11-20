@@ -1,51 +1,130 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { logedIn } from "../../store/users/actions";
+import BankIcon from "../../svg/BankIcon";
+import ContactIcon from "../../svg/ContactIcon/indes";
+import MailIcon from "../../svg/MailIcon";
+import SchoolIcon from "../../svg/SchoolIcon";
 import StartIcon from "../../svg/StartIcon";
-
+import UserIcon from "../../svg/UserIcon";
+import { updateData } from "../../__lib__/helpers/HttpService";
+import DocumentIcon from "../../svg/DocumentIcon";
 const CardForm = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const [disable, setDisable] = useState(false);
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state);
+  const { __u__ } = users;
+
+  console.log("users", __u__.info.routingNumber);
+  const onSubmit = (data) => {
+    setDisable(true);
+
+    console.log("data", data);
+    updateData(`/author/profile`, data, __u__.token)
+      .then((res) => {
+        console.log("update-data", res);
+        setDisable(false);
+        if (res.success) {
+          toast.success(`${res.message}`);
+          const { token, info, role, status } = res;
+
+          dispatch(
+            logedIn({
+              token,
+              info,
+              role,
+              status,
+            })
+          );
+        }
+      })
+      .catch((err) => {
+        setDisable(false);
+      });
+  };
   return (
-    <From>
-      <p>Card Number</p>
-      <CardInputs>
-        <img src="/img/icon/uim_master-card.png" alt="" />
-
-        <input type="text" />
-        <span>-</span>
-        <input type="text" />
-        <span>-</span>
-        <input type="text" />
-        <span>-</span>
-        <input type="text" />
-
-        {/* <img src="/img/icon/start.svg" alt="" /> */}
-        <StartIcon />
-      </CardInputs>
-
-      <NumberCard>
-        <NumberLable>
-          <p>CVV Number</p>
-          <span>Enter the 3 or 4 digit number on the card</span>
-        </NumberLable>
-        <CardInput>
-          <Input type="text" />
-          <img src="/img/icon/dote-icon.png" alt="" />
-        </CardInput>
-      </NumberCard>
-
-      <NumberCard>
-        <NumberLable>
-          <p>CVV Number</p>
-          <span>Enter the 3 or 4 digit number on the card</span>
-        </NumberLable>
-        <CardInputDate>
-          <Input type="text" />
-        </CardInputDate>
-        <span>/</span>
-        <CardInputDate>
-          <Input type="text" />
-        </CardInputDate>
-      </NumberCard>
-      <Button>Update</Button>
+    <From onSubmit={handleSubmit(onSubmit)}>
+      <Toaster position="top-center" reverseOrder={false} />
+      <div className="row">
+        <div className="inputsConatiner">
+          {/* <img src='/img/icon/user.svg' className="ledtIcon" alt=""
+                    /> */}
+          <div className="icon">
+            <BankIcon />
+          </div>
+          <div className={errors.firstName ? "inputDiv active" : "inputDiv "}>
+            <input
+              {...register("bankName", {
+                required: true,
+              })}
+              placeholder="Name of Bank"
+              defaultValue={__u__?.info?.bankName}
+            />
+            {errors.firstName && <span>First Name is required</span>}
+          </div>
+        </div>
+        <div className="inputsConatiner">
+          <div className="icon">
+            <BankIcon />
+          </div>
+          <div className={errors.lastName ? "inputDiv active" : "inputDiv "}>
+            <input
+              type="number"
+              {...register("routingNumber", {
+                required: true,
+              })}
+              placeholder="Routing Number"
+              defaultValue={__u__?.info?.routingNumber}
+            />
+            {errors.lastName && <span>Last Name is required</span>}
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="inputsConatiner">
+          <div className="icon">
+            <UserIcon />
+          </div>
+          <div className="inputDiv">
+            <input
+              {...register("accountName", {
+                required: true,
+              })}
+              placeholder="Name of Account"
+              defaultValue={__u__?.info?.accountName}
+            />
+          </div>
+        </div>
+        <div className="inputsConatiner">
+          <div className="icon">
+            <DocumentIcon />
+          </div>
+          <div className={errors.phoneNumber ? "inputDiv active" : "inputDiv "}>
+            <input
+              // name="accountNumber"
+              type="number"
+              {...register("accountNumber", {
+                required: true,
+              })}
+              placeholder="Account Number"
+              defaultValue={__u__?.info?.accountNumber}
+            />
+            {errors.phoneNumber && <span>Phone Number is required</span>}
+          </div>
+        </div>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <Button disabled={disable}>Update</Button>
+      </div>
     </From>
   );
 };
@@ -53,112 +132,96 @@ const CardForm = () => {
 export default CardForm;
 
 const From = styled.form`
-  width: 60%;
-  margin: auto;
-  p {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 42px; 
-    color: #0e3746;
-    margin: 0;
-    margin-top: 34px;
-    margin-bottom: 10px;
+  margin-top: 49px;
+  padding-top: 36px;
+  .row {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    column-gap: 4%;
   }
-  @media only screen and (max-width: 688px) {
-    width: 98%;
+  .icon {
+    margin-left: 30px;
   }
-`;
-const CardInputs = styled.div`
-  background: rgba(218, 221, 225, 0.4);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px 0;
+  .inputsConatiner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  .inputsConatiner span {
+    color: red;
+    position: absolute;
+    bottom: -12px;
+    left: 22px;
+    background: #fff;
+    padding: 0 6px;
+  }
 
-  input {
-    width: 68px;
-    font-size: 20px;
-    border: none;
-    background: transparent;
+  .inputDiv {
+    width: 88%;
+    position: relative;
   }
-  @media only screen and (max-width: 688px) {
-    padding-left: 5px;
-    padding-right: 5px;
-    input {
-      width: 100%;
-    }
-  }
-`;
-const NumberCard = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 45px;
-`;
-const NumberLable = styled.div`
-  p {
-    margin: 0;
-    line-height: 22px;
-  }
-  span {
-    margin: 0;
+
+  .inputDiv input {
+    padding-inline: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    border: 1px solid #2291f1;
+    box-shadow: 0px 1px 10px -5px rgba(0, 0, 0, 0.76);
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 15px;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 36px;
+    color: #111;
+    padding-left: 20px;
+    padding: 5px;
+
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .inputDiv.active input {
+    border: 1px solid red;
+    background: #fff;
+  }
+  .inputDiv input:focus {
+    outline: none;
+  }
+  .inputDiv::placeholder {
     color: rgba(14, 55, 70, 0.4);
+    opacity: 1;
   }
   @media only screen and (max-width: 688px) {
-    p {
-      font-size: 15px;
-      line-height: 15px;
+    .row {
+      display: grid;
+      grid-template-columns: 90%;
+      column-gap: 10%;
     }
-    span {
-      font-size: 10px;
-      line-height: 0px;
-    }
-  }
-`;
-const Input = styled.input`
-  background: rgba(218, 221, 225, 0.4);
-  border-radius: 5px;
-`;
-const CardInput = styled(CardInputs)`
-  padding: 10px 14px;
-  input {
-    width: 210px;
-    margin-right: 20px;
-    :focus {
-      outline: none;
+    .icon {
+      margin-right: 20px;
     }
   }
-  @media only screen and (max-width: 688px) {
-    width: 265px;
+  @media only screen and (min-width: 688px) and (max-width: 992px) {
+    .icon {
+      margin-right: 20px;
+    }
   }
 `;
-const CardInputDate = styled(CardInput)`
-  input {
-    width: 100px;
-  }
-  @media only screen and (max-width: 688px) {
-    width: 120px;
-  }
-`;
+
 const Button = styled.button`
-  background: #2291f1;
-  border-radius: 5px;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
-  line-height: 20px;
+  line-height: 44px;
+  background: #2291f1;
+  border-radius: 7px;
   color: #ffffff;
-  width: 100%;
+  padding: 5px 0;
   border: none;
-  margin-top: 42px;
-  padding: 16px 0;
+  width: 25% !important;
+  margin: auto;
+  margin-top: 30px;
+  cursor: pointer;
 `;

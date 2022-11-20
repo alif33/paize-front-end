@@ -56,7 +56,7 @@ const JoinInfo = () => {
           {/* <img src='/img/icon/school.svg'
             style={{ width: "30px" }}
             className="ledtIcon"
-            alt=""
+            alt="" 
           /> */}
           <SchoolIcon />
           <div className={errors.schoolName ? "inputDiv active" : "inputDiv "}>

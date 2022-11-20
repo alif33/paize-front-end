@@ -39,13 +39,13 @@ const UpdateInfo = () => {
 
         <TapGroup>
           <Link to="/update-Information" className="active">
-            Personal Information
+            Personal Information 
           </Link>
           <Link to="/payment-details">Payment Details</Link>
         </TapGroup>
 
         <ProfileSction>
-          <p>Your Avatar</p>
+          <p>Your Avatar</p> 
           <ProfileInfo>
             <UserImage
               src={image?.length > 0 ? image : __u__?.info?.image}

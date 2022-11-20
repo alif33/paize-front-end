@@ -16,7 +16,7 @@ const PaymentInfo = () => {
     register,
     reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, 
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
