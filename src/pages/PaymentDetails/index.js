@@ -8,7 +8,7 @@ const PaymentDetails = () => {
   return (
     <>
       <Navbar />
-      <Container> 
+      <Container>
         <Title>Settings</Title>
 
         <TapGroup>
@@ -44,9 +44,11 @@ const Title = styled.h3`
   text-transform: capitalize;
   padding: 20px 0px;
   margin: 8px 0;
+  margin-left: 40px;
 `;
 
 const TapGroup = styled.div`
+  padding-left: 40px;
   a {
     font-family: "Poppins";
     font-style: normal;
@@ -56,7 +58,7 @@ const TapGroup = styled.div`
     color: rgba(14, 55, 70, 0.4);
     background: #ffffff;
     border: 2px solid rgba(14, 55, 70, 0.4);
-    border-radius: 12px;
+    border-radius: 7px;
     text-decoration: none;
     padding: 8px 18px;
     margin-right: 30px;

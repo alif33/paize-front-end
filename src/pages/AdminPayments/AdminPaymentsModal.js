@@ -21,7 +21,7 @@ const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
           <p
             style={{
               fontSize: "30px",
-             
+
               marginBottom: "20px",
             }}
             id="modal-header"
@@ -192,8 +192,9 @@ const Container = styled.div`
   .down-part {
     position: absolute;
     left: 12%;
-    top: 15%;
-    width: 80%;
+    top: 6%;
+    width: 78%;
+    height: 600px;
     background-color: white;
     padding-top: 1rem /* 32px */;
     padding-bottom: 1rem /* 32px */;
@@ -204,7 +205,46 @@ const Container = styled.div`
     -webkit-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
     -moz-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
     font-family: "Roboto", sans-serif;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(56, 148, 212, 0.78);
+    font-family: "Roboto", sans-serif;
+    ::-webkit-scrollbar {
+      width: 9px;
+      height: 9px;
+    }
+    ::-webkit-scrollbar-button {
+      width: 15px;
+      height: 19px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #e1e1e1;
+      border: 0px none #ffffff;
+      border-radius: 33px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e1e1e1;
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background: #a39e9e;
+    }
+    ::-webkit-scrollbar-track {
+      background: #666666;
+      border: 0px none #ffffff;
+      border-radius: 34px;
+    }
+    ::-webkit-scrollbar-track:hover {
+      background: #666666;
+    }
+    ::-webkit-scrollbar-track:active {
+      background: #666666;
+    }
+    ::-webkit-scrollbar-corner {
+      background: transparent;
+    }
   }
+  
   .x-icon {
     display: flex;
     justify-content: end;

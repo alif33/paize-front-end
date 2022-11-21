@@ -43,7 +43,7 @@ const UpdateInfo = () => {
             Personal Information 
           </Link>
           {
-            __u__?.role === "AUTHOR" && (
+            __u__?.role === "AUTHOR" && ( 
               <Link to="/payment-details">Payment Details</Link>
             )
           }
