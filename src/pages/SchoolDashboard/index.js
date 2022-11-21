@@ -46,8 +46,6 @@ const SchoolDashboard = () => {
     });
   }, []);
 
-  console.log(users.__u__);
-  console.log("studentsData", studentsData);
   return (
     <div>
       <Navbar />

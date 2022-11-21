@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar";
 import DotLoader from "react-spinners/DotLoader";
 import PaymentTable from "../../components/PaymentTable";
 import { authPost, __getData } from "../../__lib__/helpers/HttpService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const override: CSSProperties = {
   display: "block",
@@ -24,13 +24,12 @@ const StudentDashboard = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [navLink, setNavLink] = useState("active");
-  const [students, setStudents] = useState();
-  const [unPaidData, setUnPaidData] = useState();
-  const [studentsData, setStudentsData] = useState();
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
   const itemsPerPage = 3;
   const [activePost, setActivePost] = useState(itemsPerPage);
+  const navigate = useNavigate();
+
   const fetchItems = () => {
     __getData(
       `/student/items?_school=${__u__.info._school}&status=UNPAID`,
@@ -47,6 +46,7 @@ const StudentDashboard = () => {
   }, []);
 
   const payNow = async (_stripe) => {
+    setLoading(true);
     authPost(
       "/pay",
       {
@@ -59,6 +59,10 @@ const StudentDashboard = () => {
     ).then((res) => {
       if (res.success) {
         fetchItems();
+        setLoading(false);
+        if(res.success){
+          navigate(`/receipt/${res._id}`);
+        }
       }
     });
   };
@@ -92,77 +96,78 @@ const StudentDashboard = () => {
         <Navbar />
       </ResNav>
       <Container>
-        <Title>
-          <h3>Needs</h3>
-          {items?.length > 0 && (
-            <AreaPay>
-              <p>Total : {amount}$</p>
-              <StripeCheckout
-                stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
-                label="Pay Now"
-                name="Pay With Credit Card"
-                billingAddress
-                shippingAddress
-                amount={amount * 100}
-                description={`Your total is $${amount}`}
-                token={payNow}
+
+        {loading ?(
+            <DotLoader color="#3b9df1" loading={loading} cssOverride={override} />
+        ): (
+          <>
+            <Title>
+              <h3>Needs</h3>
+              {items?.length > 0 && (
+                <AreaPay>
+                  <p>Total : {amount}$</p>
+                  <StripeCheckout
+                    stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
+                    label="Pay Now"
+                    name="Pay With Credit Card"
+                    billingAddress
+                    shippingAddress
+                    amount={amount * 100}
+                    description={`Your total is $${amount}`}
+                    token={payNow}
+                  />
+                </AreaPay>
+              )}
+            </Title>
+            <TableNavList>
+              <li
+                onClick={() => setNavLink("active")}
+                className={navLink === "active" ? "active" : ""}
+              >
+                Active(<span>{infos?.length}</span>)
+              </li>
+              <li
+                onClick={() => setNavLink("paid")}
+                className={navLink === "paid" ? "active" : ""}
+              >
+                Paid(
+                <span>{paids?.length}</span>)
+              </li>
+            </TableNavList>
+
+            {!loading && infos && (
+              <PaymentTable
+                active={navLink === "active" ? true : false}
+                activePost={activePost}
+                infos={
+                  navLink === "active"
+                    ? infos.slice(activePost - itemsPerPage, activePost)
+                    : paids
+                }
+                items={items}
+                setItems={setItems}
+                loading={ loading }
+                setLoading={ setLoading }
+                amount={amount}
+                setAmount={setAmount}
+                fetchItems={fetchItems}
               />
-            </AreaPay>
-          )}
-        </Title>
-        <TableNavList>
-          <li
-            onClick={() => setNavLink("active")}
-            className={navLink === "active" ? "active" : ""}
-          >
-            Active(<span>{infos?.length}</span>)
-          </li>
-          <li
-            onClick={() => setNavLink("paid")}
-            className={navLink === "paid" ? "active" : ""}
-          >
-            Paid(
-            <span>{paids?.length}</span>)
-          </li>
-        </TableNavList>
-
-        {loading && (
-          <DotLoader color="#3b9df1" loading={loading} cssOverride={override} />
+            )}
+            <ArrowRight>
+              <img
+                onClick={() => handlePagination("prev")}
+                style={{ transform: "scaleX(-1)", marginRight: "5px" }}
+                src="/img/icon/arrow-right.png"
+                alt="right-arrow"
+              />
+              <img
+                onClick={() => handlePagination("next")}
+                src="/img/icon/arrow-right.png"
+                alt="left arrow"
+              />
+            </ArrowRight>
+          </>
         )}
-
-        {!loading && infos && (
-          <PaymentTable
-            active={navLink === "active" ? true : false}
-            activePost={activePost}
-            infos={
-              navLink === "active"
-                ? infos.slice(activePost - itemsPerPage, activePost)
-                : paids
-            }
-            items={items}
-            setItems={setItems}
-            amount={amount}
-            setAmount={setAmount}
-            fetchItems={fetchItems}
-          />
-        )}
-        <ArrowRight>
-          {/* <Link className="active" to="/"> */}
-          <img
-            onClick={() => handlePagination("prev")}
-            style={{ transform: "scaleX(-1)", marginRight: "5px" }}
-            src="/img/icon/arrow-right.png"
-            alt="right-arrow"
-          />
-          {/* </Link> */}
-          {/* <Link to="/add-new-item"> */}
-          <img
-            onClick={() => handlePagination("next")}
-            src="/img/icon/arrow-right.png"
-            alt="left arrow"
-          />
-          {/* </Link> */}
-        </ArrowRight>
       </Container>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import styled from "styled-components";
 import NeedsModal from "../../pages/NeedsModal/NeedsModal";
@@ -17,12 +17,15 @@ const PaymentTable = ({
   amount,
   setAmount,
   fetchItems,
+  loading,
+  setLoading 
 }) => {
   const [modal, setModal] = useState(false);
   const [itemData, setItemData] = useState(" ");
   const [needData, setNeedData] = useState(" ");
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
+  const navigate = useNavigate();
 
   const handleSelect = (_id, cost) => {
     if (items.includes(_id)) {
@@ -35,6 +38,7 @@ const PaymentTable = ({
   };
 
   const payNow = (_stripe, _id) => {
+    setLoading(true);
     authPost(
       "/pay",
       {
@@ -46,6 +50,10 @@ const PaymentTable = ({
       __u__.token
     ).then((res) => {
       fetchItems();
+      setLoading(false);
+      if(res.success){
+        navigate(`/receipt/${res._id}`);
+      }
     });
   };
 
