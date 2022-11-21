@@ -32,12 +32,14 @@ const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
         <div className="modal-main">
           <div className="modal-main-1">
             <h4>School Info</h4>{" "}
-            <img
-              className="modal-main-img"
-              src="/img/icon/logo.svg"
-              alt=""
-              srcset=""
-            />
+            <div className="bg-rounded">
+              <img
+                className="modal-main-img "
+                src="/img/icon/logo.svg"
+                alt=""
+                srcset=""
+              />
+            </div>
             <p className="modal-main-name">{detailsData?.school?.schoolName}</p>
             <div className="border-b"></div>
             <p className="modal-flex">
@@ -50,7 +52,7 @@ const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
             <p className="modal-flex">
               <img
                 src="/img/icon/mail.svg"
-                style={{ width: "18px", height: "15px" }}
+                style={{ width: "19px", height: "17px", marginRight: "2px" }}
                 alt=""
                 srcset=""
               />{" "}
@@ -92,12 +94,15 @@ const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
           <div className="modal-main-2">
             {" "}
             <h4>Student</h4>
-            <img
-              className="modal-main-img"
-              src={detailsData?.school?.image}
-              alt=""
-              srcset=""
-            />
+            <div className="bg-rounded">
+              {" "}
+              <img
+                className="modal-main-img"
+                src={detailsData?.school?.image}
+                alt=""
+                srcset=""
+              />
+            </div>
             <p className="modal-main-name">
               {detailsData?.student?.firstName} {detailsData?.student?.lastName}
             </p>
@@ -112,7 +117,7 @@ const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
             <p className="modal-flex">
               <img
                 src="/img/icon/mail.svg"
-                style={{ width: "18px", height: "15px" }}
+                style={{ width: "19px", height: "17px", marginRight: "2px" }}
                 alt=""
                 srcset=""
               />{" "}
@@ -134,18 +139,21 @@ const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
               &nbsp; {detailsData?.student?.phoneNumber}
             </p>
             <div className="modal-flex-main">
-              <div style={{ width: "290px" }} className="modal-flex">
+              <div className="modal-flex">
                 <img
                   src="/img/icon/Student.png"
-                  style={{ width: "20px", height: "15px" }}
+                  style={{ width: "20px", height: "15px", marginRight: "8px" }}
                   alt=""
                   srcset=""
                 />
-                <p className="span-color"> Studentship Status:</p>
+                <p style={{ width: "160px" }} className="span-color">
+                  {" "}
+                  Studentship Status:
+                </p>
               </div>
               <p>
                 &nbsp; {detailsData?.school?.bankName},
-                {detailsData?.school?.routingNumber} lord wd wadfwef
+                {detailsData?.school?.routingNumber}
               </p>
             </div>
           </div>
@@ -244,7 +252,7 @@ const Container = styled.div`
       background: transparent;
     }
   }
-  
+
   .x-icon {
     display: flex;
     justify-content: end;
@@ -300,7 +308,15 @@ const Container = styled.div`
     height: 145px;
     border-radius: 50%;
   }
-
+  .bg-rounded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 160px;
+    background: rgba(34, 145, 241, 0.14);
+    border-radius: 50%;
+  }
   .modal-main-2 {
     width: 500px;
     text-align: left;

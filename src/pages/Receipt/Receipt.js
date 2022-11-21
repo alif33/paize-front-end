@@ -85,7 +85,7 @@ const Receipt = () => {
                 </h4>
               </div>
               <div>
-                <p>Payment Method</p>
+                <p style={{ textAlign: "right" }}>Payment Method</p>
                 <h4>Credit Card </h4>
               </div>
             </div>
@@ -147,7 +147,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    font-size: 16px;
     color: #808080;
     padding-left: 20px;
     padding-right: 20px;
@@ -167,8 +167,8 @@ const Container = styled.div`
   }
   .receipt-header-2 h3 {
     text-transform: uppercase;
-    font-size: 40px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 600;
   }
   .receipt-header-3 {
     display: flex;
@@ -182,7 +182,7 @@ const Container = styled.div`
   .receipt-header-3 p {
     color: #858585;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
   }
   .receipt-header-3 h4 {
     font-weight: 400;
@@ -237,7 +237,7 @@ const Container = styled.div`
   }
   .receipt-total h4 {
     font-family: Poppins;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
     line-height: 54px;
     letter-spacing: 0.05em;
@@ -291,7 +291,7 @@ const Container = styled.div`
   }
   .receipt-footer-under p {
     font-family: Poppins;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 600;
     line-height: 48px;
     letter-spacing: 0em;

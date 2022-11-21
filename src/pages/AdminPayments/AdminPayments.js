@@ -12,6 +12,13 @@ import NeedsModal from "../NeedsModal/NeedsModal";
 import { APP_URL } from "../../__lib__/helpers/HttpService";
 import MapPin from "../../svg/MapPin/MapPin";
 import AdminPaymentsModal from "./AdminPaymentsModal";
+import { DotLoader } from "react-spinners";
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  marginTop: "200px",
+  borderColor: "red",
+};
 const AdminPayments = () => {
   const [detailsData, setDetailsData] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -37,6 +44,7 @@ const AdminPayments = () => {
           {" "}
           <h3>Payments History</h3>{" "}
         </Title>
+        <DotLoader color="#3b9df1" loading={loading} cssOverride={override} />
         <TableContainer>
           {payments && payments.length > 0 && (
             <>
@@ -133,6 +141,7 @@ const TableContainer = styled.table`
     padding: 0.75rem;
     vertical-align: top;
     border-bottom: 1px solid #dee2e6;
+    width: 20%;
   }
 
   .checkmark {
