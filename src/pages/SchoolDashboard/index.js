@@ -149,5 +149,5 @@ const Title = styled.h3`
   font-size: 34px;
   line-height: 62px;
   color: #0e3746;
-  padding-top: 15px;
+  padding-top: 25px;
 `;

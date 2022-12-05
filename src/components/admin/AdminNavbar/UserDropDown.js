@@ -25,7 +25,7 @@ const UserDropDown = () => {
           {" "}
           <img
             className="user-icon"
-            src="/img/icon/dummy-profile.png"
+            src="/img/icon/admin-avatar.png"
             alt=""
           />{" "}
           <img className="down-icon" src="/img/icon/drop-down.svg" alt="" />

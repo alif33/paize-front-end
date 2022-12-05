@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, CSSProperties } from "react";
 import Navbar from "../../components/Navbar";
 import styled from "styled-components";
 import {
@@ -13,13 +13,15 @@ import { __getData } from "../../__lib__/helpers/HttpService";
 import moment from "moment/moment";
 import AdminPaymentsModal from "../AdminPayments/AdminPaymentsModal";
 import { DotLoader } from "react-spinners";
+
 const override: CSSProperties = {
   display: "block",
   margin: "0 auto",
   marginTop: "200px",
   borderColor: "red",
 };
-const StudentPayment = () => {
+
+const StudentPayments = () => {
   const [detailsData, setDetailsData] = useState(false);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState();
@@ -27,10 +29,11 @@ const StudentPayment = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
   const [modal, setModal] = useState(false);
+
   useEffect(() => {
     __getData("student/payments", __u__.token).then((res) => {
       if (res) {
-        setPayments(res);
+        setPayments(res.reverse());
         setLoading(false);
       }
     });
@@ -87,7 +90,7 @@ const StudentPayment = () => {
               </tbody>
             </>
           )}
-          {payments && payments.length === 0 && <h1>You have no Data</h1>}
+          {!loading && payments && payments.length === 0 && <h1>You have no paymensts history.</h1>}
 
           {modal && (
             <AdminPaymentsModal
@@ -103,7 +106,7 @@ const StudentPayment = () => {
   );
 };
 
-export default StudentPayment;
+export default StudentPayments;
 
 const Container = styled.div``;
 

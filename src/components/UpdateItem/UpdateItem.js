@@ -80,12 +80,19 @@ const UpdateItem = () => {
   };
 
   const onSubmit = (data) => {
-    console.log("form-data", data);
+    let _data = data;
+    if(images.itemImage.length>0){
+      _data.itemImage = images.itemImage
+    }
+    if(images.studentImage.length>0){
+      _data.studentImage = images.studentImage
+    }
+    // console.log("form-data", data);
     setDisable(true);
 
     updateData(
       `/edit-item?_id=${id}`,
-      { ...data, ...images },
+      _data,
       __u__.token
     ).then((res) => {
       console.log("updateData", res);
@@ -98,7 +105,9 @@ const UpdateItem = () => {
       }
     });
   };
-  // console.log("updateNeeds", updateNeeds?.itemImage, updateNeeds?.studentImage);
+
+console.log(images);
+
   return (
     <>
       <Navbar />
@@ -161,7 +170,6 @@ const UpdateItem = () => {
             <p>Upload student image, size between 220*220 to 2000*2000px.</p>
             <input
               type="file"
-              required
               onChange={(e) => ImageHandler(e.target.files, "studentImage")}
               accept="image/*"
             />

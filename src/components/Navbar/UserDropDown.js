@@ -16,6 +16,8 @@ const UserDropDown = ({ __u__ }) => {
     navigate("/");
   };
 
+  console.log( __u__, "ISM");
+
   return (
     <Popup
       trigger={
@@ -23,7 +25,7 @@ const UserDropDown = ({ __u__ }) => {
           {" "}
           <img
             className="user-icon"
-            src="/img/icon/dummy-profile.png"
+            src={`${__u__?.info?.image.length>0 ? __u__?.info?.image: "/img/icon/dummy-profile.png" }`}
             alt=""
           />{" "}
           <img className="down-icon" src="/img/icon/drop-down.svg" alt="" />

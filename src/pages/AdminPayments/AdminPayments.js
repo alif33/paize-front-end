@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Navbar from "../../components/Navbar";
+import AdminNavbar from "../../components/admin/AdminNavbar";
 import styled from "styled-components";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { useState } from "react";
@@ -8,11 +8,9 @@ import { useSelector } from "react-redux";
 import { __getData } from "../../__lib__/helpers/HttpService";
 import moment from "moment/moment";
 import { IoIosCheckmarkCircle, IoIosCloseCircle } from "react-icons/io";
-import NeedsModal from "../NeedsModal/NeedsModal";
-import { APP_URL } from "../../__lib__/helpers/HttpService";
-import MapPin from "../../svg/MapPin/MapPin";
 import AdminPaymentsModal from "./AdminPaymentsModal";
 import { DotLoader } from "react-spinners";
+
 const override: CSSProperties = {
   display: "block",
   margin: "0 auto",
@@ -34,11 +32,10 @@ const AdminPayments = () => {
       }
     });
   }, []);
-  console.log("admin", admin.auth.token);
-  console.log("detailsData", detailsData);
+
   return (
     <div>
-      <Navbar />
+      <AdminNavbar />
       <Container>
         <Title>
           {" "}
@@ -58,29 +55,36 @@ const AdminPayments = () => {
                 </tr>
               </thead>
               <tbody>
-                {payments.map((payment, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{payment?._id}</td>
-                      <td>{moment(payment.createdAt).format("ll")}</td>
-                      <td>{payment?.amount === 0 ? "PENDING" : "PAID"}</td>
-                      <td> {payment.amount}</td>
-                      <td
-                        onClick={() => {
-                          setModal(!modal);
-                          setDetailsData(payment, index);
-                        }}
-                      >
-                        {" "}
-                        <IoIosCheckmarkCircle className="checkmark" />{" "}
-                      </td>
-                    </tr>
-                  );
+                { payments.map((payment, index) => {
+                    return (
+                      <tr key={index}>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            setModal(!modal);
+                            setDetailsData(payment, index);
+                          }}
+                        >{payment?._id}</td>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            setModal(!modal);
+                            setDetailsData(payment, index);
+                          }}
+                        >{moment(payment.createdAt).format("ll")}</td>
+                        <td>{payment?.amount === 0 ? "PENDING" : "PAID"}</td>
+                        <td> {payment.amount}</td>
+                        <td>
+                          {" "}
+                          <IoIosCheckmarkCircle className="checkmark" />{" "}
+                        </td>
+                      </tr>
+                    );
                 })}
               </tbody>
             </>
           )}
-          {payments && payments.length === 0 && <h1>You have no Data</h1>}
+          {!loading && payments && payments.length === 0 && <h1>No payments history.</h1>}
 
           {modal && (
             <AdminPaymentsModal

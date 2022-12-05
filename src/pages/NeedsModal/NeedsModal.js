@@ -32,13 +32,12 @@ const NeedsModal = ({
 
         <div className="modal-photo">
           <div>
-            <img src={`${APP_URL}/${needData?.itemImage}`} alt="" />
-            <p className="img-text">{needData?.itemName}</p>
+            <img src={needData?.studentImage} alt={needData?.studentName} />
+            <p className="img-text">{needData?.studentName}</p>
           </div>
           <div>
-            <img src={`${APP_URL}/${needData?.studentImage}`} alt="" />
-
-            <p className="img-text">{needData?.studentName}</p>
+            <img src={needData?.itemImage} alt={needData?.itemName} />
+            <p className="img-text">{needData?.itemName}</p>
           </div>
         </div>
         <div className="border-b"></div>

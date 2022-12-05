@@ -19,12 +19,15 @@ const StudentTable = ({ students, setStudents, setStudentsData }) => {
 
         {students &&
           students.length > 0 &&
-          students.map((item, index) => {
+          students.map((item, index) => { 
             return (
               <tr key={index}>
                 <td>
                   <TableImage>
-                    <img src="/img/icon/dummy-image.png" alt="" />
+                    <img 
+                      src={`${item?.image?.length>0 ? item?.image: "/img/icon/dummy-avatar.png"}`} 
+                      alt="" 
+                    />
                     <h5>{`${item.firstName} ${item.lastName}`}</h5>
                   </TableImage>
                 </td>
@@ -57,29 +60,6 @@ const StudentTable = ({ students, setStudents, setStudentsData }) => {
               </tr>
             );
           })}
-
-        {/* <tr>
-                    <td>
-                        <TableImage>
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>2011</p></td>
-                    <td><p>510-241-5439</p></td>
-                    <td><Button2>Approved </Button2></td>
-                </tr>
-                <tr>
-                    <td>
-                        <TableImage>
-                            <img src="/img/icon/dummy-image.png" alt="" />
-                            <h5>Study Table</h5>
-                        </TableImage>
-                    </td>
-                    <td><p>2011</p></td>
-                    <td><p>510-241-5439</p></td>
-                    <td><Button3>Rejected</Button3></td>
-                </tr> */}
       </tbody>
     </TableContainer>
   );

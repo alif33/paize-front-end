@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, CSSProperties } from "react";
 import Navbar from "../../components/Navbar";
 import styled from "styled-components";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
@@ -6,6 +6,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { __getData } from "../../__lib__/helpers/HttpService";
+import AdminPaymentsModal from "../AdminPayments/AdminPaymentsModal";
+import { DotLoader } from "react-spinners";
+import moment from "moment";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  marginTop: "200px",
+  borderColor: "red",
+};
 
 const SchoolPayment = () => {
   const [navLink, setNavLink] = useState("all");
@@ -14,27 +24,29 @@ const SchoolPayment = () => {
   const [detailsData, setDetailsData] = useState(false);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState();
+  const [modal, setModal] = useState(false);
   const [payments, setPayments] = useState([]);
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
 
-  //   useEffect(() => {
-  //     __getData("student/payments", __u__.token).then((res) => {
-  //       if (res) {
-  //         setPayments(res);
-  //         setLoading(false);
-  //       }
-  //     });
-  //   }, []);
+    useEffect(() => {
+      __getData("/school/payments", __u__.token).then((res) => {
+        if (res) {
+          // console.log(res, "OKAY");
+          setPayments(res.reverse());
+          setLoading(false);
+        }
+      });
+    }, []);
 
-  console.log(payments);
+  // console.log(payments);
   return (
     <div>
       <Navbar />
       <Container>
         <Title>
           {" "}
-          <h3>School Donation History</h3>{" "}
+          <h3>Payments History</h3>{" "}
         </Title>
         <TableNavList>
           <li
@@ -50,57 +62,66 @@ const SchoolPayment = () => {
             Pending
           </li>
         </TableNavList>
-        <div>
-          <div className="data-header">
-            <p className="ml-33">DATE</p>
-            <p className="ml-33">STATUS</p>
-            <p className="ml-34 position">TOTAL</p>
-          </div>
-          {!loading &&
-            payments.map((payment, index) => (
-              <>
-                <div className="data-main">
-                  <p className="ml-33">12.11.2022</p>
-                  <p className="ml-33">PENDING</p>
-                  <p
-                    onClick={() => setOpen(open === index ? -1 : index)}
-                    style={{ cursor: "pointer" }}
-                    className="table-end ml-34"
-                  >
-                    {payment.amount}
-                    <span className="table-end-icon">
-                      {open === index && <IoMdArrowDropup />}
-                      {open !== index && <IoMdArrowDropdown />}
-                    </span>
-                  </p>
-                </div>
-                {open === index && (
-                  <TableData>
-                    <div className="data">
-                      <div className="data-header">
-                        <p>Item Name</p>
-                        <p>Per Cost</p>
-                      </div>
-                      <div className="data-main">
-                        <p>Member ship</p>
-                        <p>$1000</p>
-                      </div>
-                      <div className="data-main">
-                        <p>Member ship</p>
-                        <p>$300</p>
-                      </div>
-                    </div>
-                  </TableData>
-                )}
-              </>
-            ))}
-        </div>
+        <DotLoader color="#3b9df1" loading={loading} cssOverride={override} />
+        <TableContainer>
+          {payments && payments.length > 0 && (
+            <>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>STATUS</th>
+                  <th>TOTAL</th>
+                </tr>
+              </thead>
+              <tbody>
+                {payments.map((payment, index) => {
+                  return (
+                    <tr key={index}>
+                      <td
+                        onClick={() => {
+                          setModal(!modal);
+                          setDetailsData(payment, index);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {payment?._id}
+                      </td>
+                      <td
+                        onClick={() => {
+                          setModal(!modal);
+                          setDetailsData(payment, index);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {moment(payment.createdAt).format("ll")}
+                      </td>
+                      <td>{payment?.amount === 0 ? "PENDING" : "PAID"}</td>
+                      <td> {payment.amount}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </>
+          )}
+          {!loading && payments && payments.length === 0 && <h1>You have no paymensts history.</h1>}
+
+          {modal && (
+            <AdminPaymentsModal
+              setModal={setModal}
+              modal={modal}
+              detailsData={detailsData}
+              setDetailsData={setDetailsData}
+            />
+          )}
+        </TableContainer>
       </Container>
     </div>
   );
 };
 
 export default SchoolPayment;
+
 const Container = styled.div`
   .data-header {
     display: flex;
@@ -161,6 +182,46 @@ const Title = styled.div`
     padding-top: 15px;
     padding-bottom: 15px;
   }
+`;
+
+
+const TableContainer = styled.table`
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 1rem;
+  background-color: transparent;
+
+  border-collapse: collapse;
+  thead {
+    background: rgba(34, 145, 241, 0.14);
+  }
+  thead th {
+    background: rgba(34, 145, 241, 0.14);
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+    color: #0e3746;
+    padding: 10px 0;
+  }
+  tbody tr td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-bottom: 1px solid #dee2e6;
+    width: 20%;
+  }
+
+  .checkmark {
+    font-size: 25px;
+    color: green;
+    cursor: pointer;
+  }
+  /* @media only screen and (max-width: 688px) {
+    width: 200px;
+  } */
 `;
 
 const TableData = styled.div`

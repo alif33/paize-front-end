@@ -5,6 +5,7 @@ import { APP_URL } from "../../__lib__/helpers/HttpService";
 import { Sortern } from "../../__lib__/helpers/Validator";
 import ReactPaginate from "react-paginate";
 import NeedsModal from "../../pages/NeedsModal/NeedsModal";
+
 const Table = ({ active, needs, items, setItems }) => {
   const [modal, setModal] = useState(false);
   const [needData, setNeedData] = useState(" ");
@@ -50,9 +51,14 @@ const Table = ({ active, needs, items, setItems }) => {
                       setNeedData(need);
                     }}
                     src={need.itemImage}
-                    alt=""
+                    alt={need.itemName}
                   />
-                  <h5>{need.itemName}</h5>
+                  <h5 
+                     onClick={() => {
+                      setModal(!modal);
+                      setNeedData(need);
+                    }}
+                  >{need.itemName}</h5>
                 </TableImage>
               </td>
               <td>
@@ -177,6 +183,7 @@ const TableImage = styled.div`
     height: 62px;
     border-radius: 7px;
     margin-left: 20px;
+    cursor: pointer;
   }
   h5 {
     font-family: "Poppins";
@@ -186,6 +193,7 @@ const TableImage = styled.div`
     line-height: 36px;
     color: #0e3746;
     padding-left: 10px;
+    cursor: pointer;
   }
 `;
 

@@ -8,12 +8,8 @@ import SearchIocn from "../../svg/SearchIcon";
 const Navbar = () => {
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
-
-  // console.log(users);
   const location = useLocation();
-  console.log("hash", location.hash);
-  console.log("pathname", location.pathname);
-  console.log("search", location.search);
+
   return (
     <Container>
       <Nav>
@@ -27,9 +23,6 @@ const Navbar = () => {
           </Link>
         </NavBrand>
         <SearchDiv>
-          {/* <img
-                        src='/img/icon/search-icon.svg' alt=""
-                    /> */}
           <SearchIocn />
           <SearchInput placeholder="Search" />
         </SearchDiv>

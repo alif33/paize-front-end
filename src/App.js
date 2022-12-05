@@ -25,18 +25,18 @@ import UpdateItem from "./components/UpdateItem/UpdateItem";
 import About from "./pages/About/About";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
-import StudentPayments from "./pages/StudentPayment/StudentPayments";
+import StudentPayments from "./pages/StudentPayments";
 import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
 import Contactus from "./pages/admin/Contactus/Contactus";
 import History from "./pages/History/History";
 import Receipt from "./pages/Receipt/Receipt";
 
 import NotFound from "./pages/NotFound/NotFound";
-import SchoolPayment from "./pages/SchoolPayment/SchoolPayment";
+import SchoolPayments from "./pages/SchoolPayments";
 import AdminPayments from "./pages/AdminPayments/AdminPayments";
 
 const App = () => {
-  console.log(process.env.REACT_APP_API_KEY);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -113,7 +113,7 @@ const App = () => {
           path="/school/payments"
           element={
             <Auth role="AUTHOR">
-              <SchoolPayment />
+              <SchoolPayments />
             </Auth>
           }
         />
