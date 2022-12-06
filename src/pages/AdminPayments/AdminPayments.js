@@ -27,6 +27,7 @@ const AdminPayments = () => {
   useEffect(() => {
     __getData("admin/payments", admin?.auth?.token).then((res) => {
       if (res) {
+        console.log(res, "PAY");
         setPayments(res);
         setLoading(false);
       }
@@ -75,8 +76,10 @@ const AdminPayments = () => {
                         <td>{payment?.amount === 0 ? "PENDING" : "PAID"}</td>
                         <td> {payment.amount}</td>
                         <td>
-                          {" "}
-                          <IoIosCheckmarkCircle className="checkmark" />{" "}
+                          {
+                            payment.status === 'PENDING'? (<button>Make Complete</button>): (<IoIosCheckmarkCircle size={24} className="checkmark" />)
+                          }
+                          
                         </td>
                       </tr>
                     );
