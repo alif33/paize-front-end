@@ -7,6 +7,7 @@ import { postData } from "../../../__lib__/helpers/HttpService";
 import { adminLogin } from "../../../store/admins/actions";
 import MailIcon from "../../../svg/MailIcon";
 import LockIcon from "../../../svg/LockIocn";
+import { toast, Toaster } from "react-hot-toast";
 
 const AdminLoginCard = () => {
   const [disable, setDisable] = useState(false);
@@ -29,6 +30,8 @@ const AdminLoginCard = () => {
           const { token, email } = res;
           dispatch(adminLogin({ token, email }));
           navigate("/admin/dashboard");
+        }else{
+          toast.error("Invalid Credentials");
         }
       })
       .catch((err) => {
@@ -38,6 +41,7 @@ const AdminLoginCard = () => {
 
   return (
     <Container>
+      <Toaster position="top-center" reverseOrder={false} />
       <From onSubmit={handleSubmit(onSubmit)}>
         <div className="inputsConatiner">
           {/* <img src='/img/icon/mail.svg' style={{ width: "30px" }} className="ledtIcon" alt=""

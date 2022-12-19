@@ -1,4 +1,4 @@
-import React, { useEffect, useState, CSSProperties } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -10,7 +10,7 @@ import { authPost, __getData } from "../../__lib__/helpers/HttpService";
 import { Toaster, toast } from "react-hot-toast";
 import ReactPaginate from "react-paginate";
 
-const override: CSSProperties = {
+const override = {
   display: "block",
   margin: "0 auto",
   marginTop: "200px",
@@ -43,8 +43,10 @@ const BuyingItem = () => {
       console.log(res);
       if (res.success) {
         toast.success(`${res.message}`);
-        __getData("/items", __u__.token).then((res) => {
-          setNeeds(res);
+        __getData("/items", __u__.token)
+        .then((res) => {
+          setNeeds(res.needs);
+          setPaids(res.paids);
         });
       }
     });
@@ -73,10 +75,6 @@ const BuyingItem = () => {
     } else {
     }
   };
-
-  console.log(activePost - itemsPerPage, activePost, "PAGINATION");
-  console.log(needs, "needs");
-
 
   return (
     <div>

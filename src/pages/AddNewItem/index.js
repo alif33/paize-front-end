@@ -131,7 +131,7 @@ const AddNewItem = () => {
               type="file"
               required
               onChange={(e) => ImageHandler(e.target.files, "studentImage")}
-              accept="image/*"
+              accept="image/jpg, image/jpeg, image/png"
             />
             <div className="productImage absolute flex justify-center items-center gap-2">
               <img src="/img/icon/upload-icon.png" alt="" />
@@ -152,7 +152,7 @@ const AddNewItem = () => {
             <input
               type="file"
               onChange={(e) => ImageHandler(e.target.files, "itemImage")}
-              accept="image/*"
+              accept="image/jpg, image/jpeg, image/png"
             />
             <div className="productImage absolute flex justify-center items-center gap-2">
               <img src="/img/icon/upload-icon.png" alt="" />
@@ -307,6 +307,7 @@ const TextArae = styled.div`
     padding: 10px 0px;
   }
   textarea {
+    padding: 10px;
     width: 100%;
     font-weight: 600;
     font-size: 18px;
