@@ -29,7 +29,7 @@ const LoginCard = () => {
 
   const onSubmit = (data) => {
     setDisable(true);
-    postData(`/${data.radioCheck}/signin`, data)
+    postData('/signin', data)
       .then((res) => {
         setDisable(false);
         if (res.success) {
@@ -89,7 +89,7 @@ const LoginCard = () => {
           </div>
         </div>
 
-        <CheckBox>
+        {/* <CheckBox>
           <div
             className={`form-check ${errors.radioCheck && "danger"} ${
               check.student && "active"
@@ -149,7 +149,7 @@ const LoginCard = () => {
               School
             </label>
           </div>
-        </CheckBox>
+        </CheckBox> */}
         <div className="forget-password">
           <Link to="/forget-password">Forgot your password?</Link>
         </div>

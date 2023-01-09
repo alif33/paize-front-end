@@ -8,28 +8,12 @@ const About = () => {
       <Container>
         <h3>About Us</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-          distinctio est qui officia, vel dicta ipsum voluptatum laboriosam modi
-          excepturi. Eius expedita doloribus natus neque! Numquam nisi laborum
-          eaque suscipit, mollitia blanditiis, quibusdam voluptatem commodi
-          debitis pariatur optio, dignissimos nam sunt sequi modi facilis
-          quidem? Adipisci iusto, temporibus dicta quo nostrum commodi nihil
-          ipsum. Nihil, ratione quos. Nostrum perferendis repellendus expedita
-          asperiores? Inventore nisi culpa at nobis cupiditate odit voluptates
-          ipsum quae iure minus natus id eveniet facere ea voluptatibus
-          repellendus, deserunt optio? Officia perspiciatis aperiam eos. Maiores
-          et dolorem facere qui quaerat voluptates, dicta molestias odio ipsam
-          modi mollitia nam, iste cupiditate libero, vel veniam? Repellendus
-          illo deleniti magni nesciunt nobis? Odio commodi earum minima ut
-          laboriosam, facilis ullam ipsam saepe assumenda eveniet veritatis in
-          quam harum esse aspernatur, obcaecati nam reiciendis dolorum iste qui.
-          Tempore dolorum tenetur veniam ut, tempora dignissimos qui molestias
-          eos perspiciatis architecto velit repellat explicabo quasi odit alias
-          provident modi rerum corporis in! Dolore harum doloremque tempore
-          aspernatur voluptatibus, soluta quasi eos quis officiis expedita eius
-          esse culpa voluptates eum veniam, magnam vero facere ex similique a
-          placeat! Molestias sed nihil praesentium quo libero officia expedita
-          sint possimus. Quod quae praesentium porro maiores perspiciatis.
+        Education is key to upward social mobility. There are millions of kids around the world who are struggling to find the means to go to schools. Paize is founded on the principle that every child deserves quality education and there is so much the communities can do to help them.
+
+Every person feels connected to their schools and Paize is a platform that connects Alumni to their school purely for paying for the needs of the students such as text books, study materials, and scholarships. Every donation goes straight to the school for the specific need to which it has been contributed. Donors will be provided with the proof once a particular need has been fulfilled. 
+
+With the help of school authorities and the alumni of the school. we can ensure that every child has the tools they need to succeed.
+
         </p>
       </Container>
     </>
