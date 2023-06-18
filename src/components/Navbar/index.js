@@ -4,6 +4,7 @@ import styled from "styled-components";
 import UserDropDown from "./UserDropDown";
 import { useSelector } from "react-redux";
 import SearchIocn from "../../svg/SearchIcon";
+import { LOGO } from "../../__lib__/config";
 
 const Navbar = () => {
   const { users } = useSelector((state) => state);
@@ -16,16 +17,16 @@ const Navbar = () => {
         <NavBrand>
           <Link to="/">
             <img
-              src="/img/icon/logo.svg"
+              src={LOGO}
               style={{ width: "100px", height: "60px" }}
               alt=""
             />
           </Link>
         </NavBrand>
-        <SearchDiv>
+        {/* <SearchDiv>
           <SearchIocn />
           <SearchInput placeholder="Search" />
-        </SearchDiv>
+        </SearchDiv> */}
         <div className="loginAndIconDiv">
        
           <Link

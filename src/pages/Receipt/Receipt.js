@@ -9,7 +9,8 @@ import { __getData } from "../../__lib__/helpers/HttpService";
 import { useDispatch, useSelector } from "react-redux";
 import { IoIosArrowBack } from "react-icons/io";
 import DotLoader from "react-spinners/DotLoader";
-const override: CSSProperties = {
+import { LOGO } from "../../__lib__/config";
+const override = {
   display: "block",
   margin: "0 auto",
   marginTop: "200px",
@@ -67,9 +68,9 @@ const Receipt = () => {
               </div>
 
               <div className="receipt-footer-under">
-                <p>Student Book</p>
+                <p>Paize</p>
                 <img
-                  src="/img/icon/logo.svg"
+                  src={LOGO}
                   style={{ width: "100px", height: "95px" }}
                   alt=""
                   srcset=""

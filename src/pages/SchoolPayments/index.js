@@ -10,7 +10,7 @@ import AdminPaymentsModal from "../AdminPayments/AdminPaymentsModal";
 import { DotLoader } from "react-spinners";
 import moment from "moment";
 
-const override: CSSProperties = {
+const override = {
   display: "block",
   margin: "0 auto",
   marginTop: "200px",
@@ -104,7 +104,7 @@ const SchoolPayment = () => {
               </tbody>
             </>
           )}
-          {!loading && payments && payments.length === 0 && <h1>You have no paymensts history.</h1>}
+          { !loading && payments && payments.length === 0 && <h1>You have no payments history.</h1> }
 
           {modal && (
             <AdminPaymentsModal

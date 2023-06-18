@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ConfirmPasswordCard from "../../components/ConfirmPasswordCard/ConfirmPasswordCard";
 import LoginCard from "../../components/LoginCard";
+import { LOGO } from "../../__lib__/config";
 
 const ConfirmPassword = () => {
   return (
@@ -12,7 +13,7 @@ const ConfirmPassword = () => {
           <Link to="/">
             {" "}
             <img
-              src="/img/icon/logo.svg"
+              src={LOGO}
               style={{ width: "90px", height: "80px" }}
               alt=""
             />

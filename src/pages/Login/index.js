@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoginCard from "../../components/LoginCard";
+import { LOGO } from "../../__lib__/config";
 
 const Login = () => {
   return ( 
@@ -11,7 +12,7 @@ const Login = () => {
           <Link to="/">
             {" "}
             <img
-              src="/img/icon/logo.svg"
+              src={LOGO}
               style={{ width: "90px", height: "80px" }}
               alt=""
             />

@@ -3,6 +3,7 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import JoinInfo from "../../components/JoinInfo";
+import { LOGO } from "../../__lib__/config";
 
 const JoinSchoolInfo = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const JoinSchoolInfo = () => {
           <Link to="/">
             {" "}
             <img
-              src="/img/icon/logo.svg"
+              src={LOGO}
               style={{ width: "90px", height: "80px" }}
               alt=""
             />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DotLoader from "react-spinners/DotLoader";
 import styled from "styled-components";
 import HomeLeftChild from '../../components/HomeLeftChild';
@@ -8,6 +8,17 @@ import { useSelector } from 'react-redux';
 
 const HomePage = () => {
   const { admin } = useSelector(state => state);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const headerImages = document.querySelectorAll('.header-img1, .header-img2, .header-img3, .header-img4')
+      headerImages.forEach((image) => {
+        image.style.animation = 'none'
+      });
+    }, 3700)
+  }, []);
+
+
 
   return (
     <>

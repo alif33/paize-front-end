@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut } from "../../../store/admins/actions";
 import UserDropDown from "./UserDropDown";
+import { LOGO } from "../../../__lib__/config";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Navbar = () => {
         <NavBrand>
           <Link to="/">
             <img
-              src="/img/icon/logo.svg"
+              src={LOGO}
               style={{ width: "100px", height: "60px" }}
               alt=""
             />

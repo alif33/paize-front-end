@@ -29,6 +29,7 @@ const PaymentInfo = () => {
     postData("/enroll", { ...auth, ...schoolInfo, ...data })
       .then((res) => {
         setDisable(false);
+        console.log(res);
         if (res.success) {
           const { token, info, role, status } = res;
           dispatch(clearCache());
@@ -49,8 +50,6 @@ const PaymentInfo = () => {
       <Toaster position="top-center" reverseOrder={false} />
       <From onSubmit={handleSubmit(onSubmit)}>
         <div className="inputsConatiner">
-          {/* <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
-                    /> */}
           <BankIcon />
           <div className={errors.bankName ? "inputDiv active" : "inputDiv "}>
             <input
@@ -65,8 +64,6 @@ const PaymentInfo = () => {
         </div>
 
         <div className="inputsConatiner">
-          {/* <img src='/img/icon/bank.svg' className="ledtIcon" alt=""
-          /> */}
           <BankIcon />
           <div
             className={errors.routingNumber ? "inputDiv active" : "inputDiv "}

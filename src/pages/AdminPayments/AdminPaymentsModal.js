@@ -4,6 +4,7 @@ import { APP_URL } from "../../__lib__/helpers/HttpService";
 import { IoIosCloseCircle } from "react-icons/io";
 import MapPin from "../../svg/MapPin/MapPin";
 import BankIcon from "../../svg/BankIcon";
+import { LOGO } from "../../__lib__/config";
 
 const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
   console.log("AdminPaymentsModal", detailsData);
@@ -35,7 +36,7 @@ const AdminPaymentsModal = ({ setModal, modal, detailsData }) => {
             <div className="bg-rounded">
               <img
                 className="modal-main-img "
-                src="/img/icon/logo.svg"
+                src={LOGO}
                 alt=""
                 srcset=""
               />

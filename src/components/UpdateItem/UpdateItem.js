@@ -20,6 +20,7 @@ const UpdateItem = () => {
     studentImage: "",
     itemImage: "",
   });
+
   const {
     register,
     reset,
@@ -29,6 +30,7 @@ const UpdateItem = () => {
     setValue,
     formState: { errors },
   } = useForm();
+  
   const { users } = useSelector((state) => state);
   const { __u__ } = users;
   // const { handleSubmit, control, setValue } = useForm({ mode: "onBlur" });

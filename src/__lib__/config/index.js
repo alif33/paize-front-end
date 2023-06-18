@@ -1,3 +1,5 @@
+export const LOGO = `/img/icon/logo.jpg`
+
 export const authorInfo = {
     auth:{
         firstName: "",

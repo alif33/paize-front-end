@@ -114,7 +114,7 @@ const Register = () => {
           </div>
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Next</Button>
         <Button2 type="button" onClick={() => navigate(-1)}>
           Back
         </Button2>

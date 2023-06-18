@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RegisterStudent from "../../components/RegisterStudent";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
+import { LOGO } from "../../__lib__/config";
+
 const EnrollSchool = () => {
   const navigate = useNavigate();
   return ( 
@@ -13,7 +15,7 @@ const EnrollSchool = () => {
         <div style={{ paddingLeft: "20px" }}>
           <Link to="/">
             <img
-              src="/img/icon/logo.svg" 
+              src={LOGO}
               style={{ width: "90px", height: "80px" }}
               alt=""
             />

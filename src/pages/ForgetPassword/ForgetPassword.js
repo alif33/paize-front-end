@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ForgetPasswordCard from "../../components/ForgetPasswordCard/ForgetPasswordCard";
 import LoginCard from "../../components/LoginCard";
 import { IoIosArrowBack } from "react-icons/io";
+import { LOGO } from "../../__lib__/config";
 const ForgetPassword = () => {
   const navigate = useNavigate();
   return (
@@ -13,7 +14,7 @@ const ForgetPassword = () => {
           <Link to="/">
             {" "}
             <img
-              src="/img/icon/logo.svg"
+              src={LOGO}
               style={{ width: "90px", height: "80px" }}
               alt=""
             />
